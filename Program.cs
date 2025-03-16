@@ -1,17 +1,42 @@
+using ReaLTaiizor.Controls;
+using SpiceSharp;
+using SpiceSharp.Components;
+using SpiceSharp.Simulations;
+
 namespace CircuitCraft
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new TutorialForm());
+        }
+
+        static void RunCircuit()
+        {
+
+        }
+
+        public static void ApplyTransparentUI(ref PictureBox pbox, ref Label label)
+        {
+            System.Drawing.Point labelPos = label.Location;
+            pbox.Controls.Add(label);
+            label.Location = labelPos;
+            label.BackColor = Color.Transparent;
+        }
+        public static void ApplyTransparentUI(ref PictureBox pbox, ref TextBox tbx)
+        {
+            System.Drawing.Point labelPos = tbx.Location;
+            pbox.Controls.Add(tbx);
+            tbx.Location = labelPos;
+        }
+        public static void ApplyTransparentUI(ref PictureBox pbox, ref ParrotSlider sldr)
+        {
+            System.Drawing.Point labelPos = sldr.Location;
+            pbox.Controls.Add(sldr);
+            sldr.Location = labelPos;
         }
     }
 }
