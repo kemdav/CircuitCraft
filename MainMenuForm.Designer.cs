@@ -28,224 +28,249 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenuForm));
-            mainMenuPbox = new PictureBox();
-            playTXT = new Label();
-            leaderboardsTXT = new Label();
-            settingsTXT = new Label();
-            tutorialTXT = new Label();
-            logoutTXT = new Label();
-            settingsPbox = new PictureBox();
-            musicTXT = new Label();
-            soundTXT = new Label();
-            musicSlider = new ReaLTaiizor.Controls.ParrotSlider();
-            settingsBackTXT = new Label();
-            materialComboBox1 = new MaterialSkin.Controls.MaterialComboBox();
-            ((System.ComponentModel.ISupportInitialize)mainMenuPbox).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)settingsPbox).BeginInit();
+            airForm1 = new ReaLTaiizor.Forms.AirForm();
+            spaceMinimize1 = new ReaLTaiizor.Controls.SpaceMinimize();
+            spaceMaximize1 = new ReaLTaiizor.Controls.SpaceMaximize();
+            bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
+            versionLABEL = new MaterialSkin.Controls.MaterialLabel();
+            logoutButton = new MaterialSkin.Controls.MaterialButton();
+            settingsButton = new MaterialSkin.Controls.MaterialButton();
+            leaderboardButton = new MaterialSkin.Controls.MaterialButton();
+            tutorialButton = new MaterialSkin.Controls.MaterialButton();
+            playButton = new MaterialSkin.Controls.MaterialButton();
+            airForm1.SuspendLayout();
             SuspendLayout();
             // 
-            // mainMenuPbox
+            // airForm1
             // 
-            mainMenuPbox.Location = new Point(0, 0);
-            mainMenuPbox.Name = "mainMenuPbox";
-            mainMenuPbox.Size = new Size(1264, 720);
-            mainMenuPbox.SizeMode = PictureBoxSizeMode.Zoom;
-            mainMenuPbox.TabIndex = 2;
-            mainMenuPbox.TabStop = false;
+            airForm1.BackColor = Color.White;
+            airForm1.BorderStyle = FormBorderStyle.None;
+            airForm1.Controls.Add(spaceMinimize1);
+            airForm1.Controls.Add(spaceMaximize1);
+            airForm1.Controls.Add(bigLabel1);
+            airForm1.Controls.Add(versionLABEL);
+            airForm1.Controls.Add(logoutButton);
+            airForm1.Controls.Add(settingsButton);
+            airForm1.Controls.Add(leaderboardButton);
+            airForm1.Controls.Add(tutorialButton);
+            airForm1.Controls.Add(playButton);
+            airForm1.Customization = "AAAA/1paWv9ycnL/";
+            airForm1.Dock = DockStyle.Fill;
+            airForm1.Font = new Font("Segoe UI", 9F);
+            airForm1.Image = null;
+            airForm1.Location = new Point(0, 0);
+            airForm1.MinimumSize = new Size(112, 35);
+            airForm1.Movable = true;
+            airForm1.Name = "airForm1";
+            airForm1.NoRounding = false;
+            airForm1.Sizable = true;
+            airForm1.Size = new Size(1280, 720);
+            airForm1.SmartBounds = true;
+            airForm1.StartPosition = FormStartPosition.CenterScreen;
+            airForm1.TabIndex = 0;
+            airForm1.TransparencyKey = Color.Fuchsia;
+            airForm1.Transparent = false;
             // 
-            // playTXT
+            // spaceMinimize1
             // 
-            playTXT.BackColor = Color.Transparent;
-            playTXT.Font = new Font("Sketchit Means Sketchit", 48F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            playTXT.Location = new Point(442, 61);
-            playTXT.Name = "playTXT";
-            playTXT.Size = new Size(382, 87);
-            playTXT.TabIndex = 5;
-            playTXT.Text = "Play";
-            playTXT.TextAlign = ContentAlignment.MiddleCenter;
-            playTXT.Click += playTXT_Click;
+            spaceMinimize1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            spaceMinimize1.Customization = "G4qM/3LEtP8yMjL/Kioq/yPJzP8bioz//v7+/yMjI/8qKir/";
+            spaceMinimize1.DefaultAnchor = true;
+            spaceMinimize1.DefaultLocation = true;
+            spaceMinimize1.Font = new Font("Verdana", 8F);
+            spaceMinimize1.Image = null;
+            spaceMinimize1.Location = new Point(1206, 3);
+            spaceMinimize1.Name = "spaceMinimize1";
+            spaceMinimize1.NoRounding = false;
+            spaceMinimize1.Size = new Size(23, 21);
+            spaceMinimize1.TabIndex = 9;
+            spaceMinimize1.Text = "_";
+            spaceMinimize1.Transparent = false;
+            spaceMinimize1.WindowState = FormWindowState.Normal;
             // 
-            // leaderboardsTXT
+            // spaceMaximize1
             // 
-            leaderboardsTXT.BackColor = Color.Transparent;
-            leaderboardsTXT.Font = new Font("Sketchit Means Sketchit", 48F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            leaderboardsTXT.Location = new Point(442, 290);
-            leaderboardsTXT.Name = "leaderboardsTXT";
-            leaderboardsTXT.Size = new Size(382, 87);
-            leaderboardsTXT.TabIndex = 6;
-            leaderboardsTXT.Text = "Leaderboards";
-            leaderboardsTXT.TextAlign = ContentAlignment.MiddleCenter;
-            leaderboardsTXT.Click += leaderboardsTXT_Click;
+            spaceMaximize1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            spaceMaximize1.Customization = "G4qM/3LEtP8yMjL/Kioq/yPJzP8bioz//v7+/yMjI/8qKir/";
+            spaceMaximize1.DefaultAnchor = true;
+            spaceMaximize1.DefaultLocation = true;
+            spaceMaximize1.Font = new Font("Verdana", 8F);
+            spaceMaximize1.Image = null;
+            spaceMaximize1.Location = new Point(1230, 3);
+            spaceMaximize1.Name = "spaceMaximize1";
+            spaceMaximize1.NoRounding = false;
+            spaceMaximize1.Size = new Size(23, 21);
+            spaceMaximize1.TabIndex = 8;
+            spaceMaximize1.Text = "+";
+            spaceMaximize1.Transparent = false;
+            spaceMaximize1.WindowState = FormWindowState.Normal;
             // 
-            // settingsTXT
+            // bigLabel1
             // 
-            settingsTXT.BackColor = Color.Transparent;
-            settingsTXT.Font = new Font("Sketchit Means Sketchit", 48F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            settingsTXT.Location = new Point(442, 405);
-            settingsTXT.Name = "settingsTXT";
-            settingsTXT.Size = new Size(382, 87);
-            settingsTXT.TabIndex = 7;
-            settingsTXT.Text = "Settings";
-            settingsTXT.TextAlign = ContentAlignment.MiddleCenter;
-            settingsTXT.Click += settingsTXT_Click;
+            bigLabel1.Anchor = AnchorStyles.None;
+            bigLabel1.AutoSize = true;
+            bigLabel1.BackColor = Color.Transparent;
+            bigLabel1.FlatStyle = FlatStyle.Popup;
+            bigLabel1.Font = new Font("Swis721 Blk BT", 24.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bigLabel1.ForeColor = Color.CornflowerBlue;
+            bigLabel1.Location = new Point(496, 128);
+            bigLabel1.Name = "bigLabel1";
+            bigLabel1.Size = new Size(298, 40);
+            bigLabel1.TabIndex = 7;
+            bigLabel1.Text = "CIRCUIT CRAFT";
             // 
-            // tutorialTXT
+            // versionLABEL
             // 
-            tutorialTXT.BackColor = Color.Transparent;
-            tutorialTXT.Font = new Font("Sketchit Means Sketchit", 48F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            tutorialTXT.Location = new Point(442, 176);
-            tutorialTXT.Name = "tutorialTXT";
-            tutorialTXT.Size = new Size(382, 87);
-            tutorialTXT.TabIndex = 8;
-            tutorialTXT.Text = "Tutorial";
-            tutorialTXT.TextAlign = ContentAlignment.MiddleCenter;
-            tutorialTXT.Click += tutorialTXT_Click;
+            versionLABEL.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            versionLABEL.AutoSize = true;
+            versionLABEL.Depth = 0;
+            versionLABEL.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            versionLABEL.Location = new Point(1194, 692);
+            versionLABEL.MouseState = MaterialSkin.MouseState.HOVER;
+            versionLABEL.Name = "versionLABEL";
+            versionLABEL.Size = new Size(74, 19);
+            versionLABEL.TabIndex = 6;
+            versionLABEL.Text = "v0.1 BETA";
             // 
-            // logoutTXT
+            // logoutButton
             // 
-            logoutTXT.BackColor = Color.Transparent;
-            logoutTXT.Font = new Font("Sketchit Means Sketchit", 48F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            logoutTXT.Location = new Point(442, 513);
-            logoutTXT.Name = "logoutTXT";
-            logoutTXT.Size = new Size(382, 87);
-            logoutTXT.TabIndex = 9;
-            logoutTXT.Text = "LOGOUT";
-            logoutTXT.TextAlign = ContentAlignment.MiddleCenter;
-            logoutTXT.Click += logoutTXT_Click;
+            logoutButton.Anchor = AnchorStyles.None;
+            logoutButton.AutoSize = false;
+            logoutButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            logoutButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            logoutButton.Depth = 0;
+            logoutButton.HighEmphasis = true;
+            logoutButton.Icon = null;
+            logoutButton.Location = new Point(561, 525);
+            logoutButton.Margin = new Padding(4, 6, 4, 6);
+            logoutButton.MouseState = MaterialSkin.MouseState.HOVER;
+            logoutButton.Name = "logoutButton";
+            logoutButton.NoAccentTextColor = Color.Empty;
+            logoutButton.Size = new Size(158, 36);
+            logoutButton.TabIndex = 4;
+            logoutButton.Text = "Logout";
+            logoutButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            logoutButton.UseAccentColor = false;
+            logoutButton.UseVisualStyleBackColor = true;
+            logoutButton.Click += logoutButton_Click;
             // 
-            // settingsPbox
+            // settingsButton
             // 
-            settingsPbox.Image = (Image)resources.GetObject("settingsPbox.Image");
-            settingsPbox.Location = new Point(-2, 0);
-            settingsPbox.Name = "settingsPbox";
-            settingsPbox.Size = new Size(1280, 720);
-            settingsPbox.SizeMode = PictureBoxSizeMode.Zoom;
-            settingsPbox.TabIndex = 10;
-            settingsPbox.TabStop = false;
+            settingsButton.Anchor = AnchorStyles.None;
+            settingsButton.AutoSize = false;
+            settingsButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            settingsButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            settingsButton.Depth = 0;
+            settingsButton.HighEmphasis = true;
+            settingsButton.Icon = null;
+            settingsButton.Location = new Point(561, 477);
+            settingsButton.Margin = new Padding(4, 6, 4, 6);
+            settingsButton.MouseState = MaterialSkin.MouseState.HOVER;
+            settingsButton.Name = "settingsButton";
+            settingsButton.NoAccentTextColor = Color.Empty;
+            settingsButton.Size = new Size(158, 36);
+            settingsButton.TabIndex = 3;
+            settingsButton.Text = "Settings";
+            settingsButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            settingsButton.UseAccentColor = false;
+            settingsButton.UseVisualStyleBackColor = true;
+            settingsButton.Click += settingsButton_Click;
             // 
-            // musicTXT
+            // leaderboardButton
             // 
-            musicTXT.BackColor = Color.Transparent;
-            musicTXT.Font = new Font("Sketchit Means Sketchit", 48F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            musicTXT.Location = new Point(158, 110);
-            musicTXT.Name = "musicTXT";
-            musicTXT.Size = new Size(227, 87);
-            musicTXT.TabIndex = 21;
-            musicTXT.Text = "Music";
-            musicTXT.TextAlign = ContentAlignment.MiddleCenter;
+            leaderboardButton.Anchor = AnchorStyles.None;
+            leaderboardButton.AutoSize = false;
+            leaderboardButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            leaderboardButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            leaderboardButton.Depth = 0;
+            leaderboardButton.HighEmphasis = true;
+            leaderboardButton.Icon = null;
+            leaderboardButton.Location = new Point(561, 429);
+            leaderboardButton.Margin = new Padding(4, 6, 4, 6);
+            leaderboardButton.MouseState = MaterialSkin.MouseState.HOVER;
+            leaderboardButton.Name = "leaderboardButton";
+            leaderboardButton.NoAccentTextColor = Color.Empty;
+            leaderboardButton.Size = new Size(158, 36);
+            leaderboardButton.TabIndex = 2;
+            leaderboardButton.Text = "Leaderboard";
+            leaderboardButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            leaderboardButton.UseAccentColor = false;
+            leaderboardButton.UseVisualStyleBackColor = true;
+            leaderboardButton.Click += leaderboardButton_Click;
             // 
-            // soundTXT
+            // tutorialButton
             // 
-            soundTXT.BackColor = Color.Transparent;
-            soundTXT.Font = new Font("Sketchit Means Sketchit", 48F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            soundTXT.Location = new Point(158, 219);
-            soundTXT.Name = "soundTXT";
-            soundTXT.Size = new Size(227, 87);
-            soundTXT.TabIndex = 22;
-            soundTXT.Text = "Sound";
-            soundTXT.TextAlign = ContentAlignment.MiddleCenter;
+            tutorialButton.Anchor = AnchorStyles.None;
+            tutorialButton.AutoSize = false;
+            tutorialButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            tutorialButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            tutorialButton.Depth = 0;
+            tutorialButton.HighEmphasis = true;
+            tutorialButton.Icon = null;
+            tutorialButton.Location = new Point(561, 381);
+            tutorialButton.Margin = new Padding(4, 6, 4, 6);
+            tutorialButton.MouseState = MaterialSkin.MouseState.HOVER;
+            tutorialButton.Name = "tutorialButton";
+            tutorialButton.NoAccentTextColor = Color.Empty;
+            tutorialButton.Size = new Size(158, 36);
+            tutorialButton.TabIndex = 1;
+            tutorialButton.Text = "Tutorial";
+            tutorialButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            tutorialButton.UseAccentColor = false;
+            tutorialButton.UseVisualStyleBackColor = true;
+            tutorialButton.Click += tutorialButton_Click;
             // 
-            // musicSlider
+            // playButton
             // 
-            musicSlider.BarThickness = 4;
-            musicSlider.BigStepIncrement = 10;
-            musicSlider.Colors = (List<Color>)resources.GetObject("musicSlider.Colors");
-            musicSlider.CompositingQualityType = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-            musicSlider.FilledColor = Color.FromArgb(1, 119, 215);
-            musicSlider.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
-            musicSlider.KnobColor = Color.Gray;
-            musicSlider.KnobImage = Properties.Resources.title;
-            musicSlider.Location = new Point(455, 132);
-            musicSlider.Max = 100;
-            musicSlider.Name = "musicSlider";
-            musicSlider.Percentage = 50;
-            musicSlider.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-            musicSlider.Positions = (List<float>)resources.GetObject("musicSlider.Positions");
-            musicSlider.QuickHopping = false;
-            musicSlider.Size = new Size(716, 87);
-            musicSlider.SliderStyle = ReaLTaiizor.Controls.ParrotSlider.Style.Windows10;
-            musicSlider.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            musicSlider.TabIndex = 23;
-            musicSlider.Text = "parrotSlider1";
-            musicSlider.UnfilledColor = Color.FromArgb(26, 169, 219);
-            // 
-            // settingsBackTXT
-            // 
-            settingsBackTXT.BackColor = Color.Transparent;
-            settingsBackTXT.Font = new Font("Sketchit Means Sketchit", 48F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            settingsBackTXT.Location = new Point(511, 467);
-            settingsBackTXT.Name = "settingsBackTXT";
-            settingsBackTXT.Size = new Size(227, 87);
-            settingsBackTXT.TabIndex = 24;
-            settingsBackTXT.Text = "Back";
-            settingsBackTXT.TextAlign = ContentAlignment.MiddleCenter;
-            settingsBackTXT.Click += settingsBackTXT_Click;
-            // 
-            // materialComboBox1
-            // 
-            materialComboBox1.AutoResize = false;
-            materialComboBox1.BackColor = Color.FromArgb(255, 255, 255);
-            materialComboBox1.Depth = 0;
-            materialComboBox1.DrawMode = DrawMode.OwnerDrawVariable;
-            materialComboBox1.DropDownHeight = 174;
-            materialComboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            materialComboBox1.DropDownWidth = 121;
-            materialComboBox1.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
-            materialComboBox1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialComboBox1.FormattingEnabled = true;
-            materialComboBox1.IntegralHeight = false;
-            materialComboBox1.ItemHeight = 43;
-            materialComboBox1.Items.AddRange(new object[] { "1280x720", "1920x1080" });
-            materialComboBox1.Location = new Point(858, 55);
-            materialComboBox1.MaxDropDownItems = 4;
-            materialComboBox1.MouseState = MaterialSkin.MouseState.OUT;
-            materialComboBox1.Name = "materialComboBox1";
-            materialComboBox1.Size = new Size(357, 49);
-            materialComboBox1.StartIndex = 0;
-            materialComboBox1.TabIndex = 26;
+            playButton.Anchor = AnchorStyles.None;
+            playButton.AutoSize = false;
+            playButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            playButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            playButton.Depth = 0;
+            playButton.HighEmphasis = true;
+            playButton.Icon = null;
+            playButton.Location = new Point(561, 333);
+            playButton.Margin = new Padding(4, 6, 4, 6);
+            playButton.MouseState = MaterialSkin.MouseState.HOVER;
+            playButton.Name = "playButton";
+            playButton.NoAccentTextColor = Color.Empty;
+            playButton.Size = new Size(158, 36);
+            playButton.TabIndex = 0;
+            playButton.Text = "Play";
+            playButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            playButton.UseAccentColor = false;
+            playButton.UseVisualStyleBackColor = true;
+            playButton.Click += playButton_Click;
             // 
             // MainMenuForm
             // 
+            AspectRatio = 1.77777779F;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            AutoSize = true;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            ClientSize = new Size(1264, 1161);
-            Controls.Add(materialComboBox1);
-            Controls.Add(settingsBackTXT);
-            Controls.Add(musicSlider);
-            Controls.Add(soundTXT);
-            Controls.Add(musicTXT);
-            Controls.Add(logoutTXT);
-            Controls.Add(tutorialTXT);
-            Controls.Add(settingsTXT);
-            Controls.Add(leaderboardsTXT);
-            Controls.Add(playTXT);
-            Controls.Add(mainMenuPbox);
-            Controls.Add(settingsPbox);
+            ClientSize = new Size(1280, 720);
+            Controls.Add(airForm1);
+            FormBorderStyle = FormBorderStyle.None;
+            MinimumSize = new Size(1280, 720);
             Name = "MainMenuForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MainMenuForm";
-            Load += MainMenuForm_Load;
-            ((System.ComponentModel.ISupportInitialize)mainMenuPbox).EndInit();
-            ((System.ComponentModel.ISupportInitialize)settingsPbox).EndInit();
+            TransparencyKey = Color.Fuchsia;
+            airForm1.ResumeLayout(false);
+            airForm1.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private PictureBox mainMenuPbox;
-        private Label playTXT;
-        private Label leaderboardsTXT;
-        private Label settingsTXT;
-        private Label tutorialTXT;
-        private Label logoutTXT;
-        private PictureBox settingsPbox;
-        private Label musicTXT;
-        private Label soundTXT;
-        private ReaLTaiizor.Controls.ParrotSlider musicSlider;
-        private Label settingsBackTXT;
-        private MaterialSkin.Controls.MaterialComboBox materialComboBox1;
+        private ReaLTaiizor.Forms.AirForm airForm1;
+        private MaterialSkin.Controls.MaterialLabel versionLABEL;
+        private MaterialSkin.Controls.MaterialButton logoutButton;
+        private MaterialSkin.Controls.MaterialButton settingsButton;
+        private MaterialSkin.Controls.MaterialButton leaderboardButton;
+        private MaterialSkin.Controls.MaterialButton tutorialButton;
+        private MaterialSkin.Controls.MaterialButton playButton;
+        private ReaLTaiizor.Controls.BigLabel bigLabel1;
+        private ReaLTaiizor.Controls.SpaceMinimize spaceMinimize1;
+        private ReaLTaiizor.Controls.SpaceMaximize spaceMaximize1;
     }
 }

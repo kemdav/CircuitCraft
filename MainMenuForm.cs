@@ -15,78 +15,45 @@ namespace CircuitCraft
         public MainMenuForm()
         {
             InitializeComponent();
-
             AspectRatio = 16f / 9f;
-
-            Program.ApplyTransparentUI(ref mainMenuPbox, ref tutorialTXT);
-            Program.ApplyTransparentUI(ref mainMenuPbox, ref leaderboardsTXT);
-            Program.ApplyTransparentUI(ref mainMenuPbox, ref settingsTXT);
-            Program.ApplyTransparentUI(ref mainMenuPbox, ref playTXT);
-            Program.ApplyTransparentUI(ref mainMenuPbox, ref logoutTXT);
-
-            Program.ApplyTransparentUI(ref settingsPbox, ref musicTXT);
-            Program.ApplyTransparentUI(ref settingsPbox, ref soundTXT);
-            Program.ApplyTransparentUI(ref settingsPbox, ref musicSlider);
-            Program.ApplyTransparentUI(ref settingsPbox, ref settingsBackTXT);
-
-            settingsPbox.Hide();
         }
 
-        private void logoutTXT_Click(object sender, EventArgs e)
+        private void playButton_Click(object sender, EventArgs e)
         {
-            var frm = new LoginScreenForm();
+
+        }
+
+        private void tutorialButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void leaderboardButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void settingsButton_Click(object sender, EventArgs e)
+        {
+            var frm = new SettingsForm();
             frm.Location = Location;
             frm.StartPosition = FormStartPosition.Manual;
+            if (WindowState == FormWindowState.Maximized)
+            {
+                frm.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                frm.Width = Width;
+                frm.Height = Height;
+            }
             frm.FormClosing += delegate { Close(); };
             frm.Show();
             Hide();
         }
 
-        private void settingsTXT_Click(object sender, EventArgs e)
+        private void logoutButton_Click(object sender, EventArgs e)
         {
-            mainMenuPbox.Hide();
-            settingsPbox.Show();
-        }
-
-        private void settingsBackTXT_Click(object sender, EventArgs e)
-        {
-            settingsPbox.Hide();
-            mainMenuPbox.Show();
-        }
-
-        private void leaderboardsTXT_Click(object sender, EventArgs e)
-        {
-            var frm = new LeaderboardsForm();
-            frm.Location = Location;
-            frm.StartPosition = FormStartPosition.Manual;
-            frm.FormClosing += delegate { Close(); };
-            frm.Show();
-            Hide();
-        }
-
-        private void playTXT_Click(object sender, EventArgs e)
-        {
-            var frm = new TutorialForm();
-            frm.Location = Location;
-            frm.StartPosition = FormStartPosition.Manual;
-            frm.FormClosing += delegate { Close(); };
-            frm.Show();
-            Hide();
-        }
-
-        private void tutorialTXT_Click(object sender, EventArgs e)
-        {
-            var frm = new TutorialForm();
-            frm.Location = Location;
-            frm.StartPosition = FormStartPosition.Manual;
-            frm.FormClosing += delegate { Close(); };
-            frm.Show();
-            Hide();
-        }
-
-        private void MainMenuForm_Load(object sender, EventArgs e)
-        {
-
 
         }
     }

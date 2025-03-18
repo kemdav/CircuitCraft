@@ -7,7 +7,7 @@ public class LockedAspectRatioForm : Form
 {
     private float _aspectRatio;
     private bool _aspectRatioLocked = true;
-    private bool _isUserResizing = false;
+    private bool _initialLayoutComplete = false;
 
     [StructLayout(LayoutKind.Sequential)]
     public struct RECT
@@ -25,7 +25,10 @@ public class LockedAspectRatioForm : Form
         {
             if (value <= 0) throw new ArgumentOutOfRangeException(nameof(value), "Aspect ratio must be positive.");
             _aspectRatio = value;
-            EnforceAspectRatio();
+            if (_initialLayoutComplete) // Only enforce after initial layout
+            {
+                EnforceAspectRatio();
+            }
         }
     }
 
@@ -37,10 +40,19 @@ public class LockedAspectRatioForm : Form
 
     public LockedAspectRatioForm()
     {
-        _aspectRatio = (float)ClientSize.Width / ClientSize.Height;
+        // Don't calculate aspect ratio here.  Do it after the initial layout.
+        // InitializeClientSize ONLY; do NOT set Size here.
+        this.ClientSize = new Size(1280, 720);
+
         SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
-        ResizeBegin += (s, e) => _isUserResizing = true;
-        ResizeEnd += (s, e) => _isUserResizing = false;
+        // Removed ResizeBegin/ResizeEnd - not needed with the _initialLayoutComplete flag.
+    }
+    protected override void OnLoad(EventArgs e)
+    {
+        base.OnLoad(e);
+        _aspectRatio = (float)ClientSize.Width / ClientSize.Height; // Calculate here
+        _initialLayoutComplete = true; // Set the flag after initial layout.
+        EnforceAspectRatio();
     }
 
     protected override CreateParams CreateParams
@@ -64,6 +76,8 @@ public class LockedAspectRatioForm : Form
 
             AdjustSize(ref rc, edge);
             Marshal.StructureToPtr(rc, m.LParam, true);
+            m.Result = IntPtr.Zero; // Indicate that we handled the message
+            return; // Prevent base.WndProc from interfering
         }
 
         base.WndProc(ref m);
@@ -78,12 +92,12 @@ public class LockedAspectRatioForm : Form
         {
             case 1: // Left
             case 2: // Right
-                newHeight = (int)(newWidth / _aspectRatio);
+                newHeight = (int)Math.Round(newWidth / _aspectRatio); // Use Math.Round
                 rc.Bottom = rc.Top + newHeight;
                 break;
             case 3: // Top
             case 6: // Bottom
-                newWidth = (int)(newHeight * _aspectRatio);
+                newWidth = (int)Math.Round(newHeight * _aspectRatio); // Use Math.Round
                 rc.Right = rc.Left + newWidth;
                 break;
             case 4: // Top-Left
@@ -105,12 +119,12 @@ public class LockedAspectRatioForm : Form
     {
         if (newWidth / (float)newHeight > _aspectRatio)
         {
-            newHeight = (int)(newWidth / _aspectRatio);
+            newHeight = (int)Math.Round(newWidth / _aspectRatio);
             rc.Top = rc.Bottom - newHeight;
         }
         else
         {
-            newWidth = (int)(newHeight * _aspectRatio);
+            newWidth = (int)Math.Round(newHeight * _aspectRatio);
             rc.Left = rc.Right - newWidth;
         }
     }
@@ -119,12 +133,12 @@ public class LockedAspectRatioForm : Form
     {
         if (newWidth / (float)newHeight > _aspectRatio)
         {
-            newHeight = (int)(newWidth / _aspectRatio);
+            newHeight = (int)Math.Round(newWidth / _aspectRatio);
             rc.Top = rc.Bottom - newHeight;
         }
         else
         {
-            newWidth = (int)(newHeight * _aspectRatio);
+            newWidth = (int)Math.Round(newHeight * _aspectRatio);
             rc.Right = rc.Left + newWidth;
         }
     }
@@ -133,12 +147,12 @@ public class LockedAspectRatioForm : Form
     {
         if (newWidth / (float)newHeight > _aspectRatio)
         {
-            newHeight = (int)(newWidth / _aspectRatio);
+            newHeight = (int)Math.Round(newWidth / _aspectRatio);
             rc.Bottom = rc.Top + newHeight;
         }
         else
         {
-            newWidth = (int)(newHeight * _aspectRatio);
+            newWidth = (int)Math.Round(newHeight * _aspectRatio);
             rc.Left = rc.Right - newWidth;
         }
     }
@@ -147,35 +161,39 @@ public class LockedAspectRatioForm : Form
     {
         if (newWidth / (float)newHeight > _aspectRatio)
         {
-            newHeight = (int)(newWidth / _aspectRatio);
+            newHeight = (int)Math.Round(newWidth / _aspectRatio);
             rc.Bottom = rc.Top + newHeight;
         }
         else
         {
-            newWidth = (int)(newHeight * _aspectRatio);
+            newWidth = (int)Math.Round(newHeight * _aspectRatio);
             rc.Right = rc.Left + newWidth;
         }
     }
 
     private void EnforceAspectRatio()
     {
-        if (WindowState == FormWindowState.Maximized || !_aspectRatioLocked || _isUserResizing)
+        if (WindowState == FormWindowState.Maximized || !_aspectRatioLocked)
             return;
 
         Size newSize = ClientSize;
         float currentAspect = (float)newSize.Width / newSize.Height;
 
-        if (currentAspect == _aspectRatio)
+        if (Math.Abs(currentAspect - _aspectRatio) < 1e-6) // Use a tolerance for float comparison
             return;
 
         if (currentAspect > _aspectRatio)
         {
-            newSize.Height = (int)(newSize.Width / _aspectRatio);
+            newSize.Height = (int)Math.Round(newSize.Width / _aspectRatio); // Round
         }
         else
         {
-            newSize.Width = (int)(newSize.Height * _aspectRatio);
+            newSize.Width = (int)Math.Round(newSize.Height * _aspectRatio); // Round
         }
+        //Critical to have this check.
+        if (!_initialLayoutComplete)
+            return;
+
 
         ClientSize = newSize;
     }
@@ -183,7 +201,7 @@ public class LockedAspectRatioForm : Form
     protected override void OnResize(EventArgs e)
     {
         base.OnResize(e);
-        if (!_isUserResizing)
+        if (_initialLayoutComplete) // Only enforce after initial layout
             EnforceAspectRatio();
     }
 }

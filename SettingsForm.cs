@@ -16,5 +16,24 @@ namespace CircuitCraft
         {
             InitializeComponent();
         }
+
+        private void mainMenuButton_Click(object sender, EventArgs e)
+        {
+            var frm = new MainMenuForm();
+            frm.Location = Location;
+            frm.StartPosition = FormStartPosition.Manual;
+            if (WindowState == FormWindowState.Maximized)
+            {
+                frm.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                frm.Width = Width;
+                frm.Height = Height;
+            }
+            frm.FormClosing += delegate { Close(); };
+            frm.Show();
+            Hide();
+        }
     }
 }
