@@ -66,10 +66,10 @@
             // titleText
             // 
             titleText.BackColor = Color.Transparent;
-            titleText.Font = new Font("Sketchit Means Sketchit", 72F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            titleText.Font = new Font("Snap ITC", 72F, FontStyle.Regular, GraphicsUnit.Point, 0);
             titleText.Location = new Point(313, 158);
             titleText.Name = "titleText";
-            titleText.Size = new Size(646, 87);
+            titleText.Size = new Size(695, 87);
             titleText.TabIndex = 3;
             titleText.Text = "CIRCUIT CRAFT";
             // 
@@ -295,6 +295,7 @@
             Name = "LoginScreenForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LoginScreen";
+            Load += LoginScreenForm_Load;
             ((System.ComponentModel.ISupportInitialize)loginScreenPbox).EndInit();
             ((System.ComponentModel.ISupportInitialize)loginPbox).EndInit();
             ((System.ComponentModel.ISupportInitialize)signupPbox).EndInit();

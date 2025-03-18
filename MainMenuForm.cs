@@ -10,11 +10,13 @@ using System.Windows.Forms;
 
 namespace CircuitCraft
 {
-    public partial class MainMenuForm : Form
+    public partial class MainMenuForm : LockedAspectRatioForm
     {
         public MainMenuForm()
         {
             InitializeComponent();
+
+            AspectRatio = 16f / 9f;
 
             Program.ApplyTransparentUI(ref mainMenuPbox, ref tutorialTXT);
             Program.ApplyTransparentUI(ref mainMenuPbox, ref leaderboardsTXT);
@@ -80,6 +82,12 @@ namespace CircuitCraft
             frm.FormClosing += delegate { Close(); };
             frm.Show();
             Hide();
+        }
+
+        private void MainMenuForm_Load(object sender, EventArgs e)
+        {
+
+
         }
     }
 }

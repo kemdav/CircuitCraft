@@ -11,7 +11,7 @@ namespace CircuitCraft
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new TutorialForm());
+            Application.Run(new LoginScreenForm());
         }
 
         static void RunCircuit()

@@ -6,13 +6,16 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Font\SketchitMeansSketchit-85o2.ttf" />
     <None Remove="title.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Font\SketchitMeansSketchit-85o2.ttf" />
     <EmbeddedResource Include="title.png" />
   </ItemGroup>
 

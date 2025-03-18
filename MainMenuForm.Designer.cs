@@ -40,13 +40,13 @@
             soundTXT = new Label();
             musicSlider = new ReaLTaiizor.Controls.ParrotSlider();
             settingsBackTXT = new Label();
+            materialComboBox1 = new MaterialSkin.Controls.MaterialComboBox();
             ((System.ComponentModel.ISupportInitialize)mainMenuPbox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)settingsPbox).BeginInit();
             SuspendLayout();
             // 
             // mainMenuPbox
             // 
-            mainMenuPbox.Image = (Image)resources.GetObject("mainMenuPbox.Image");
             mainMenuPbox.Location = new Point(0, 0);
             mainMenuPbox.Name = "mainMenuPbox";
             mainMenuPbox.Size = new Size(1264, 720);
@@ -156,7 +156,7 @@
             musicSlider.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
             musicSlider.KnobColor = Color.Gray;
             musicSlider.KnobImage = Properties.Resources.title;
-            musicSlider.Location = new Point(407, 110);
+            musicSlider.Location = new Point(455, 132);
             musicSlider.Max = 100;
             musicSlider.Name = "musicSlider";
             musicSlider.Percentage = 50;
@@ -182,13 +182,37 @@
             settingsBackTXT.TextAlign = ContentAlignment.MiddleCenter;
             settingsBackTXT.Click += settingsBackTXT_Click;
             // 
+            // materialComboBox1
+            // 
+            materialComboBox1.AutoResize = false;
+            materialComboBox1.BackColor = Color.FromArgb(255, 255, 255);
+            materialComboBox1.Depth = 0;
+            materialComboBox1.DrawMode = DrawMode.OwnerDrawVariable;
+            materialComboBox1.DropDownHeight = 174;
+            materialComboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            materialComboBox1.DropDownWidth = 121;
+            materialComboBox1.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            materialComboBox1.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialComboBox1.FormattingEnabled = true;
+            materialComboBox1.IntegralHeight = false;
+            materialComboBox1.ItemHeight = 43;
+            materialComboBox1.Items.AddRange(new object[] { "1280x720", "1920x1080" });
+            materialComboBox1.Location = new Point(858, 55);
+            materialComboBox1.MaxDropDownItems = 4;
+            materialComboBox1.MouseState = MaterialSkin.MouseState.OUT;
+            materialComboBox1.Name = "materialComboBox1";
+            materialComboBox1.Size = new Size(357, 49);
+            materialComboBox1.StartIndex = 0;
+            materialComboBox1.TabIndex = 26;
+            // 
             // MainMenuForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
-            AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(1264, 681);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            ClientSize = new Size(1264, 1161);
+            Controls.Add(materialComboBox1);
             Controls.Add(settingsBackTXT);
             Controls.Add(musicSlider);
             Controls.Add(soundTXT);
@@ -203,6 +227,7 @@
             Name = "MainMenuForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MainMenuForm";
+            Load += MainMenuForm_Load;
             ((System.ComponentModel.ISupportInitialize)mainMenuPbox).EndInit();
             ((System.ComponentModel.ISupportInitialize)settingsPbox).EndInit();
             ResumeLayout(false);
@@ -221,5 +246,6 @@
         private Label soundTXT;
         private ReaLTaiizor.Controls.ParrotSlider musicSlider;
         private Label settingsBackTXT;
+        private MaterialSkin.Controls.MaterialComboBox materialComboBox1;
     }
 }

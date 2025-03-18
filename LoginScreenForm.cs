@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -14,6 +15,7 @@ namespace CircuitCraft
 {
     public partial class LoginScreenForm : Form
     {
+        private PrivateFontCollection pfc = new PrivateFontCollection();
         public LoginScreenForm()
         {
             InitializeComponent();
@@ -41,6 +43,23 @@ namespace CircuitCraft
 
             loginPbox.Hide();
             signupPbox.Hide();
+        }
+
+        private void LoginScreenForm_Load(object sender, EventArgs e)
+        {
+            Stream fontStream = GetType().Assembly.GetManifestResourceStream("CircuitCraft.Resources.Font.SketchitMeansSketchit-85o2.ttf");
+
+            byte[] fontdata = new byte[fontStream.Length];
+            fontStream.Read(fontdata, 0, (int)fontStream.Length);
+            fontStream.Close();
+            unsafe
+            {
+                fixed (byte* pFontData = fontdata)
+                {
+                    pfc.AddMemoryFont((IntPtr)pFontData, fontdata.Length);
+                }
+            }
+            titleText.Font = new Font(pfc.Families[0], 74, FontStyle.Regular);
         }
 
         private void LoginTXT_Click(object sender, EventArgs e)

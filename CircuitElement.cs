@@ -305,8 +305,8 @@ public class Wire : CircuitElement
     {
         string imagePath = "wire.png"; //Horizontal
         Image = LoadImageFromResource(imagePath);
-        Width = 4; // Set a default width for horizontal
-        Height = 4;  // Set a small default height
+        Width = 2; // Set a default width for horizontal
+        Height = 2;  // Set a small default height
     }
 
     public override int IsConnectedTo(CircuitElement other)
