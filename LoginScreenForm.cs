@@ -42,8 +42,7 @@ namespace CircuitCraft
         {
             // Login Logic
             var frm = new MainMenuForm();
-            frm.Location = Location;
-            frm.StartPosition = FormStartPosition.Manual;
+            frm.StartPosition = FormStartPosition.CenterScreen;
             frm.FormClosing += delegate { Close(); };
             frm.Show();
             Hide();
@@ -65,8 +64,7 @@ namespace CircuitCraft
         private void loginBttn_Click(object sender, EventArgs e)
         {
             var frm = new MainMenuForm();
-            frm.Location = Location;
-            frm.StartPosition = FormStartPosition.Manual;
+            frm.StartPosition = FormStartPosition.CenterScreen;
             frm.FormClosing += delegate { Close(); };
             frm.Show();
             Hide();

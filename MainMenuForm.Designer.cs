@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            airForm1 = new ReaLTaiizor.Forms.AirForm();
-            spaceMinimize1 = new ReaLTaiizor.Controls.SpaceMinimize();
-            spaceMaximize1 = new ReaLTaiizor.Controls.SpaceMaximize();
+            mainMenuBackgroundMedia = new LibVLCSharp.WinForms.VideoView();
             bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
             versionLABEL = new MaterialSkin.Controls.MaterialLabel();
             logoutButton = new MaterialSkin.Controls.MaterialButton();
@@ -38,72 +36,19 @@
             leaderboardButton = new MaterialSkin.Controls.MaterialButton();
             tutorialButton = new MaterialSkin.Controls.MaterialButton();
             playButton = new MaterialSkin.Controls.MaterialButton();
-            airForm1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)mainMenuBackgroundMedia).BeginInit();
             SuspendLayout();
             // 
-            // airForm1
+            // mainMenuBackgroundMedia
             // 
-            airForm1.BackColor = Color.White;
-            airForm1.BorderStyle = FormBorderStyle.None;
-            airForm1.Controls.Add(spaceMinimize1);
-            airForm1.Controls.Add(spaceMaximize1);
-            airForm1.Controls.Add(bigLabel1);
-            airForm1.Controls.Add(versionLABEL);
-            airForm1.Controls.Add(logoutButton);
-            airForm1.Controls.Add(settingsButton);
-            airForm1.Controls.Add(leaderboardButton);
-            airForm1.Controls.Add(tutorialButton);
-            airForm1.Controls.Add(playButton);
-            airForm1.Customization = "AAAA/1paWv9ycnL/";
-            airForm1.Dock = DockStyle.Fill;
-            airForm1.Font = new Font("Segoe UI", 9F);
-            airForm1.Image = null;
-            airForm1.Location = new Point(0, 0);
-            airForm1.MinimumSize = new Size(112, 35);
-            airForm1.Movable = true;
-            airForm1.Name = "airForm1";
-            airForm1.NoRounding = false;
-            airForm1.Sizable = true;
-            airForm1.Size = new Size(1280, 720);
-            airForm1.SmartBounds = true;
-            airForm1.StartPosition = FormStartPosition.CenterScreen;
-            airForm1.TabIndex = 0;
-            airForm1.TransparencyKey = Color.Fuchsia;
-            airForm1.Transparent = false;
-            // 
-            // spaceMinimize1
-            // 
-            spaceMinimize1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            spaceMinimize1.Customization = "G4qM/3LEtP8yMjL/Kioq/yPJzP8bioz//v7+/yMjI/8qKir/";
-            spaceMinimize1.DefaultAnchor = true;
-            spaceMinimize1.DefaultLocation = true;
-            spaceMinimize1.Font = new Font("Verdana", 8F);
-            spaceMinimize1.Image = null;
-            spaceMinimize1.Location = new Point(1206, 3);
-            spaceMinimize1.Name = "spaceMinimize1";
-            spaceMinimize1.NoRounding = false;
-            spaceMinimize1.Size = new Size(23, 21);
-            spaceMinimize1.TabIndex = 9;
-            spaceMinimize1.Text = "_";
-            spaceMinimize1.Transparent = false;
-            spaceMinimize1.WindowState = FormWindowState.Normal;
-            // 
-            // spaceMaximize1
-            // 
-            spaceMaximize1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            spaceMaximize1.Customization = "G4qM/3LEtP8yMjL/Kioq/yPJzP8bioz//v7+/yMjI/8qKir/";
-            spaceMaximize1.DefaultAnchor = true;
-            spaceMaximize1.DefaultLocation = true;
-            spaceMaximize1.Font = new Font("Verdana", 8F);
-            spaceMaximize1.Image = null;
-            spaceMaximize1.Location = new Point(1230, 3);
-            spaceMaximize1.Name = "spaceMaximize1";
-            spaceMaximize1.NoRounding = false;
-            spaceMaximize1.Size = new Size(23, 21);
-            spaceMaximize1.TabIndex = 8;
-            spaceMaximize1.Text = "+";
-            spaceMaximize1.Transparent = false;
-            spaceMaximize1.WindowState = FormWindowState.Normal;
+            mainMenuBackgroundMedia.BackColor = Color.Black;
+            mainMenuBackgroundMedia.Dock = DockStyle.Fill;
+            mainMenuBackgroundMedia.Location = new Point(0, 0);
+            mainMenuBackgroundMedia.MediaPlayer = null;
+            mainMenuBackgroundMedia.Name = "mainMenuBackgroundMedia";
+            mainMenuBackgroundMedia.Size = new Size(1280, 720);
+            mainMenuBackgroundMedia.TabIndex = 23;
+            mainMenuBackgroundMedia.Text = "videoView1";
             // 
             // bigLabel1
             // 
@@ -113,23 +58,24 @@
             bigLabel1.FlatStyle = FlatStyle.Popup;
             bigLabel1.Font = new Font("Swis721 Blk BT", 24.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             bigLabel1.ForeColor = Color.CornflowerBlue;
-            bigLabel1.Location = new Point(496, 128);
+            bigLabel1.Location = new Point(474, 119);
             bigLabel1.Name = "bigLabel1";
             bigLabel1.Size = new Size(298, 40);
-            bigLabel1.TabIndex = 7;
+            bigLabel1.TabIndex = 30;
             bigLabel1.Text = "CIRCUIT CRAFT";
             // 
             // versionLABEL
             // 
             versionLABEL.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             versionLABEL.AutoSize = true;
+            versionLABEL.BackColor = Color.Transparent;
             versionLABEL.Depth = 0;
             versionLABEL.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            versionLABEL.Location = new Point(1194, 692);
+            versionLABEL.Location = new Point(1177, 682);
             versionLABEL.MouseState = MaterialSkin.MouseState.HOVER;
             versionLABEL.Name = "versionLABEL";
             versionLABEL.Size = new Size(74, 19);
-            versionLABEL.TabIndex = 6;
+            versionLABEL.TabIndex = 29;
             versionLABEL.Text = "v0.1 BETA";
             // 
             // logoutButton
@@ -141,13 +87,13 @@
             logoutButton.Depth = 0;
             logoutButton.HighEmphasis = true;
             logoutButton.Icon = null;
-            logoutButton.Location = new Point(561, 525);
+            logoutButton.Location = new Point(544, 515);
             logoutButton.Margin = new Padding(4, 6, 4, 6);
             logoutButton.MouseState = MaterialSkin.MouseState.HOVER;
             logoutButton.Name = "logoutButton";
             logoutButton.NoAccentTextColor = Color.Empty;
             logoutButton.Size = new Size(158, 36);
-            logoutButton.TabIndex = 4;
+            logoutButton.TabIndex = 28;
             logoutButton.Text = "Logout";
             logoutButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             logoutButton.UseAccentColor = false;
@@ -163,13 +109,13 @@
             settingsButton.Depth = 0;
             settingsButton.HighEmphasis = true;
             settingsButton.Icon = null;
-            settingsButton.Location = new Point(561, 477);
+            settingsButton.Location = new Point(544, 467);
             settingsButton.Margin = new Padding(4, 6, 4, 6);
             settingsButton.MouseState = MaterialSkin.MouseState.HOVER;
             settingsButton.Name = "settingsButton";
             settingsButton.NoAccentTextColor = Color.Empty;
             settingsButton.Size = new Size(158, 36);
-            settingsButton.TabIndex = 3;
+            settingsButton.TabIndex = 27;
             settingsButton.Text = "Settings";
             settingsButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             settingsButton.UseAccentColor = false;
@@ -185,13 +131,13 @@
             leaderboardButton.Depth = 0;
             leaderboardButton.HighEmphasis = true;
             leaderboardButton.Icon = null;
-            leaderboardButton.Location = new Point(561, 429);
+            leaderboardButton.Location = new Point(544, 419);
             leaderboardButton.Margin = new Padding(4, 6, 4, 6);
             leaderboardButton.MouseState = MaterialSkin.MouseState.HOVER;
             leaderboardButton.Name = "leaderboardButton";
             leaderboardButton.NoAccentTextColor = Color.Empty;
             leaderboardButton.Size = new Size(158, 36);
-            leaderboardButton.TabIndex = 2;
+            leaderboardButton.TabIndex = 26;
             leaderboardButton.Text = "Leaderboard";
             leaderboardButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             leaderboardButton.UseAccentColor = false;
@@ -207,18 +153,17 @@
             tutorialButton.Depth = 0;
             tutorialButton.HighEmphasis = true;
             tutorialButton.Icon = null;
-            tutorialButton.Location = new Point(561, 381);
+            tutorialButton.Location = new Point(544, 371);
             tutorialButton.Margin = new Padding(4, 6, 4, 6);
             tutorialButton.MouseState = MaterialSkin.MouseState.HOVER;
             tutorialButton.Name = "tutorialButton";
             tutorialButton.NoAccentTextColor = Color.Empty;
             tutorialButton.Size = new Size(158, 36);
-            tutorialButton.TabIndex = 1;
+            tutorialButton.TabIndex = 25;
             tutorialButton.Text = "Tutorial";
             tutorialButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             tutorialButton.UseAccentColor = false;
             tutorialButton.UseVisualStyleBackColor = true;
-            tutorialButton.Click += tutorialButton_Click;
             // 
             // playButton
             // 
@@ -229,18 +174,17 @@
             playButton.Depth = 0;
             playButton.HighEmphasis = true;
             playButton.Icon = null;
-            playButton.Location = new Point(561, 333);
+            playButton.Location = new Point(544, 323);
             playButton.Margin = new Padding(4, 6, 4, 6);
             playButton.MouseState = MaterialSkin.MouseState.HOVER;
             playButton.Name = "playButton";
             playButton.NoAccentTextColor = Color.Empty;
             playButton.Size = new Size(158, 36);
-            playButton.TabIndex = 0;
+            playButton.TabIndex = 24;
             playButton.Text = "Play";
-            playButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            playButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
             playButton.UseAccentColor = false;
             playButton.UseVisualStyleBackColor = true;
-            playButton.Click += playButton_Click;
             // 
             // MainMenuForm
             // 
@@ -248,29 +192,34 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1280, 720);
-            Controls.Add(airForm1);
-            FormBorderStyle = FormBorderStyle.None;
+            Controls.Add(bigLabel1);
+            Controls.Add(versionLABEL);
+            Controls.Add(logoutButton);
+            Controls.Add(settingsButton);
+            Controls.Add(leaderboardButton);
+            Controls.Add(tutorialButton);
+            Controls.Add(playButton);
+            Controls.Add(mainMenuBackgroundMedia);
             MinimumSize = new Size(1280, 720);
             Name = "MainMenuForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MainMenuForm";
             TransparencyKey = Color.Fuchsia;
-            airForm1.ResumeLayout(false);
-            airForm1.PerformLayout();
+            Load += MainMenuForm_Load;
+            ((System.ComponentModel.ISupportInitialize)mainMenuBackgroundMedia).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private ReaLTaiizor.Forms.AirForm airForm1;
+        private LibVLCSharp.WinForms.VideoView mainMenuBackgroundMedia;
+        private ReaLTaiizor.Controls.BigLabel bigLabel1;
         private MaterialSkin.Controls.MaterialLabel versionLABEL;
         private MaterialSkin.Controls.MaterialButton logoutButton;
         private MaterialSkin.Controls.MaterialButton settingsButton;
         private MaterialSkin.Controls.MaterialButton leaderboardButton;
         private MaterialSkin.Controls.MaterialButton tutorialButton;
         private MaterialSkin.Controls.MaterialButton playButton;
-        private ReaLTaiizor.Controls.BigLabel bigLabel1;
-        private ReaLTaiizor.Controls.SpaceMinimize spaceMinimize1;
-        private ReaLTaiizor.Controls.SpaceMaximize spaceMaximize1;
     }
 }

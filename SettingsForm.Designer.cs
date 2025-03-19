@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            airForm1 = new ReaLTaiizor.Forms.AirForm();
-            materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             tabPage1 = new TabPage();
             materialSlider1 = new MaterialSkin.Controls.MaterialSlider();
@@ -38,51 +37,33 @@
             bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
             materialComboBox1 = new MaterialSkin.Controls.MaterialComboBox();
             tabPage2 = new TabPage();
-            spaceMaximize1 = new ReaLTaiizor.Controls.SpaceMaximize();
-            spaceMinimize1 = new ReaLTaiizor.Controls.SpaceMinimize();
-            airForm1.SuspendLayout();
+            bigLabel8 = new ReaLTaiizor.Controls.BigLabel();
+            bigLabel9 = new ReaLTaiizor.Controls.BigLabel();
+            pictureBox4 = new PictureBox();
+            bigLabel6 = new ReaLTaiizor.Controls.BigLabel();
+            bigLabel7 = new ReaLTaiizor.Controls.BigLabel();
+            pictureBox3 = new PictureBox();
+            bigLabel5 = new ReaLTaiizor.Controls.BigLabel();
+            bigLabel4 = new ReaLTaiizor.Controls.BigLabel();
+            label1 = new Label();
+            pictureBox2 = new PictureBox();
+            bigLabel3 = new ReaLTaiizor.Controls.BigLabel();
+            bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
+            pictureBox1 = new PictureBox();
+            materialButton5 = new MaterialSkin.Controls.MaterialButton();
+            materialButton4 = new MaterialSkin.Controls.MaterialButton();
+            materialButton3 = new MaterialSkin.Controls.MaterialButton();
+            materialButton2 = new MaterialSkin.Controls.MaterialButton();
+            materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
+            returnMainMenuButton = new MaterialSkin.Controls.MaterialButton();
             materialTabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
+            tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
-            // 
-            // airForm1
-            // 
-            airForm1.BackColor = Color.GhostWhite;
-            airForm1.BorderStyle = FormBorderStyle.None;
-            airForm1.Controls.Add(materialTabSelector1);
-            airForm1.Controls.Add(materialTabControl1);
-            airForm1.Controls.Add(spaceMaximize1);
-            airForm1.Controls.Add(spaceMinimize1);
-            airForm1.Customization = "AAAA/1paWv9ycnL/";
-            airForm1.Dock = DockStyle.Fill;
-            airForm1.Font = new Font("Segoe UI", 9F);
-            airForm1.Image = null;
-            airForm1.Location = new Point(0, 0);
-            airForm1.MinimumSize = new Size(112, 35);
-            airForm1.Movable = true;
-            airForm1.Name = "airForm1";
-            airForm1.NoRounding = false;
-            airForm1.Sizable = true;
-            airForm1.Size = new Size(1280, 720);
-            airForm1.SmartBounds = true;
-            airForm1.StartPosition = FormStartPosition.WindowsDefaultLocation;
-            airForm1.TabIndex = 0;
-            airForm1.TransparencyKey = Color.Fuchsia;
-            airForm1.Transparent = false;
-            // 
-            // materialTabSelector1
-            // 
-            materialTabSelector1.BackgroundImageLayout = ImageLayout.Center;
-            materialTabSelector1.BaseTabControl = materialTabControl1;
-            materialTabSelector1.CharacterCasing = MaterialSkin.Controls.MaterialTabSelector.CustomCharacterCasing.Upper;
-            materialTabSelector1.Depth = 0;
-            materialTabSelector1.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialTabSelector1.Location = new Point(87, 14);
-            materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialTabSelector1.Name = "materialTabSelector1";
-            materialTabSelector1.Size = new Size(1082, 48);
-            materialTabSelector1.TabIndex = 7;
-            materialTabSelector1.Text = "materialTabSelector1";
             // 
             // materialTabControl1
             // 
@@ -93,18 +74,18 @@
             materialTabControl1.HotTrack = true;
             materialTabControl1.ImeMode = ImeMode.NoControl;
             materialTabControl1.ItemSize = new Size(88, 20);
-            materialTabControl1.Location = new Point(94, 68);
+            materialTabControl1.Location = new Point(85, 41);
             materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
             materialTabControl1.Multiline = true;
             materialTabControl1.Name = "materialTabControl1";
             materialTabControl1.Padding = new Point(0, 0);
             materialTabControl1.SelectedIndex = 0;
             materialTabControl1.Size = new Size(1082, 600);
-            materialTabControl1.TabIndex = 7;
+            materialTabControl1.TabIndex = 8;
             // 
             // tabPage1
             // 
-            tabPage1.BackColor = Color.FromArgb(192, 255, 255);
+            tabPage1.BackColor = Color.White;
             tabPage1.Controls.Add(materialSlider1);
             tabPage1.Controls.Add(mainMenuButton);
             tabPage1.Controls.Add(materialSlider2);
@@ -115,7 +96,7 @@
             tabPage1.Padding = new Padding(3);
             tabPage1.Size = new Size(1074, 572);
             tabPage1.TabIndex = 0;
-            tabPage1.Text = " ";
+            tabPage1.Text = " Game Settings";
             // 
             // materialSlider1
             // 
@@ -124,7 +105,7 @@
             materialSlider1.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
             materialSlider1.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
             materialSlider1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialSlider1.Location = new Point(76, 96);
+            materialSlider1.Location = new Point(215, 153);
             materialSlider1.MouseState = MaterialSkin.MouseState.HOVER;
             materialSlider1.Name = "materialSlider1";
             materialSlider1.Size = new Size(702, 40);
@@ -140,7 +121,7 @@
             mainMenuButton.Depth = 0;
             mainMenuButton.HighEmphasis = true;
             mainMenuButton.Icon = null;
-            mainMenuButton.Location = new Point(76, 437);
+            mainMenuButton.Location = new Point(513, 673);
             mainMenuButton.Margin = new Padding(4, 6, 4, 6);
             mainMenuButton.MouseState = MaterialSkin.MouseState.HOVER;
             mainMenuButton.Name = "mainMenuButton";
@@ -151,7 +132,6 @@
             mainMenuButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             mainMenuButton.UseAccentColor = false;
             mainMenuButton.UseVisualStyleBackColor = true;
-            mainMenuButton.Click += mainMenuButton_Click;
             // 
             // materialSlider2
             // 
@@ -160,7 +140,7 @@
             materialSlider2.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
             materialSlider2.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
             materialSlider2.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialSlider2.Location = new Point(76, 142);
+            materialSlider2.Location = new Point(215, 199);
             materialSlider2.MouseState = MaterialSkin.MouseState.HOVER;
             materialSlider2.Name = "materialSlider2";
             materialSlider2.Size = new Size(702, 40);
@@ -174,7 +154,7 @@
             bigLabel1.BackColor = Color.Transparent;
             bigLabel1.Font = new Font("Segoe UI", 25F);
             bigLabel1.ForeColor = Color.Black;
-            bigLabel1.Location = new Point(76, 206);
+            bigLabel1.Location = new Point(215, 263);
             bigLabel1.Name = "bigLabel1";
             bigLabel1.Size = new Size(218, 46);
             bigLabel1.TabIndex = 5;
@@ -196,89 +176,369 @@
             materialComboBox1.IntegralHeight = false;
             materialComboBox1.ItemHeight = 43;
             materialComboBox1.Items.AddRange(new object[] { "50%", "100%", "150%", "200%" });
-            materialComboBox1.Location = new Point(325, 206);
+            materialComboBox1.Location = new Point(464, 263);
             materialComboBox1.MaxDropDownItems = 4;
             materialComboBox1.MouseState = MaterialSkin.MouseState.OUT;
             materialComboBox1.Name = "materialComboBox1";
             materialComboBox1.Size = new Size(453, 49);
-            materialComboBox1.StartIndex = 0;
+            materialComboBox1.StartIndex = 1;
             materialComboBox1.TabIndex = 4;
             // 
             // tabPage2
             // 
+            tabPage2.BackColor = Color.White;
+            tabPage2.Controls.Add(bigLabel8);
+            tabPage2.Controls.Add(bigLabel9);
+            tabPage2.Controls.Add(pictureBox4);
+            tabPage2.Controls.Add(bigLabel6);
+            tabPage2.Controls.Add(bigLabel7);
+            tabPage2.Controls.Add(pictureBox3);
+            tabPage2.Controls.Add(bigLabel5);
+            tabPage2.Controls.Add(bigLabel4);
+            tabPage2.Controls.Add(label1);
+            tabPage2.Controls.Add(pictureBox2);
+            tabPage2.Controls.Add(bigLabel3);
+            tabPage2.Controls.Add(bigLabel2);
+            tabPage2.Controls.Add(pictureBox1);
+            tabPage2.Controls.Add(materialButton5);
+            tabPage2.Controls.Add(materialButton4);
+            tabPage2.Controls.Add(materialButton3);
+            tabPage2.Controls.Add(materialButton2);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
             tabPage2.Size = new Size(1074, 572);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Account Settings";
-            tabPage2.UseVisualStyleBackColor = true;
+            tabPage2.Click += tabPage2_Click;
             // 
-            // spaceMaximize1
+            // bigLabel8
             // 
-            spaceMaximize1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            spaceMaximize1.Customization = "G4qM/3LEtP8yMjL/Kioq/yPJzP8bioz//v7+/yMjI/8qKir/";
-            spaceMaximize1.DefaultAnchor = true;
-            spaceMaximize1.DefaultLocation = true;
-            spaceMaximize1.Font = new Font("Verdana", 8F);
-            spaceMaximize1.Image = null;
-            spaceMaximize1.Location = new Point(1230, 3);
-            spaceMaximize1.Name = "spaceMaximize1";
-            spaceMaximize1.NoRounding = false;
-            spaceMaximize1.Size = new Size(23, 21);
-            spaceMaximize1.TabIndex = 1;
-            spaceMaximize1.Text = "+";
-            spaceMaximize1.Transparent = false;
-            spaceMaximize1.WindowState = FormWindowState.Normal;
+            bigLabel8.Anchor = AnchorStyles.None;
+            bigLabel8.AutoSize = true;
+            bigLabel8.BackColor = Color.Transparent;
+            bigLabel8.Font = new Font("Segoe UI", 25F);
+            bigLabel8.ForeColor = Color.FromArgb(80, 80, 80);
+            bigLabel8.Location = new Point(663, 338);
+            bigLabel8.Name = "bigLabel8";
+            bigLabel8.Size = new Size(38, 46);
+            bigLabel8.TabIndex = 16;
+            bigLabel8.Text = "0";
             // 
-            // spaceMinimize1
+            // bigLabel9
             // 
-            spaceMinimize1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            spaceMinimize1.Customization = "G4qM/3LEtP8yMjL/Kioq/yPJzP8bioz//v7+/yMjI/8qKir/";
-            spaceMinimize1.DefaultAnchor = true;
-            spaceMinimize1.DefaultLocation = true;
-            spaceMinimize1.Font = new Font("Verdana", 8F);
-            spaceMinimize1.Image = null;
-            spaceMinimize1.Location = new Point(1206, 3);
-            spaceMinimize1.Name = "spaceMinimize1";
-            spaceMinimize1.NoRounding = false;
-            spaceMinimize1.Size = new Size(23, 21);
-            spaceMinimize1.TabIndex = 0;
-            spaceMinimize1.Text = "_";
-            spaceMinimize1.Transparent = false;
-            spaceMinimize1.WindowState = FormWindowState.Normal;
+            bigLabel9.Anchor = AnchorStyles.None;
+            bigLabel9.AutoSize = true;
+            bigLabel9.BackColor = Color.Transparent;
+            bigLabel9.Font = new Font("Segoe UI", 25F);
+            bigLabel9.ForeColor = Color.FromArgb(80, 80, 80);
+            bigLabel9.Location = new Point(663, 291);
+            bigLabel9.Name = "bigLabel9";
+            bigLabel9.Size = new Size(355, 46);
+            bigLabel9.TabIndex = 15;
+            bigLabel9.Text = "CIRCUITS COMPLETED";
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.Anchor = AnchorStyles.None;
+            pictureBox4.BackgroundImage = (Image)resources.GetObject("pictureBox4.BackgroundImage");
+            pictureBox4.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox4.Location = new Point(532, 291);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(106, 93);
+            pictureBox4.TabIndex = 14;
+            pictureBox4.TabStop = false;
+            // 
+            // bigLabel6
+            // 
+            bigLabel6.Anchor = AnchorStyles.None;
+            bigLabel6.AutoSize = true;
+            bigLabel6.BackColor = Color.Transparent;
+            bigLabel6.Font = new Font("Segoe UI", 25F);
+            bigLabel6.ForeColor = Color.FromArgb(80, 80, 80);
+            bigLabel6.Location = new Point(158, 468);
+            bigLabel6.Name = "bigLabel6";
+            bigLabel6.Size = new Size(38, 46);
+            bigLabel6.TabIndex = 13;
+            bigLabel6.Text = "0";
+            // 
+            // bigLabel7
+            // 
+            bigLabel7.Anchor = AnchorStyles.None;
+            bigLabel7.AutoSize = true;
+            bigLabel7.BackColor = Color.Transparent;
+            bigLabel7.Font = new Font("Segoe UI", 25F);
+            bigLabel7.ForeColor = Color.FromArgb(80, 80, 80);
+            bigLabel7.Location = new Point(158, 421);
+            bigLabel7.Name = "bigLabel7";
+            bigLabel7.Size = new Size(232, 46);
+            bigLabel7.TabIndex = 12;
+            bigLabel7.Text = "LEDS BURNED";
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Anchor = AnchorStyles.None;
+            pictureBox3.BackgroundImage = (Image)resources.GetObject("pictureBox3.BackgroundImage");
+            pictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox3.Location = new Point(27, 421);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(106, 93);
+            pictureBox3.TabIndex = 11;
+            pictureBox3.TabStop = false;
+            // 
+            // bigLabel5
+            // 
+            bigLabel5.Anchor = AnchorStyles.None;
+            bigLabel5.AutoSize = true;
+            bigLabel5.BackColor = Color.Transparent;
+            bigLabel5.Font = new Font("Segoe UI", 25F);
+            bigLabel5.ForeColor = Color.FromArgb(80, 80, 80);
+            bigLabel5.Location = new Point(158, 338);
+            bigLabel5.Name = "bigLabel5";
+            bigLabel5.Size = new Size(38, 46);
+            bigLabel5.TabIndex = 10;
+            bigLabel5.Text = "0";
+            // 
+            // bigLabel4
+            // 
+            bigLabel4.Anchor = AnchorStyles.None;
+            bigLabel4.AutoSize = true;
+            bigLabel4.BackColor = Color.Transparent;
+            bigLabel4.Font = new Font("Segoe UI", 25F);
+            bigLabel4.ForeColor = Color.FromArgb(80, 80, 80);
+            bigLabel4.Location = new Point(158, 291);
+            bigLabel4.Name = "bigLabel4";
+            bigLabel4.Size = new Size(319, 46);
+            bigLabel4.TabIndex = 9;
+            bigLabel4.Text = "RESISTORS BURNED";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(158, 357);
+            label1.Name = "label1";
+            label1.Size = new Size(0, 15);
+            label1.TabIndex = 8;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Anchor = AnchorStyles.None;
+            pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
+            pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox2.Location = new Point(27, 291);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(106, 93);
+            pictureBox2.TabIndex = 7;
+            pictureBox2.TabStop = false;
+            // 
+            // bigLabel3
+            // 
+            bigLabel3.Anchor = AnchorStyles.None;
+            bigLabel3.AutoSize = true;
+            bigLabel3.BackColor = Color.Transparent;
+            bigLabel3.Font = new Font("Segoe UI", 25F);
+            bigLabel3.ForeColor = Color.FromArgb(80, 80, 80);
+            bigLabel3.Location = new Point(17, 228);
+            bigLabel3.Name = "bigLabel3";
+            bigLabel3.Size = new Size(185, 46);
+            bigLabel3.TabIndex = 6;
+            bigLabel3.Text = "STATISTICS";
+            // 
+            // bigLabel2
+            // 
+            bigLabel2.Anchor = AnchorStyles.None;
+            bigLabel2.AutoSize = true;
+            bigLabel2.BackColor = Color.Transparent;
+            bigLabel2.Font = new Font("Segoe UI", 25F);
+            bigLabel2.ForeColor = Color.FromArgb(80, 80, 80);
+            bigLabel2.Location = new Point(197, 16);
+            bigLabel2.Name = "bigLabel2";
+            bigLabel2.Size = new Size(379, 46);
+            bigLabel2.TabIndex = 5;
+            bigLabel2.Text = "USERNAME: GarlicBread";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Anchor = AnchorStyles.None;
+            pictureBox1.BackgroundImage = Properties.Resources.Cat_kayden_pfp;
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox1.Location = new Point(17, 16);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(154, 138);
+            pictureBox1.TabIndex = 4;
+            pictureBox1.TabStop = false;
+            // 
+            // materialButton5
+            // 
+            materialButton5.Anchor = AnchorStyles.None;
+            materialButton5.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton5.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton5.Depth = 0;
+            materialButton5.HighEmphasis = true;
+            materialButton5.Icon = null;
+            materialButton5.Location = new Point(197, 118);
+            materialButton5.Margin = new Padding(4, 6, 4, 6);
+            materialButton5.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton5.Name = "materialButton5";
+            materialButton5.NoAccentTextColor = Color.Empty;
+            materialButton5.Size = new Size(162, 36);
+            materialButton5.TabIndex = 3;
+            materialButton5.Text = "CHANGE USERNAME";
+            materialButton5.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton5.UseAccentColor = false;
+            materialButton5.UseVisualStyleBackColor = true;
+            // 
+            // materialButton4
+            // 
+            materialButton4.Anchor = AnchorStyles.None;
+            materialButton4.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton4.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton4.Depth = 0;
+            materialButton4.HighEmphasis = true;
+            materialButton4.Icon = null;
+            materialButton4.Location = new Point(565, 118);
+            materialButton4.Margin = new Padding(4, 6, 4, 6);
+            materialButton4.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton4.Name = "materialButton4";
+            materialButton4.NoAccentTextColor = Color.Empty;
+            materialButton4.Size = new Size(137, 36);
+            materialButton4.TabIndex = 2;
+            materialButton4.Text = "RESET ACCOUNT";
+            materialButton4.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton4.UseAccentColor = false;
+            materialButton4.UseVisualStyleBackColor = true;
+            // 
+            // materialButton3
+            // 
+            materialButton3.Anchor = AnchorStyles.None;
+            materialButton3.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton3.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton3.Depth = 0;
+            materialButton3.HighEmphasis = true;
+            materialButton3.Icon = null;
+            materialButton3.Location = new Point(744, 118);
+            materialButton3.Margin = new Padding(4, 6, 4, 6);
+            materialButton3.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton3.Name = "materialButton3";
+            materialButton3.NoAccentTextColor = Color.Empty;
+            materialButton3.Size = new Size(145, 36);
+            materialButton3.TabIndex = 1;
+            materialButton3.Text = "DELETE ACCOUNT";
+            materialButton3.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton3.UseAccentColor = false;
+            materialButton3.UseVisualStyleBackColor = true;
+            // 
+            // materialButton2
+            // 
+            materialButton2.Anchor = AnchorStyles.None;
+            materialButton2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton2.Depth = 0;
+            materialButton2.HighEmphasis = true;
+            materialButton2.Icon = null;
+            materialButton2.Location = new Point(383, 118);
+            materialButton2.Margin = new Padding(4, 6, 4, 6);
+            materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton2.Name = "materialButton2";
+            materialButton2.NoAccentTextColor = Color.Empty;
+            materialButton2.Size = new Size(163, 36);
+            materialButton2.TabIndex = 0;
+            materialButton2.Text = "CHANGE PASSWORD";
+            materialButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton2.UseAccentColor = false;
+            materialButton2.UseVisualStyleBackColor = true;
+            // 
+            // materialTabSelector1
+            // 
+            materialTabSelector1.Anchor = AnchorStyles.None;
+            materialTabSelector1.BackgroundImageLayout = ImageLayout.Center;
+            materialTabSelector1.BaseTabControl = materialTabControl1;
+            materialTabSelector1.CharacterCasing = MaterialSkin.Controls.MaterialTabSelector.CustomCharacterCasing.Upper;
+            materialTabSelector1.Depth = 0;
+            materialTabSelector1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialTabSelector1.Location = new Point(85, 0);
+            materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialTabSelector1.Name = "materialTabSelector1";
+            materialTabSelector1.Size = new Size(1082, 48);
+            materialTabSelector1.TabIndex = 9;
+            materialTabSelector1.Text = "materialTabSelector1";
+            // 
+            // returnMainMenuButton
+            // 
+            returnMainMenuButton.Anchor = AnchorStyles.None;
+            returnMainMenuButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            returnMainMenuButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            returnMainMenuButton.Depth = 0;
+            returnMainMenuButton.HighEmphasis = true;
+            returnMainMenuButton.Icon = null;
+            returnMainMenuButton.Location = new Point(553, 650);
+            returnMainMenuButton.Margin = new Padding(4, 6, 4, 6);
+            returnMainMenuButton.MouseState = MaterialSkin.MouseState.HOVER;
+            returnMainMenuButton.Name = "returnMainMenuButton";
+            returnMainMenuButton.NoAccentTextColor = Color.Empty;
+            returnMainMenuButton.Size = new Size(186, 36);
+            returnMainMenuButton.TabIndex = 10;
+            returnMainMenuButton.Text = "RETURN TO MAIN MENU";
+            returnMainMenuButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            returnMainMenuButton.UseAccentColor = false;
+            returnMainMenuButton.UseVisualStyleBackColor = true;
+            returnMainMenuButton.Click += mainMenuButton_Click;
             // 
             // SettingsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1280, 720);
-            Controls.Add(airForm1);
-            FormBorderStyle = FormBorderStyle.None;
+            Controls.Add(returnMainMenuButton);
+            Controls.Add(materialTabSelector1);
+            Controls.Add(materialTabControl1);
             MinimumSize = new Size(1280, 720);
             Name = "SettingsForm";
             Text = "SettingsForm";
             TransparencyKey = Color.Fuchsia;
-            airForm1.ResumeLayout(false);
+            Load += SettingsForm_Load;
             materialTabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
+            tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private ReaLTaiizor.Forms.AirForm airForm1;
-        private ReaLTaiizor.Controls.SpaceMaximize spaceMaximize1;
-        private ReaLTaiizor.Controls.SpaceMinimize spaceMinimize1;
-        private MaterialSkin.Controls.MaterialSlider materialSlider2;
-        private MaterialSkin.Controls.MaterialSlider materialSlider1;
-        private MaterialSkin.Controls.MaterialComboBox materialComboBox1;
-        private ReaLTaiizor.Controls.BigLabel bigLabel1;
-        private MaterialSkin.Controls.MaterialButton mainMenuButton;
         private MaterialSkin.Controls.MaterialTabControl materialTabControl1;
-        private TabPage tabPage2;
         private TabPage tabPage1;
+        private MaterialSkin.Controls.MaterialSlider materialSlider1;
+        private MaterialSkin.Controls.MaterialButton mainMenuButton;
+        private MaterialSkin.Controls.MaterialSlider materialSlider2;
+        private ReaLTaiizor.Controls.BigLabel bigLabel1;
+        private MaterialSkin.Controls.MaterialComboBox materialComboBox1;
         private MaterialSkin.Controls.MaterialTabSelector materialTabSelector1;
+        private MaterialSkin.Controls.MaterialButton returnMainMenuButton;
+        private TabPage tabPage2;
+        private PictureBox pictureBox1;
+        private MaterialSkin.Controls.MaterialButton materialButton5;
+        private MaterialSkin.Controls.MaterialButton materialButton4;
+        private MaterialSkin.Controls.MaterialButton materialButton3;
+        private MaterialSkin.Controls.MaterialButton materialButton2;
+        private ReaLTaiizor.Controls.BigLabel bigLabel3;
+        private ReaLTaiizor.Controls.BigLabel bigLabel2;
+        private ReaLTaiizor.Controls.BigLabel bigLabel4;
+        private Label label1;
+        private PictureBox pictureBox2;
+        private ReaLTaiizor.Controls.BigLabel bigLabel5;
+        private ReaLTaiizor.Controls.BigLabel bigLabel6;
+        private ReaLTaiizor.Controls.BigLabel bigLabel7;
+        private PictureBox pictureBox3;
+        private ReaLTaiizor.Controls.BigLabel bigLabel8;
+        private ReaLTaiizor.Controls.BigLabel bigLabel9;
+        private PictureBox pictureBox4;
     }
 }

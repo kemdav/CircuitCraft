@@ -56,8 +56,8 @@
             // 
             airForm1.BackColor = Color.AliceBlue;
             airForm1.BorderStyle = FormBorderStyle.None;
-            airForm1.Controls.Add(loginPanel);
             airForm1.Controls.Add(signUpPanel);
+            airForm1.Controls.Add(loginPanel);
             airForm1.Customization = "AAAA/1paWv9ycnL/";
             airForm1.Dock = DockStyle.Fill;
             airForm1.Font = new Font("Segoe UI", 9F);
@@ -454,7 +454,7 @@
             materialButton1.Depth = 0;
             materialButton1.HighEmphasis = true;
             materialButton1.Icon = null;
-            materialButton1.Location = new Point(134, 486);
+            materialButton1.Location = new Point(134, 430);
             materialButton1.Margin = new Padding(4, 6, 4, 6);
             materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton1.Name = "materialButton1";
@@ -474,14 +474,14 @@
             materialButton3.Depth = 0;
             materialButton3.HighEmphasis = true;
             materialButton3.Icon = null;
-            materialButton3.Location = new Point(134, 438);
+            materialButton3.Location = new Point(134, 478);
             materialButton3.Margin = new Padding(4, 6, 4, 6);
             materialButton3.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton3.Name = "materialButton3";
             materialButton3.NoAccentTextColor = Color.Empty;
             materialButton3.Size = new Size(133, 36);
             materialButton3.TabIndex = 7;
-            materialButton3.Text = "Login";
+            materialButton3.Text = "BACK TO LOGIN";
             materialButton3.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             materialButton3.UseAccentColor = false;
             materialButton3.UseVisualStyleBackColor = true;
