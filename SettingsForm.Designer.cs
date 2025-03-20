@@ -56,6 +56,9 @@
             returnMainMenuButton = new MaterialSkin.Controls.MaterialButton();
             hopeForm1 = new ReaLTaiizor.Forms.HopeForm();
             backgroundVideo = new LibVLCSharp.WinForms.VideoView();
+            materialButton1 = new MaterialSkin.Controls.MaterialButton();
+            pictureBox5 = new PictureBox();
+            bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
             materialTabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -63,7 +66,9 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            hopeForm1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)backgroundVideo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             SuspendLayout();
             // 
             // materialTabControl1
@@ -149,6 +154,9 @@
             // tabPage2
             // 
             tabPage2.BackColor = Color.White;
+            tabPage2.Controls.Add(bigLabel1);
+            tabPage2.Controls.Add(pictureBox5);
+            tabPage2.Controls.Add(materialButton1);
             tabPage2.Controls.Add(bigLabel8);
             tabPage2.Controls.Add(bigLabel9);
             tabPage2.Controls.Add(pictureBox4);
@@ -311,13 +319,13 @@
             bigLabel2.Anchor = AnchorStyles.None;
             bigLabel2.AutoSize = true;
             bigLabel2.BackColor = Color.Transparent;
-            bigLabel2.Font = new Font("Segoe UI", 25F);
+            bigLabel2.Font = new Font("Segoe UI Emoji", 24.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             bigLabel2.ForeColor = Color.FromArgb(80, 80, 80);
             bigLabel2.Location = new Point(197, 16);
             bigLabel2.Name = "bigLabel2";
-            bigLabel2.Size = new Size(379, 46);
+            bigLabel2.Size = new Size(376, 44);
             bigLabel2.TabIndex = 5;
-            bigLabel2.Text = "USERNAME: GarlicBread";
+            bigLabel2.Text = "USERNAME: GarlicButter";
             // 
             // pictureBox1
             // 
@@ -333,6 +341,7 @@
             // materialButton5
             // 
             materialButton5.Anchor = AnchorStyles.None;
+            materialButton5.AutoSize = false;
             materialButton5.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             materialButton5.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             materialButton5.Depth = 0;
@@ -353,6 +362,7 @@
             // materialButton4
             // 
             materialButton4.Anchor = AnchorStyles.None;
+            materialButton4.AutoSize = false;
             materialButton4.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             materialButton4.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             materialButton4.Depth = 0;
@@ -363,7 +373,7 @@
             materialButton4.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton4.Name = "materialButton4";
             materialButton4.NoAccentTextColor = Color.Empty;
-            materialButton4.Size = new Size(137, 36);
+            materialButton4.Size = new Size(178, 36);
             materialButton4.TabIndex = 2;
             materialButton4.Text = "RESET ACCOUNT";
             materialButton4.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -373,17 +383,18 @@
             // materialButton3
             // 
             materialButton3.Anchor = AnchorStyles.None;
+            materialButton3.AutoSize = false;
             materialButton3.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             materialButton3.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             materialButton3.Depth = 0;
             materialButton3.HighEmphasis = true;
             materialButton3.Icon = null;
-            materialButton3.Location = new Point(744, 118);
+            materialButton3.Location = new Point(765, 118);
             materialButton3.Margin = new Padding(4, 6, 4, 6);
             materialButton3.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton3.Name = "materialButton3";
             materialButton3.NoAccentTextColor = Color.Empty;
-            materialButton3.Size = new Size(145, 36);
+            materialButton3.Size = new Size(187, 36);
             materialButton3.TabIndex = 1;
             materialButton3.Text = "DELETE ACCOUNT";
             materialButton3.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -393,6 +404,7 @@
             // materialButton2
             // 
             materialButton2.Anchor = AnchorStyles.None;
+            materialButton2.AutoSize = false;
             materialButton2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             materialButton2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             materialButton2.Depth = 0;
@@ -418,7 +430,7 @@
             materialTabSelector1.CharacterCasing = MaterialSkin.Controls.MaterialTabSelector.CustomCharacterCasing.Upper;
             materialTabSelector1.Depth = 0;
             materialTabSelector1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialTabSelector1.Location = new Point(85, 46);
+            materialTabSelector1.Location = new Point(81, 12);
             materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
             materialTabSelector1.Name = "materialTabSelector1";
             materialTabSelector1.Size = new Size(1082, 48);
@@ -451,6 +463,7 @@
             hopeForm1.ControlBoxColorH = Color.FromArgb(228, 231, 237);
             hopeForm1.ControlBoxColorHC = Color.FromArgb(245, 108, 108);
             hopeForm1.ControlBoxColorN = Color.White;
+            hopeForm1.Controls.Add(materialTabSelector1);
             hopeForm1.Dock = DockStyle.Top;
             hopeForm1.Font = new Font("Segoe UI", 12F);
             hopeForm1.ForeColor = Color.FromArgb(242, 246, 252);
@@ -472,6 +485,51 @@
             backgroundVideo.TabIndex = 12;
             backgroundVideo.Text = "videoView1";
             // 
+            // materialButton1
+            // 
+            materialButton1.Anchor = AnchorStyles.None;
+            materialButton1.AutoSize = false;
+            materialButton1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton1.Depth = 0;
+            materialButton1.HighEmphasis = true;
+            materialButton1.Icon = null;
+            materialButton1.Location = new Point(17, 163);
+            materialButton1.Margin = new Padding(4, 6, 4, 6);
+            materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton1.Name = "materialButton1";
+            materialButton1.NoAccentTextColor = Color.Empty;
+            materialButton1.Size = new Size(154, 36);
+            materialButton1.TabIndex = 17;
+            materialButton1.Text = "CHANGE PROFILE";
+            materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton1.UseAccentColor = false;
+            materialButton1.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.Anchor = AnchorStyles.None;
+            pictureBox5.BackgroundImage = (Image)resources.GetObject("pictureBox5.BackgroundImage");
+            pictureBox5.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox5.Location = new Point(197, 63);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(58, 48);
+            pictureBox5.TabIndex = 18;
+            pictureBox5.TabStop = false;
+            // 
+            // bigLabel1
+            // 
+            bigLabel1.Anchor = AnchorStyles.None;
+            bigLabel1.AutoSize = true;
+            bigLabel1.BackColor = Color.Transparent;
+            bigLabel1.Font = new Font("Segoe UI", 25F);
+            bigLabel1.ForeColor = Color.FromArgb(80, 80, 80);
+            bigLabel1.Location = new Point(261, 65);
+            bigLabel1.Name = "bigLabel1";
+            bigLabel1.Size = new Size(205, 46);
+            bigLabel1.TabIndex = 19;
+            bigLabel1.Text = "RATING: 483";
+            // 
             // SettingsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -479,7 +537,6 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1280, 720);
             Controls.Add(hopeForm1);
-            Controls.Add(materialTabSelector1);
             Controls.Add(returnMainMenuButton);
             Controls.Add(materialTabControl1);
             Controls.Add(backgroundVideo);
@@ -498,7 +555,9 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            hopeForm1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)backgroundVideo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -532,5 +591,8 @@
         private PictureBox pictureBox4;
         private ReaLTaiizor.Forms.HopeForm hopeForm1;
         private LibVLCSharp.WinForms.VideoView backgroundVideo;
+        private MaterialSkin.Controls.MaterialButton materialButton1;
+        private ReaLTaiizor.Controls.BigLabel bigLabel1;
+        private PictureBox pictureBox5;
     }
 }
