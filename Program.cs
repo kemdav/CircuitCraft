@@ -4,11 +4,16 @@ using ReaLTaiizor.Controls;
 using SpiceSharp;
 using SpiceSharp.Components;
 using SpiceSharp.Simulations;
+using static LockedAspectRatioForm;
 
 namespace CircuitCraft
 {
     internal static class Program
     {
+        public static bool isFullScreen = false;
+        public static System.Windows.Forms.FormBorderStyle originalBorderStyle;
+        public static FormWindowState originalWindowState;
+        public static Rectangle originalBounds;
         private static string GetLibVLCPath()
         {
             var architectureFolder = IntPtr.Size == 8 ? "win-x64" : "win-x86";
@@ -26,7 +31,7 @@ namespace CircuitCraft
             Core.Initialize(libvlcPath);
 
             ApplicationConfiguration.Initialize();
-            Application.Run(new TutorialForm());
+            Application.Run(new LoginScreenForm());
         }
 
         static void RunCircuit()

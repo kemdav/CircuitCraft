@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static LockedAspectRatioForm;
 
 namespace CircuitCraft
 {
@@ -45,5 +47,32 @@ namespace CircuitCraft
         {
 
         }
+
+        //private void fullScreenCheckBox_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    if (fullScreenCheckBox.Checked & !Program.isFullScreen)
+        //    {
+        //        Program.originalWindowState = WindowState;
+        //        Program.originalBounds = Bounds;
+        //        Program.originalBorderStyle = FormBorderStyle;
+
+        //        TopMost = true;
+        //        WindowState = FormWindowState.Normal;
+        //        FormBorderStyle = FormBorderStyle.None;
+        //        WindowState = FormWindowState.Maximized;
+        //        Bounds = Screen.AllScreens[0].Bounds;
+        //        DesktopBounds = SystemInformation.VirtualScreen;
+        //        Program.isFullScreen = true;
+        //        hopeForm1.Hide();
+        //    }
+        //    else
+        //    {
+        //        hopeForm1.Show();
+        //        this.FormBorderStyle = Program.originalBorderStyle;
+        //        this.WindowState = Program.originalWindowState;
+        //        this.Bounds = Program.originalBounds;
+        //        Program.isFullScreen = false;
+        //    }
+        //}
     }
 }

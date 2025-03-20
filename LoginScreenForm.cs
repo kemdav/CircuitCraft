@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialSkin.Controls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +20,8 @@ namespace CircuitCraft
         {
             InitializeComponent();
             signUpPanel.Hide();
+
+            usernameLoginTbox.MaxLength = 12;
         }
 
         private void LoginScreenForm_Load(object sender, EventArgs e)
@@ -63,6 +66,12 @@ namespace CircuitCraft
 
         private void loginBttn_Click(object sender, EventArgs e)
         {
+            if (usernameLoginTbox.Text != "user" && passwordLoginTbox.Text != "123")
+            {
+                usernameLoginTbox.SetErrorState(true);
+                passwordLoginTbox.SetErrorState(true);
+                return;
+            }
             var frm = new MainMenuForm();
             frm.StartPosition = FormStartPosition.CenterScreen;
             frm.FormClosing += delegate { Close(); };
@@ -74,6 +83,54 @@ namespace CircuitCraft
         {
             loginPanel.Hide();
             signUpPanel.Show();
+        }
+
+        private void InformationTbox_Click(object sender, EventArgs e)
+        {
+            if (usernameLoginTbox.GetErrorState() == true)
+            {
+                usernameLoginTbox.SetErrorState(false);
+                passwordLoginTbox.SetErrorState(false);
+            }
+            if (createPasswordTbox.GetErrorState() == true)
+            {
+                createPasswordTbox.SetErrorState(false);
+                confirmPasswordTbox.SetErrorState(false);
+            }
+            if (usernameLoginTbox.GetErrorState() == true)
+            {
+                usernameLoginTbox.SetErrorState(false);
+            }
+        }
+
+        private void passwordLoginTbox_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            loginPanel.Show();
+            signUpPanel.Hide();
+        }
+
+        private void signUpButton_Click(object sender, EventArgs e)
+        {
+            if (createPasswordTbox.Text != confirmPasswordTbox.Text)
+            {
+                createPasswordTbox.SetErrorState(true);
+                confirmPasswordTbox.SetErrorState(true);
+            }
+            if (createUsernameTbox.Text == "user")
+            {
+                createUsernameTbox.SetErrorState(true);
+            }
+            if (createUsernameTbox.Text == "" || createUsernameTbox.Text == "" || confirmPasswordTbox.Text == "")
+            {
+                createUsernameTbox.SetErrorState(true);
+                createPasswordTbox.SetErrorState(true);
+                confirmPasswordTbox.SetErrorState(true);
+            }
         }
     }
 }

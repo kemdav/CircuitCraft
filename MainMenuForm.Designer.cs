@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenuForm));
             mainMenuBackgroundMedia = new LibVLCSharp.WinForms.VideoView();
             bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
             versionLABEL = new MaterialSkin.Controls.MaterialLabel();
@@ -36,6 +37,7 @@
             leaderboardButton = new MaterialSkin.Controls.MaterialButton();
             tutorialButton = new MaterialSkin.Controls.MaterialButton();
             playButton = new MaterialSkin.Controls.MaterialButton();
+            hopeForm1 = new ReaLTaiizor.Forms.HopeForm();
             ((System.ComponentModel.ISupportInitialize)mainMenuBackgroundMedia).BeginInit();
             SuspendLayout();
             // 
@@ -186,12 +188,30 @@
             playButton.UseAccentColor = false;
             playButton.UseVisualStyleBackColor = true;
             // 
+            // hopeForm1
+            // 
+            hopeForm1.ControlBoxColorH = Color.FromArgb(228, 231, 237);
+            hopeForm1.ControlBoxColorHC = Color.FromArgb(245, 108, 108);
+            hopeForm1.ControlBoxColorN = Color.White;
+            hopeForm1.Dock = DockStyle.Top;
+            hopeForm1.Font = new Font("Segoe UI", 12F);
+            hopeForm1.ForeColor = Color.FromArgb(242, 246, 252);
+            hopeForm1.Image = (Image)resources.GetObject("hopeForm1.Image");
+            hopeForm1.Location = new Point(0, 0);
+            hopeForm1.Name = "hopeForm1";
+            hopeForm1.Size = new Size(1280, 40);
+            hopeForm1.TabIndex = 31;
+            hopeForm1.Text = "hopeForm1";
+            hopeForm1.ThemeColor = Color.FromArgb(92, 173, 255);
+            // 
             // MainMenuForm
             // 
             AspectRatio = 1.77777779F;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImageLayout = ImageLayout.None;
             ClientSize = new Size(1280, 720);
+            Controls.Add(hopeForm1);
             Controls.Add(bigLabel1);
             Controls.Add(versionLABEL);
             Controls.Add(logoutButton);
@@ -200,11 +220,12 @@
             Controls.Add(tutorialButton);
             Controls.Add(playButton);
             Controls.Add(mainMenuBackgroundMedia);
-            MinimumSize = new Size(1280, 720);
+            FormBorderStyle = FormBorderStyle.None;
+            MaximumSize = new Size(1920, 1032);
+            MinimumSize = new Size(190, 40);
             Name = "MainMenuForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MainMenuForm";
-            TransparencyKey = Color.Fuchsia;
             Load += MainMenuForm_Load;
             ((System.ComponentModel.ISupportInitialize)mainMenuBackgroundMedia).EndInit();
             ResumeLayout(false);
@@ -221,5 +242,6 @@
         private MaterialSkin.Controls.MaterialButton leaderboardButton;
         private MaterialSkin.Controls.MaterialButton tutorialButton;
         private MaterialSkin.Controls.MaterialButton playButton;
+        private ReaLTaiizor.Forms.HopeForm hopeForm1;
     }
 }

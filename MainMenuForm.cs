@@ -44,10 +44,10 @@ namespace CircuitCraft
                 // **Use Invoke to access UI control safely**
                 this.Invoke((MethodInvoker)delegate
                 {
-                    mainMenuBackgroundMedia.MediaPlayer = _mediaPlayer; // UI Thread!
-                    mainMenuBackgroundMedia.Visible = true;          // UI Thread!
-                    mainMenuBackgroundMedia.SendToBack();           // UI Thread!
-                    _mediaPlayer.Play(media);                      // UI Thread! (If Play needs to interact with UI in some way, otherwise it might be okay outside Invoke)
+                    mainMenuBackgroundMedia.MediaPlayer = _mediaPlayer;
+                    mainMenuBackgroundMedia.Visible = true; 
+                    mainMenuBackgroundMedia.SendToBack(); 
+                    _mediaPlayer.Play(media); 
                 });
 
                 // _mediaPlayer.Play(media); // Moved inside Invoke if it needs UI thread access

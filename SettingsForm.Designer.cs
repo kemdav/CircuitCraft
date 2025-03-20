@@ -32,10 +32,9 @@
             materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             tabPage1 = new TabPage();
             materialSlider1 = new MaterialSkin.Controls.MaterialSlider();
+            materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
             mainMenuButton = new MaterialSkin.Controls.MaterialButton();
             materialSlider2 = new MaterialSkin.Controls.MaterialSlider();
-            bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
-            materialComboBox1 = new MaterialSkin.Controls.MaterialComboBox();
             tabPage2 = new TabPage();
             bigLabel8 = new ReaLTaiizor.Controls.BigLabel();
             bigLabel9 = new ReaLTaiizor.Controls.BigLabel();
@@ -54,8 +53,8 @@
             materialButton4 = new MaterialSkin.Controls.MaterialButton();
             materialButton3 = new MaterialSkin.Controls.MaterialButton();
             materialButton2 = new MaterialSkin.Controls.MaterialButton();
-            materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
             returnMainMenuButton = new MaterialSkin.Controls.MaterialButton();
+            hopeForm1 = new ReaLTaiizor.Forms.HopeForm();
             materialTabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -87,10 +86,9 @@
             // 
             tabPage1.BackColor = Color.White;
             tabPage1.Controls.Add(materialSlider1);
+            tabPage1.Controls.Add(materialTabSelector1);
             tabPage1.Controls.Add(mainMenuButton);
             tabPage1.Controls.Add(materialSlider2);
-            tabPage1.Controls.Add(bigLabel1);
-            tabPage1.Controls.Add(materialComboBox1);
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
@@ -111,6 +109,21 @@
             materialSlider1.Size = new Size(702, 40);
             materialSlider1.TabIndex = 2;
             materialSlider1.Text = "Music";
+            // 
+            // materialTabSelector1
+            // 
+            materialTabSelector1.Anchor = AnchorStyles.None;
+            materialTabSelector1.BackgroundImageLayout = ImageLayout.Center;
+            materialTabSelector1.BaseTabControl = materialTabControl1;
+            materialTabSelector1.CharacterCasing = MaterialSkin.Controls.MaterialTabSelector.CustomCharacterCasing.Upper;
+            materialTabSelector1.Depth = 0;
+            materialTabSelector1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialTabSelector1.Location = new Point(-4, -19);
+            materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialTabSelector1.Name = "materialTabSelector1";
+            materialTabSelector1.Size = new Size(1082, 48);
+            materialTabSelector1.TabIndex = 9;
+            materialTabSelector1.Text = "materialTabSelector1";
             // 
             // mainMenuButton
             // 
@@ -146,43 +159,6 @@
             materialSlider2.Size = new Size(702, 40);
             materialSlider2.TabIndex = 3;
             materialSlider2.Text = "Sound";
-            // 
-            // bigLabel1
-            // 
-            bigLabel1.Anchor = AnchorStyles.None;
-            bigLabel1.AutoSize = true;
-            bigLabel1.BackColor = Color.Transparent;
-            bigLabel1.Font = new Font("Segoe UI", 25F);
-            bigLabel1.ForeColor = Color.Black;
-            bigLabel1.Location = new Point(215, 263);
-            bigLabel1.Name = "bigLabel1";
-            bigLabel1.Size = new Size(218, 46);
-            bigLabel1.TabIndex = 5;
-            bigLabel1.Text = "GUI SCALING";
-            // 
-            // materialComboBox1
-            // 
-            materialComboBox1.Anchor = AnchorStyles.None;
-            materialComboBox1.AutoResize = false;
-            materialComboBox1.BackColor = Color.FromArgb(255, 255, 255);
-            materialComboBox1.Depth = 0;
-            materialComboBox1.DrawMode = DrawMode.OwnerDrawVariable;
-            materialComboBox1.DropDownHeight = 174;
-            materialComboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            materialComboBox1.DropDownWidth = 121;
-            materialComboBox1.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
-            materialComboBox1.ForeColor = Color.White;
-            materialComboBox1.FormattingEnabled = true;
-            materialComboBox1.IntegralHeight = false;
-            materialComboBox1.ItemHeight = 43;
-            materialComboBox1.Items.AddRange(new object[] { "50%", "100%", "150%", "200%" });
-            materialComboBox1.Location = new Point(464, 263);
-            materialComboBox1.MaxDropDownItems = 4;
-            materialComboBox1.MouseState = MaterialSkin.MouseState.OUT;
-            materialComboBox1.Name = "materialComboBox1";
-            materialComboBox1.Size = new Size(453, 49);
-            materialComboBox1.StartIndex = 1;
-            materialComboBox1.TabIndex = 4;
             // 
             // tabPage2
             // 
@@ -448,21 +424,6 @@
             materialButton2.UseAccentColor = false;
             materialButton2.UseVisualStyleBackColor = true;
             // 
-            // materialTabSelector1
-            // 
-            materialTabSelector1.Anchor = AnchorStyles.None;
-            materialTabSelector1.BackgroundImageLayout = ImageLayout.Center;
-            materialTabSelector1.BaseTabControl = materialTabControl1;
-            materialTabSelector1.CharacterCasing = MaterialSkin.Controls.MaterialTabSelector.CustomCharacterCasing.Upper;
-            materialTabSelector1.Depth = 0;
-            materialTabSelector1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialTabSelector1.Location = new Point(85, 0);
-            materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialTabSelector1.Name = "materialTabSelector1";
-            materialTabSelector1.Size = new Size(1082, 48);
-            materialTabSelector1.TabIndex = 9;
-            materialTabSelector1.Text = "materialTabSelector1";
-            // 
             // returnMainMenuButton
             // 
             returnMainMenuButton.Anchor = AnchorStyles.None;
@@ -484,23 +445,40 @@
             returnMainMenuButton.UseVisualStyleBackColor = true;
             returnMainMenuButton.Click += mainMenuButton_Click;
             // 
+            // hopeForm1
+            // 
+            hopeForm1.ControlBoxColorH = Color.FromArgb(228, 231, 237);
+            hopeForm1.ControlBoxColorHC = Color.FromArgb(245, 108, 108);
+            hopeForm1.ControlBoxColorN = Color.White;
+            hopeForm1.Dock = DockStyle.Top;
+            hopeForm1.Font = new Font("Segoe UI", 12F);
+            hopeForm1.ForeColor = Color.FromArgb(242, 246, 252);
+            hopeForm1.Image = (Image)resources.GetObject("hopeForm1.Image");
+            hopeForm1.Location = new Point(0, 0);
+            hopeForm1.Name = "hopeForm1";
+            hopeForm1.Size = new Size(1280, 40);
+            hopeForm1.TabIndex = 11;
+            hopeForm1.Text = "hopeForm1";
+            hopeForm1.ThemeColor = Color.FromArgb(92, 173, 255);
+            // 
             // SettingsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1280, 720);
+            Controls.Add(hopeForm1);
             Controls.Add(returnMainMenuButton);
-            Controls.Add(materialTabSelector1);
             Controls.Add(materialTabControl1);
-            MinimumSize = new Size(1280, 720);
+            FormBorderStyle = FormBorderStyle.None;
+            MaximumSize = new Size(1920, 1032);
+            MinimumSize = new Size(190, 40);
             Name = "SettingsForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "SettingsForm";
-            TransparencyKey = Color.Fuchsia;
             Load += SettingsForm_Load;
             materialTabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
-            tabPage1.PerformLayout();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
@@ -518,8 +496,6 @@
         private MaterialSkin.Controls.MaterialSlider materialSlider1;
         private MaterialSkin.Controls.MaterialButton mainMenuButton;
         private MaterialSkin.Controls.MaterialSlider materialSlider2;
-        private ReaLTaiizor.Controls.BigLabel bigLabel1;
-        private MaterialSkin.Controls.MaterialComboBox materialComboBox1;
         private MaterialSkin.Controls.MaterialTabSelector materialTabSelector1;
         private MaterialSkin.Controls.MaterialButton returnMainMenuButton;
         private TabPage tabPage2;
@@ -540,5 +516,6 @@
         private ReaLTaiizor.Controls.BigLabel bigLabel8;
         private ReaLTaiizor.Controls.BigLabel bigLabel9;
         private PictureBox pictureBox4;
+        private ReaLTaiizor.Forms.HopeForm hopeForm1;
     }
 }
