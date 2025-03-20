@@ -40,6 +40,7 @@
             materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             cyberProgressBar1 = new ReaLTaiizor.Controls.CyberProgressBar();
             materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -137,6 +138,7 @@
             resistorButton.NoAccentTextColor = Color.Empty;
             resistorButton.Size = new Size(99, 67);
             resistorButton.TabIndex = 5;
+            resistorButton.TabStop = false;
             resistorButton.Text = "RESISTOR";
             resistorButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
             resistorButton.UseAccentColor = false;
@@ -191,7 +193,7 @@
             // 
             materialLabel1.Depth = 0;
             materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel1.Location = new Point(558, 63);
+            materialLabel1.Location = new Point(562, 63);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
             materialLabel1.Size = new Size(319, 41);
@@ -224,7 +226,7 @@
             cyberProgressBar1.LinearGradient_Background = false;
             cyberProgressBar1.LinearGradient_Value = false;
             cyberProgressBar1.LinearGradientPen = false;
-            cyberProgressBar1.Location = new Point(949, 82);
+            cyberProgressBar1.Location = new Point(949, 63);
             cyberProgressBar1.Maximum = 100;
             cyberProgressBar1.Minimum = 0;
             cyberProgressBar1.Name = "cyberProgressBar1";
@@ -247,18 +249,31 @@
             materialLabel2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             materialLabel2.Depth = 0;
             materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel2.Location = new Point(1076, 119);
+            materialLabel2.Location = new Point(1076, 100);
             materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel2.Name = "materialLabel2";
             materialLabel2.Size = new Size(59, 23);
             materialLabel2.TabIndex = 9;
             materialLabel2.Text = "HEALTH";
             // 
+            // materialLabel3
+            // 
+            materialLabel3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            materialLabel3.Depth = 0;
+            materialLabel3.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel3.Location = new Point(944, 123);
+            materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel3.Name = "materialLabel3";
+            materialLabel3.Size = new Size(336, 19);
+            materialLabel3.TabIndex = 10;
+            materialLabel3.Text = "Circuits Completed: 3            Current Rating: 234";
+            // 
             // GameForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1280, 720);
+            Controls.Add(materialLabel3);
             Controls.Add(materialLabel2);
             Controls.Add(cyberProgressBar1);
             Controls.Add(materialLabel1);
@@ -292,5 +307,6 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private ReaLTaiizor.Controls.CyberProgressBar cyberProgressBar1;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private MaterialSkin.Controls.MaterialLabel materialLabel3;
     }
 }

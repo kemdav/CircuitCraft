@@ -163,6 +163,10 @@ namespace CircuitCraft
                         SetElementToPlace("Resistor");
                         currentTool = ToolType.None;
                         break;
+                    case ToolType.LED:
+                        SetElementToPlace("LED");
+                        currentTool = ToolType.None;
+                        break;
                 }
                 if (elementToPlace != null)
                 {                
@@ -404,6 +408,8 @@ namespace CircuitCraft
                     return Path.Combine(basePath, "resistor.png");
                 case "Battery":
                     return Path.Combine(basePath, "battery.png");
+                case "LED":
+                    return Path.Combine(basePath, "led.png");
                 default:
                     return null;
             }
