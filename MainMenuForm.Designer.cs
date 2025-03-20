@@ -36,6 +36,7 @@
             leaderboardButton = new MaterialSkin.Controls.MaterialButton();
             tutorialButton = new MaterialSkin.Controls.MaterialButton();
             playButton = new MaterialSkin.Controls.MaterialButton();
+            backgroundWorker = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)mainMenuBackgroundMedia).BeginInit();
             SuspendLayout();
             // 
@@ -221,5 +222,6 @@
         private MaterialSkin.Controls.MaterialButton leaderboardButton;
         private MaterialSkin.Controls.MaterialButton tutorialButton;
         private MaterialSkin.Controls.MaterialButton playButton;
+        private System.ComponentModel.BackgroundWorker backgroundWorker;
     }
 }
