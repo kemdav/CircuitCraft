@@ -26,7 +26,7 @@ namespace CircuitCraft
             Core.Initialize(libvlcPath);
 
             ApplicationConfiguration.Initialize();
-            Application.Run(new LoginScreenForm());
+            Application.Run(new TutorialForm());
         }
 
         static void RunCircuit()
