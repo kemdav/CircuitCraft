@@ -26,7 +26,7 @@ namespace CircuitCraft
 
         private async void MainMenuForm_Load(object sender, EventArgs e)
         {
-            await LoadVideoInBackground();        
+            await LoadVideoInBackground();
         }
 
 
@@ -45,8 +45,8 @@ namespace CircuitCraft
                 this.Invoke((MethodInvoker)delegate
                 {
                     mainMenuBackgroundMedia.MediaPlayer = _mediaPlayer;
-                    mainMenuBackgroundMedia.SendToBack(); 
-                    _mediaPlayer.Play(Program.mainMenuMedia); 
+                    mainMenuBackgroundMedia.SendToBack();
+                    _mediaPlayer.Play(Program.mainMenuMedia);
                     Thread.Sleep(100);
                     mainMenuBackgroundMedia.Visible = true;
                 });
@@ -129,6 +129,16 @@ namespace CircuitCraft
         private void leaderboardButton_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void playButton_Click_1(object sender, EventArgs e)
+        {
+            var frm = new GameForm();
+            frm.Location = Location;
+            frm.StartPosition = FormStartPosition.Manual;
+            frm.FormClosing += delegate { Close(); };
+            frm.Show();
+            Hide();
         }
     }
 }

@@ -215,6 +215,7 @@
             playButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
             playButton.UseAccentColor = false;
             playButton.UseVisualStyleBackColor = true;
+            playButton.Click += playButton_Click_1;
             // 
             // panel1
             // 
