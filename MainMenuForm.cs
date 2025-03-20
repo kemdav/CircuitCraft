@@ -22,19 +22,35 @@ namespace CircuitCraft
             InitializeComponent();
         }
 
-        private void MainMenuForm_Load(object sender, EventArgs e)
+        private async void MainMenuForm_Load(object sender, EventArgs e)
         {
-            _libvlc = new LibVLC();
+            await LoadVideoInBackground();
+            mainMenuBackgroundMedia.Visible = true;
+        }
 
-            _mediaPlayer = new MediaPlayer(_libvlc);
-            mainMenuBackgroundMedia.MediaPlayer = _mediaPlayer;
+        private async Task LoadVideoInBackground()
+        {
+            await Task.Run(() =>
+            {
+                _libvlc = new LibVLC();
+                _mediaPlayer = new MediaPlayer(_libvlc);
 
-            string exePath = Path.Combine(Application.StartupPath, "Images", "Animated", "mp4.main_menu.background.mp4");
-            var media = new Media(_libvlc, exePath, FromType.FromPath);
+                string exePath = Path.Combine(Application.StartupPath, "Images", "Animated", "mp4.main_menu.background.mp4");
+                var media = new Media(_libvlc, exePath, FromType.FromPath);
+                media.AddOption(":input-repeat=100");
 
-            media.AddOption(":input-repeat=100");
-            _mediaPlayer.Play(media);
-            mainMenuBackgroundMedia.SendToBack();
+                // **Use Invoke to access UI control safely**
+                this.Invoke((MethodInvoker)delegate
+                {
+                    mainMenuBackgroundMedia.MediaPlayer = _mediaPlayer; // UI Thread!
+                    mainMenuBackgroundMedia.Visible = true;          // UI Thread!
+                    mainMenuBackgroundMedia.SendToBack();           // UI Thread!
+                    _mediaPlayer.Play(media);                      // UI Thread! (If Play needs to interact with UI in some way, otherwise it might be okay outside Invoke)
+                });
+
+                // _mediaPlayer.Play(media); // Moved inside Invoke if it needs UI thread access
+                // mainMenuBackgroundMedia.SendToBack(); // Moved to Invoke
+            });
         }
 
         private void playButton_Click(object sender, EventArgs e)
