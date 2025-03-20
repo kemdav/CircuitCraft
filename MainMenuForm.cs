@@ -20,6 +20,7 @@ namespace CircuitCraft
         public MainMenuForm()
         {
             InitializeComponent();
+            AspectRatio = 16f / 9f;
         }
 
         private async void MainMenuForm_Load(object sender, EventArgs e)
@@ -27,6 +28,7 @@ namespace CircuitCraft
             await LoadVideoInBackground();
             mainMenuBackgroundMedia.Visible = true;
         }
+
 
         private async Task LoadVideoInBackground()
         {
