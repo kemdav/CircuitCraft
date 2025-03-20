@@ -226,7 +226,7 @@
             cyberProgressBar1.LinearGradient_Background = false;
             cyberProgressBar1.LinearGradient_Value = false;
             cyberProgressBar1.LinearGradientPen = false;
-            cyberProgressBar1.Location = new Point(949, 63);
+            cyberProgressBar1.Location = new Point(929, 63);
             cyberProgressBar1.Maximum = 100;
             cyberProgressBar1.Minimum = 0;
             cyberProgressBar1.Name = "cyberProgressBar1";
@@ -249,7 +249,7 @@
             materialLabel2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             materialLabel2.Depth = 0;
             materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel2.Location = new Point(1076, 100);
+            materialLabel2.Location = new Point(1056, 100);
             materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel2.Name = "materialLabel2";
             materialLabel2.Size = new Size(59, 23);
@@ -261,7 +261,7 @@
             materialLabel3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             materialLabel3.Depth = 0;
             materialLabel3.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel3.Location = new Point(944, 123);
+            materialLabel3.Location = new Point(924, 123);
             materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel3.Name = "materialLabel3";
             materialLabel3.Size = new Size(336, 19);

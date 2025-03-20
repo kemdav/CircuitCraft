@@ -30,7 +30,7 @@
         {
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
-            panel8 = new Panel();
+            rankPanel7 = new Panel();
             materialLabel37 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel38 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel39 = new MaterialSkin.Controls.MaterialLabel();
@@ -38,7 +38,7 @@
             materialLabel41 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel42 = new MaterialSkin.Controls.MaterialLabel();
             pictureBox7 = new PictureBox();
-            panel7 = new Panel();
+            rankPanel6 = new Panel();
             materialLabel31 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel32 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel33 = new MaterialSkin.Controls.MaterialLabel();
@@ -46,7 +46,7 @@
             materialLabel35 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel36 = new MaterialSkin.Controls.MaterialLabel();
             pictureBox6 = new PictureBox();
-            panel6 = new Panel();
+            rankPanel5 = new Panel();
             materialLabel25 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel26 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel27 = new MaterialSkin.Controls.MaterialLabel();
@@ -54,7 +54,7 @@
             materialLabel29 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel30 = new MaterialSkin.Controls.MaterialLabel();
             pictureBox5 = new PictureBox();
-            panel5 = new Panel();
+            rankPanel4 = new Panel();
             materialLabel19 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel20 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel21 = new MaterialSkin.Controls.MaterialLabel();
@@ -62,7 +62,7 @@
             materialLabel23 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel24 = new MaterialSkin.Controls.MaterialLabel();
             pictureBox4 = new PictureBox();
-            panel4 = new Panel();
+            rankPanel3 = new Panel();
             materialLabel13 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel14 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel15 = new MaterialSkin.Controls.MaterialLabel();
@@ -70,7 +70,7 @@
             materialLabel17 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel18 = new MaterialSkin.Controls.MaterialLabel();
             pictureBox3 = new PictureBox();
-            panel3 = new Panel();
+            rankPanel2 = new Panel();
             materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel9 = new MaterialSkin.Controls.MaterialLabel();
@@ -79,7 +79,7 @@
             materialLabel12 = new MaterialSkin.Controls.MaterialLabel();
             pictureBox2 = new PictureBox();
             bigLabel6 = new ReaLTaiizor.Controls.BigLabel();
-            panel2 = new Panel();
+            rankPanel1 = new Panel();
             materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
@@ -94,21 +94,23 @@
             returnMainMenuButton = new MaterialSkin.Controls.MaterialButton();
             hopeForm1 = new ReaLTaiizor.Forms.HopeForm();
             backgroundVideo = new LibVLCSharp.WinForms.VideoView();
+            nextButton = new MaterialSkin.Controls.MaterialButton();
+            prevButton = new MaterialSkin.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
-            panel8.SuspendLayout();
+            rankPanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
-            panel7.SuspendLayout();
+            rankPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
-            panel6.SuspendLayout();
+            rankPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            panel5.SuspendLayout();
+            rankPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            panel4.SuspendLayout();
+            rankPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            panel3.SuspendLayout();
+            rankPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            panel2.SuspendLayout();
+            rankPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)backgroundVideo).BeginInit();
             SuspendLayout();
             // 
@@ -125,14 +127,17 @@
             // panel1
             // 
             panel1.Anchor = AnchorStyles.None;
-            panel1.Controls.Add(panel8);
-            panel1.Controls.Add(panel7);
-            panel1.Controls.Add(panel6);
-            panel1.Controls.Add(panel5);
-            panel1.Controls.Add(panel4);
-            panel1.Controls.Add(panel3);
+            panel1.Controls.Add(prevButton);
+            panel1.Controls.Add(nextButton);
+            panel1.Controls.Add(rankPanel7);
+            panel1.Controls.Add(returnMainMenuButton);
+            panel1.Controls.Add(rankPanel6);
+            panel1.Controls.Add(rankPanel5);
+            panel1.Controls.Add(rankPanel4);
+            panel1.Controls.Add(rankPanel3);
+            panel1.Controls.Add(rankPanel2);
             panel1.Controls.Add(bigLabel6);
-            panel1.Controls.Add(panel2);
+            panel1.Controls.Add(rankPanel1);
             panel1.Controls.Add(bigLabel5);
             panel1.Controls.Add(bigLabel4);
             panel1.Controls.Add(bigLabel3);
@@ -140,24 +145,24 @@
             panel1.Controls.Add(bigLabel1);
             panel1.Location = new Point(155, 69);
             panel1.Name = "panel1";
-            panel1.Size = new Size(917, 572);
+            panel1.Size = new Size(917, 625);
             panel1.TabIndex = 1;
             panel1.Paint += panel1_Paint;
             // 
-            // panel8
+            // rankPanel7
             // 
-            panel8.Anchor = AnchorStyles.None;
-            panel8.Controls.Add(materialLabel37);
-            panel8.Controls.Add(materialLabel38);
-            panel8.Controls.Add(materialLabel39);
-            panel8.Controls.Add(materialLabel40);
-            panel8.Controls.Add(materialLabel41);
-            panel8.Controls.Add(materialLabel42);
-            panel8.Controls.Add(pictureBox7);
-            panel8.Location = new Point(3, 504);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(914, 59);
-            panel8.TabIndex = 18;
+            rankPanel7.Anchor = AnchorStyles.None;
+            rankPanel7.Controls.Add(materialLabel37);
+            rankPanel7.Controls.Add(materialLabel38);
+            rankPanel7.Controls.Add(materialLabel39);
+            rankPanel7.Controls.Add(materialLabel40);
+            rankPanel7.Controls.Add(materialLabel41);
+            rankPanel7.Controls.Add(materialLabel42);
+            rankPanel7.Controls.Add(pictureBox7);
+            rankPanel7.Location = new Point(3, 488);
+            rankPanel7.Name = "rankPanel7";
+            rankPanel7.Size = new Size(914, 59);
+            rankPanel7.TabIndex = 18;
             // 
             // materialLabel37
             // 
@@ -241,20 +246,20 @@
             pictureBox7.TabIndex = 0;
             pictureBox7.TabStop = false;
             // 
-            // panel7
+            // rankPanel6
             // 
-            panel7.Anchor = AnchorStyles.None;
-            panel7.Controls.Add(materialLabel31);
-            panel7.Controls.Add(materialLabel32);
-            panel7.Controls.Add(materialLabel33);
-            panel7.Controls.Add(materialLabel34);
-            panel7.Controls.Add(materialLabel35);
-            panel7.Controls.Add(materialLabel36);
-            panel7.Controls.Add(pictureBox6);
-            panel7.Location = new Point(3, 439);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(914, 59);
-            panel7.TabIndex = 17;
+            rankPanel6.Anchor = AnchorStyles.None;
+            rankPanel6.Controls.Add(materialLabel31);
+            rankPanel6.Controls.Add(materialLabel32);
+            rankPanel6.Controls.Add(materialLabel33);
+            rankPanel6.Controls.Add(materialLabel34);
+            rankPanel6.Controls.Add(materialLabel35);
+            rankPanel6.Controls.Add(materialLabel36);
+            rankPanel6.Controls.Add(pictureBox6);
+            rankPanel6.Location = new Point(3, 423);
+            rankPanel6.Name = "rankPanel6";
+            rankPanel6.Size = new Size(914, 59);
+            rankPanel6.TabIndex = 17;
             // 
             // materialLabel31
             // 
@@ -338,20 +343,20 @@
             pictureBox6.TabIndex = 0;
             pictureBox6.TabStop = false;
             // 
-            // panel6
+            // rankPanel5
             // 
-            panel6.Anchor = AnchorStyles.None;
-            panel6.Controls.Add(materialLabel25);
-            panel6.Controls.Add(materialLabel26);
-            panel6.Controls.Add(materialLabel27);
-            panel6.Controls.Add(materialLabel28);
-            panel6.Controls.Add(materialLabel29);
-            panel6.Controls.Add(materialLabel30);
-            panel6.Controls.Add(pictureBox5);
-            panel6.Location = new Point(3, 374);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(914, 59);
-            panel6.TabIndex = 16;
+            rankPanel5.Anchor = AnchorStyles.None;
+            rankPanel5.Controls.Add(materialLabel25);
+            rankPanel5.Controls.Add(materialLabel26);
+            rankPanel5.Controls.Add(materialLabel27);
+            rankPanel5.Controls.Add(materialLabel28);
+            rankPanel5.Controls.Add(materialLabel29);
+            rankPanel5.Controls.Add(materialLabel30);
+            rankPanel5.Controls.Add(pictureBox5);
+            rankPanel5.Location = new Point(3, 358);
+            rankPanel5.Name = "rankPanel5";
+            rankPanel5.Size = new Size(914, 59);
+            rankPanel5.TabIndex = 16;
             // 
             // materialLabel25
             // 
@@ -435,20 +440,20 @@
             pictureBox5.TabIndex = 0;
             pictureBox5.TabStop = false;
             // 
-            // panel5
+            // rankPanel4
             // 
-            panel5.Anchor = AnchorStyles.None;
-            panel5.Controls.Add(materialLabel19);
-            panel5.Controls.Add(materialLabel20);
-            panel5.Controls.Add(materialLabel21);
-            panel5.Controls.Add(materialLabel22);
-            panel5.Controls.Add(materialLabel23);
-            panel5.Controls.Add(materialLabel24);
-            panel5.Controls.Add(pictureBox4);
-            panel5.Location = new Point(3, 309);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(914, 59);
-            panel5.TabIndex = 15;
+            rankPanel4.Anchor = AnchorStyles.None;
+            rankPanel4.Controls.Add(materialLabel19);
+            rankPanel4.Controls.Add(materialLabel20);
+            rankPanel4.Controls.Add(materialLabel21);
+            rankPanel4.Controls.Add(materialLabel22);
+            rankPanel4.Controls.Add(materialLabel23);
+            rankPanel4.Controls.Add(materialLabel24);
+            rankPanel4.Controls.Add(pictureBox4);
+            rankPanel4.Location = new Point(3, 293);
+            rankPanel4.Name = "rankPanel4";
+            rankPanel4.Size = new Size(914, 59);
+            rankPanel4.TabIndex = 15;
             // 
             // materialLabel19
             // 
@@ -532,20 +537,20 @@
             pictureBox4.TabIndex = 0;
             pictureBox4.TabStop = false;
             // 
-            // panel4
+            // rankPanel3
             // 
-            panel4.Anchor = AnchorStyles.None;
-            panel4.Controls.Add(materialLabel13);
-            panel4.Controls.Add(materialLabel14);
-            panel4.Controls.Add(materialLabel15);
-            panel4.Controls.Add(materialLabel16);
-            panel4.Controls.Add(materialLabel17);
-            panel4.Controls.Add(materialLabel18);
-            panel4.Controls.Add(pictureBox3);
-            panel4.Location = new Point(3, 244);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(914, 59);
-            panel4.TabIndex = 14;
+            rankPanel3.Anchor = AnchorStyles.None;
+            rankPanel3.Controls.Add(materialLabel13);
+            rankPanel3.Controls.Add(materialLabel14);
+            rankPanel3.Controls.Add(materialLabel15);
+            rankPanel3.Controls.Add(materialLabel16);
+            rankPanel3.Controls.Add(materialLabel17);
+            rankPanel3.Controls.Add(materialLabel18);
+            rankPanel3.Controls.Add(pictureBox3);
+            rankPanel3.Location = new Point(3, 228);
+            rankPanel3.Name = "rankPanel3";
+            rankPanel3.Size = new Size(914, 59);
+            rankPanel3.TabIndex = 14;
             // 
             // materialLabel13
             // 
@@ -629,20 +634,20 @@
             pictureBox3.TabIndex = 0;
             pictureBox3.TabStop = false;
             // 
-            // panel3
+            // rankPanel2
             // 
-            panel3.Anchor = AnchorStyles.None;
-            panel3.Controls.Add(materialLabel7);
-            panel3.Controls.Add(materialLabel8);
-            panel3.Controls.Add(materialLabel9);
-            panel3.Controls.Add(materialLabel10);
-            panel3.Controls.Add(materialLabel11);
-            panel3.Controls.Add(materialLabel12);
-            panel3.Controls.Add(pictureBox2);
-            panel3.Location = new Point(3, 179);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(914, 59);
-            panel3.TabIndex = 13;
+            rankPanel2.Anchor = AnchorStyles.None;
+            rankPanel2.Controls.Add(materialLabel7);
+            rankPanel2.Controls.Add(materialLabel8);
+            rankPanel2.Controls.Add(materialLabel9);
+            rankPanel2.Controls.Add(materialLabel10);
+            rankPanel2.Controls.Add(materialLabel11);
+            rankPanel2.Controls.Add(materialLabel12);
+            rankPanel2.Controls.Add(pictureBox2);
+            rankPanel2.Location = new Point(3, 163);
+            rankPanel2.Name = "rankPanel2";
+            rankPanel2.Size = new Size(914, 59);
+            rankPanel2.TabIndex = 13;
             // 
             // materialLabel7
             // 
@@ -738,20 +743,20 @@
             bigLabel6.Text = "RATING";
             bigLabel6.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // panel2
+            // rankPanel1
             // 
-            panel2.Anchor = AnchorStyles.None;
-            panel2.Controls.Add(materialLabel6);
-            panel2.Controls.Add(materialLabel5);
-            panel2.Controls.Add(materialLabel4);
-            panel2.Controls.Add(materialLabel3);
-            panel2.Controls.Add(materialLabel2);
-            panel2.Controls.Add(materialLabel1);
-            panel2.Controls.Add(pictureBox1);
-            panel2.Location = new Point(3, 114);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(914, 59);
-            panel2.TabIndex = 6;
+            rankPanel1.Anchor = AnchorStyles.None;
+            rankPanel1.Controls.Add(materialLabel6);
+            rankPanel1.Controls.Add(materialLabel5);
+            rankPanel1.Controls.Add(materialLabel4);
+            rankPanel1.Controls.Add(materialLabel3);
+            rankPanel1.Controls.Add(materialLabel2);
+            rankPanel1.Controls.Add(materialLabel1);
+            rankPanel1.Controls.Add(pictureBox1);
+            rankPanel1.Location = new Point(3, 98);
+            rankPanel1.Name = "rankPanel1";
+            rankPanel1.Size = new Size(914, 59);
+            rankPanel1.TabIndex = 6;
             // 
             // materialLabel6
             // 
@@ -894,7 +899,7 @@
             returnMainMenuButton.Depth = 0;
             returnMainMenuButton.HighEmphasis = true;
             returnMainMenuButton.Icon = null;
-            returnMainMenuButton.Location = new Point(524, 650);
+            returnMainMenuButton.Location = new Point(369, 569);
             returnMainMenuButton.Margin = new Padding(4, 6, 4, 6);
             returnMainMenuButton.MouseState = MaterialSkin.MouseState.HOVER;
             returnMainMenuButton.Name = "returnMainMenuButton";
@@ -933,13 +938,50 @@
             backgroundVideo.TabIndex = 13;
             backgroundVideo.Text = "videoView1";
             // 
+            // nextButton
+            // 
+            nextButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            nextButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            nextButton.Depth = 0;
+            nextButton.HighEmphasis = true;
+            nextButton.Icon = null;
+            nextButton.Location = new Point(829, 569);
+            nextButton.Margin = new Padding(4, 6, 4, 6);
+            nextButton.MouseState = MaterialSkin.MouseState.HOVER;
+            nextButton.Name = "nextButton";
+            nextButton.NoAccentTextColor = Color.Empty;
+            nextButton.Size = new Size(64, 36);
+            nextButton.TabIndex = 19;
+            nextButton.Text = "Next";
+            nextButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            nextButton.UseAccentColor = false;
+            nextButton.UseVisualStyleBackColor = true;
+            // 
+            // prevButton
+            // 
+            prevButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            prevButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            prevButton.Depth = 0;
+            prevButton.HighEmphasis = true;
+            prevButton.Icon = null;
+            prevButton.Location = new Point(33, 569);
+            prevButton.Margin = new Padding(4, 6, 4, 6);
+            prevButton.MouseState = MaterialSkin.MouseState.HOVER;
+            prevButton.Name = "prevButton";
+            prevButton.NoAccentTextColor = Color.Empty;
+            prevButton.Size = new Size(64, 36);
+            prevButton.TabIndex = 20;
+            prevButton.Text = "PREV";
+            prevButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            prevButton.UseAccentColor = false;
+            prevButton.UseVisualStyleBackColor = true;
+            // 
             // LeaderboardsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1280, 720);
             Controls.Add(hopeForm1);
-            Controls.Add(returnMainMenuButton);
             Controls.Add(panel1);
             Controls.Add(backgroundVideo);
             FormBorderStyle = FormBorderStyle.None;
@@ -951,29 +993,29 @@
             Load += LeaderboardsForm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
-            panel8.ResumeLayout(false);
-            panel8.PerformLayout();
+            panel1.PerformLayout();
+            rankPanel7.ResumeLayout(false);
+            rankPanel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
+            rankPanel6.ResumeLayout(false);
+            rankPanel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
-            panel6.ResumeLayout(false);
-            panel6.PerformLayout();
+            rankPanel5.ResumeLayout(false);
+            rankPanel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
+            rankPanel4.ResumeLayout(false);
+            rankPanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
+            rankPanel3.ResumeLayout(false);
+            rankPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
+            rankPanel2.ResumeLayout(false);
+            rankPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
+            rankPanel1.ResumeLayout(false);
+            rankPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)backgroundVideo).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -985,7 +1027,7 @@
         private ReaLTaiizor.Controls.BigLabel bigLabel3;
         private ReaLTaiizor.Controls.BigLabel bigLabel2;
         private ReaLTaiizor.Controls.BigLabel bigLabel1;
-        private Panel panel2;
+        private Panel rankPanel1;
         private MaterialSkin.Controls.MaterialLabel materialLabel5;
         private MaterialSkin.Controls.MaterialLabel materialLabel4;
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
@@ -994,7 +1036,7 @@
         private MaterialSkin.Controls.MaterialButton returnMainMenuButton;
         private ReaLTaiizor.Controls.BigLabel bigLabel6;
         private MaterialSkin.Controls.MaterialLabel materialLabel6;
-        private Panel panel8;
+        private Panel rankPanel7;
         private MaterialSkin.Controls.MaterialLabel materialLabel37;
         private MaterialSkin.Controls.MaterialLabel materialLabel38;
         private MaterialSkin.Controls.MaterialLabel materialLabel39;
@@ -1002,7 +1044,7 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel41;
         private MaterialSkin.Controls.MaterialLabel materialLabel42;
         private PictureBox pictureBox7;
-        private Panel panel7;
+        private Panel rankPanel6;
         private MaterialSkin.Controls.MaterialLabel materialLabel31;
         private MaterialSkin.Controls.MaterialLabel materialLabel32;
         private MaterialSkin.Controls.MaterialLabel materialLabel33;
@@ -1010,7 +1052,7 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel35;
         private MaterialSkin.Controls.MaterialLabel materialLabel36;
         private PictureBox pictureBox6;
-        private Panel panel6;
+        private Panel rankPanel5;
         private MaterialSkin.Controls.MaterialLabel materialLabel25;
         private MaterialSkin.Controls.MaterialLabel materialLabel26;
         private MaterialSkin.Controls.MaterialLabel materialLabel27;
@@ -1018,7 +1060,7 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel29;
         private MaterialSkin.Controls.MaterialLabel materialLabel30;
         private PictureBox pictureBox5;
-        private Panel panel5;
+        private Panel rankPanel4;
         private MaterialSkin.Controls.MaterialLabel materialLabel19;
         private MaterialSkin.Controls.MaterialLabel materialLabel20;
         private MaterialSkin.Controls.MaterialLabel materialLabel21;
@@ -1026,7 +1068,7 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel23;
         private MaterialSkin.Controls.MaterialLabel materialLabel24;
         private PictureBox pictureBox4;
-        private Panel panel4;
+        private Panel rankPanel3;
         private MaterialSkin.Controls.MaterialLabel materialLabel13;
         private MaterialSkin.Controls.MaterialLabel materialLabel14;
         private MaterialSkin.Controls.MaterialLabel materialLabel15;
@@ -1034,7 +1076,7 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel17;
         private MaterialSkin.Controls.MaterialLabel materialLabel18;
         private PictureBox pictureBox3;
-        private Panel panel3;
+        private Panel rankPanel2;
         private MaterialSkin.Controls.MaterialLabel materialLabel7;
         private MaterialSkin.Controls.MaterialLabel materialLabel8;
         private MaterialSkin.Controls.MaterialLabel materialLabel9;
@@ -1044,5 +1086,7 @@
         private PictureBox pictureBox2;
         private ReaLTaiizor.Forms.HopeForm hopeForm1;
         private LibVLCSharp.WinForms.VideoView backgroundVideo;
+        private MaterialSkin.Controls.MaterialButton prevButton;
+        private MaterialSkin.Controls.MaterialButton nextButton;
     }
 }
