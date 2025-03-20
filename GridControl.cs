@@ -30,7 +30,6 @@ namespace CircuitCraft
         private CircuitElement? selectedElementData = null;
         private PictureBox? selectedPictureBox = null;
         private bool isDraggingElement = false;
-        private bool isDraggingElement2 = false;
         private List<Wire> wires = new List<Wire>();
         private string? elementToPlace = null;
 
@@ -207,12 +206,11 @@ namespace CircuitCraft
 
         private void PictureBox_MouseDown(object sender, MouseEventArgs e)
         {
+            selectedPictureBox = (PictureBox)sender;
+            selectedElementData = (CircuitElement)selectedPictureBox.Tag;
             if (currentTool == ToolType.None)
             {
                 isDraggingElement = true;
-                isDraggingElement2 = true;
-                selectedPictureBox = (PictureBox)sender;
-                selectedElementData = (CircuitElement)selectedPictureBox.Tag;
             }
             else if (currentTool == ToolType.Delete)
             {
@@ -224,7 +222,9 @@ namespace CircuitCraft
         {
             if (isDraggingElement && selectedPictureBox != null && selectedElementData != null)
             {
-                Point snappedPosition = SnapToGrid(e.Location);
+                Point parentCoords = selectedPictureBox.Parent.PointToClient(
+                                    selectedPictureBox.PointToScreen(e.Location));
+                Point snappedPosition = SnapToGrid(parentCoords);
                 int offsetX = selectedPictureBox.Width / 2;
                 int offsetY = selectedPictureBox.Height / 2;
                 selectedPictureBox.Location = new Point(snappedPosition.X - offsetX, snappedPosition.Y - offsetY);
@@ -236,7 +236,6 @@ namespace CircuitCraft
             if (isDraggingElement)
             {
                 isDraggingElement = false;
-                isDraggingElement2 = false;
                 selectedElementData = null;
                 selectedPictureBox = null;
             }
@@ -252,14 +251,6 @@ namespace CircuitCraft
                 // Optionally, store a temporary end point and call Invalidate to refresh the drawing.
                 currentWireEndPoint = SnapToGrid(e.Location);
                 Invalidate(); // This will trigger OnPaint
-            }
-            else if (isDraggingElement && selectedPictureBox != null && selectedElementData != null && !isDraggingElement2)
-            {
-                Point snappedPosition = SnapToGrid(e.Location);
-                int offsetX = selectedPictureBox.Width / 2;
-                int offsetY = selectedPictureBox.Height / 2;
-                selectedPictureBox.Location = new Point(snappedPosition.X - offsetX, snappedPosition.Y - offsetY);
-                selectedElementData.Location = selectedPictureBox.Location;
             }
         }
 
