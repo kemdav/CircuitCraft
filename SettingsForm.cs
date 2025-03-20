@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibVLCSharp.Shared;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -40,7 +41,13 @@ namespace CircuitCraft
 
         private void SettingsForm_Load(object sender, EventArgs e)
         {
+            LibVLC _libvlc = new LibVLC();
+            MediaPlayer _mediaPlayer = new MediaPlayer(_libvlc);
 
+            backgroundVideo.MediaPlayer = _mediaPlayer;
+            backgroundVideo.Visible = true;
+            backgroundVideo.SendToBack();
+            _mediaPlayer.Play(Program.mainMenuMedia);
         }
 
         private void tabPage2_Click(object sender, EventArgs e)

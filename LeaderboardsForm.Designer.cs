@@ -92,6 +92,8 @@
             bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
             bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
             returnMainMenuButton = new MaterialSkin.Controls.MaterialButton();
+            hopeForm1 = new ReaLTaiizor.Forms.HopeForm();
+            backgroundVideo = new LibVLCSharp.WinForms.VideoView();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             panel8.SuspendLayout();
@@ -107,6 +109,7 @@
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)backgroundVideo).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -214,7 +217,7 @@
             materialLabel41.Name = "materialLabel41";
             materialLabel41.Size = new Size(10, 19);
             materialLabel41.TabIndex = 7;
-            materialLabel41.Text = "1";
+            materialLabel41.Text = "7";
             // 
             // materialLabel42
             // 
@@ -311,7 +314,7 @@
             materialLabel35.Name = "materialLabel35";
             materialLabel35.Size = new Size(10, 19);
             materialLabel35.TabIndex = 7;
-            materialLabel35.Text = "1";
+            materialLabel35.Text = "6";
             // 
             // materialLabel36
             // 
@@ -408,7 +411,7 @@
             materialLabel29.Name = "materialLabel29";
             materialLabel29.Size = new Size(10, 19);
             materialLabel29.TabIndex = 7;
-            materialLabel29.Text = "1";
+            materialLabel29.Text = "5";
             // 
             // materialLabel30
             // 
@@ -505,7 +508,7 @@
             materialLabel23.Name = "materialLabel23";
             materialLabel23.Size = new Size(10, 19);
             materialLabel23.TabIndex = 7;
-            materialLabel23.Text = "1";
+            materialLabel23.Text = "4";
             // 
             // materialLabel24
             // 
@@ -602,7 +605,7 @@
             materialLabel17.Name = "materialLabel17";
             materialLabel17.Size = new Size(10, 19);
             materialLabel17.TabIndex = 7;
-            materialLabel17.Text = "1";
+            materialLabel17.Text = "3";
             // 
             // materialLabel18
             // 
@@ -699,7 +702,7 @@
             materialLabel11.Name = "materialLabel11";
             materialLabel11.Size = new Size(10, 19);
             materialLabel11.TabIndex = 7;
-            materialLabel11.Text = "1";
+            materialLabel11.Text = "2";
             // 
             // materialLabel12
             // 
@@ -904,17 +907,48 @@
             returnMainMenuButton.UseVisualStyleBackColor = true;
             returnMainMenuButton.Click += returnMainMenuButton_Click;
             // 
+            // hopeForm1
+            // 
+            hopeForm1.ControlBoxColorH = Color.FromArgb(228, 231, 237);
+            hopeForm1.ControlBoxColorHC = Color.FromArgb(245, 108, 108);
+            hopeForm1.ControlBoxColorN = Color.White;
+            hopeForm1.Dock = DockStyle.Top;
+            hopeForm1.Font = new Font("Segoe UI", 12F);
+            hopeForm1.ForeColor = Color.FromArgb(242, 246, 252);
+            hopeForm1.Image = null;
+            hopeForm1.Location = new Point(0, 0);
+            hopeForm1.Name = "hopeForm1";
+            hopeForm1.Size = new Size(1280, 40);
+            hopeForm1.TabIndex = 12;
+            hopeForm1.ThemeColor = Color.FromArgb(92, 173, 255);
+            // 
+            // backgroundVideo
+            // 
+            backgroundVideo.BackColor = Color.Black;
+            backgroundVideo.Dock = DockStyle.Fill;
+            backgroundVideo.Location = new Point(0, 0);
+            backgroundVideo.MediaPlayer = null;
+            backgroundVideo.Name = "backgroundVideo";
+            backgroundVideo.Size = new Size(1280, 720);
+            backgroundVideo.TabIndex = 13;
+            backgroundVideo.Text = "videoView1";
+            // 
             // LeaderboardsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1280, 720);
+            Controls.Add(hopeForm1);
             Controls.Add(returnMainMenuButton);
             Controls.Add(panel1);
+            Controls.Add(backgroundVideo);
             FormBorderStyle = FormBorderStyle.None;
-            MinimumSize = new Size(1280, 720);
+            MaximumSize = new Size(1920, 1032);
+            MinimumSize = new Size(190, 40);
             Name = "LeaderboardsForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "LeaderboardsForm";
+            Load += LeaderboardsForm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             panel8.ResumeLayout(false);
@@ -937,6 +971,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)backgroundVideo).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1007,5 +1042,7 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel11;
         private MaterialSkin.Controls.MaterialLabel materialLabel12;
         private PictureBox pictureBox2;
+        private ReaLTaiizor.Forms.HopeForm hopeForm1;
+        private LibVLCSharp.WinForms.VideoView backgroundVideo;
     }
 }

@@ -14,6 +14,8 @@ namespace CircuitCraft
         public static System.Windows.Forms.FormBorderStyle originalBorderStyle;
         public static FormWindowState originalWindowState;
         public static Rectangle originalBounds;
+
+        public static Media mainMenuMedia;
         private static string GetLibVLCPath()
         {
             var architectureFolder = IntPtr.Size == 8 ? "win-x64" : "win-x86";
@@ -31,7 +33,7 @@ namespace CircuitCraft
             Core.Initialize(libvlcPath);
 
             ApplicationConfiguration.Initialize();
-            Application.Run(new LoginScreenForm());
+            Application.Run(new GameForm());
         }
 
         static void RunCircuit()
