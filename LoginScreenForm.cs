@@ -66,13 +66,29 @@ namespace CircuitCraft
 
         private void loginBttn_Click(object sender, EventArgs e)
         {
+            if (usernameLoginTbox.Text == "" || passwordLoginTbox.Text == "")
+            {
+                if (usernameLoginTbox.Text == "")
+                {
+                    usernameLoginTbox.ErrorMessage = "Username cannot be empty";
+                    usernameLoginTbox.SetErrorState(true);
+                }
+                if (passwordLoginTbox.Text == "")
+                {
+                    passwordLoginTbox.ErrorMessage = "Password cannot be empty";
+                    passwordLoginTbox.SetErrorState(true);
+                }
+                return;
+            }
             if (usernameLoginTbox.Text != "user" && passwordLoginTbox.Text != "123")
             {
+                usernameLoginTbox.ErrorMessage = "Invalid username";
+                passwordLoginTbox.ErrorMessage = "Invalid password";
                 usernameLoginTbox.SetErrorState(true);
                 passwordLoginTbox.SetErrorState(true);
                 return;
             }
-            var frm = new MainMenuForm();
+            var frm = new LoadingForm();
             frm.StartPosition = FormStartPosition.CenterScreen;
             frm.FormClosing += delegate { Close(); };
             frm.Show();
@@ -87,19 +103,16 @@ namespace CircuitCraft
 
         private void InformationTbox_Click(object sender, EventArgs e)
         {
-            if (usernameLoginTbox.GetErrorState() == true)
+            if (usernameLoginTbox.GetErrorState() == true || passwordLoginTbox.GetErrorState() == true)
             {
                 usernameLoginTbox.SetErrorState(false);
                 passwordLoginTbox.SetErrorState(false);
             }
-            if (createPasswordTbox.GetErrorState() == true)
+            if (createUsernameTbox.GetErrorState() == true || createPasswordTbox.GetErrorState() == true || confirmPasswordTbox.GetErrorState() == true)
             {
+                createUsernameTbox.SetErrorState(false);
                 createPasswordTbox.SetErrorState(false);
                 confirmPasswordTbox.SetErrorState(false);
-            }
-            if (usernameLoginTbox.GetErrorState() == true)
-            {
-                usernameLoginTbox.SetErrorState(false);
             }
         }
 
@@ -116,21 +129,26 @@ namespace CircuitCraft
 
         private void signUpButton_Click(object sender, EventArgs e)
         {
+            if (createPasswordTbox.Text == "" || confirmPasswordTbox.Text == "")
+            {
+                confirmPasswordTbox.ErrorMessage = "Password cannot be empty";
+                confirmPasswordTbox.SetErrorState(true);
+            }
             if (createPasswordTbox.Text != confirmPasswordTbox.Text)
             {
-                createPasswordTbox.SetErrorState(true);
+                confirmPasswordTbox.ErrorMessage = "Passwords do not match";
                 confirmPasswordTbox.SetErrorState(true);
             }
-            if (createUsernameTbox.Text == "user")
+            if (createUsernameTbox.Text == "")
             {
+                createUsernameTbox.ErrorMessage = "Username cannot be empty";
                 createUsernameTbox.SetErrorState(true);
             }
-            if (createUsernameTbox.Text == "" || createUsernameTbox.Text == "" || confirmPasswordTbox.Text == "")
+            else if (createUsernameTbox.Text == "user")
             {
+                createUsernameTbox.ErrorMessage = "Username already exists";
                 createUsernameTbox.SetErrorState(true);
-                createPasswordTbox.SetErrorState(true);
-                confirmPasswordTbox.SetErrorState(true);
-            }
+            }           
         }
     }
 }

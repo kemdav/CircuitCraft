@@ -42,6 +42,51 @@ namespace CircuitCraft
             this.KeyPress += GridControl_KeyPress; // Add KeyPress event handler
         }
 
+        private double DistanceFromPointToLineSegment(Point p, Point a, Point b)
+        {
+            double dx = b.X - a.X;
+            double dy = b.Y - a.Y;
+            if (dx == 0 && dy == 0)
+            {
+                // a and b are the same point
+                return Math.Sqrt((p.X - a.X) * (p.X - a.X) + (p.Y - a.Y) * (p.Y - a.Y));
+            }
+            // Calculate the projection factor t of point p onto the line ab
+            double t = ((p.X - a.X) * dx + (p.Y - a.Y) * dy) / (dx * dx + dy * dy);
+            t = Math.Max(0, Math.Min(1, t)); // Clamp t to the [0, 1] range
+            double projX = a.X + t * dx;
+            double projY = a.Y + t * dy;
+            double distX = p.X - projX;
+            double distY = p.Y - projY;
+            return Math.Sqrt(distX * distX + distY * distY);
+        }
+
+        private void DeleteWireAtPosition(Point clickPosition)
+        {
+            // Define a tolerance in pixels for how close the click must be to a wire
+            const double tolerance = 5.0;
+
+            // Loop through a copy of the list so you can remove while iterating
+            foreach (var wire in new List<Wire>(wires))
+            {
+                // Since you draw wires as two segments, compute the intermediate point.
+                Point intermediate = new Point(wire.EndPoint.X, wire.StartPoint.Y);
+
+                // Check distance from the click to the first segment (start -> intermediate)
+                double distance1 = DistanceFromPointToLineSegment(clickPosition, wire.StartPoint, intermediate);
+                // Check distance from the click to the second segment (intermediate -> end)
+                double distance2 = DistanceFromPointToLineSegment(clickPosition, intermediate, wire.EndPoint);
+
+                if (distance1 <= tolerance || distance2 <= tolerance)
+                {
+                    wires.Remove(wire);
+                    Invalidate(); // Redraw the grid without this wire
+                    return; // Remove one wire per click (or adjust logic if multiple should be deleted)
+                }
+            }
+        }
+
+
 
         public void SetElementToPlace(string elementType)
         {
@@ -53,11 +98,46 @@ namespace CircuitCraft
             elementToPlace = null;
         }
 
+        private CircuitNode? FindNearestNode(Point p, int tolerance = 10)
+        {
+            foreach (var elementTuple in circuitElements)
+            {
+                foreach (var node in elementTuple.Item1.Nodes)
+                {
+                    if (Math.Abs(p.X - node.Location.X) <= tolerance &&
+                        Math.Abs(p.Y - node.Location.Y) <= tolerance)
+                    {
+                        return node;
+                    }
+                }
+            }
+            return null;
+        }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
             DrawGrid(e.Graphics);
             DrawWires(e.Graphics);
+            DrawNodes(e.Graphics);
+        }
+
+        private void DrawNodes(Graphics g)
+        {
+            // Use a solid brush and a pen to draw each node.
+            using (Brush nodeBrush = new SolidBrush(Color.Red))
+            using (Pen nodePen = new Pen(Color.Black))
+            {
+                foreach (var elementTuple in circuitElements)
+                {
+                    var element = elementTuple.Item1;
+                    foreach (var node in element.Nodes)
+                    {
+                        g.FillEllipse(nodeBrush, node.Bounds);
+                        g.DrawEllipse(nodePen, node.Bounds);
+                    }
+                }
+            }
         }
 
         private void DrawWires(Graphics g)
@@ -143,12 +223,26 @@ namespace CircuitCraft
             {
                 return;
             }
+            if (currentTool == ToolType.Delete)
+            {
+                DeleteWireAtPosition(e.Location);
+                return;
+            }
             if (currentTool == ToolType.Wire)
             {
                 if (e.Button == MouseButtons.Left)
                 {
                     isDrawingWire = true;
                     wireStartPoint = SnapToGrid(e.Location);
+                    CircuitNode? startNode = FindNearestNode(SnapToGrid(e.Location));
+                    if (startNode != null)
+                    {
+                        wireStartPoint = startNode.Location;
+                    }
+                    else
+                    {
+                        wireStartPoint = SnapToGrid(e.Location);
+                    }
                 }
             }
             else
@@ -177,7 +271,7 @@ namespace CircuitCraft
                         PictureBox newPictureBox = CreatePictureBoxForElement(newElementData);
                         circuitElements.Add(new Tuple<CircuitElement, PictureBox>(newElementData, newPictureBox));
                         ToolTip toolTip = new ToolTip();
-                        toolTip.SetToolTip(newPictureBox, $"Potential Difference: {newElementData.PotentialDifference} V\nCurrent: {newElementData.Current} A\nResistance: {newElementData.Resistance} Ohms");
+                        toolTip.SetToolTip(newPictureBox, $"Potential Difference: {newElementData.Voltage} V\nCurrent: {newElementData.Current} A\nResistance: {newElementData.Resistance} Ohms");
                         newPictureBox.MouseDown += PictureBox_MouseDown;
                         newPictureBox.MouseUp += PictureBox_MouseUp;
                         newPictureBox.MouseMove += PictureBox_MouseMove;
@@ -227,12 +321,16 @@ namespace CircuitCraft
             if (isDraggingElement && selectedPictureBox != null && selectedElementData != null)
             {
                 Point parentCoords = selectedPictureBox.Parent.PointToClient(
-                                    selectedPictureBox.PointToScreen(e.Location));
+                                selectedPictureBox.PointToScreen(e.Location));
                 Point snappedPosition = SnapToGrid(parentCoords);
+
                 int offsetX = selectedPictureBox.Width / 2;
                 int offsetY = selectedPictureBox.Height / 2;
                 selectedPictureBox.Location = new Point(snappedPosition.X - offsetX, snappedPosition.Y - offsetY);
-                selectedElementData.Location = selectedPictureBox.Location;
+
+                // Update the element's own location and node positions
+                selectedElementData.UpdateNodes(selectedPictureBox.Location);
+                this.Invalidate();
             }
         }
         private void PictureBox_MouseUp(object sender, MouseEventArgs e)
@@ -264,10 +362,12 @@ namespace CircuitCraft
 
             if (isDrawingWire)
             {
-                Point wireEndPoint = SnapToGrid(e.Location);
+                CircuitNode? endNode = FindNearestNode(SnapToGrid(e.Location));
+                Point wireEndPoint = (endNode != null) ? endNode.Location : SnapToGrid(e.Location);
                 Wire newWire = new Wire(wireStartPoint, wireEndPoint);
                 wires.Add(newWire);
                 isDrawingWire = false;
+
                 Invalidate(); // Redraw control to show the new wire
             }
             else 

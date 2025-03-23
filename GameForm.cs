@@ -8,14 +8,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Timer = System.Windows.Forms.Timer;
 
 namespace CircuitCraft
 {
     public partial class GameForm : Form
     {
+        private Timer timer;
         public GameForm()
         {
             InitializeComponent();
+            timer = new Timer();
+            timer.Interval = 500;
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.Start();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            timerProgress.Progress -= 1;
         }
 
         private void toolButton_Click(object sender, EventArgs e)

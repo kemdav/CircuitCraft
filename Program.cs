@@ -33,12 +33,40 @@ namespace CircuitCraft
             Core.Initialize(libvlcPath);
 
             ApplicationConfiguration.Initialize();
-            Application.Run(new LoginScreenForm());
+            Application.Run(new GameForm());
         }
 
-        static void RunCircuit()
+        public static Circuit BuildSpiceCircuit(List<Tuple<CircuitElement, PictureBox>> uiElements, List<Wire> uiWires)
         {
+            var circuit = new Circuit();
+            foreach (var tuple in uiElements)
+            {
+                CircuitElement element = tuple.Item1;
+                switch (element.Type)
+                {
+                    case "Battery":
+                        // Assume the battery is connected between nodes "n1" and "0".
+                        // You may want to map your UI node system to Spice node names.
+                        circuit.Add(new VoltageSource("V1", "n1", "0", element.Voltage));
+                        break;
+                    case "Resistor":
+                        // For a resistor, ensure that you assign the proper node names
+                        circuit.Add(new Resistor("R1", "n1", "0", element.Resistance));
+                        break;
+                    case "LED":
+                        // SpiceSharp has diode models; you can add an LED as a diode.
+                        // Adjust node connections as needed.
+                        //circuit.Add(new Diode("D1", "n1", "0", 0.7));
+                        break;
+                        // Add more cases as needed
+                }
+            }
 
+            // Process wires to connect nodes. This is more application-specific.
+            // For example, if wires connect two UI elements, update the node names accordingly.
+            // You might maintain a mapping between UI positions and node names.
+
+            return circuit;
         }
 
         public static void ApplyTransparentUI(ref PictureBox pbox, ref Label label)

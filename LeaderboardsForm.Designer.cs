@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LeaderboardsForm));
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
+            prevButton = new MaterialSkin.Controls.MaterialButton();
+            nextButton = new MaterialSkin.Controls.MaterialButton();
             rankPanel7 = new Panel();
             materialLabel37 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel38 = new MaterialSkin.Controls.MaterialLabel();
@@ -38,6 +41,7 @@
             materialLabel41 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel42 = new MaterialSkin.Controls.MaterialLabel();
             pictureBox7 = new PictureBox();
+            returnMainMenuButton = new MaterialSkin.Controls.MaterialButton();
             rankPanel6 = new Panel();
             materialLabel31 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel32 = new MaterialSkin.Controls.MaterialLabel();
@@ -91,11 +95,8 @@
             bigLabel3 = new ReaLTaiizor.Controls.BigLabel();
             bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
             bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
-            returnMainMenuButton = new MaterialSkin.Controls.MaterialButton();
             hopeForm1 = new ReaLTaiizor.Forms.HopeForm();
             backgroundVideo = new LibVLCSharp.WinForms.VideoView();
-            nextButton = new MaterialSkin.Controls.MaterialButton();
-            prevButton = new MaterialSkin.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             rankPanel7.SuspendLayout();
@@ -149,6 +150,46 @@
             panel1.TabIndex = 1;
             panel1.Paint += panel1_Paint;
             // 
+            // prevButton
+            // 
+            prevButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            prevButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            prevButton.Depth = 0;
+            prevButton.HighEmphasis = true;
+            prevButton.Icon = null;
+            prevButton.Location = new Point(33, 569);
+            prevButton.Margin = new Padding(4, 6, 4, 6);
+            prevButton.MouseState = MaterialSkin.MouseState.HOVER;
+            prevButton.Name = "prevButton";
+            prevButton.NoAccentTextColor = Color.Empty;
+            prevButton.Size = new Size(64, 36);
+            prevButton.TabIndex = 20;
+            prevButton.TabStop = false;
+            prevButton.Text = "PREV";
+            prevButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            prevButton.UseAccentColor = false;
+            prevButton.UseVisualStyleBackColor = true;
+            // 
+            // nextButton
+            // 
+            nextButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            nextButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            nextButton.Depth = 0;
+            nextButton.HighEmphasis = true;
+            nextButton.Icon = null;
+            nextButton.Location = new Point(829, 569);
+            nextButton.Margin = new Padding(4, 6, 4, 6);
+            nextButton.MouseState = MaterialSkin.MouseState.HOVER;
+            nextButton.Name = "nextButton";
+            nextButton.NoAccentTextColor = Color.Empty;
+            nextButton.Size = new Size(64, 36);
+            nextButton.TabIndex = 19;
+            nextButton.TabStop = false;
+            nextButton.Text = "Next";
+            nextButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            nextButton.UseAccentColor = false;
+            nextButton.UseVisualStyleBackColor = true;
+            // 
             // rankPanel7
             // 
             rankPanel7.Anchor = AnchorStyles.None;
@@ -172,9 +213,9 @@
             materialLabel37.Location = new Point(823, 24);
             materialLabel37.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel37.Name = "materialLabel37";
-            materialLabel37.Size = new Size(28, 19);
+            materialLabel37.Size = new Size(37, 19);
             materialLabel37.TabIndex = 11;
-            materialLabel37.Text = "122";
+            materialLabel37.Text = "1849";
             // 
             // materialLabel38
             // 
@@ -196,9 +237,9 @@
             materialLabel39.Location = new Point(586, 24);
             materialLabel39.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel39.Name = "materialLabel39";
-            materialLabel39.Size = new Size(28, 19);
+            materialLabel39.Size = new Size(19, 19);
             materialLabel39.TabIndex = 9;
-            materialLabel39.Text = "122";
+            materialLabel39.Text = "44";
             // 
             // materialLabel40
             // 
@@ -210,7 +251,7 @@
             materialLabel40.Name = "materialLabel40";
             materialLabel40.Size = new Size(28, 19);
             materialLabel40.TabIndex = 8;
-            materialLabel40.Text = "122";
+            materialLabel40.Text = "231";
             // 
             // materialLabel41
             // 
@@ -232,19 +273,41 @@
             materialLabel42.Location = new Point(245, 24);
             materialLabel42.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel42.Name = "materialLabel42";
-            materialLabel42.Size = new Size(84, 19);
+            materialLabel42.Size = new Size(64, 19);
             materialLabel42.TabIndex = 1;
-            materialLabel42.Text = "GarlicButter";
+            materialLabel42.Text = "uncomfy";
             // 
             // pictureBox7
             // 
-            pictureBox7.BackgroundImage = Properties.Resources.Cat_kayden_pfp;
+            pictureBox7.BackgroundImage = (Image)resources.GetObject("pictureBox7.BackgroundImage");
             pictureBox7.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox7.Location = new Point(164, 7);
             pictureBox7.Name = "pictureBox7";
             pictureBox7.Size = new Size(52, 52);
             pictureBox7.TabIndex = 0;
             pictureBox7.TabStop = false;
+            // 
+            // returnMainMenuButton
+            // 
+            returnMainMenuButton.Anchor = AnchorStyles.None;
+            returnMainMenuButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            returnMainMenuButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            returnMainMenuButton.Depth = 0;
+            returnMainMenuButton.HighEmphasis = true;
+            returnMainMenuButton.Icon = null;
+            returnMainMenuButton.Location = new Point(369, 569);
+            returnMainMenuButton.Margin = new Padding(4, 6, 4, 6);
+            returnMainMenuButton.MouseState = MaterialSkin.MouseState.HOVER;
+            returnMainMenuButton.Name = "returnMainMenuButton";
+            returnMainMenuButton.NoAccentTextColor = Color.Empty;
+            returnMainMenuButton.Size = new Size(186, 36);
+            returnMainMenuButton.TabIndex = 11;
+            returnMainMenuButton.TabStop = false;
+            returnMainMenuButton.Text = "RETURN TO MAIN MENU";
+            returnMainMenuButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            returnMainMenuButton.UseAccentColor = false;
+            returnMainMenuButton.UseVisualStyleBackColor = true;
+            returnMainMenuButton.Click += returnMainMenuButton_Click;
             // 
             // rankPanel6
             // 
@@ -269,9 +332,9 @@
             materialLabel31.Location = new Point(823, 24);
             materialLabel31.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel31.Name = "materialLabel31";
-            materialLabel31.Size = new Size(28, 19);
+            materialLabel31.Size = new Size(37, 19);
             materialLabel31.TabIndex = 11;
-            materialLabel31.Text = "122";
+            materialLabel31.Text = "2934";
             // 
             // materialLabel32
             // 
@@ -281,9 +344,9 @@
             materialLabel32.Location = new Point(710, 24);
             materialLabel32.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel32.Name = "materialLabel32";
-            materialLabel32.Size = new Size(28, 19);
+            materialLabel32.Size = new Size(19, 19);
             materialLabel32.TabIndex = 10;
-            materialLabel32.Text = "122";
+            materialLabel32.Text = "65";
             // 
             // materialLabel33
             // 
@@ -293,9 +356,9 @@
             materialLabel33.Location = new Point(586, 24);
             materialLabel33.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel33.Name = "materialLabel33";
-            materialLabel33.Size = new Size(28, 19);
+            materialLabel33.Size = new Size(19, 19);
             materialLabel33.TabIndex = 9;
-            materialLabel33.Text = "122";
+            materialLabel33.Text = "66";
             // 
             // materialLabel34
             // 
@@ -307,7 +370,7 @@
             materialLabel34.Name = "materialLabel34";
             materialLabel34.Size = new Size(28, 19);
             materialLabel34.TabIndex = 8;
-            materialLabel34.Text = "122";
+            materialLabel34.Text = "264";
             // 
             // materialLabel35
             // 
@@ -329,13 +392,13 @@
             materialLabel36.Location = new Point(245, 24);
             materialLabel36.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel36.Name = "materialLabel36";
-            materialLabel36.Size = new Size(84, 19);
+            materialLabel36.Size = new Size(46, 19);
             materialLabel36.TabIndex = 1;
-            materialLabel36.Text = "GarlicButter";
+            materialLabel36.Text = "cumfy";
             // 
             // pictureBox6
             // 
-            pictureBox6.BackgroundImage = Properties.Resources.Cat_kayden_pfp;
+            pictureBox6.BackgroundImage = (Image)resources.GetObject("pictureBox6.BackgroundImage");
             pictureBox6.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox6.Location = new Point(164, 7);
             pictureBox6.Name = "pictureBox6";
@@ -366,9 +429,9 @@
             materialLabel25.Location = new Point(823, 24);
             materialLabel25.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel25.Name = "materialLabel25";
-            materialLabel25.Size = new Size(28, 19);
+            materialLabel25.Size = new Size(37, 19);
             materialLabel25.TabIndex = 11;
-            materialLabel25.Text = "122";
+            materialLabel25.Text = "3892";
             // 
             // materialLabel26
             // 
@@ -378,9 +441,9 @@
             materialLabel26.Location = new Point(710, 24);
             materialLabel26.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel26.Name = "materialLabel26";
-            materialLabel26.Size = new Size(28, 19);
+            materialLabel26.Size = new Size(19, 19);
             materialLabel26.TabIndex = 10;
-            materialLabel26.Text = "122";
+            materialLabel26.Text = "43";
             // 
             // materialLabel27
             // 
@@ -390,9 +453,9 @@
             materialLabel27.Location = new Point(586, 24);
             materialLabel27.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel27.Name = "materialLabel27";
-            materialLabel27.Size = new Size(28, 19);
+            materialLabel27.Size = new Size(19, 19);
             materialLabel27.TabIndex = 9;
-            materialLabel27.Text = "122";
+            materialLabel27.Text = "45";
             // 
             // materialLabel28
             // 
@@ -404,7 +467,7 @@
             materialLabel28.Name = "materialLabel28";
             materialLabel28.Size = new Size(28, 19);
             materialLabel28.TabIndex = 8;
-            materialLabel28.Text = "122";
+            materialLabel28.Text = "234";
             // 
             // materialLabel29
             // 
@@ -426,13 +489,13 @@
             materialLabel30.Location = new Point(245, 24);
             materialLabel30.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel30.Name = "materialLabel30";
-            materialLabel30.Size = new Size(84, 19);
+            materialLabel30.Size = new Size(62, 19);
             materialLabel30.TabIndex = 1;
-            materialLabel30.Text = "GarlicButter";
+            materialLabel30.Text = "Hotdogh";
             // 
             // pictureBox5
             // 
-            pictureBox5.BackgroundImage = Properties.Resources.Cat_kayden_pfp;
+            pictureBox5.BackgroundImage = (Image)resources.GetObject("pictureBox5.BackgroundImage");
             pictureBox5.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox5.Location = new Point(164, 7);
             pictureBox5.Name = "pictureBox5";
@@ -463,9 +526,9 @@
             materialLabel19.Location = new Point(823, 24);
             materialLabel19.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel19.Name = "materialLabel19";
-            materialLabel19.Size = new Size(28, 19);
+            materialLabel19.Size = new Size(37, 19);
             materialLabel19.TabIndex = 11;
-            materialLabel19.Text = "122";
+            materialLabel19.Text = "6378";
             // 
             // materialLabel20
             // 
@@ -475,9 +538,9 @@
             materialLabel20.Location = new Point(710, 24);
             materialLabel20.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel20.Name = "materialLabel20";
-            materialLabel20.Size = new Size(28, 19);
+            materialLabel20.Size = new Size(19, 19);
             materialLabel20.TabIndex = 10;
-            materialLabel20.Text = "122";
+            materialLabel20.Text = "53";
             // 
             // materialLabel21
             // 
@@ -487,9 +550,9 @@
             materialLabel21.Location = new Point(586, 24);
             materialLabel21.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel21.Name = "materialLabel21";
-            materialLabel21.Size = new Size(28, 19);
+            materialLabel21.Size = new Size(19, 19);
             materialLabel21.TabIndex = 9;
-            materialLabel21.Text = "122";
+            materialLabel21.Text = "45";
             // 
             // materialLabel22
             // 
@@ -501,7 +564,7 @@
             materialLabel22.Name = "materialLabel22";
             materialLabel22.Size = new Size(28, 19);
             materialLabel22.TabIndex = 8;
-            materialLabel22.Text = "122";
+            materialLabel22.Text = "285";
             // 
             // materialLabel23
             // 
@@ -523,13 +586,13 @@
             materialLabel24.Location = new Point(245, 24);
             materialLabel24.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel24.Name = "materialLabel24";
-            materialLabel24.Size = new Size(84, 19);
+            materialLabel24.Size = new Size(42, 19);
             materialLabel24.TabIndex = 1;
-            materialLabel24.Text = "GarlicButter";
+            materialLabel24.Text = "Shani";
             // 
             // pictureBox4
             // 
-            pictureBox4.BackgroundImage = Properties.Resources.Cat_kayden_pfp;
+            pictureBox4.BackgroundImage = (Image)resources.GetObject("pictureBox4.BackgroundImage");
             pictureBox4.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox4.Location = new Point(164, 7);
             pictureBox4.Name = "pictureBox4";
@@ -560,9 +623,9 @@
             materialLabel13.Location = new Point(823, 24);
             materialLabel13.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel13.Name = "materialLabel13";
-            materialLabel13.Size = new Size(28, 19);
+            materialLabel13.Size = new Size(37, 19);
             materialLabel13.TabIndex = 11;
-            materialLabel13.Text = "122";
+            materialLabel13.Text = "7483";
             // 
             // materialLabel14
             // 
@@ -572,9 +635,9 @@
             materialLabel14.Location = new Point(710, 24);
             materialLabel14.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel14.Name = "materialLabel14";
-            materialLabel14.Size = new Size(28, 19);
+            materialLabel14.Size = new Size(19, 19);
             materialLabel14.TabIndex = 10;
-            materialLabel14.Text = "122";
+            materialLabel14.Text = "34";
             // 
             // materialLabel15
             // 
@@ -584,9 +647,9 @@
             materialLabel15.Location = new Point(586, 24);
             materialLabel15.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel15.Name = "materialLabel15";
-            materialLabel15.Size = new Size(28, 19);
+            materialLabel15.Size = new Size(19, 19);
             materialLabel15.TabIndex = 9;
-            materialLabel15.Text = "122";
+            materialLabel15.Text = "56";
             // 
             // materialLabel16
             // 
@@ -598,7 +661,7 @@
             materialLabel16.Name = "materialLabel16";
             materialLabel16.Size = new Size(28, 19);
             materialLabel16.TabIndex = 8;
-            materialLabel16.Text = "122";
+            materialLabel16.Text = "288";
             // 
             // materialLabel17
             // 
@@ -620,13 +683,13 @@
             materialLabel18.Location = new Point(245, 24);
             materialLabel18.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel18.Name = "materialLabel18";
-            materialLabel18.Size = new Size(84, 19);
+            materialLabel18.Size = new Size(47, 19);
             materialLabel18.TabIndex = 1;
-            materialLabel18.Text = "GarlicButter";
+            materialLabel18.Text = "Sanqu";
             // 
             // pictureBox3
             // 
-            pictureBox3.BackgroundImage = Properties.Resources.Cat_kayden_pfp;
+            pictureBox3.BackgroundImage = (Image)resources.GetObject("pictureBox3.BackgroundImage");
             pictureBox3.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox3.Location = new Point(164, 7);
             pictureBox3.Name = "pictureBox3";
@@ -657,9 +720,9 @@
             materialLabel7.Location = new Point(823, 24);
             materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel7.Name = "materialLabel7";
-            materialLabel7.Size = new Size(28, 19);
+            materialLabel7.Size = new Size(37, 19);
             materialLabel7.TabIndex = 11;
-            materialLabel7.Text = "122";
+            materialLabel7.Text = "8432";
             // 
             // materialLabel8
             // 
@@ -669,9 +732,9 @@
             materialLabel8.Location = new Point(710, 24);
             materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel8.Name = "materialLabel8";
-            materialLabel8.Size = new Size(28, 19);
+            materialLabel8.Size = new Size(19, 19);
             materialLabel8.TabIndex = 10;
-            materialLabel8.Text = "122";
+            materialLabel8.Text = "43";
             // 
             // materialLabel9
             // 
@@ -681,9 +744,9 @@
             materialLabel9.Location = new Point(586, 24);
             materialLabel9.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel9.Name = "materialLabel9";
-            materialLabel9.Size = new Size(28, 19);
+            materialLabel9.Size = new Size(19, 19);
             materialLabel9.TabIndex = 9;
-            materialLabel9.Text = "122";
+            materialLabel9.Text = "44";
             // 
             // materialLabel10
             // 
@@ -695,7 +758,7 @@
             materialLabel10.Name = "materialLabel10";
             materialLabel10.Size = new Size(28, 19);
             materialLabel10.TabIndex = 8;
-            materialLabel10.Text = "122";
+            materialLabel10.Text = "311";
             // 
             // materialLabel11
             // 
@@ -717,13 +780,13 @@
             materialLabel12.Location = new Point(245, 24);
             materialLabel12.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel12.Name = "materialLabel12";
-            materialLabel12.Size = new Size(84, 19);
+            materialLabel12.Size = new Size(54, 19);
             materialLabel12.TabIndex = 1;
-            materialLabel12.Text = "GarlicButter";
+            materialLabel12.Text = "student";
             // 
             // pictureBox2
             // 
-            pictureBox2.BackgroundImage = Properties.Resources.Cat_kayden_pfp;
+            pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
             pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox2.Location = new Point(164, 7);
             pictureBox2.Name = "pictureBox2";
@@ -766,9 +829,9 @@
             materialLabel6.Location = new Point(823, 24);
             materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel6.Name = "materialLabel6";
-            materialLabel6.Size = new Size(28, 19);
+            materialLabel6.Size = new Size(37, 19);
             materialLabel6.TabIndex = 11;
-            materialLabel6.Text = "122";
+            materialLabel6.Text = "9238";
             // 
             // materialLabel5
             // 
@@ -778,9 +841,9 @@
             materialLabel5.Location = new Point(710, 24);
             materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel5.Name = "materialLabel5";
-            materialLabel5.Size = new Size(28, 19);
+            materialLabel5.Size = new Size(19, 19);
             materialLabel5.TabIndex = 10;
-            materialLabel5.Text = "122";
+            materialLabel5.Text = "32";
             // 
             // materialLabel4
             // 
@@ -790,9 +853,9 @@
             materialLabel4.Location = new Point(586, 24);
             materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel4.Name = "materialLabel4";
-            materialLabel4.Size = new Size(28, 19);
+            materialLabel4.Size = new Size(19, 19);
             materialLabel4.TabIndex = 9;
-            materialLabel4.Text = "122";
+            materialLabel4.Text = "54";
             // 
             // materialLabel3
             // 
@@ -804,7 +867,7 @@
             materialLabel3.Name = "materialLabel3";
             materialLabel3.Size = new Size(28, 19);
             materialLabel3.TabIndex = 8;
-            materialLabel3.Text = "122";
+            materialLabel3.Text = "323";
             // 
             // materialLabel2
             // 
@@ -891,27 +954,6 @@
             bigLabel1.Text = "RANK";
             bigLabel1.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // returnMainMenuButton
-            // 
-            returnMainMenuButton.Anchor = AnchorStyles.None;
-            returnMainMenuButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            returnMainMenuButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            returnMainMenuButton.Depth = 0;
-            returnMainMenuButton.HighEmphasis = true;
-            returnMainMenuButton.Icon = null;
-            returnMainMenuButton.Location = new Point(369, 569);
-            returnMainMenuButton.Margin = new Padding(4, 6, 4, 6);
-            returnMainMenuButton.MouseState = MaterialSkin.MouseState.HOVER;
-            returnMainMenuButton.Name = "returnMainMenuButton";
-            returnMainMenuButton.NoAccentTextColor = Color.Empty;
-            returnMainMenuButton.Size = new Size(186, 36);
-            returnMainMenuButton.TabIndex = 11;
-            returnMainMenuButton.Text = "RETURN TO MAIN MENU";
-            returnMainMenuButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            returnMainMenuButton.UseAccentColor = false;
-            returnMainMenuButton.UseVisualStyleBackColor = true;
-            returnMainMenuButton.Click += returnMainMenuButton_Click;
-            // 
             // hopeForm1
             // 
             hopeForm1.ControlBoxColorH = Color.FromArgb(228, 231, 237);
@@ -937,44 +979,6 @@
             backgroundVideo.Size = new Size(1280, 720);
             backgroundVideo.TabIndex = 13;
             backgroundVideo.Text = "videoView1";
-            // 
-            // nextButton
-            // 
-            nextButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            nextButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            nextButton.Depth = 0;
-            nextButton.HighEmphasis = true;
-            nextButton.Icon = null;
-            nextButton.Location = new Point(829, 569);
-            nextButton.Margin = new Padding(4, 6, 4, 6);
-            nextButton.MouseState = MaterialSkin.MouseState.HOVER;
-            nextButton.Name = "nextButton";
-            nextButton.NoAccentTextColor = Color.Empty;
-            nextButton.Size = new Size(64, 36);
-            nextButton.TabIndex = 19;
-            nextButton.Text = "Next";
-            nextButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            nextButton.UseAccentColor = false;
-            nextButton.UseVisualStyleBackColor = true;
-            // 
-            // prevButton
-            // 
-            prevButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            prevButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            prevButton.Depth = 0;
-            prevButton.HighEmphasis = true;
-            prevButton.Icon = null;
-            prevButton.Location = new Point(33, 569);
-            prevButton.Margin = new Padding(4, 6, 4, 6);
-            prevButton.MouseState = MaterialSkin.MouseState.HOVER;
-            prevButton.Name = "prevButton";
-            prevButton.NoAccentTextColor = Color.Empty;
-            prevButton.Size = new Size(64, 36);
-            prevButton.TabIndex = 20;
-            prevButton.Text = "PREV";
-            prevButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            prevButton.UseAccentColor = false;
-            prevButton.UseVisualStyleBackColor = true;
             // 
             // LeaderboardsForm
             // 

@@ -20,38 +20,19 @@ namespace CircuitCraft
         public MainMenuForm()
         {
             InitializeComponent();
-            mainMenuBackgroundMedia.Visible = false;
             AspectRatio = 16f / 9f;
+            LibVLC _libvlc = new LibVLC();
+            MediaPlayer _mediaPlayer = new MediaPlayer(_libvlc);
+
+            mainMenuBackgroundMedia.MediaPlayer = _mediaPlayer;
+            mainMenuBackgroundMedia.SendToBack();
+            _mediaPlayer.Play(Program.mainMenuMedia);
         }
 
-        private async void MainMenuForm_Load(object sender, EventArgs e)
+        private void MainMenuForm_Load(object sender, EventArgs e)
         {
-            await LoadVideoInBackground();
         }
 
-
-        private async Task LoadVideoInBackground()
-        {
-            await Task.Run(() =>
-            {
-                _libvlc = new LibVLC();
-                _mediaPlayer = new MediaPlayer(_libvlc);
-
-                string exePath = Path.Combine(Application.StartupPath, "Images", "Animated", "mp4.main_menu.background.mp4");
-                Program.mainMenuMedia = new Media(_libvlc, exePath, FromType.FromPath);
-                Program.mainMenuMedia.AddOption(":input-repeat=100");
-
-                // **Use Invoke to access UI control safely**
-                this.Invoke((MethodInvoker)delegate
-                {
-                    mainMenuBackgroundMedia.MediaPlayer = _mediaPlayer;
-                    mainMenuBackgroundMedia.SendToBack();
-                    _mediaPlayer.Play(Program.mainMenuMedia);
-                    Thread.Sleep(100);
-                    mainMenuBackgroundMedia.Visible = true;
-                });
-            });
-        }
 
         private void playButton_Click(object sender, EventArgs e)
         {

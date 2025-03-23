@@ -32,6 +32,7 @@
             circuitGrid = new GridControl();
             hopeForm1 = new ReaLTaiizor.Forms.HopeForm();
             panel1 = new Panel();
+            timerProgress = new ReaLTaiizor.Controls.LostProgressBar();
             wireButton = new MaterialSkin.Controls.MaterialButton();
             batteryButton = new MaterialSkin.Controls.MaterialButton();
             resistorButton = new MaterialSkin.Controls.MaterialButton();
@@ -39,8 +40,9 @@
             deleteButton = new MaterialSkin.Controls.MaterialButton();
             materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             cyberProgressBar1 = new ReaLTaiizor.Controls.CyberProgressBar();
-            materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
+            bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
+            bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -72,11 +74,26 @@
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.Controls.Add(timerProgress);
             panel1.Controls.Add(circuitGrid);
             panel1.Location = new Point(0, 145);
             panel1.Name = "panel1";
             panel1.Size = new Size(1280, 575);
             panel1.TabIndex = 2;
+            // 
+            // timerProgress
+            // 
+            timerProgress.BackColor = Color.FromArgb(45, 45, 48);
+            timerProgress.Color = Color.SteelBlue;
+            timerProgress.Dock = DockStyle.Top;
+            timerProgress.ForeColor = Color.FromArgb(63, 63, 70);
+            timerProgress.Hover = false;
+            timerProgress.Location = new Point(0, 0);
+            timerProgress.Name = "timerProgress";
+            timerProgress.Progress = 100;
+            timerProgress.Size = new Size(1280, 23);
+            timerProgress.TabIndex = 12;
+            timerProgress.Text = "lostProgressBar1";
             // 
             // wireButton
             // 
@@ -87,7 +104,7 @@
             wireButton.Depth = 0;
             wireButton.HighEmphasis = true;
             wireButton.Icon = null;
-            wireButton.Location = new Point(25, 49);
+            wireButton.Location = new Point(58, 63);
             wireButton.Margin = new Padding(4, 6, 4, 6);
             wireButton.MouseState = MaterialSkin.MouseState.HOVER;
             wireButton.Name = "wireButton";
@@ -109,7 +126,7 @@
             batteryButton.Depth = 0;
             batteryButton.HighEmphasis = true;
             batteryButton.Icon = null;
-            batteryButton.Location = new Point(122, 49);
+            batteryButton.Location = new Point(155, 63);
             batteryButton.Margin = new Padding(4, 6, 4, 6);
             batteryButton.MouseState = MaterialSkin.MouseState.HOVER;
             batteryButton.Name = "batteryButton";
@@ -131,7 +148,7 @@
             resistorButton.Depth = 0;
             resistorButton.HighEmphasis = true;
             resistorButton.Icon = null;
-            resistorButton.Location = new Point(317, 49);
+            resistorButton.Location = new Point(350, 63);
             resistorButton.Margin = new Padding(4, 6, 4, 6);
             resistorButton.MouseState = MaterialSkin.MouseState.HOVER;
             resistorButton.Name = "resistorButton";
@@ -154,7 +171,7 @@
             ledButton.Depth = 0;
             ledButton.HighEmphasis = true;
             ledButton.Icon = null;
-            ledButton.Location = new Point(220, 49);
+            ledButton.Location = new Point(253, 63);
             ledButton.Margin = new Padding(4, 6, 4, 6);
             ledButton.MouseState = MaterialSkin.MouseState.HOVER;
             ledButton.Name = "ledButton";
@@ -176,7 +193,7 @@
             deleteButton.Depth = 0;
             deleteButton.HighEmphasis = true;
             deleteButton.Icon = null;
-            deleteButton.Location = new Point(414, 49);
+            deleteButton.Location = new Point(447, 63);
             deleteButton.Margin = new Padding(4, 6, 4, 6);
             deleteButton.MouseState = MaterialSkin.MouseState.HOVER;
             deleteButton.Name = "deleteButton";
@@ -191,9 +208,11 @@
             // 
             // materialLabel1
             // 
+            materialLabel1.Anchor = AnchorStyles.Top;
             materialLabel1.Depth = 0;
             materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel1.Location = new Point(562, 63);
+            materialLabel1.ForeColor = Color.FromArgb(0, 0, 64);
+            materialLabel1.Location = new Point(569, 96);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
             materialLabel1.Size = new Size(319, 41);
@@ -226,7 +245,7 @@
             cyberProgressBar1.LinearGradient_Background = false;
             cyberProgressBar1.LinearGradient_Value = false;
             cyberProgressBar1.LinearGradientPen = false;
-            cyberProgressBar1.Location = new Point(929, 63);
+            cyberProgressBar1.Location = new Point(931, 55);
             cyberProgressBar1.Maximum = 100;
             cyberProgressBar1.Minimum = 0;
             cyberProgressBar1.Name = "cyberProgressBar1";
@@ -244,37 +263,52 @@
             cyberProgressBar1.Timer_RGB = 300;
             cyberProgressBar1.Value = 100;
             // 
-            // materialLabel2
-            // 
-            materialLabel2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            materialLabel2.Depth = 0;
-            materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel2.Location = new Point(1056, 100);
-            materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel2.Name = "materialLabel2";
-            materialLabel2.Size = new Size(59, 23);
-            materialLabel2.TabIndex = 9;
-            materialLabel2.Text = "HEALTH";
-            // 
             // materialLabel3
             // 
             materialLabel3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             materialLabel3.Depth = 0;
             materialLabel3.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel3.Location = new Point(924, 123);
+            materialLabel3.ForeColor = Color.FromArgb(0, 0, 64);
+            materialLabel3.Location = new Point(931, 115);
             materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel3.Name = "materialLabel3";
             materialLabel3.Size = new Size(336, 19);
             materialLabel3.TabIndex = 10;
             materialLabel3.Text = "Circuits Completed: 3            Current Rating: 234";
             // 
+            // bigLabel1
+            // 
+            bigLabel1.Anchor = AnchorStyles.Top;
+            bigLabel1.BackColor = Color.Transparent;
+            bigLabel1.Font = new Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bigLabel1.ForeColor = Color.FromArgb(0, 0, 64);
+            bigLabel1.Location = new Point(569, 48);
+            bigLabel1.Name = "bigLabel1";
+            bigLabel1.Size = new Size(319, 39);
+            bigLabel1.TabIndex = 11;
+            bigLabel1.Text = "Diagnostic";
+            bigLabel1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // bigLabel2
+            // 
+            bigLabel2.AutoSize = true;
+            bigLabel2.BackColor = Color.Transparent;
+            bigLabel2.Font = new Font("Segoe UI", 25F);
+            bigLabel2.ForeColor = Color.FromArgb(80, 80, 80);
+            bigLabel2.Location = new Point(0, 43);
+            bigLabel2.Name = "bigLabel2";
+            bigLabel2.Size = new Size(38, 46);
+            bigLabel2.TabIndex = 12;
+            bigLabel2.Text = "1";
+            // 
             // GameForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1280, 720);
+            Controls.Add(bigLabel2);
+            Controls.Add(bigLabel1);
             Controls.Add(materialLabel3);
-            Controls.Add(materialLabel2);
             Controls.Add(cyberProgressBar1);
             Controls.Add(materialLabel1);
             Controls.Add(deleteButton);
@@ -292,6 +326,7 @@
             Text = "GameForm";
             panel1.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -306,7 +341,9 @@
         private MaterialSkin.Controls.MaterialButton deleteButton;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private ReaLTaiizor.Controls.CyberProgressBar cyberProgressBar1;
-        private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
+        private ReaLTaiizor.Controls.LostProgressBar timerProgress;
+        private ReaLTaiizor.Controls.BigLabel bigLabel1;
+        private ReaLTaiizor.Controls.BigLabel bigLabel2;
     }
 }

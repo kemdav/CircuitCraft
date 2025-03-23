@@ -31,12 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             tabPage1 = new TabPage();
+            materialButton6 = new MaterialSkin.Controls.MaterialButton();
             materialSlider1 = new MaterialSkin.Controls.MaterialSlider();
             mainMenuButton = new MaterialSkin.Controls.MaterialButton();
             materialSlider2 = new MaterialSkin.Controls.MaterialSlider();
             tabPage2 = new TabPage();
             bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
             pictureBox5 = new PictureBox();
+            returnMainMenuButton = new MaterialSkin.Controls.MaterialButton();
             materialButton1 = new MaterialSkin.Controls.MaterialButton();
             bigLabel8 = new ReaLTaiizor.Controls.BigLabel();
             bigLabel9 = new ReaLTaiizor.Controls.BigLabel();
@@ -56,10 +58,8 @@
             materialButton3 = new MaterialSkin.Controls.MaterialButton();
             materialButton2 = new MaterialSkin.Controls.MaterialButton();
             materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
-            returnMainMenuButton = new MaterialSkin.Controls.MaterialButton();
             hopeForm1 = new ReaLTaiizor.Forms.HopeForm();
             backgroundVideo = new LibVLCSharp.WinForms.VideoView();
-            materialButton6 = new MaterialSkin.Controls.MaterialButton();
             materialTabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -102,6 +102,28 @@
             tabPage1.Size = new Size(1074, 610);
             tabPage1.TabIndex = 0;
             tabPage1.Text = " Game Settings";
+            // 
+            // materialButton6
+            // 
+            materialButton6.Anchor = AnchorStyles.None;
+            materialButton6.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton6.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton6.Depth = 0;
+            materialButton6.HighEmphasis = true;
+            materialButton6.Icon = null;
+            materialButton6.Location = new Point(452, 565);
+            materialButton6.Margin = new Padding(4, 6, 4, 6);
+            materialButton6.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton6.Name = "materialButton6";
+            materialButton6.NoAccentTextColor = Color.Empty;
+            materialButton6.Size = new Size(186, 36);
+            materialButton6.TabIndex = 13;
+            materialButton6.TabStop = false;
+            materialButton6.Text = "RETURN TO MAIN MENU";
+            materialButton6.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton6.UseAccentColor = false;
+            materialButton6.UseVisualStyleBackColor = true;
+            materialButton6.Click += mainMenuButton_Click;
             // 
             // materialSlider1
             // 
@@ -208,6 +230,28 @@
             pictureBox5.TabIndex = 18;
             pictureBox5.TabStop = false;
             // 
+            // returnMainMenuButton
+            // 
+            returnMainMenuButton.Anchor = AnchorStyles.None;
+            returnMainMenuButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            returnMainMenuButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            returnMainMenuButton.Depth = 0;
+            returnMainMenuButton.HighEmphasis = true;
+            returnMainMenuButton.Icon = null;
+            returnMainMenuButton.Location = new Point(452, 565);
+            returnMainMenuButton.Margin = new Padding(4, 6, 4, 6);
+            returnMainMenuButton.MouseState = MaterialSkin.MouseState.HOVER;
+            returnMainMenuButton.Name = "returnMainMenuButton";
+            returnMainMenuButton.NoAccentTextColor = Color.Empty;
+            returnMainMenuButton.Size = new Size(186, 36);
+            returnMainMenuButton.TabIndex = 10;
+            returnMainMenuButton.TabStop = false;
+            returnMainMenuButton.Text = "RETURN TO MAIN MENU";
+            returnMainMenuButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            returnMainMenuButton.UseAccentColor = false;
+            returnMainMenuButton.UseVisualStyleBackColor = true;
+            returnMainMenuButton.Click += mainMenuButton_Click;
+            // 
             // materialButton1
             // 
             materialButton1.Anchor = AnchorStyles.None;
@@ -224,6 +268,7 @@
             materialButton1.NoAccentTextColor = Color.Empty;
             materialButton1.Size = new Size(154, 36);
             materialButton1.TabIndex = 17;
+            materialButton1.TabStop = false;
             materialButton1.Text = "CHANGE PROFILE";
             materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             materialButton1.UseAccentColor = false;
@@ -401,6 +446,7 @@
             materialButton5.NoAccentTextColor = Color.Empty;
             materialButton5.Size = new Size(162, 36);
             materialButton5.TabIndex = 3;
+            materialButton5.TabStop = false;
             materialButton5.Text = "CHANGE USERNAME";
             materialButton5.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             materialButton5.UseAccentColor = false;
@@ -422,6 +468,7 @@
             materialButton4.NoAccentTextColor = Color.Empty;
             materialButton4.Size = new Size(178, 36);
             materialButton4.TabIndex = 2;
+            materialButton4.TabStop = false;
             materialButton4.Text = "RESET ACCOUNT";
             materialButton4.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             materialButton4.UseAccentColor = false;
@@ -443,6 +490,7 @@
             materialButton3.NoAccentTextColor = Color.Empty;
             materialButton3.Size = new Size(187, 36);
             materialButton3.TabIndex = 1;
+            materialButton3.TabStop = false;
             materialButton3.Text = "DELETE ACCOUNT";
             materialButton3.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             materialButton3.UseAccentColor = false;
@@ -464,6 +512,7 @@
             materialButton2.NoAccentTextColor = Color.Empty;
             materialButton2.Size = new Size(163, 36);
             materialButton2.TabIndex = 0;
+            materialButton2.TabStop = false;
             materialButton2.Text = "CHANGE PASSWORD";
             materialButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             materialButton2.UseAccentColor = false;
@@ -483,27 +532,6 @@
             materialTabSelector1.Size = new Size(1082, 48);
             materialTabSelector1.TabIndex = 9;
             materialTabSelector1.Text = "materialTabSelector1";
-            // 
-            // returnMainMenuButton
-            // 
-            returnMainMenuButton.Anchor = AnchorStyles.None;
-            returnMainMenuButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            returnMainMenuButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            returnMainMenuButton.Depth = 0;
-            returnMainMenuButton.HighEmphasis = true;
-            returnMainMenuButton.Icon = null;
-            returnMainMenuButton.Location = new Point(452, 565);
-            returnMainMenuButton.Margin = new Padding(4, 6, 4, 6);
-            returnMainMenuButton.MouseState = MaterialSkin.MouseState.HOVER;
-            returnMainMenuButton.Name = "returnMainMenuButton";
-            returnMainMenuButton.NoAccentTextColor = Color.Empty;
-            returnMainMenuButton.Size = new Size(186, 36);
-            returnMainMenuButton.TabIndex = 10;
-            returnMainMenuButton.Text = "RETURN TO MAIN MENU";
-            returnMainMenuButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            returnMainMenuButton.UseAccentColor = false;
-            returnMainMenuButton.UseVisualStyleBackColor = true;
-            returnMainMenuButton.Click += mainMenuButton_Click;
             // 
             // hopeForm1
             // 
@@ -530,26 +558,6 @@
             backgroundVideo.Size = new Size(1280, 720);
             backgroundVideo.TabIndex = 12;
             backgroundVideo.Text = "videoView1";
-            // 
-            // materialButton6
-            // 
-            materialButton6.Anchor = AnchorStyles.None;
-            materialButton6.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton6.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton6.Depth = 0;
-            materialButton6.HighEmphasis = true;
-            materialButton6.Icon = null;
-            materialButton6.Location = new Point(443, 565);
-            materialButton6.Margin = new Padding(4, 6, 4, 6);
-            materialButton6.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton6.Name = "materialButton6";
-            materialButton6.NoAccentTextColor = Color.Empty;
-            materialButton6.Size = new Size(186, 36);
-            materialButton6.TabIndex = 13;
-            materialButton6.Text = "RETURN TO MAIN MENU";
-            materialButton6.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton6.UseAccentColor = false;
-            materialButton6.UseVisualStyleBackColor = true;
             // 
             // SettingsForm
             // 
