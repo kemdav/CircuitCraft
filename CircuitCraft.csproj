@@ -7,6 +7,9 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
+	<ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>

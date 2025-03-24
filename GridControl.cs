@@ -122,9 +122,10 @@ namespace CircuitCraft
             DrawNodes(e.Graphics);
         }
 
+        #region Drawing Methods
+
         private void DrawNodes(Graphics g)
         {
-            // Use a solid brush and a pen to draw each node.
             using (Brush nodeBrush = new SolidBrush(Color.Red))
             using (Pen nodePen = new Pen(Color.Black))
             {
@@ -146,14 +147,10 @@ namespace CircuitCraft
             {
                 foreach (var wire in wires)
                 {
-                    // Compute an intermediate point so the wire consists of two segments:
-                    // horizontal from start to intermediate, then vertical from intermediate to end.
                     Point intermediate = new Point(wire.EndPoint.X, wire.StartPoint.Y);
                     g.DrawLine(wirePen, wire.StartPoint, intermediate);
                     g.DrawLine(wirePen, intermediate, wire.EndPoint);
                 }
-
-                // Optionally, draw the temporary wire during the drawing process:
                 if (isDrawingWire && currentWireEndPoint.HasValue)
                 {
                     Point intermediateTemp = new Point(currentWireEndPoint.Value.X, wireStartPoint.Y);
@@ -171,13 +168,10 @@ namespace CircuitCraft
 
             Pen gridPen = new Pen(gridColor);
 
-            // Draw vertical lines
             for (int x = 0; x <= controlWidth; x += GridSize)
             {
                 g.DrawLine(gridPen, x, 0, x, controlHeight);
             }
-
-            // Draw horizontal lines
             for (int y = 0; y <= controlHeight; y += GridSize)
             {
                 g.DrawLine(gridPen, 0, y, controlWidth, y);
@@ -185,6 +179,8 @@ namespace CircuitCraft
 
             gridPen.Dispose();
         }
+
+        #endregion
 
         public Point SnapToGrid(Point point)
         {
@@ -205,7 +201,7 @@ namespace CircuitCraft
             return null;
         }
 
-
+        #region Mouse Events
 
         private bool isDrawingWire = false;
         private Point wireStartPoint;
@@ -286,7 +282,7 @@ namespace CircuitCraft
                         int offsetX = newPictureBox.Width / 2;
                         int offsetY = newPictureBox.Height / 2;
                         newPictureBox.Location = new Point(snappedPosition.X - offsetX, snappedPosition.Y - offsetY);
-                        newElementData.Location = newPictureBox.Location; // Update element data too
+                        newElementData.Location = newPictureBox.Location; // Update element data 
                     }
                 }
                 else
@@ -300,6 +296,40 @@ namespace CircuitCraft
                     }
                 }
             }   
+        }
+
+        private Point? currentWireEndPoint = null;
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            base.OnMouseMove(e);
+            if (isDrawingWire)
+            {
+                // Optionally, store a temporary end point and call Invalidate to refresh the drawing.
+                currentWireEndPoint = SnapToGrid(e.Location);
+                Invalidate(); // This will trigger OnPaint
+            }
+        }
+
+        protected override void OnMouseUp(MouseEventArgs e)
+        {
+            base.OnMouseUp(e);
+
+            if (isDrawingWire)
+            {
+                CircuitNode? endNode = FindNearestNode(SnapToGrid(e.Location));
+                Point wireEndPoint = (endNode != null) ? endNode.Location : SnapToGrid(e.Location);
+                Wire newWire = new Wire(wireStartPoint, wireEndPoint);
+                wires.Add(newWire);
+                isDrawingWire = false;
+
+                Invalidate(); // Redraw control to show the new wire
+            }
+            else
+            {
+                isDraggingElement = false;
+                selectedElementData = null;
+                selectedPictureBox = null;
+            }
         }
 
         private void PictureBox_MouseDown(object sender, MouseEventArgs e)
@@ -344,41 +374,8 @@ namespace CircuitCraft
             Focus();
         }
 
-        private Point? currentWireEndPoint = null;
-        protected override void OnMouseMove(MouseEventArgs e)
-        {
-            base.OnMouseMove(e);
-            if (isDrawingWire)
-            {
-                // Optionally, store a temporary end point and call Invalidate to refresh the drawing.
-                currentWireEndPoint = SnapToGrid(e.Location);
-                Invalidate(); // This will trigger OnPaint
-            }
-        }
 
-        protected override void OnMouseUp(MouseEventArgs e)
-        {
-            base.OnMouseUp(e);
-
-            if (isDrawingWire)
-            {
-                CircuitNode? endNode = FindNearestNode(SnapToGrid(e.Location));
-                Point wireEndPoint = (endNode != null) ? endNode.Location : SnapToGrid(e.Location);
-                Wire newWire = new Wire(wireStartPoint, wireEndPoint);
-                wires.Add(newWire);
-                isDrawingWire = false;
-
-                Invalidate(); // Redraw control to show the new wire
-            }
-            else 
-            {
-                isDraggingElement = false;
-                selectedElementData = null;
-                selectedPictureBox = null;
-            }
-        }
-
-
+        #endregion
 
         private PictureBox CreatePictureBoxForElement(CircuitElement element)
         {
@@ -400,11 +397,13 @@ namespace CircuitCraft
             {
                 MessageBox.Show($"Image file not found: {element.ImageFileName}", "Error Loading Image");
                 pictureBox.BackColor = Color.Red;
-                pictureBox.Size = new Size(GridSize * 2, GridSize); // Default size if image fails (still set a reasonable size)
+                pictureBox.Size = new Size(GridSize * 2, GridSize); // Default size if image fails 
             }
             pictureBox.Location = element.Location;
             return pictureBox;
         }
+
+        #region Circuit Element Rotation
 
         private void GridControl_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -496,6 +495,8 @@ namespace CircuitCraft
             originalBitmap.Dispose();
             return rotatedImage;
         }
+
+        #endregion
 
 
         private string? GetImageFileNameForElementType(string elementType)
