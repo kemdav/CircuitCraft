@@ -33,7 +33,7 @@ namespace CircuitCraft
             Core.Initialize(libvlcPath);
 
             ApplicationConfiguration.Initialize();
-            Application.Run(new GameForm());
+            Application.Run(new LoginScreenForm());
         }
 
         public static Circuit BuildSpiceCircuit(List<Tuple<CircuitElement, PictureBox>> uiElements, List<Wire> uiWires)

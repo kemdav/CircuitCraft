@@ -58,7 +58,6 @@ namespace CircuitCraft
     {
         public Point StartPoint { get; set; }
         public Point EndPoint { get; set; }
-        // For more complex wires, store a list of points to represent polyline segments
         public List<Point> Points { get; set; } = new List<Point>();
 
         public Wire(Point start, Point end)
