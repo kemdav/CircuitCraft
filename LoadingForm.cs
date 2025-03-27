@@ -59,6 +59,7 @@ namespace CircuitCraft
         {
             await Task.Run(() =>
             {
+                DataClass.AqcuireUserInformation();
                 _libvlc = new LibVLC();
                 _mediaPlayer = new MediaPlayer(_libvlc);
 

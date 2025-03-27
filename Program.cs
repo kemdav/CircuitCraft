@@ -3,8 +3,12 @@ using LibVLCSharp.WinForms;
 using ReaLTaiizor.Controls;
 using SpiceSharp;
 using SpiceSharp.Components;
+using System.Data.SQLite;
+using System.Data;
 using SpiceSharp.Simulations;
 using static LockedAspectRatioForm;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace CircuitCraft
 {
@@ -33,7 +37,8 @@ namespace CircuitCraft
             Core.Initialize(libvlcPath);
 
             ApplicationConfiguration.Initialize();
-            Application.Run(new GameForm());
+            Application.Run(new LoginScreenForm());
+            DataClass.ConnectionDatabase();
         }
 
         public static Circuit BuildSpiceCircuit(List<Tuple<CircuitElement, PictureBox>> uiElements, List<Wire> uiWires)
@@ -95,6 +100,316 @@ namespace CircuitCraft
             media.Location = labelPos;
         }
     }
+
+    public static class DataClass
+    {
+        private static string databaseName = "Database.db"; // Name of your SQLite database file
+        private static string connectionString = $"Data Source={databaseName};Version=3;";
+        public static string username;
+        public static byte[] profileImageBytes;
+        public static int circuitsCompleted;
+        public static int burnedResistors;
+        public static int burnedLed;
+        public static int rating;
+
+        public static int musicVolume;
+        public static int soundVolume;
+
+        public static string HashPassword(string password)
+        {
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(password));
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2")); // Convert byte to hex string
+                }
+                return builder.ToString();
+            }
+        }
+
+        public static bool VerifyPassword(string enteredPassword, string storedHash)
+        {
+            string hashedEnteredPassword = HashPassword(enteredPassword);
+            return hashedEnteredPassword.Equals(storedHash, StringComparison.OrdinalIgnoreCase); // Case-insensitive comparison
+        }
+
+        public static void ConnectionDatabase()
+        {
+            string databaseName = "Database.db"; // Name of your SQLite database file
+            string connectionString = $"Data Source={databaseName};Version=3;"; // Connection string
+            try
+            {
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string createTableSql = @"
+                    CREATE TABLE IF NOT EXISTS Users (
+                        Username TEXT PRIMARY KEY NOT NULL UNIQUE,
+                        PasswordHash TEXT NOT NULL,
+                        ProfileImage BLOB,
+                        CircuitsCompleted INTEGER NOT NULL DEFAULT 0,
+                        BurnedResistors INTEGER NOT NULL DEFAULT 0,
+                        BurnedLed INTEGER NOT NULL DEFAULT 0,
+                        Rating INTEGER NOT NULL DEFAULT 0,
+                        MusicVolume INTEGER NOT NULL DEFAULT 100,
+                        SoundVolume INTEGER NOT NULL DEFAULT 100
+                    );";
+
+                    using (SQLiteCommand createTableCommand = new SQLiteCommand(createTableSql, connection))
+                    {
+                        createTableCommand.ExecuteNonQuery();
+                        MessageBox.Show("Table 'Users' created (or already exists) with updated schema.");
+                    }
+                } 
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show($"Error connecting to SQLite database: {ex.Message}");
+            }
+        }
+
+        public static void RegisterUser(string username, string passwordText)
+        {
+            string databaseName = "Database.db"; // Name of your SQLite database file
+            string connectionString = $"Data Source={databaseName};Version=3;"; // Connection string
+
+            string passwordHash = HashPassword(passwordText); // Hash the password
+            try
+            {
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string insertUserSql = @"
+                    INSERT INTO Users (Username, PasswordHash, ProfileImage)
+                    VALUES (@Username, @PasswordHash, @ProfileImage);";
+
+                    using (SQLiteCommand insertUserCommand = new SQLiteCommand(insertUserSql, connection))
+                    {
+                        insertUserCommand.Parameters.AddWithValue("@Username", username);
+                        insertUserCommand.Parameters.AddWithValue("@PasswordHash", passwordHash);
+                        insertUserCommand.Parameters.AddWithValue("@ProfileImage", null);
+                        insertUserCommand.ExecuteNonQuery();
+                        MessageBox.Show($"User '{username}' registered successfully.");
+                    }
+                }
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show($"Error inserting user into SQLite database: {ex.Message}");
+            }
+        }
+
+        public static bool AuthenticateUser(string username, string passwordText)
+        {
+            string databaseName = "Database.db"; // Name of your SQLite database file
+            string connectionString = $"Data Source={databaseName};Version=3;"; // Connection string
+
+            string passwordHash = HashPassword(passwordText); // Hash the password
+            try
+            {
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string selectUserSql = @"
+                    SELECT PasswordHash
+                    FROM Users
+                    WHERE Username = @Username;";
+
+                    using (SQLiteCommand selectUserCommand = new SQLiteCommand(selectUserSql, connection))
+                    {
+                        selectUserCommand.Parameters.AddWithValue("@Username", username);
+                        string storedHash = selectUserCommand.ExecuteScalar() as string;
+                        if (storedHash == null)
+                        {
+                            MessageBox.Show($"User '{username}' not found.");
+                            return false;
+                        }
+
+                        if (VerifyPassword(passwordText, storedHash))
+                        {
+                            MessageBox.Show($"User '{username}' authenticated successfully.");
+                            return true;
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Incorrect password for user '{username}'.");
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show($"Error authenticating user in SQLite database: {ex.Message}");
+                return false;
+            }
+        }
+
+        public static void AqcuireUserInformation()
+        {
+            string databaseName = "Database.db"; // Name of your SQLite database file
+            string selectUserDataSql = "SELECT * FROM Users WHERE Username = @Username;"; // Select all columns
+            string connectionString = $"Data Source={databaseName};Version=3;"; // Connection string
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                using (SQLiteCommand selectUserCommand = new SQLiteCommand(selectUserDataSql, connection))
+                {
+                    selectUserCommand.Parameters.AddWithValue("@Username", username);
+                    using (SQLiteDataReader reader = selectUserCommand.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            username = reader.GetString(0); // Username (index 0)
+                                                            // Note: We *don't* retrieve the PasswordHash for security reasons in a real application
+                            profileImageBytes = reader["ProfileImage"] as byte[]; // Get BLOB data
+                            circuitsCompleted = reader.GetInt32(3); // CircuitsCompleted (index 3)
+                            burnedResistors = reader.GetInt32(4); // BurnedResistors (index 4)
+                            burnedLed = reader.GetInt32(5);    // BurnedLed (index 5)
+                            rating = reader.GetInt32(6);   // Rating (index 6)
+                            musicVolume = reader.GetInt32(7);   // MusicVolume (index 7)
+                            soundVolume = reader.GetInt32(8);   // SoundVolume (index 8)
+
+
+                            //if (profileImageBytes != null && profileImageBytes.Length > 0)
+                            //{
+                            //    string savedImagePath = "retrieved_profile_image.png"; // Or .jpg, determine type if needed
+                            //    File.WriteAllBytes(savedImagePath, profileImageBytes);
+                            //    Console.WriteLine($"Profile image saved to '{savedImagePath}'.");
+                            //}
+                            //else
+                            //{
+                            //    Console.WriteLine("No profile image found for this user.");
+                            //}
+                        }
+                        else
+                        {
+                            MessageBox.Show($"User '{username}' not found.");
+                        }
+                    }
+                }
+            }
+        }
+
+        public static void UpdateUserInformation(string usernameToUpdate, string fieldToUpdate, object newValue)
+        {
+            try
+            {
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+                    UpdateUserField(connection, usernameToUpdate, fieldToUpdate, newValue);
+                }
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show($"Error updating user information into SQLite database: {ex.Message}");
+            }
+        }
+
+        public static bool UpdateUserField(SQLiteConnection connection, string usernameToUpdate, string fieldToUpdate, object newValue)
+        {
+            if (connection == null || connection.State != System.Data.ConnectionState.Open)
+            {
+                MessageBox.Show("Error: Database connection is not open or valid.");
+                return false;
+            }
+
+            string updateSql = "";
+            switch (fieldToUpdate.ToLower())
+            {
+                case "username":
+                    updateSql = "UPDATE Users SET Username = @NewValue WHERE Username = @Username;";
+                    break;
+                case "password":
+                    updateSql = "UPDATE Users SET PasswordHash = @NewValue WHERE Username = @Username;";
+                    break;
+                case "profileimage":
+                    updateSql = "UPDATE Users SET ProfileImage = @NewValue WHERE Username = @Username;";
+                    break;
+                case "circuitscompleted":
+                    updateSql = "UPDATE Users SET CircuitsCompleted = @NewValue WHERE Username = @Username;";
+                    break;
+                case "burnedresistors":
+                    updateSql = "UPDATE Users SET BurnedResistors = @NewValue WHERE Username = @Username;";
+                    break;
+                case "burnedled":
+                    updateSql = "UPDATE Users SET BurnedLed = @NewValue WHERE Username = @Username;";
+                    break;
+                case "rating":
+                    updateSql = "UPDATE Users SET Rating = @NewValue WHERE Username = @Username;";
+                    break;
+                case "musicvolume":
+                    updateSql = "UPDATE Users SET MusicVolume = @NewValue WHERE Username = @Username;";
+                    break;
+                case "soundvolume":
+                    updateSql = "UPDATE Users SET SoundVolume = @NewValue WHERE Username = @Username;";
+                    break;
+                default:
+                    MessageBox.Show($"Error: Field '{fieldToUpdate}' is not a valid field to update.");
+                    return false;
+            }
+
+            if (string.IsNullOrEmpty(updateSql))
+            {
+                return false; //  Return false if no valid update SQL was constructed (e.g., invalid field)
+            }
+
+            using (SQLiteCommand updateCommand = new SQLiteCommand(updateSql, connection))
+            {
+                updateCommand.Parameters.AddWithValue("@NewValue", newValue);
+                updateCommand.Parameters.AddWithValue("@Username", usernameToUpdate);
+                try
+                {
+                    int rowsAffected = updateCommand.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+                catch (SQLiteException ex)
+                {
+                    MessageBox.Show($"Error updating field '{fieldToUpdate}' for user '{usernameToUpdate}': {ex.Message}");
+                    return false;
+                }
+            }
+        }
+
+        public static void DeleteUser(string usernameToDelete)
+        {
+            try
+            {
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string deleteUserSql = "DELETE FROM Users WHERE Username = @Username;";
+                    using (SQLiteCommand deleteCommand = new SQLiteCommand(deleteUserSql, connection))
+                    {
+                        deleteCommand.Parameters.AddWithValue("@Username", usernameToDelete);
+
+                        int rowsAffected = deleteCommand.ExecuteNonQuery(); // Execute the DELETE command
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show($"User '{usernameToDelete}' deleted successfully.");
+                        }
+                        else
+                        {
+                            MessageBox.Show($"User '{usernameToDelete}' not found in the database.");
+                        }
+                    }
+                }
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show($"Error deleting user from SQLite database: {ex.Message}");
+            }
+        }
+    }
+
 
     internal static class  ResourceHelper
     {

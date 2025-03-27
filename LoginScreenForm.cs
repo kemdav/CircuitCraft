@@ -1,4 +1,5 @@
 ﻿using MaterialSkin.Controls;
+using ReaLTaiizor.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,9 +21,8 @@ namespace CircuitCraft
         {
             InitializeComponent();
             signUpPanel.Hide();
-
-            usernameLoginTbox.MaxLength = 12;
         }
+
 
         private void LoginScreenForm_Load(object sender, EventArgs e)
         {
@@ -80,7 +80,8 @@ namespace CircuitCraft
                 }
                 return;
             }
-            if (usernameLoginTbox.Text != "user" && passwordLoginTbox.Text != "123")
+
+            if (DataClass.AuthenticateUser(usernameLoginTbox.Text, passwordLoginTbox.Text) == false)
             {
                 usernameLoginTbox.ErrorMessage = "Invalid username";
                 passwordLoginTbox.ErrorMessage = "Invalid password";
@@ -88,6 +89,7 @@ namespace CircuitCraft
                 passwordLoginTbox.SetErrorState(true);
                 return;
             }
+            DataClass.username = usernameLoginTbox.Text;
             var frm = new LoadingForm();
             frm.StartPosition = FormStartPosition.CenterScreen;
             frm.FormClosing += delegate { Close(); };
@@ -113,7 +115,7 @@ namespace CircuitCraft
                 createUsernameTbox.SetErrorState(false);
                 createPasswordTbox.SetErrorState(false);
                 confirmPasswordTbox.SetErrorState(false);
-            }
+            }            
         }
 
         private void passwordLoginTbox_Click(object sender, EventArgs e)
@@ -129,26 +131,60 @@ namespace CircuitCraft
 
         private void signUpButton_Click(object sender, EventArgs e)
         {
+            bool isValid = true;
             if (createPasswordTbox.Text == "" || confirmPasswordTbox.Text == "")
             {
                 confirmPasswordTbox.ErrorMessage = "Password cannot be empty";
+                isValid = false;
                 confirmPasswordTbox.SetErrorState(true);
             }
             if (createPasswordTbox.Text != confirmPasswordTbox.Text)
             {
                 confirmPasswordTbox.ErrorMessage = "Passwords do not match";
+                isValid = false;
                 confirmPasswordTbox.SetErrorState(true);
             }
             if (createUsernameTbox.Text == "")
             {
                 createUsernameTbox.ErrorMessage = "Username cannot be empty";
+                isValid = false;
                 createUsernameTbox.SetErrorState(true);
             }
             else if (createUsernameTbox.Text == "user")
             {
                 createUsernameTbox.ErrorMessage = "Username already exists";
+                isValid = false;
                 createUsernameTbox.SetErrorState(true);
-            }           
+            }
+
+            if (isValid)
+            {
+                var frm = new LoadingForm();
+                frm.StartPosition = FormStartPosition.CenterScreen;
+                frm.FormClosing += delegate { Close(); };
+                frm.Show();
+                Hide();
+
+                DataClass.RegisterUser(createUsernameTbox.Text, createPasswordTbox.Text);
+            }
+        }
+
+        private void UsernameTbox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Suppress the key press (don't allow the character to be entered)
+
+                // Optional: Provide visual feedback to the user (e.g., a beep or a message)
+                // System.Media.SystemSounds.Beep.Play(); // Play a beep sound
+                // MessageBox.Show("Only alphabets and numbers are allowed.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            int maxLength = 12; // Your desired max length
+
+            if (usernameLoginTbox.Text.Length >= maxLength && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Prevent further input
+            }
         }
     }
 }

@@ -46,6 +46,7 @@
     <PackageReference Include="ReaLTaiizor" Version="3.8.1.1" />
     <PackageReference Include="SpiceSharp" Version="3.2.3" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.119" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.119" />
     <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.21" />
   </ItemGroup>
 

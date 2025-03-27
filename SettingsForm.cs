@@ -10,14 +10,35 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static LockedAspectRatioForm;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CircuitCraft
 {
     public partial class SettingsForm : Form
     {
+        private bool isInitialized = false;
         public SettingsForm()
         {
             InitializeComponent();
+            confirmBox.Visible = false;
+            if (!isInitialized)
+            {
+                isInitialized = true;
+                usernameTxt.Text = "USERNAME: " + DataClass.username;
+                ratingTxt.Text = "RATING: " + DataClass.rating;
+                circuitsCompletedTxt.Text = "" + DataClass.circuitsCompleted;
+                ledsBurnedTxt.Text = "" + DataClass.burnedLed;
+                resistorsBurnedTxt.Text = "" + DataClass.burnedResistors;
+                if (DataClass.profileImageBytes != null)
+                {
+                    using (MemoryStream stream = new MemoryStream(DataClass.profileImageBytes))
+                    {
+                        profilePbox.Image = System.Drawing.Image.FromStream(stream);
+                    }
+                }
+                musicSlider.Value = DataClass.musicVolume;
+                soundSlider.Value = DataClass.soundVolume;
+            }
         }
 
         private void mainMenuButton_Click(object sender, EventArgs e)
@@ -53,6 +74,27 @@ namespace CircuitCraft
         private void tabPage2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private string UserOperation = "";
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            resetButton.Enabled = false;
+            deleteButton.Enabled = false;
+
+            UserOperation = "delete";
+            confirmMessage.Text = "Are you sure you want to delete your account?";
+            confirmBox.Visible = true;
+        }
+
+        private void resetButton_Click(object sender, EventArgs e)
+        {
+            resetButton.Enabled = false;
+            deleteButton.Enabled = false;
+
+            UserOperation = "reset";
+            confirmMessage.Text = "Are you sure you want to reset your progress?";
+            confirmBox.Visible = true;
         }
 
         //private void fullScreenCheckBox_CheckedChanged(object sender, EventArgs e)
