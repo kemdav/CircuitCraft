@@ -12,6 +12,15 @@ using System.Security.Cryptography;
 
 namespace CircuitCraft
 {
+    public struct TempUserInformation
+    {
+        public string Username { get; set; }
+        public byte[] ProfileImage { get; set; }
+        public int CircuitsCompleted { get; set; }
+        public int BurnedResistors { get; set; }
+        public int BurnedLed { get; set; }
+        public int Rating { get; set; }
+    }
     internal static class Program
     {
         public static bool isFullScreen = false;
@@ -38,10 +47,7 @@ namespace CircuitCraft
 
             ApplicationConfiguration.Initialize();
             Application.Run(new LoginScreenForm());
-<<<<<<< HEAD
             DataClass.ConnectionDatabase();
-=======
->>>>>>> 06ce71e80cc85ae13a088437676b8891182b5a1f
         }
 
         public static Circuit BuildSpiceCircuit(List<Tuple<CircuitElement, PictureBox>> uiElements, List<Wire> uiWires)
@@ -154,7 +160,7 @@ namespace CircuitCraft
                     using (SQLiteCommand createTableCommand = new SQLiteCommand(createTableSql, connection))
                     {
                         createTableCommand.ExecuteNonQuery();
-                        MessageBox.Show("Table 'Users' created (or already exists) with updated schema.");
+                        //MessageBox.Show("Table 'Users' created (or already exists) with updated schema.");
                     }
                 } 
             }
@@ -186,7 +192,7 @@ namespace CircuitCraft
                         insertUserCommand.Parameters.AddWithValue("@PasswordHash", passwordHash);
                         insertUserCommand.Parameters.AddWithValue("@ProfileImage", null);
                         insertUserCommand.ExecuteNonQuery();
-                        MessageBox.Show($"User '{username}' registered successfully.");
+                        //MessageBox.Show($"User '{username}' registered successfully.");
                     }
                 }
             }
@@ -219,18 +225,18 @@ namespace CircuitCraft
                         string storedHash = selectUserCommand.ExecuteScalar() as string;
                         if (storedHash == null)
                         {
-                            MessageBox.Show($"User '{username}' not found.");
+                            //MessageBox.Show($"User '{username}' not found.");
                             return false;
                         }
 
                         if (VerifyPassword(passwordText, storedHash))
                         {
-                            MessageBox.Show($"User '{username}' authenticated successfully.");
+                            //MessageBox.Show($"User '{username}' authenticated successfully.");
                             return true;
                         }
                         else
                         {
-                            MessageBox.Show($"Incorrect password for user '{username}'.");
+                            //MessageBox.Show($"Incorrect password for user '{username}'.");
                             return false;
                         }
                     }
@@ -238,7 +244,7 @@ namespace CircuitCraft
             }
             catch (SQLiteException ex)
             {
-                MessageBox.Show($"Error authenticating user in SQLite database: {ex.Message}");
+                //MessageBox.Show($"Error authenticating user in SQLite database: {ex.Message}");
                 return false;
             }
         }
@@ -282,26 +288,31 @@ namespace CircuitCraft
                         }
                         else
                         {
-                            MessageBox.Show($"User '{username}' not found.");
+                           // MessageBox.Show($"User '{username}' not found.");
                         }
                     }
                 }
             }
         }
 
-        public static void UpdateUserInformation(string usernameToUpdate, string fieldToUpdate, object newValue)
+        public static bool UpdateUserInformation(string fieldToUpdate, object newValue)
         {
             try
             {
                 using (SQLiteConnection connection = new SQLiteConnection(connectionString))
                 {
                     connection.Open();
-                    UpdateUserField(connection, usernameToUpdate, fieldToUpdate, newValue);
+                    if (!UpdateUserField(connection, username, fieldToUpdate, newValue))
+                    {
+                        throw new SQLiteException("Error updating user information.");
+                    }
                 }
+                return true;
             }
             catch (SQLiteException ex)
             {
-                MessageBox.Show($"Error updating user information into SQLite database: {ex.Message}");
+                //MessageBox.Show($"Error updating user information into SQLite database: {ex.Message}");
+                return false;
             }
         }
 
@@ -309,7 +320,7 @@ namespace CircuitCraft
         {
             if (connection == null || connection.State != System.Data.ConnectionState.Open)
             {
-                MessageBox.Show("Error: Database connection is not open or valid.");
+                //MessageBox.Show("Error: Database connection is not open or valid.");
                 return false;
             }
 
@@ -350,11 +361,15 @@ namespace CircuitCraft
 
             if (string.IsNullOrEmpty(updateSql))
             {
-                return false; //  Return false if no valid update SQL was constructed (e.g., invalid field)
+                return false;
             }
 
             using (SQLiteCommand updateCommand = new SQLiteCommand(updateSql, connection))
             {
+                if (fieldToUpdate.ToLower() == "password")
+                {
+                    newValue = HashPassword(newValue as string);
+                }
                 updateCommand.Parameters.AddWithValue("@NewValue", newValue);
                 updateCommand.Parameters.AddWithValue("@Username", usernameToUpdate);
                 try
@@ -364,13 +379,14 @@ namespace CircuitCraft
                 }
                 catch (SQLiteException ex)
                 {
-                    MessageBox.Show($"Error updating field '{fieldToUpdate}' for user '{usernameToUpdate}': {ex.Message}");
+                    //MessageBox.Show($"Error updating field '{fieldToUpdate}' for user '{usernameToUpdate}': {ex.Message}");
                     return false;
                 }
             }
+
         }
 
-        public static void DeleteUser(string usernameToDelete)
+        public static void DeleteUser()
         {
             try
             {
@@ -381,25 +397,77 @@ namespace CircuitCraft
                     string deleteUserSql = "DELETE FROM Users WHERE Username = @Username;";
                     using (SQLiteCommand deleteCommand = new SQLiteCommand(deleteUserSql, connection))
                     {
-                        deleteCommand.Parameters.AddWithValue("@Username", usernameToDelete);
+                        deleteCommand.Parameters.AddWithValue("@Username", username);
 
                         int rowsAffected = deleteCommand.ExecuteNonQuery(); // Execute the DELETE command
 
                         if (rowsAffected > 0)
                         {
-                            MessageBox.Show($"User '{usernameToDelete}' deleted successfully.");
+                            //MessageBox.Show($"User '{username}' deleted successfully.");
                         }
                         else
                         {
-                            MessageBox.Show($"User '{usernameToDelete}' not found in the database.");
+                            //MessageBox.Show($"User '{username}' not found in the database.");
                         }
                     }
                 }
             }
             catch (SQLiteException ex)
             {
-                MessageBox.Show($"Error deleting user from SQLite database: {ex.Message}");
+                //MessageBox.Show($"Error deleting user from SQLite database: {ex.Message}");
             }
+        }
+
+        public static List<TempUserInformation> SortedUsersByRating()
+        {
+            List<TempUserInformation> sortedUsers = new List<TempUserInformation>();
+            string selectSortedUsersSql = @"
+                SELECT Username, ProfileImage, PasswordHash, CircuitsCompleted, BurnedResistors, BurnedLed, Rating, MusicVolume, SoundVolume
+                FROM Users
+                ORDER BY Rating DESC;";
+            try
+            {
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SQLiteCommand selectSortedUsersCommand = new SQLiteCommand(selectSortedUsersSql, connection))
+                    {
+                        using (SQLiteDataReader reader = selectSortedUsersCommand.ExecuteReader())
+                        {
+                            if (!reader.HasRows)
+                            {
+                                Console.WriteLine("No users found in the database.");
+                                return sortedUsers; // Exit the method
+                            }
+
+                            while (reader.Read())
+                            {
+                                TempUserInformation tempUserInformation = new TempUserInformation();
+                                tempUserInformation.Username = reader.GetString(0);
+                                tempUserInformation.ProfileImage = reader["ProfileImage"] as byte[];
+                                tempUserInformation.CircuitsCompleted = reader.GetInt32(3);
+                                tempUserInformation.BurnedResistors = reader.GetInt32(4);
+                                tempUserInformation.BurnedLed = reader.GetInt32(5);
+                                tempUserInformation.Rating = reader.GetInt32(6);
+                                sortedUsers.Add(tempUserInformation);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SQLiteException ex)
+            {
+                //MessageBox.Show($"Error selecting sorted users from SQLite database: {ex.Message}");
+            }
+            return sortedUsers;
+        }
+
+        public static void ResetUser()
+        {
+            UpdateUserInformation("CircuitsCompleted", 0);
+            UpdateUserInformation("BurnedResistors", 0);
+            UpdateUserInformation("BurnedLed", 0);
+            UpdateUserInformation("Rating", 0);
         }
     }
 
