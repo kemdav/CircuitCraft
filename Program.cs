@@ -46,8 +46,8 @@ namespace CircuitCraft
             Core.Initialize(libvlcPath);
 
             ApplicationConfiguration.Initialize();
-            Application.Run(new LoginScreenForm());
             DataClass.ConnectionDatabase();
+            Application.Run(new LoginScreenForm());
         }
 
         public static Circuit BuildSpiceCircuit(List<Tuple<CircuitElement, PictureBox>> uiElements, List<Wire> uiWires)
@@ -136,7 +136,7 @@ namespace CircuitCraft
 
         public static void ConnectionDatabase()
         {
-            string databaseName = "Database.db"; // Name of your SQLite database file
+            string databaseName = "Database.db";
             string connectionString = $"Data Source={databaseName};Version=3;"; // Connection string
             try
             {
