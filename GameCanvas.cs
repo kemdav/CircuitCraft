@@ -13,6 +13,7 @@ namespace CircuitCraft
     public partial class GameCanvas : UserControl
     {
         public List<CircuitBlock> CircuitBlocks { get; set; } = new List<CircuitBlock>();
+        public List<CircuitElement> CircuitSources { get; set; } = new List<CircuitElement>();
         public int CurrentBlockIndex { get; set; } = 0;
 
         public GameCanvas()
