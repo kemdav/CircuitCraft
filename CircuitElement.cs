@@ -17,9 +17,9 @@ namespace CircuitCraft
     {      
         public CircuitElementType circuitElementType { get; set; }
         public byte[]? CircuitElementSprite { get; set; }
-        public double resistance { get; set; } = 0;
-        public double voltage { get; set; } = 0;
-        public double current { get; set; } = 0;
+        public double Resistance { get; set; } = 0;
+        public double Voltage { get; set; } = 0;
+        public double Current { get; set; } = 0;
     }
 
     public class Resistor : CircuitElement
