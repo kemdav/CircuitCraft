@@ -1,25 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CircuitCraft
 {
-    public enum CircuitBlockType
+    public partial class CircuitBlock : UserControl
     {
-        Series,
-        Parallel
-    }
-    public class CircuitBlock
-    {
-        public List<CircuitElement> circuitElements = new List<CircuitElement>();
-        public CircuitBlockType circuitBlockType { get; set; }
-        public int maximumNumber { get; set; } = 3;
+        public List<CircuitElement> CircuitElements { get; set; } = new List<CircuitElement>();
+        public int CurrentElementIndex { get; set; } = 0;
+        public int MaxiumElements { get; set; } = 0;
 
-        public CircuitBlock(CircuitBlockType circuitBlockType)
+        public CircuitBlock()
         {
-            this.circuitBlockType = circuitBlockType;
+            InitializeComponent();
         }
     }
 }
