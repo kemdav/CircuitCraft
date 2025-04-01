@@ -11,6 +11,7 @@ namespace CircuitCraft
 {
     public enum CircuitElementType
     {
+        Source,
         Resistor
     }
     public class CircuitElement
@@ -27,6 +28,14 @@ namespace CircuitCraft
         public Resistor()
         {
             circuitElementType = CircuitElementType.Resistor;
+        }
+    }
+
+    public class Source : CircuitElement
+    {
+        public Source()
+        {
+            circuitElementType = CircuitElementType.Source;
         }
     }
 }
