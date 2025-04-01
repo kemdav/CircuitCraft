@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainGame));
             hopeForm1 = new ReaLTaiizor.Forms.HopeForm();
+            gameCanvas1 = new GameCanvas();
             circuitBlock1 = new CircuitBlock();
             SuspendLayout();
             // 
@@ -49,16 +50,26 @@
             hopeForm1.Text = "hopeForm1";
             hopeForm1.ThemeColor = Color.FromArgb(92, 173, 255);
             // 
+            // gameCanvas1
+            // 
+            gameCanvas1.BackColor = Color.FromArgb(224, 224, 224);
+            gameCanvas1.CurrentBlockIndex = 0;
+            gameCanvas1.Location = new Point(142, 109);
+            gameCanvas1.Name = "gameCanvas1";
+            gameCanvas1.Size = new Size(932, 503);
+            gameCanvas1.TabIndex = 1;
+            // 
             // circuitBlock1
             // 
             circuitBlock1.BackColor = Color.SkyBlue;
             circuitBlock1.CircuitElementHeight = 100;
+            circuitBlock1.CircuitElementSprite = Properties.Resources.Cat_kayden_pfp;
             circuitBlock1.CircuitElementWidth = 100;
             circuitBlock1.CurrentElementIndex = 0;
-            circuitBlock1.Location = new Point(422, 135);
+            circuitBlock1.Location = new Point(334, 159);
             circuitBlock1.Name = "circuitBlock1";
             circuitBlock1.Size = new Size(100, 400);
-            circuitBlock1.TabIndex = 1;
+            circuitBlock1.TabIndex = 2;
             // 
             // MainGame
             // 
@@ -66,6 +77,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1264, 681);
             Controls.Add(circuitBlock1);
+            Controls.Add(gameCanvas1);
             Controls.Add(hopeForm1);
             FormBorderStyle = FormBorderStyle.None;
             MaximumSize = new Size(1920, 1032);
@@ -79,6 +91,7 @@
         #endregion
 
         private ReaLTaiizor.Forms.HopeForm hopeForm1;
+        private GameCanvas gameCanvas1;
         private CircuitBlock circuitBlock1;
     }
 }

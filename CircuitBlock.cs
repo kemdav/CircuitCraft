@@ -14,10 +14,12 @@ namespace CircuitCraft
     {
         public List<CircuitElement> CircuitElements { get; set; } = new List<CircuitElement>();
         public int CurrentElementIndex { get; set; } = 0;
-        private int _maximumElements = 4;
 
+        private int _maximumElements = 4;
         private int _circuitElementWidth = 40;
         private int _circuitElementHeight = 40;
+
+        private Image _circuitElementResistorSprite;
 
         public CircuitBlock()
         {
@@ -67,6 +69,15 @@ namespace CircuitCraft
                 _circuitElementHeight = value;
                 UpdateCircuitBlockSize();
             }
+        }
+
+        [Category("Circuit Block Settings")]
+        [Description("Resistor Sprite")]
+        [DefaultValue(null)]
+        public Image CircuitElementSprite
+        {
+            get { return _circuitElementResistorSprite; }
+            set { _circuitElementResistorSprite = value; }
         }
     }
 }
