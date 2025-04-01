@@ -50,29 +50,6 @@ namespace CircuitCraft
             Application.Run(new LoginScreenForm());
         }
 
-        public static Circuit BuildSpiceCircuit(List<Tuple<CircuitElement, PictureBox>> uiElements, List<Wire> uiWires)
-        {
-            var circuit = new Circuit();
-            foreach (var tuple in uiElements)
-            {
-                CircuitElement element = tuple.Item1;
-                switch (element.Type)
-                {
-                    case "Battery":
-                        circuit.Add(new VoltageSource("V1", "n1", "0", element.Voltage));
-                        break;
-                    case "Resistor":
-                        circuit.Add(new Resistor("R1", "n1", "0", element.Resistance));
-                        break;
-                    case "LED":
-                        //circuit.Add(new Diode("D1", "n1", "0", 0.7));
-                        break;
-                }
-            }
-
-            return circuit;
-        }
-
         public static void ApplyTransparentUI(ref PictureBox pbox, ref Label label)
         {
             System.Drawing.Point labelPos = label.Location;

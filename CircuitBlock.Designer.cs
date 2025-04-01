@@ -34,6 +34,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.SkyBlue;
             Name = "CircuitBlock";
             Size = new Size(396, 579);
             ResumeLayout(false);

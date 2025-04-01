@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainGame));
             hopeForm1 = new ReaLTaiizor.Forms.HopeForm();
+            circuitBlock1 = new CircuitBlock();
             SuspendLayout();
             // 
             // hopeForm1
@@ -48,11 +49,23 @@
             hopeForm1.Text = "hopeForm1";
             hopeForm1.ThemeColor = Color.FromArgb(92, 173, 255);
             // 
+            // circuitBlock1
+            // 
+            circuitBlock1.BackColor = Color.SkyBlue;
+            circuitBlock1.CircuitElementHeight = 100;
+            circuitBlock1.CircuitElementWidth = 100;
+            circuitBlock1.CurrentElementIndex = 0;
+            circuitBlock1.Location = new Point(422, 135);
+            circuitBlock1.Name = "circuitBlock1";
+            circuitBlock1.Size = new Size(100, 400);
+            circuitBlock1.TabIndex = 1;
+            // 
             // MainGame
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1264, 681);
+            Controls.Add(circuitBlock1);
             Controls.Add(hopeForm1);
             FormBorderStyle = FormBorderStyle.None;
             MaximumSize = new Size(1920, 1032);
@@ -66,5 +79,6 @@
         #endregion
 
         private ReaLTaiizor.Forms.HopeForm hopeForm1;
+        private CircuitBlock circuitBlock1;
     }
 }
