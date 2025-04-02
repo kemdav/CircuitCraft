@@ -47,7 +47,7 @@ namespace CircuitCraft
 
             ApplicationConfiguration.Initialize();
             DataClass.ConnectionDatabase();
-            Application.Run(new LoginScreenForm());
+            Application.Run(new MainGame());
         }
 
         public static void ApplyTransparentUI(ref PictureBox pbox, ref Label label)

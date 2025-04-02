@@ -30,8 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainGame));
             hopeForm1 = new ReaLTaiizor.Forms.HopeForm();
-            gameCanvas1 = new GameCanvas();
-            circuitBlock1 = new CircuitBlock();
+            gameCanvas = new GameCanvas();
             SuspendLayout();
             // 
             // hopeForm1
@@ -50,34 +49,23 @@
             hopeForm1.Text = "hopeForm1";
             hopeForm1.ThemeColor = Color.FromArgb(92, 173, 255);
             // 
-            // gameCanvas1
+            // gameCanvas
             // 
-            gameCanvas1.BackColor = Color.FromArgb(224, 224, 224);
-            gameCanvas1.CurrentBlockIndex = 0;
-            gameCanvas1.Location = new Point(142, 109);
-            gameCanvas1.Name = "gameCanvas1";
-            gameCanvas1.Size = new Size(932, 503);
-            gameCanvas1.TabIndex = 1;
-            // 
-            // circuitBlock1
-            // 
-            circuitBlock1.BackColor = Color.SkyBlue;
-            circuitBlock1.CircuitElementHeight = 100;
-            circuitBlock1.CircuitElementSprite = Properties.Resources.Cat_kayden_pfp;
-            circuitBlock1.CircuitElementWidth = 100;
-            circuitBlock1.CurrentElementIndex = 0;
-            circuitBlock1.Location = new Point(334, 159);
-            circuitBlock1.Name = "circuitBlock1";
-            circuitBlock1.Size = new Size(100, 400);
-            circuitBlock1.TabIndex = 2;
+            gameCanvas.BackColor = Color.FromArgb(224, 224, 224);
+            gameCanvas.CircuitElementOffset = 20;
+            gameCanvas.CircuitElementResistorSprite = (Image)resources.GetObject("gameCanvas.CircuitElementResistorSprite");
+            gameCanvas.CurrentBlockIndex = 0;
+            gameCanvas.Location = new Point(12, 46);
+            gameCanvas.Name = "gameCanvas";
+            gameCanvas.Size = new Size(1240, 612);
+            gameCanvas.TabIndex = 3;
             // 
             // MainGame
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1264, 681);
-            Controls.Add(circuitBlock1);
-            Controls.Add(gameCanvas1);
+            Controls.Add(gameCanvas);
             Controls.Add(hopeForm1);
             FormBorderStyle = FormBorderStyle.None;
             MaximumSize = new Size(1920, 1032);
@@ -92,6 +80,6 @@
 
         private ReaLTaiizor.Forms.HopeForm hopeForm1;
         private GameCanvas gameCanvas1;
-        private CircuitBlock circuitBlock1;
+        private GameCanvas gameCanvas;
     }
 }

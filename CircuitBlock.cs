@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace CircuitCraft
 {
+    [Serializable]
     public partial class CircuitBlock : UserControl
     {
         public List<CircuitElement> CircuitElements { get; set; } = new List<CircuitElement>();
@@ -19,7 +20,6 @@ namespace CircuitCraft
         private int _circuitElementWidth = 40;
         private int _circuitElementHeight = 40;
 
-        private Image _circuitElementResistorSprite;
 
         public CircuitBlock()
         {
@@ -30,6 +30,16 @@ namespace CircuitCraft
         {
             Height = _circuitElementHeight * _maximumElements;
             Width = _circuitElementWidth;
+        }
+
+        public void AddCircuitElement(CircuitElementType circuitElementType, double voltage, double resistance)
+        {
+            switch (circuitElementType)
+            {
+                case CircuitElementType.Resistor:
+                    CircuitElements.Add(new Resistor());
+                    break;
+            }
         }
 
         [Category("Circuit Block Settings")]
@@ -70,14 +80,6 @@ namespace CircuitCraft
                 UpdateCircuitBlockSize();
             }
         }
-
-        [Category("Circuit Block Settings")]
-        [Description("Resistor Sprite")]
-        [DefaultValue(null)]
-        public Image CircuitElementSprite
-        {
-            get { return _circuitElementResistorSprite; }
-            set { _circuitElementResistorSprite = value; }
-        }
+      
     }
 }

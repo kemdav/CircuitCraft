@@ -15,6 +15,8 @@ namespace CircuitCraft
         public MainGame()
         {
             InitializeComponent();
+            gameCanvas.SpawnCircuitBlock(new Point(20, 90), 50, 100);
+            gameCanvas.SpawnCircuitElement(CircuitElementType.Resistor);
         }
     }
 }
