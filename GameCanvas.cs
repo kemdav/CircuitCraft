@@ -15,6 +15,10 @@ namespace CircuitCraft
         public List<CircuitElement> CircuitSources { get; set; } = new List<CircuitElement>();
         public int CurrentBlockIndex { get; set; } = 0;
 
+        public PictureBox? CurrentCircuitElementDropped { get; set; }
+        public double CurrentCircuitElementDroppedResistance { get; set; }
+        public double CurrentCircuitElementDroppedVoltage { get; set; }
+
         private List<CircuitBlock> _circuitBlocks { get; set; } = new List<CircuitBlock>();
 
         private Image _circuitElementSourceSprite;
@@ -31,28 +35,29 @@ namespace CircuitCraft
             }
         }
 
-        public void SpawnCircuitElement(CircuitElementType circuitElementType)
+        public void SpawnCircuitElement(CircuitElementType circuitElementType, double voltage, double resistance)
         {
+            CurrentCircuitElementDroppedResistance = resistance;
+            CurrentCircuitElementDroppedVoltage = voltage;
             CircuitElement circuitElement = null;
             PictureBox circuitElementPbox = new PictureBox();
-            circuitElementPbox.Visible = false;
-            circuitElementPbox.Location = new Point(CircuitBlocks[CurrentBlockIndex].Location.X, CircuitBlocks[CurrentBlockIndex].Location.Y - CircuitElementOffset);
+            circuitElementPbox.Location = new Point(CircuitBlocks[CurrentBlockIndex].Location.X, CircuitBlocks[CurrentBlockIndex].Location.Y - CircuitBlocks[CurrentBlockIndex].CircuitElementHeight - CircuitElementOffset);
             switch (circuitElementType)
             {
                 case CircuitElementType.Resistor:
                     circuitElementPbox.Image = CircuitElementResistorSprite;
-                    circuitElementPbox.SizeMode = PictureBoxSizeMode.StretchImage;
                     circuitElementPbox.Width = CircuitBlocks[CurrentBlockIndex].CircuitElementWidth;
                     circuitElementPbox.Height = CircuitBlocks[CurrentBlockIndex].CircuitElementHeight;
-                    circuitElementPbox.Visible = true;
+                    circuitElementPbox.SizeMode = PictureBoxSizeMode.StretchImage;
                     Controls.Add(circuitElementPbox);
                     circuitElementPbox.BringToFront();
+                    CurrentCircuitElementDropped = circuitElementPbox;
                     break;
             }
         }
 
         public void SpawnCircuitBlock(Point _location, int _circuitElementWidth, int _circuitElementHeight)
-        {
+        {         
             CircuitBlock circuitBlock = new CircuitBlock();
             circuitBlock.CircuitElementWidth = _circuitElementWidth;
             circuitBlock.CircuitElementHeight = _circuitElementHeight;
@@ -60,6 +65,28 @@ namespace CircuitCraft
             Controls.Add(circuitBlock);
             circuitBlock.BringToFront();
             CircuitBlocks.Add(circuitBlock);
+        }
+
+      
+
+        public bool DropDownCircuitElement(int y)
+        {
+            if (CurrentCircuitElementDropped == null)
+            {
+                return false;
+            }
+            if (CurrentCircuitElementDropped.Location.Y + CurrentCircuitElementDropped.Height + y > 
+                CircuitBlocks[CurrentBlockIndex].Location.Y + CircuitBlocks[CurrentBlockIndex].Height - 
+                (CircuitBlocks[CurrentBlockIndex].CircuitElements.Count * CircuitBlocks[CurrentBlockIndex].CircuitElementHeight))
+            {
+                CurrentCircuitElementDropped.Location = new Point(CircuitBlocks[CurrentBlockIndex].Location.X, 
+                    CircuitBlocks[CurrentBlockIndex].Location.Y + CircuitBlocks[CurrentBlockIndex].Height - CurrentCircuitElementDropped.Height - 
+                    (CircuitBlocks[CurrentBlockIndex].CircuitElements.Count * CircuitBlocks[CurrentBlockIndex].CircuitElementHeight));
+                CircuitBlocks[CurrentBlockIndex].AddCircuitElement(CircuitElementType.Resistor, CurrentCircuitElementDroppedVoltage, CurrentCircuitElementDroppedResistance);
+                return false;
+            }
+            CurrentCircuitElementDropped.Location = new Point(CurrentCircuitElementDropped.Location.X, CurrentCircuitElementDropped.Location.Y + y);
+            return true;
         }
 
         [Category("Game Canvas Settings")]

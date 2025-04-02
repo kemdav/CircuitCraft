@@ -37,7 +37,10 @@ namespace CircuitCraft
             switch (circuitElementType)
             {
                 case CircuitElementType.Resistor:
-                    CircuitElements.Add(new Resistor());
+                    CircuitElement circuitElement = new Resistor();
+                    circuitElement.Voltage = voltage;
+                    circuitElement.Resistance = resistance;
+                    CircuitElements.Add(circuitElement);
                     break;
             }
         }
