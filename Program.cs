@@ -47,7 +47,7 @@ namespace CircuitCraft
 
             ApplicationConfiguration.Initialize();
             DataClass.ConnectionDatabase();
-            Application.Run(new MainGame());
+            Application.Run(new LoginScreenForm());
         }
 
         public static void ApplyTransparentUI(ref PictureBox pbox, ref Label label)
@@ -109,6 +109,18 @@ namespace CircuitCraft
         {
             string hashedEnteredPassword = HashPassword(enteredPassword);
             return hashedEnteredPassword.Equals(storedHash, StringComparison.OrdinalIgnoreCase); // Case-insensitive comparison
+        }
+
+        public static void ResetUserData()
+        {
+            username = string.Empty;
+            profileImageBytes = null;
+            circuitsCompleted = 0;
+            burnedResistors = 0;
+            burnedLed = 0;
+            rating = 0;
+            musicVolume = 100;
+            soundVolume = 100;
         }
 
         public static void ConnectionDatabase()

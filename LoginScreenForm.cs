@@ -159,13 +159,16 @@ namespace CircuitCraft
 
             if (isValid)
             {
-                var frm = new LoadingForm();
+                var frm = new LoginScreenForm();
                 frm.StartPosition = FormStartPosition.CenterScreen;
                 frm.FormClosing += delegate { Close(); };
                 frm.Show();
                 Hide();
 
+                DataClass.username = createUsernameTbox.Text;
                 DataClass.RegisterUser(createUsernameTbox.Text, createPasswordTbox.Text);
+                DataClass.UpdateUserInformation("profileimage", File.ReadAllBytes(Path.Combine(Application.StartupPath, "Images", "Default Profile Picture", "default.jpg")));
+                DataClass.ResetUserData();
             }
         }
 
