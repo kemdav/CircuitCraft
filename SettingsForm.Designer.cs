@@ -215,7 +215,6 @@
             tabPage2.Size = new Size(1074, 610);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Account Settings";
-            tabPage2.Click += tabPage2_Click;
             // 
             // changePasswordPanel
             // 

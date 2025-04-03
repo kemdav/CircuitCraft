@@ -120,11 +120,6 @@ namespace CircuitCraft
         }
 
         #region Debug
-        private void dropResistorTbox_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void circuitSourceTbox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
@@ -158,8 +153,6 @@ namespace CircuitCraft
             }
         }
 
-        #endregion
-
         private void circuitCompletedButton_Click(object sender, EventArgs e)
         {
             DataClass.CircuitsCompleted++;
@@ -177,5 +170,6 @@ namespace CircuitCraft
             DataClass.BurnedLeds++;
             UpdateCircuitElementUI();
         }
+        #endregion
     }
 }

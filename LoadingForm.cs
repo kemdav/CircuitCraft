@@ -68,10 +68,5 @@ namespace CircuitCraft
                 Program.mainMenuMedia.AddOption(":input-repeat=1000");
             });
         }
-
-        private void loadProgressBar_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

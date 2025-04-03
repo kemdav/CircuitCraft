@@ -6,7 +6,6 @@ using SpiceSharp.Components;
 using System.Data.SQLite;
 using System.Data;
 using SpiceSharp.Simulations;
-using static LockedAspectRatioForm;
 using System.Text;
 using System.Security.Cryptography;
 
@@ -127,8 +126,26 @@ namespace CircuitCraft
             }
         }
 
-        public static int musicVolume;
-        public static int soundVolume;
+        private static int _musicVolume;
+        private static int _soundVolume;
+        public static int MusicVolume
+        {
+            get { return _musicVolume; }
+            set
+            {
+                _musicVolume = value;
+                UpdateUserInformation("MusicVolume", value);
+            }
+        }
+        public static int SoundVolume
+        {
+            get { return _soundVolume; }
+            set
+            {
+                _soundVolume = value;
+                UpdateUserInformation("SoundVolume", value);
+            }
+        }
 
         public static string HashPassword(string password)
         {
@@ -158,8 +175,8 @@ namespace CircuitCraft
             BurnedResistors = 0;
             BurnedLeds = 0;
             Rating = 0;
-            musicVolume = 100;
-            soundVolume = 100;
+            MusicVolume = 100;
+            SoundVolume = 100;
         }
 
         public static void ConnectionDatabase()
@@ -349,8 +366,8 @@ namespace CircuitCraft
                             _burnedLeds = reader.GetInt32(4);        
                             _rating = reader.GetInt32(5);            
                                                                      
-                            musicVolume = reader.GetInt32(6);         
-                            soundVolume = reader.GetInt32(7);          
+                            _musicVolume = reader.GetInt32(6);         
+                            _soundVolume = reader.GetInt32(7);          
                         }
                         else
                         {

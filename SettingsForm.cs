@@ -10,7 +10,6 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static LockedAspectRatioForm;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace CircuitCraft
@@ -40,8 +39,8 @@ namespace CircuitCraft
                         profilePbox.SizeMode = PictureBoxSizeMode.StretchImage;
                     }
                 }
-                musicSlider.Value = DataClass.musicVolume;
-                soundSlider.Value = DataClass.soundVolume;
+                musicSlider.Value = DataClass.MusicVolume;
+                soundSlider.Value = DataClass.SoundVolume;
             }
         }
 
@@ -73,11 +72,6 @@ namespace CircuitCraft
             backgroundVideo.Visible = true;
             backgroundVideo.SendToBack();
             _mediaPlayer.Play(Program.mainMenuMedia);
-        }
-
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
         }
 
         private string UserOperation = "";
@@ -144,22 +138,6 @@ namespace CircuitCraft
                     DataClass.AqcuireUserInformation();
                 }
             }
-        }
-
-        private void usernameTextBox_Leave(object sender, EventArgs e)
-        {
-            //if (usernameTextBox.Text == DataClass.username)
-            //{
-            //    return;
-            //}
-            //if (!DataClass.UpdateUserInformation("username", usernameTextBox.Text))
-            //{
-            //    usernameTextBox.Focus();
-            //    usernameTextBox.ErrorMessage = "Username already exists";
-            //    usernameTextBox.SetErrorState(true);
-            //    return;
-            //}
-            //usernameTextBox.SetErrorState(false);
         }
 
         private void changePasswordConfirmButton_Click(object sender, EventArgs e)
@@ -234,39 +212,12 @@ namespace CircuitCraft
 
         private void soundSlider_Validated(object sender, EventArgs e)
         {
-            DataClass.UpdateUserInformation("soundvolume", soundSlider.Value);
+            DataClass.SoundVolume = soundSlider.Value;
         }
 
         private void musicSlider_Validated(object sender, EventArgs e)
         {
-            DataClass.UpdateUserInformation("musicvolume", musicSlider.Value);
+            DataClass.MusicVolume = musicSlider.Value;
         }
-
-        //private void fullScreenCheckBox_CheckedChanged(object sender, EventArgs e)
-        //{
-        //    if (fullScreenCheckBox.Checked & !Program.isFullScreen)
-        //    {
-        //        Program.originalWindowState = WindowState;
-        //        Program.originalBounds = Bounds;
-        //        Program.originalBorderStyle = FormBorderStyle;
-
-        //        TopMost = true;
-        //        WindowState = FormWindowState.Normal;
-        //        FormBorderStyle = FormBorderStyle.None;
-        //        WindowState = FormWindowState.Maximized;
-        //        Bounds = Screen.AllScreens[0].Bounds;
-        //        DesktopBounds = SystemInformation.VirtualScreen;
-        //        Program.isFullScreen = true;
-        //        hopeForm1.Hide();
-        //    }
-        //    else
-        //    {
-        //        hopeForm1.Show();
-        //        this.FormBorderStyle = Program.originalBorderStyle;
-        //        this.WindowState = Program.originalWindowState;
-        //        this.Bounds = Program.originalBounds;
-        //        Program.isFullScreen = false;
-        //    }
-        //}
     }
 }

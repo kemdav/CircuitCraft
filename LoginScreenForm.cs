@@ -23,11 +23,6 @@ namespace CircuitCraft
             signUpPanel.Hide();
         }
 
-
-        private void LoginScreenForm_Load(object sender, EventArgs e)
-        {
-        }
-
         private void Tbox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (char.IsWhiteSpace(e.KeyChar))
@@ -43,20 +38,11 @@ namespace CircuitCraft
 
         private void loginUserText_Click(object sender, EventArgs e)
         {
-            // Login Logic
             var frm = new MainMenuForm();
             frm.StartPosition = FormStartPosition.CenterScreen;
             frm.FormClosing += delegate { Close(); };
             frm.Show();
             Hide();
-        }
-
-        private void signupTXT_Click_1(object sender, EventArgs e)
-        {
-        }
-
-        private void signupUserBtn_Click(object sender, EventArgs e)
-        {
         }
 
         private void exitTXT_Click(object sender, EventArgs e)
@@ -121,11 +107,6 @@ namespace CircuitCraft
             }            
         }
 
-        private void passwordLoginTbox_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void backButton_Click(object sender, EventArgs e)
         {
             loginPanel.Show();
@@ -177,17 +158,13 @@ namespace CircuitCraft
         {
             if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
-                e.Handled = true; // Suppress the key press (don't allow the character to be entered)
-
-                // Optional: Provide visual feedback to the user (e.g., a beep or a message)
-                // System.Media.SystemSounds.Beep.Play(); // Play a beep sound
-                // MessageBox.Show("Only alphabets and numbers are allowed.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                e.Handled = true; 
             }
-            int maxLength = 12; // Your desired max length
+            int maxLength = 12;
 
             if (usernameLoginTbox.Text.Length >= maxLength && !char.IsControl(e.KeyChar))
             {
-                e.Handled = true; // Prevent further input
+                e.Handled = true;
             }
         }
     }
