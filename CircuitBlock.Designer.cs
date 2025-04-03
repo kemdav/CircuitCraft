@@ -1,6 +1,6 @@
 ﻿namespace CircuitCraft
 {
-    partial class GridControl
+    partial class CircuitBlock
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,8 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            SuspendLayout();
+            // 
+            // CircuitBlock
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.SkyBlue;
+            Name = "CircuitBlock";
+            Size = new Size(396, 579);
+            ResumeLayout(false);
         }
 
         #endregion
