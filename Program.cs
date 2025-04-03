@@ -47,8 +47,33 @@ namespace CircuitCraft
 
             ApplicationConfiguration.Initialize();
             DataClass.ConnectionDatabase();
-            Application.Run(new LoginScreenForm());
+            Application.Run(new MainGame());
         }
+
+        public static int CalculateRating(int C, int R, int L)
+        {
+            double weightC = 10.0;
+            double weightR = 1.0;
+            double weightL = 2.0;
+            double scaleFactor = 5.0; 
+            double baseScore = 100; 
+
+            double rating;
+
+            if (C > 0)
+            {
+                double totalPenaltyValue = (weightR * R) + (weightL * L);
+                double penaltyRatio = totalPenaltyValue / C; 
+                rating = (weightC * C) - (penaltyRatio * scaleFactor);
+            }
+            else
+            {
+                rating = baseScore - (weightR * R) - (weightL * L);
+            }
+
+            return Convert.ToInt32(Math.Max(0, rating));
+        }
+
 
         public static void ApplyTransparentUI(ref PictureBox pbox, ref Label label)
         {
@@ -83,10 +108,52 @@ namespace CircuitCraft
         private static string connectionString = $"Data Source={databaseName};Version=3;";
         public static string username;
         public static byte[] profileImageBytes;
-        public static int circuitsCompleted;
-        public static int burnedResistors;
-        public static int burnedLed;
-        public static int rating;
+
+
+        private static int _circuitsCompleted;
+        private static int _burnedResistors;
+        private static int _burnedLeds;
+        private static int _rating;
+
+        public static int CircuitsCompleted
+        {
+            get { return _circuitsCompleted; }
+            set
+            {
+                _circuitsCompleted = value;
+                Rating = Program.CalculateRating(_circuitsCompleted, _burnedResistors, _burnedLeds);
+                UpdateUserInformation("CircuitsCompleted", value);
+            }
+        }
+        public static int BurnedResistors
+        {
+            get { return _burnedResistors; }
+            set
+            {
+                _burnedResistors = value;
+                Rating = Program.CalculateRating(_circuitsCompleted, _burnedResistors, _burnedLeds);
+                UpdateUserInformation("BurnedResistors", value);
+            }
+        }
+        public static int BurnedLeds
+        {
+            get { return _burnedLeds; }
+            set
+            {
+                _burnedLeds = value;
+                Rating = Program.CalculateRating(_circuitsCompleted, _burnedResistors, _burnedLeds);
+                UpdateUserInformation("BurnedLed", value);
+            }
+        }
+        public static int Rating
+        {
+            get { return _rating; }
+            set
+            {
+                _rating = value;
+                UpdateUserInformation("Rating", value);
+            }
+        }
 
         public static int musicVolume;
         public static int soundVolume;
@@ -115,10 +182,10 @@ namespace CircuitCraft
         {
             username = string.Empty;
             profileImageBytes = null;
-            circuitsCompleted = 0;
-            burnedResistors = 0;
-            burnedLed = 0;
-            rating = 0;
+            CircuitsCompleted = 0;
+            BurnedResistors = 0;
+            BurnedLeds = 0;
+            Rating = 0;
             musicVolume = 100;
             soundVolume = 100;
         }
@@ -258,10 +325,10 @@ namespace CircuitCraft
                             username = reader.GetString(0); // Username (index 0)
                                                             // Note: We *don't* retrieve the PasswordHash for security reasons in a real application
                             profileImageBytes = reader["ProfileImage"] as byte[]; // Get BLOB data
-                            circuitsCompleted = reader.GetInt32(3); // CircuitsCompleted (index 3)
-                            burnedResistors = reader.GetInt32(4); // BurnedResistors (index 4)
-                            burnedLed = reader.GetInt32(5);    // BurnedLed (index 5)
-                            rating = reader.GetInt32(6);   // Rating (index 6)
+                            CircuitsCompleted = reader.GetInt32(3); // CircuitsCompleted (index 3)
+                            BurnedResistors = reader.GetInt32(4); // BurnedResistors (index 4)
+                            BurnedLeds = reader.GetInt32(5);    // BurnedLed (index 5)
+                            Rating = reader.GetInt32(6);   // Rating (index 6)
                             musicVolume = reader.GetInt32(7);   // MusicVolume (index 7)
                             soundVolume = reader.GetInt32(8);   // SoundVolume (index 8)
 

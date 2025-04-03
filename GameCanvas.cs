@@ -65,24 +65,22 @@ namespace CircuitCraft
             CircuitSources.Add(circuitElement);
         }
 
-        public void SimulateCircuit()
+        public void ClearCircuitElements()
         {
-            foreach (CircuitBlock circuitBlock in CircuitBlocks)
+            foreach (var block in CircuitBlocks)
             {
-                if (circuitBlock.CircuitBlockConnectionType == CircuitBlockConnectionType.Series)
-                { 
-                    foreach (CircuitElement circuitElement in circuitBlock.CircuitElements)
-                    {
-                        if (circuitElement.circuitElementType == CircuitElementType.Resistor)
-                        {
-                            
-                        }
-                    }
+                block.CircuitElements.Clear();
+                foreach (var element in block.CircuitElementsUI)
+                {
+                    Controls.Remove(element);
+                    Invalidate();
                 }
             }
         }
-            #region Game Canvas UI
-            public void SpawnCircuitElement(CircuitElementType circuitElementType, double voltage, double resistance)
+
+
+        #region Game Canvas UI
+        public void SpawnCircuitElement(CircuitElementType circuitElementType, double voltage, double resistance)
         {
             CurrentCircuitElementDroppedResistance = resistance;
             CurrentCircuitElementDroppedVoltage = voltage;
