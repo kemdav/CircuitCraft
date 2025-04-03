@@ -3,7 +3,7 @@ using SpiceSharp.Components;
 using SpiceSharp.Simulations;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics; // For Debug.WriteLine
+using System.Diagnostics;
 
 namespace CircuitCraft
 {
@@ -20,8 +20,8 @@ namespace CircuitCraft
         public enum CircuitStatus
         {
             OK,
-            OpenCircuit, // Effectively infinite resistance, zero current
-            ShortCircuit // Effectively zero resistance, infinite current
+            OpenCircuit, 
+            ShortCircuit 
         }
 
         public static LoadCalculationResult CalculateLoadState(double batteryVoltage, List<double> seriesResistances, List<double> parallelResistances, double loadResistance)
@@ -31,24 +31,21 @@ namespace CircuitCraft
                 LoadResistance = loadResistance,
                 LoadVoltage = 0,
                 LoadCurrent = 0,
-                Status = CircuitStatus.OK // Start assuming OK
+                Status = CircuitStatus.OK 
             };
 
-            // --- Ensure load resistance is valid ---
-            // Treat negative as 0 for calculation, could also throw error
+
             loadResistance = Math.Max(0.0, loadResistance);
-            result.LoadResistance = loadResistance; // Store the potentially adjusted value
+            result.LoadResistance = loadResistance; 
 
 
-            // --- 1. Calculate Effective Series Resistance (Rs) ---
             double rs = 0.0;
             if (seriesResistances != null && seriesResistances.Count > 0)
             {
                 rs = seriesResistances.Sum(r => Math.Max(0.0, r));
             }
 
-            // --- 2. Calculate Effective Parallel Resistance (Rp) ---
-            double rp = double.PositiveInfinity; // Default to open
+            double rp = double.PositiveInfinity; 
             bool parallelShorted = false;
             if (parallelResistances != null && parallelResistances.Count > 0)
             {
@@ -56,7 +53,7 @@ namespace CircuitCraft
                 foreach (double r in parallelResistances)
                 {
                     double resistance = Math.Max(0.0, r);
-                    if (resistance < 1e-9) // Check for short
+                    if (resistance < 1e-9) 
                     {
                         rp = 0.0;
                         parallelShorted = true;
@@ -68,53 +65,46 @@ namespace CircuitCraft
                 if (!parallelShorted)
                 {
                     if (inverseSum > 1e-12) rp = 1.0 / inverseSum;
-                    // else rp remains PositiveInfinity (open)
                 }
             }
 
-            // --- 3. Calculate Total Circuit Resistance (R_total) ---
             double r_total;
-            if (double.IsPositiveInfinity(rp)) // If parallel section is open
+            if (double.IsPositiveInfinity(rp)) 
             {
                 r_total = rs + loadResistance;
             }
-            else // Parallel section has finite resistance (could be 0 if shorted)
+            else
             {
                 r_total = rs + rp + loadResistance;
             }
 
 
-            // --- 4/5. Calculate Total/Load Current (I_total / I_load) ---
-            double i_total; // This will also be i_load
+            double i_total; 
 
-            if (r_total < 1e-9) // Check for total short circuit
+            if (r_total < 1e-9)
             {
                 Console.WriteLine($"Warning: Total resistance is near zero ({r_total} Ohm) -> Short Circuit");
                 result.Status = CircuitStatus.ShortCircuit;
-                // Assign infinity to represent the short condition
+
                 result.LoadCurrent = double.PositiveInfinity;
-                result.LoadVoltage = double.PositiveInfinity; // Voltage also undefined/infinite in ideal short
+                result.LoadVoltage = double.PositiveInfinity;
                 return result;
             }
-            else if (double.IsPositiveInfinity(r_total)) // Check for total open circuit
+            else if (double.IsPositiveInfinity(r_total))
             {
                 Console.WriteLine($"Warning: Total resistance is infinite -> Open Circuit");
                 result.Status = CircuitStatus.OpenCircuit;
                 result.LoadCurrent = 0.0;
-                result.LoadVoltage = 0.0; // No current means no voltage drop across load
+                result.LoadVoltage = 0.0; 
                 return result;
             }
             else
             {
-                // Normal calculation
                 i_total = batteryVoltage / r_total;
                 result.LoadCurrent = i_total;
                 result.Status = CircuitStatus.OK;
             }
 
-
-            // --- 6. Calculate Voltage Across the Load (V_load) ---
-            // Only calculate if not short/open
             if (result.Status == CircuitStatus.OK)
             {
                 result.LoadVoltage = result.LoadCurrent * result.LoadResistance;
