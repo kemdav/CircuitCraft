@@ -27,7 +27,7 @@ namespace CircuitCraft
             {
                 isInitialized = true;
                 DataClass.AqcuireUserInformation();
-                usernameTextBox.Text = DataClass.username;
+                usernameTxt.Text = "USERNAME: " + DataClass.username;
                 ratingTxt.Text = "RATING: " + DataClass.Rating;
                 circuitsCompletedTxt.Text = "" + DataClass.CircuitsCompleted;
                 ledsBurnedTxt.Text = "" + DataClass.BurnedLeds;
@@ -160,30 +160,6 @@ namespace CircuitCraft
             //    return;
             //}
             //usernameTextBox.SetErrorState(false);
-        }
-
-        private void usernameTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                if (usernameTextBox.Text == DataClass.username)
-                {
-                    return;
-                }
-                if (!DataClass.UpdateUserInformation("username", usernameTextBox.Text))
-                {
-                    usernameTextBox.ErrorMessage = "Username already exists";
-                    usernameTextBox.SetErrorState(true);
-                    usernameTextBox.Focus();
-                    return;
-                }
-                else
-                {
-                    DataClass.username = usernameTextBox.Text;
-                    accountSettingsPanel.Visible = true;
-                    usernameTextBox.SetErrorState(false);
-                }
-            }
         }
 
         private void changePasswordConfirmButton_Click(object sender, EventArgs e)

@@ -153,12 +153,6 @@ namespace CircuitCraft
                 isValid = false;
                 createUsernameTbox.SetErrorState(true);
             }
-            else if (createUsernameTbox.Text == "user")
-            {
-                createUsernameTbox.ErrorMessage = "Username already exists";
-                isValid = false;
-                createUsernameTbox.SetErrorState(true);
-            }
 
             if (isValid && DataClass.RegisterUser(createUsernameTbox.Text, createPasswordTbox.Text))
             {
