@@ -167,6 +167,7 @@
             prevButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             prevButton.UseAccentColor = false;
             prevButton.UseVisualStyleBackColor = true;
+            prevButton.Click += prevButton_Click;
             // 
             // nextButton
             // 
@@ -187,6 +188,7 @@
             nextButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             nextButton.UseAccentColor = false;
             nextButton.UseVisualStyleBackColor = true;
+            nextButton.Click += nextButton_Click;
             // 
             // rankPanel7
             // 

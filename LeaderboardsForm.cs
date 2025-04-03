@@ -14,10 +14,46 @@ namespace CircuitCraft
 {
     public partial class LeaderboardsForm : Form
     {
+        private int _currentPage;
+        public int CurrentPage
+        {
+            get { return _currentPage; }
+            set
+            {
+                if (value == 1 && DataClass.SortedUsersByRating().Count > 7)
+                {
+                    prevButton.Enabled = false;
+                    nextButton.Enabled = true;
+                }
+                else if (value == 0)
+                {
+                    value = 1;
+                }
+                else if (value > 1 && value * 7 < DataClass.SortedUsersByRating().Count)
+                {
+                    prevButton.Enabled = true;
+                    nextButton.Enabled = true;
+                }
+                else if (value == 1 && DataClass.SortedUsersByRating().Count < 7)
+                {
+                    nextButton.Enabled = false;
+                    prevButton.Enabled = false;
+                }
+                else
+                {
+                    nextButton.Enabled = false;
+                    prevButton.Enabled = true;
+                }
+                _currentPage = value;
+            }
+        }
+
         public LeaderboardsForm()
         {
             InitializeComponent();
-            LeaderboardRefresh(1);
+            CurrentPage = 1;
+            prevButton.Enabled = false;
+            LeaderboardRefresh(CurrentPage);
         }
 
         private void LeaderboardsForm_Load(object sender, EventArgs e)
@@ -43,7 +79,7 @@ namespace CircuitCraft
 
         private void LeaderboardRefresh(int page)
         {
-            List<MaterialLabel> rankTxt = new List<MaterialLabel> { Row1Col1Txt, Row2Col1Txt, Row3Col1Txt, Row4Col1Txt, Row5Col1Txt, Row6Col1Txt, Row7Col1Txt};
+            List<MaterialLabel> rankTxt = new List<MaterialLabel> { Row1Col1Txt, Row2Col1Txt, Row3Col1Txt, Row4Col1Txt, Row5Col1Txt, Row6Col1Txt, Row7Col1Txt };
             List<PictureBox> pictureBox = new List<PictureBox>() { Row1Col2Pbox, Row2Col2Pbox, Row3Col2Pbox, Row4Col2Pbox, Row5Col2Pbox, Row6Col2Pbox, Row7Col2Pbox };
             List<MaterialLabel> usernameTxt = new List<MaterialLabel> { Row1Col3Txt, Row2Col3Txt, Row3Col3Txt, Row4Col3Txt, Row5Col3Txt, Row6Col3Txt, Row7Col3Txt };
             List<MaterialLabel> completedCircuitsTxt = new List<MaterialLabel> { Row1Col4Txt, Row2Col4Txt, Row3Col4Txt, Row4Col4Txt, Row5Col4Txt, Row6Col4Txt, Row7Col4Txt };
@@ -56,29 +92,33 @@ namespace CircuitCraft
             {
                 if (i >= tempUserInformation.Count)
                 {
-                    rankTxt[i].Text = "";
-                    pictureBox[i].Image = null;
-                    usernameTxt[i].Text = "";
-                    completedCircuitsTxt[i].Text = "";
-                    resistorsBurnedTxt[i].Text = "";
-                    ledsBurnedTxt[i].Text = "";
-                    ratingTxt[i].Text = "";
+                    rankTxt[i - ((page - 1) * 7)].Text = "";
+                    pictureBox[i - ((page - 1) * 7)].Image = null;
+                    usernameTxt[i - ((page - 1) * 7)].Text = "";
+                    completedCircuitsTxt[i - ((page - 1) * 7)].Text = "";
+                    resistorsBurnedTxt[i - ((page - 1) * 7)].Text = "";
+                    ledsBurnedTxt[i - ((page - 1) * 7)].Text = "";
+                    ratingTxt[i - ((page - 1) * 7)].Text = "";
                     continue;
                 }
-                rankTxt[i].Text = (i + 1).ToString();
+                rankTxt[i - ((page - 1) * 7)].Text = (i + 1).ToString();
                 if (tempUserInformation[i].ProfileImage != null)
                 {
                     using (MemoryStream stream = new MemoryStream(tempUserInformation[i].ProfileImage))
                     {
-                        pictureBox[i].Image = System.Drawing.Image.FromStream(stream);
-                        pictureBox[i].SizeMode = PictureBoxSizeMode.StretchImage;
+                        pictureBox[i - ((page - 1) * 7)].Image = System.Drawing.Image.FromStream(stream);
+                        pictureBox[i - ((page - 1) * 7)].SizeMode = PictureBoxSizeMode.StretchImage;
                     }
                 }
-                usernameTxt[i].Text = tempUserInformation[i].Username;
-                completedCircuitsTxt[i].Text = tempUserInformation[i].CircuitsCompleted.ToString();
-                resistorsBurnedTxt[i].Text = tempUserInformation[i].BurnedResistors.ToString();
-                ledsBurnedTxt[i].Text = tempUserInformation[i].BurnedLed.ToString();
-                ratingTxt[i].Text = tempUserInformation[i].Rating.ToString();
+                else
+                {
+                    pictureBox[i - ((page - 1) * 7)].Image = null;
+                }
+                usernameTxt[i - ((page - 1) * 7)].Text = tempUserInformation[i].Username;
+                completedCircuitsTxt[i - ((page - 1) * 7)].Text = tempUserInformation[i].CircuitsCompleted.ToString();
+                resistorsBurnedTxt[i - ((page - 1) * 7)].Text = tempUserInformation[i].BurnedResistors.ToString();
+                ledsBurnedTxt[i - ((page - 1) * 7)].Text = tempUserInformation[i].BurnedLed.ToString();
+                ratingTxt[i - ((page - 1) * 7)].Text = tempUserInformation[i].Rating.ToString();
             }
 
         }
@@ -110,6 +150,18 @@ namespace CircuitCraft
             frm.FormClosing += delegate { Close(); };
             frm.Show();
             Hide();
+        }
+
+        private void nextButton_Click(object sender, EventArgs e)
+        {
+            CurrentPage++;
+            LeaderboardRefresh(CurrentPage);
+        }
+
+        private void prevButton_Click(object sender, EventArgs e)
+        {
+            CurrentPage--;
+            LeaderboardRefresh(CurrentPage);
         }
     }
 }
