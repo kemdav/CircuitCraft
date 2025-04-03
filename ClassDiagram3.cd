@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CircuitCraft.LoginScreenForm" Collapsed="true">
+    <Position X="6.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgBAAhAADAFIAJAAACMAAAOwQAAIAMAQAAAhwAAAIg=</HashCode>
+      <FileName>LoginScreenForm.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="LoadingForm" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CircuitCraft.LoadingForm" Collapsed="true">
+    <Position X="6.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAKAAIAAIAACAAACCAAAAAABAAAAJAAAgAAA=</HashCode>
+      <FileName>LoadingForm.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MainMenuForm" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CircuitCraft.LeaderboardsForm" Collapsed="true">
+    <Position X="7.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gPtPUADgHSDeIQACACCA8A4CACD8D4B3AABAAQCQAII=</HashCode>
+      <FileName>LeaderboardsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CircuitCraft.MainMenuForm" Collapsed="true">
+    <Position X="6.5" Y="3.5" Width="1.5" />
+    <AssociationLine Name="LeaderboardsForm" Type="CircuitCraft.LeaderboardsForm">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.494" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="SettingsForm" Type="CircuitCraft.SettingsForm">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.338" Y="0.07" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>EAQECCAAAKAAIIBAAgCAQBASAMAAACIAAAAAAUBCAIA=</HashCode>
+      <FileName>MainMenuForm.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MainGame" />
+      <Property Name="LeaderboardsForm" />
+      <Property Name="SettingsForm" />
+      <Property Name="LoginScreenForm" />
+      <Property Name="TutorialForm" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CircuitCraft.MainGame" Collapsed="true">
+    <Position X="4" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEUAQAAAAKkAAgRAAISAQBwGAAAAEAoEQEBkAAgQCIw=</HashCode>
+      <FileName>MainGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CircuitCraft.SettingsForm" Collapsed="true">
+    <Position X="9.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgzCEhACgGIAKHAQABCARgQCRQAAIEAkwAEIQBADAcU=</HashCode>
+      <FileName>SettingsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CircuitCraft.TutorialForm" Collapsed="true">
+    <Position X="5.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TutorialForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

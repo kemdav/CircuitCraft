@@ -569,5 +569,37 @@ namespace CircuitCraft
             UpdateUserInformation("BurnedLed", 0);
             UpdateUserInformation("Rating", 0);
         }
+
+        public static SettingsForm SettingsForm
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public static LeaderboardsForm LeaderboardsForm
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public static LoginScreenForm LoginScreenForm
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public static MainGame MainGame
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 }

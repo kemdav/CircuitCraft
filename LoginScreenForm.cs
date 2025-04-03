@@ -23,6 +23,14 @@ namespace CircuitCraft
             signUpPanel.Hide();
         }
 
+        public LoadingForm LoadingForm
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         private void Tbox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (char.IsWhiteSpace(e.KeyChar))

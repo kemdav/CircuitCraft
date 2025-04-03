@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CircuitCraft
 {
-    public partial class ChangePasswordForm : Form
+    public partial class TutorialForm : Form
     {
-        public ChangePasswordForm()
+        public TutorialForm()
         {
             InitializeComponent();
         }

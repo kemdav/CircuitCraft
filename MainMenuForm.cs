@@ -28,6 +28,46 @@ namespace CircuitCraft
             _mediaPlayer.Play(Program.mainMenuMedia);
         }
 
+        public MainGame MainGame
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public LeaderboardsForm LeaderboardsForm
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public SettingsForm SettingsForm
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public LoginScreenForm LoginScreenForm
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public TutorialForm TutorialForm
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         private void playButton_Click(object sender, EventArgs e)
         {
             var frm = new MainGame();

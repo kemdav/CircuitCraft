@@ -173,5 +173,28 @@ namespace CircuitCraft
             set { _circuitElementSpawnOffsetY = value; }
         }
 
+        public CircuitBlock CircuitBlock
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public CircuitElement CircuitElement
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public MainGame MainGame
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 }

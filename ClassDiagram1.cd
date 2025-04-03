@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CircuitCraft.CircuitSimulator">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="CircuitCraft.CircuitSimulator.LoadCalculationResult">
+        <TypeIdentifier>
+          <NewMemberFileName>CircuitSimulator.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Enum Name="CircuitCraft.CircuitSimulator.CircuitStatus">
+        <TypeIdentifier>
+          <NewMemberFileName>CircuitSimulator.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CircuitSimulator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CircuitCraft.CircuitBlock">
+    <Position X="12" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AYABAAEAACAAACEAACCAAAACAAAAAAAAIEAgQAAAAAQ=</HashCode>
+      <FileName>CircuitBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CircuitCraft.CircuitElement" Collapsed="true">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgACAAAABAAAAAAAAABAAAAAIAAA=</HashCode>
+      <FileName>CircuitElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CircuitCraft.GameResistor" Collapsed="true">
+    <Position X="4.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CircuitElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CircuitCraft.GameSource" Collapsed="true">
+    <Position X="4.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CircuitElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CircuitCraft.GameCircuitLoad" Collapsed="true">
+    <Position X="4.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CircuitElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CircuitCraft.GameCanvas">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAABAEACEAAIAIAGCAAAACAAACEBIAACAAoiAwEAA=</HashCode>
+      <FileName>GameCanvas.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CircuitBlock" />
+      <Property Name="CircuitElement" />
+      <Property Name="MainGame" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CircuitCraft.MainGame" Collapsed="true">
+    <Position X="12" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEUAQAAAAKkAAgRAAISAQBwGAAAAEAoEQEBkAAgQCIw=</HashCode>
+      <FileName>MainGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="CircuitCraft.CircuitElementType">
+    <Position X="4.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CircuitElement.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CircuitCraft.CircuitBlockConnectionType">
+    <Position X="10.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAE=</HashCode>
+      <FileName>CircuitBlock.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

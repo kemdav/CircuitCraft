@@ -38,4 +38,12 @@ namespace CircuitCraft
             circuitElementType = CircuitElementType.Source;
         }
     }
+
+    public class GameCircuitLoad : CircuitElement
+    {
+        public GameCircuitLoad()
+        {
+            circuitElementType = CircuitElementType.Source;
+        }
+    }
 }
