@@ -24,7 +24,6 @@ namespace CircuitCraft
     internal static class Program
     {
         public static bool isFullScreen = false;
-        public static System.Windows.Forms.FormBorderStyle originalBorderStyle;
         public static FormWindowState originalWindowState;
         public static Rectangle originalBounds;
 
@@ -47,7 +46,7 @@ namespace CircuitCraft
 
             ApplicationConfiguration.Initialize();
             DataClass.ConnectionDatabase();
-            Application.Run(new LoginScreenForm());
+            Application.Run(new MainGame());
         }
 
         public static int CalculateRating(int C, int R, int L)
@@ -72,33 +71,6 @@ namespace CircuitCraft
             }
 
             return Convert.ToInt32(Math.Max(0, rating));
-        }
-
-
-        public static void ApplyTransparentUI(ref PictureBox pbox, ref Label label)
-        {
-            System.Drawing.Point labelPos = label.Location;
-            pbox.Controls.Add(label);
-            label.Location = labelPos;
-            label.BackColor = Color.Transparent;
-        }
-        public static void ApplyTransparentUI(ref PictureBox pbox, ref TextBox tbx)
-        {
-            System.Drawing.Point labelPos = tbx.Location;
-            pbox.Controls.Add(tbx);
-            tbx.Location = labelPos;
-        }
-        public static void ApplyTransparentUI(ref PictureBox pbox, ref ParrotSlider sldr)
-        {
-            System.Drawing.Point labelPos = sldr.Location;
-            pbox.Controls.Add(sldr);
-            sldr.Location = labelPos;
-        }
-        public static void ApplyTransparentUIVideo(ref VideoView media, ref MaterialSkin.Controls.MaterialButton bttn)
-        {
-            System.Drawing.Point labelPos = bttn.Location;
-            media.Controls.Add(bttn);
-            media.Location = labelPos;
         }
     }
 
@@ -166,7 +138,7 @@ namespace CircuitCraft
                 StringBuilder builder = new StringBuilder();
                 for (int i = 0; i < bytes.Length; i++)
                 {
-                    builder.Append(bytes[i].ToString("x2")); // Convert byte to hex string
+                    builder.Append(bytes[i].ToString("x2"));
                 }
                 return builder.ToString();
             }
@@ -175,7 +147,7 @@ namespace CircuitCraft
         public static bool VerifyPassword(string enteredPassword, string storedHash)
         {
             string hashedEnteredPassword = HashPassword(enteredPassword);
-            return hashedEnteredPassword.Equals(storedHash, StringComparison.OrdinalIgnoreCase); // Case-insensitive comparison
+            return hashedEnteredPassword.Equals(storedHash, StringComparison.OrdinalIgnoreCase);
         }
 
         public static void ResetUserData()
@@ -338,9 +310,7 @@ namespace CircuitCraft
         }
 
         public static void AqcuireUserInformation()
-        {
-            string databaseName = "Database.db"; // Name of your SQLite database file
-                                                 // SQL query to join User, GameStatistics, and GameSettings tables based on Username
+        {                    
             string selectUserDataSql = @"
         SELECT 
             U.Username, 
@@ -363,29 +333,27 @@ namespace CircuitCraft
                 connection.Open();
                 using (SQLiteCommand selectUserCommand = new SQLiteCommand(selectUserDataSql, connection))
                 {
-                    // Provide the username parameter (make sure 'username' is defined in your context)
                     selectUserCommand.Parameters.AddWithValue("@Username", username);
 
                     using (SQLiteDataReader reader = selectUserCommand.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            // Read the username (index 0)
+
                             username = reader.GetString(0);
-                            // Read the profile image bytes
+
                             profileImageBytes = reader["ProfileImage"] as byte[];
-                            // Read game statistics from the joined table (indices correspond to select order)
-                            _circuitsCompleted = reader.GetInt32(2);  // CircuitsCompleted
-                            _burnedResistors = reader.GetInt32(3);      // BurnedResistors
-                            _burnedLeds = reader.GetInt32(4);           // BurnedLed
-                            _rating = reader.GetInt32(5);               // Rating
-                                                                       // Read game settings from the joined table
-                            musicVolume = reader.GetInt32(6);          // MusicVolume
-                            soundVolume = reader.GetInt32(7);          // SoundVolume
+
+                            _circuitsCompleted = reader.GetInt32(2); 
+                            _burnedResistors = reader.GetInt32(3);     
+                            _burnedLeds = reader.GetInt32(4);        
+                            _rating = reader.GetInt32(5);            
+                                                                     
+                            musicVolume = reader.GetInt32(6);         
+                            soundVolume = reader.GetInt32(7);          
                         }
                         else
                         {
-                            // Handle case where the user is not found (e.g., log or show a message)
                             // MessageBox.Show($"User '{username}' not found.");
                         }
                     }
@@ -424,7 +392,7 @@ namespace CircuitCraft
             }
 
             string tableName = "";
-            string columnName = fieldToUpdate; // Assume field name matches column name unless specified otherwise
+            string columnName = fieldToUpdate;
             object processedValue = newValue;
             switch (fieldToUpdate.ToLower())
             {
@@ -559,14 +527,10 @@ namespace CircuitCraft
                                 TempUserInformation tempUserInformation = new TempUserInformation();
                                 tempUserInformation.Username = reader.GetString(0);
                                 tempUserInformation.ProfileImage = reader["ProfileImage"] as byte[];
-                                // Using reader.IsDBNull to handle potential null values
                                 tempUserInformation.CircuitsCompleted = reader.IsDBNull(2) ? 0 : reader.GetInt32(2);
                                 tempUserInformation.BurnedResistors = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
                                 tempUserInformation.BurnedLed = reader.IsDBNull(4) ? 0 : reader.GetInt32(4);
                                 tempUserInformation.Rating = reader.IsDBNull(5) ? 0 : reader.GetInt32(5);
-                                // Optionally, you can also assign MusicVolume and SoundVolume if needed:
-                                // tempUserInformation.MusicVolume = reader.IsDBNull(6) ? 100 : reader.GetInt32(6);
-                                // tempUserInformation.SoundVolume = reader.IsDBNull(7) ? 100 : reader.GetInt32(7);
 
                                 sortedUsers.Add(tempUserInformation);
                             }
@@ -576,8 +540,6 @@ namespace CircuitCraft
             }
             catch (SQLiteException ex)
             {
-                // Handle the exception as needed
-                // For example: MessageBox.Show($"Error selecting sorted users: {ex.Message}");
             }
             return sortedUsers;
         }
@@ -589,38 +551,6 @@ namespace CircuitCraft
             UpdateUserInformation("BurnedResistors", 0);
             UpdateUserInformation("BurnedLed", 0);
             UpdateUserInformation("Rating", 0);
-        }
-    }
-
-
-    internal static class  ResourceHelper
-    {
-        public static Image LoadVideoFromResource(string imageName)
-        {
-            try
-            {
-                string exePath = Path.Combine(Application.StartupPath, "Images", "CircuitElements", imageName);
-                if (File.Exists(exePath))
-                {
-                    return Image.FromFile(exePath);
-                }
-                string projectPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\Resources\CircuitElements", imageName);
-                if (File.Exists(projectPath))
-                {
-                    return Image.FromFile(projectPath);
-                }
-                throw new FileNotFoundException($"Image file not found: {imageName}.  Checked:\n{exePath}\n{projectPath}");
-            }
-            catch (FileNotFoundException)
-            {
-                MessageBox.Show($"Image file not found: {imageName}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error loading image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
-            }
         }
     }
 }

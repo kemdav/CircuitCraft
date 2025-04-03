@@ -33,8 +33,8 @@ namespace CircuitCraft
             timer.Tick += new EventHandler(Timer_Tick);
             UpdateCircuitElementUI();
 
-            //DataClass.username = "kem";
-            //DataClass.AqcuireUserInformation();
+            DataClass.username = "a";
+            DataClass.AqcuireUserInformation();
         }
 
         public void StartTicking()
