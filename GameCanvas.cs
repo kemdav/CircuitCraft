@@ -13,7 +13,29 @@ namespace CircuitCraft
     public partial class GameCanvas : UserControl
     {
         public List<CircuitElement> CircuitSources { get; set; } = new List<CircuitElement>();
-        public int CurrentBlockIndex { get; set; } = 0;
+
+        private int _currentBlockIndex = 0;
+        public int CurrentBlockIndex { 
+            get
+            {
+                return _currentBlockIndex;
+            }
+            set
+            {
+                if (value >= 0 && value < CircuitBlocks.Count)
+                {
+                    _currentBlockIndex = value;
+                }
+                else if (value >= CircuitBlocks.Count)
+                {
+                    _currentBlockIndex = CircuitBlocks.Count - 1;
+                }
+                else
+                {
+                    _currentBlockIndex = 0;
+                }
+            }
+        }
 
         public PictureBox? CurrentCircuitElementDropped { get; set; }
         public double CurrentCircuitElementDroppedResistance { get; set; }
@@ -56,9 +78,11 @@ namespace CircuitCraft
             }
         }
 
-        public void SpawnCircuitBlock(Point _location, int _circuitElementWidth, int _circuitElementHeight)
+        public void SpawnCircuitBlock(CircuitBlockConnectionType CircuitConnection, Point _location, int _circuitElementWidth, int _circuitElementHeight)
         {         
+            if (CurrentBlockIndex == -1) CurrentBlockIndex = 0;
             CircuitBlock circuitBlock = new CircuitBlock();
+            circuitBlock.CircuitBlockConnectionType = CircuitConnection;
             circuitBlock.CircuitElementWidth = _circuitElementWidth;
             circuitBlock.CircuitElementHeight = _circuitElementHeight;
             circuitBlock.Location = _location;
@@ -85,7 +109,7 @@ namespace CircuitCraft
                 CircuitBlocks[CurrentBlockIndex].AddCircuitElement(CircuitElementType.Resistor, CurrentCircuitElementDroppedVoltage, CurrentCircuitElementDroppedResistance);
                 return false;
             }
-            CurrentCircuitElementDropped.Location = new Point(CurrentCircuitElementDropped.Location.X, CurrentCircuitElementDropped.Location.Y + y);
+            CurrentCircuitElementDropped.Location = new Point(CircuitBlocks[CurrentBlockIndex].Location.X, CurrentCircuitElementDropped.Location.Y + y);
             return true;
         }
 

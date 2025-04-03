@@ -18,7 +18,11 @@ namespace CircuitCraft
         public MainGame()
         {
             InitializeComponent();
-            gameCanvas.SpawnCircuitBlock(new Point(60, 160), 30, 90);
+            KeyPreview = true;
+            KeyDown += new KeyEventHandler(PlayerInput);
+
+            gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Series, new Point(60, 160), 30, 90);
+            gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Parallel,new Point(100, 160), 30, 90);
             gameCanvas.SpawnCircuitElement(CircuitElementType.Resistor, 90, 90);
 
             timer.Interval = 200;
@@ -32,6 +36,22 @@ namespace CircuitCraft
             { 
                 gameCanvas.SpawnCircuitElement(CircuitElementType.Resistor, 90, 90);
             }
+        }
+
+        private void PlayerInput(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Up:
+                    break;
+                case Keys.A:
+                    gameCanvas.CurrentBlockIndex--;
+                    break;
+                case Keys.D:
+                    gameCanvas.CurrentBlockIndex++;
+                    break;
+            }
+
         }
     }
 }

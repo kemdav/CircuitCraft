@@ -10,9 +10,16 @@ using System.Windows.Forms;
 
 namespace CircuitCraft
 {
+    public enum CircuitBlockConnectionType
+    {
+        Series,
+        Parallel
+    }
+
     [Serializable]
     public partial class CircuitBlock : UserControl
     {
+        public CircuitBlockConnectionType CircuitBlockConnectionType { get; set; }
         public List<CircuitElement> CircuitElements { get; set; } = new List<CircuitElement>();
         public int CurrentElementIndex { get; set; } = 0;
 
