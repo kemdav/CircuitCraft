@@ -92,7 +92,7 @@
             materialTabControl1.HotTrack = true;
             materialTabControl1.ImeMode = ImeMode.NoControl;
             materialTabControl1.ItemSize = new Size(88, 20);
-            materialTabControl1.Location = new Point(85, 60);
+            materialTabControl1.Location = new Point(85, 82);
             materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
             materialTabControl1.Multiline = true;
             materialTabControl1.Name = "materialTabControl1";
@@ -214,7 +214,7 @@
             tabPage2.Padding = new Padding(3);
             tabPage2.Size = new Size(1074, 610);
             tabPage2.TabIndex = 1;
-            tabPage2.Text = " ";
+            tabPage2.Text = "Account Settings";
             tabPage2.Click += tabPage2_Click;
             // 
             // accountSettingsPanel
@@ -831,10 +831,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1280, 720);
+            Controls.Add(materialTabSelector1);
             Controls.Add(hopeForm1);
             Controls.Add(materialTabControl1);
             Controls.Add(backgroundVideo);
-            Controls.Add(materialTabSelector1);
             FormBorderStyle = FormBorderStyle.None;
             MaximumSize = new Size(1920, 1032);
             MinimumSize = new Size(190, 40);
