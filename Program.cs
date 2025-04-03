@@ -482,7 +482,7 @@ namespace CircuitCraft
                 {
                     connection.Open();
 
-                    string deleteUserSql = "DELETE FROM Users WHERE Username = @Username;";
+                    string deleteUserSql = "DELETE FROM User WHERE Username = @Username;";
                     using (SQLiteCommand deleteCommand = new SQLiteCommand(deleteUserSql, connection))
                     {
                         deleteCommand.Parameters.AddWithValue("@Username", username);
