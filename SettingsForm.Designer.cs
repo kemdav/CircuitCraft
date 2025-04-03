@@ -36,6 +36,12 @@
             mainMenuButton = new MaterialSkin.Controls.MaterialButton();
             soundSlider = new MaterialSkin.Controls.MaterialSlider();
             tabPage2 = new TabPage();
+            changePasswordPanel = new Panel();
+            changePasswordCurrentPasswordTbox = new MaterialSkin.Controls.MaterialMaskedTextBox();
+            changePasswordCancelButton = new MaterialSkin.Controls.MaterialButton();
+            changePasswordConfirmButton = new MaterialSkin.Controls.MaterialButton();
+            changePasswordConfirmPasswordTbox = new MaterialSkin.Controls.MaterialMaskedTextBox();
+            changePasswordCreatePasswordTbox = new MaterialSkin.Controls.MaterialMaskedTextBox();
             accountSettingsPanel = new Panel();
             deleteButton = new MaterialSkin.Controls.MaterialButton();
             changePasswordButton = new MaterialSkin.Controls.MaterialButton();
@@ -60,18 +66,13 @@
             confirmMessage = new MaterialSkin.Controls.MaterialLabel();
             confirmBoxYesButton = new MaterialSkin.Controls.MaterialButton();
             confirmBoxNoButton = new MaterialSkin.Controls.MaterialButton();
-            changePasswordPanel = new Panel();
-            changePasswordCurrentPasswordTbox = new MaterialSkin.Controls.MaterialMaskedTextBox();
-            changePasswordCancelButton = new MaterialSkin.Controls.MaterialButton();
-            changePasswordConfirmButton = new MaterialSkin.Controls.MaterialButton();
-            changePasswordConfirmPasswordTbox = new MaterialSkin.Controls.MaterialMaskedTextBox();
-            changePasswordCreatePasswordTbox = new MaterialSkin.Controls.MaterialMaskedTextBox();
             materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
             hopeForm1 = new ReaLTaiizor.Forms.HopeForm();
             backgroundVideo = new LibVLCSharp.WinForms.VideoView();
             materialTabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
+            changePasswordPanel.SuspendLayout();
             accountSettingsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -79,7 +80,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)profilePbox).BeginInit();
             confirmBox.SuspendLayout();
-            changePasswordPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)backgroundVideo).BeginInit();
             SuspendLayout();
             // 
@@ -150,6 +150,7 @@
             musicSlider.Size = new Size(702, 40);
             musicSlider.TabIndex = 2;
             musicSlider.Text = "Music";
+            musicSlider.Validated += musicSlider_Validated;
             // 
             // mainMenuButton
             // 
@@ -185,10 +186,12 @@
             soundSlider.Size = new Size(702, 40);
             soundSlider.TabIndex = 3;
             soundSlider.Text = "Sound";
+            soundSlider.Validated += soundSlider_Validated;
             // 
             // tabPage2
             // 
             tabPage2.BackColor = Color.White;
+            tabPage2.Controls.Add(changePasswordPanel);
             tabPage2.Controls.Add(accountSettingsPanel);
             tabPage2.Controls.Add(usernameTextBox);
             tabPage2.Controls.Add(pictureBox4);
@@ -208,7 +211,6 @@
             tabPage2.Controls.Add(usernameTxt);
             tabPage2.Controls.Add(profilePbox);
             tabPage2.Controls.Add(confirmBox);
-            tabPage2.Controls.Add(changePasswordPanel);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
@@ -216,6 +218,196 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Account Settings";
             tabPage2.Click += tabPage2_Click;
+            // 
+            // changePasswordPanel
+            // 
+            changePasswordPanel.Controls.Add(changePasswordCurrentPasswordTbox);
+            changePasswordPanel.Controls.Add(changePasswordCancelButton);
+            changePasswordPanel.Controls.Add(changePasswordConfirmButton);
+            changePasswordPanel.Controls.Add(changePasswordConfirmPasswordTbox);
+            changePasswordPanel.Controls.Add(changePasswordCreatePasswordTbox);
+            changePasswordPanel.Location = new Point(649, 16);
+            changePasswordPanel.Name = "changePasswordPanel";
+            changePasswordPanel.Size = new Size(416, 283);
+            changePasswordPanel.TabIndex = 24;
+            // 
+            // changePasswordCurrentPasswordTbox
+            // 
+            changePasswordCurrentPasswordTbox.AllowPromptAsInput = true;
+            changePasswordCurrentPasswordTbox.AnimateReadOnly = false;
+            changePasswordCurrentPasswordTbox.AsciiOnly = false;
+            changePasswordCurrentPasswordTbox.BackgroundImageLayout = ImageLayout.None;
+            changePasswordCurrentPasswordTbox.BeepOnError = false;
+            changePasswordCurrentPasswordTbox.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
+            changePasswordCurrentPasswordTbox.Depth = 0;
+            changePasswordCurrentPasswordTbox.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            changePasswordCurrentPasswordTbox.HidePromptOnLeave = false;
+            changePasswordCurrentPasswordTbox.HideSelection = true;
+            changePasswordCurrentPasswordTbox.Hint = "Current Password";
+            changePasswordCurrentPasswordTbox.InsertKeyMode = InsertKeyMode.Default;
+            changePasswordCurrentPasswordTbox.LeadingIcon = null;
+            changePasswordCurrentPasswordTbox.Location = new Point(19, 3);
+            changePasswordCurrentPasswordTbox.Mask = "";
+            changePasswordCurrentPasswordTbox.MaxLength = 32767;
+            changePasswordCurrentPasswordTbox.MouseState = MaterialSkin.MouseState.OUT;
+            changePasswordCurrentPasswordTbox.Name = "changePasswordCurrentPasswordTbox";
+            changePasswordCurrentPasswordTbox.PasswordChar = '●';
+            changePasswordCurrentPasswordTbox.PrefixSuffixText = null;
+            changePasswordCurrentPasswordTbox.PromptChar = '_';
+            changePasswordCurrentPasswordTbox.ReadOnly = false;
+            changePasswordCurrentPasswordTbox.RejectInputOnFirstFailure = false;
+            changePasswordCurrentPasswordTbox.ResetOnPrompt = true;
+            changePasswordCurrentPasswordTbox.ResetOnSpace = true;
+            changePasswordCurrentPasswordTbox.RightToLeft = RightToLeft.No;
+            changePasswordCurrentPasswordTbox.SelectedText = "";
+            changePasswordCurrentPasswordTbox.SelectionLength = 0;
+            changePasswordCurrentPasswordTbox.SelectionStart = 0;
+            changePasswordCurrentPasswordTbox.ShortcutsEnabled = true;
+            changePasswordCurrentPasswordTbox.ShowAssistiveText = true;
+            changePasswordCurrentPasswordTbox.Size = new Size(382, 64);
+            changePasswordCurrentPasswordTbox.SkipLiterals = true;
+            changePasswordCurrentPasswordTbox.TabIndex = 7;
+            changePasswordCurrentPasswordTbox.TabStop = false;
+            changePasswordCurrentPasswordTbox.TextAlign = HorizontalAlignment.Left;
+            changePasswordCurrentPasswordTbox.TextMaskFormat = MaskFormat.IncludeLiterals;
+            changePasswordCurrentPasswordTbox.TrailingIcon = null;
+            changePasswordCurrentPasswordTbox.UseSystemPasswordChar = false;
+            changePasswordCurrentPasswordTbox.ValidatingType = null;
+            changePasswordCurrentPasswordTbox.Enter += AccountTbox_Click;
+            // 
+            // changePasswordCancelButton
+            // 
+            changePasswordCancelButton.Anchor = AnchorStyles.None;
+            changePasswordCancelButton.AutoSize = false;
+            changePasswordCancelButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            changePasswordCancelButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            changePasswordCancelButton.Depth = 0;
+            changePasswordCancelButton.HighEmphasis = true;
+            changePasswordCancelButton.Icon = null;
+            changePasswordCancelButton.Location = new Point(214, 220);
+            changePasswordCancelButton.Margin = new Padding(4, 6, 4, 6);
+            changePasswordCancelButton.MouseState = MaterialSkin.MouseState.HOVER;
+            changePasswordCancelButton.Name = "changePasswordCancelButton";
+            changePasswordCancelButton.NoAccentTextColor = Color.Empty;
+            changePasswordCancelButton.Size = new Size(187, 36);
+            changePasswordCancelButton.TabIndex = 6;
+            changePasswordCancelButton.TabStop = false;
+            changePasswordCancelButton.Text = "CANCEL";
+            changePasswordCancelButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            changePasswordCancelButton.UseAccentColor = false;
+            changePasswordCancelButton.UseVisualStyleBackColor = true;
+            changePasswordCancelButton.Click += changePasswordCancelButton_Click;
+            // 
+            // changePasswordConfirmButton
+            // 
+            changePasswordConfirmButton.Anchor = AnchorStyles.None;
+            changePasswordConfirmButton.AutoSize = false;
+            changePasswordConfirmButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            changePasswordConfirmButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            changePasswordConfirmButton.Depth = 0;
+            changePasswordConfirmButton.HighEmphasis = true;
+            changePasswordConfirmButton.Icon = null;
+            changePasswordConfirmButton.Location = new Point(19, 220);
+            changePasswordConfirmButton.Margin = new Padding(4, 6, 4, 6);
+            changePasswordConfirmButton.MouseState = MaterialSkin.MouseState.HOVER;
+            changePasswordConfirmButton.Name = "changePasswordConfirmButton";
+            changePasswordConfirmButton.NoAccentTextColor = Color.Empty;
+            changePasswordConfirmButton.Size = new Size(187, 36);
+            changePasswordConfirmButton.TabIndex = 5;
+            changePasswordConfirmButton.TabStop = false;
+            changePasswordConfirmButton.Text = "CHANGE PASSWORD";
+            changePasswordConfirmButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            changePasswordConfirmButton.UseAccentColor = false;
+            changePasswordConfirmButton.UseVisualStyleBackColor = true;
+            changePasswordConfirmButton.Click += changePasswordConfirmButton_Click;
+            // 
+            // changePasswordConfirmPasswordTbox
+            // 
+            changePasswordConfirmPasswordTbox.AllowPromptAsInput = true;
+            changePasswordConfirmPasswordTbox.AnimateReadOnly = false;
+            changePasswordConfirmPasswordTbox.AsciiOnly = false;
+            changePasswordConfirmPasswordTbox.BackgroundImageLayout = ImageLayout.None;
+            changePasswordConfirmPasswordTbox.BeepOnError = false;
+            changePasswordConfirmPasswordTbox.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
+            changePasswordConfirmPasswordTbox.Depth = 0;
+            changePasswordConfirmPasswordTbox.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            changePasswordConfirmPasswordTbox.HidePromptOnLeave = false;
+            changePasswordConfirmPasswordTbox.HideSelection = true;
+            changePasswordConfirmPasswordTbox.Hint = "Confirm New Password";
+            changePasswordConfirmPasswordTbox.InsertKeyMode = InsertKeyMode.Default;
+            changePasswordConfirmPasswordTbox.LeadingIcon = null;
+            changePasswordConfirmPasswordTbox.Location = new Point(19, 135);
+            changePasswordConfirmPasswordTbox.Mask = "";
+            changePasswordConfirmPasswordTbox.MaxLength = 32767;
+            changePasswordConfirmPasswordTbox.MouseState = MaterialSkin.MouseState.OUT;
+            changePasswordConfirmPasswordTbox.Name = "changePasswordConfirmPasswordTbox";
+            changePasswordConfirmPasswordTbox.PasswordChar = '●';
+            changePasswordConfirmPasswordTbox.PrefixSuffixText = null;
+            changePasswordConfirmPasswordTbox.PromptChar = '_';
+            changePasswordConfirmPasswordTbox.ReadOnly = false;
+            changePasswordConfirmPasswordTbox.RejectInputOnFirstFailure = false;
+            changePasswordConfirmPasswordTbox.ResetOnPrompt = true;
+            changePasswordConfirmPasswordTbox.ResetOnSpace = true;
+            changePasswordConfirmPasswordTbox.RightToLeft = RightToLeft.No;
+            changePasswordConfirmPasswordTbox.SelectedText = "";
+            changePasswordConfirmPasswordTbox.SelectionLength = 0;
+            changePasswordConfirmPasswordTbox.SelectionStart = 0;
+            changePasswordConfirmPasswordTbox.ShortcutsEnabled = true;
+            changePasswordConfirmPasswordTbox.ShowAssistiveText = true;
+            changePasswordConfirmPasswordTbox.Size = new Size(382, 64);
+            changePasswordConfirmPasswordTbox.SkipLiterals = true;
+            changePasswordConfirmPasswordTbox.TabIndex = 1;
+            changePasswordConfirmPasswordTbox.TabStop = false;
+            changePasswordConfirmPasswordTbox.TextAlign = HorizontalAlignment.Left;
+            changePasswordConfirmPasswordTbox.TextMaskFormat = MaskFormat.IncludeLiterals;
+            changePasswordConfirmPasswordTbox.TrailingIcon = null;
+            changePasswordConfirmPasswordTbox.UseSystemPasswordChar = false;
+            changePasswordConfirmPasswordTbox.ValidatingType = null;
+            changePasswordConfirmPasswordTbox.Enter += AccountTbox_Click;
+            // 
+            // changePasswordCreatePasswordTbox
+            // 
+            changePasswordCreatePasswordTbox.AllowPromptAsInput = true;
+            changePasswordCreatePasswordTbox.AnimateReadOnly = false;
+            changePasswordCreatePasswordTbox.AsciiOnly = false;
+            changePasswordCreatePasswordTbox.BackgroundImageLayout = ImageLayout.None;
+            changePasswordCreatePasswordTbox.BeepOnError = false;
+            changePasswordCreatePasswordTbox.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
+            changePasswordCreatePasswordTbox.Depth = 0;
+            changePasswordCreatePasswordTbox.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            changePasswordCreatePasswordTbox.HidePromptOnLeave = false;
+            changePasswordCreatePasswordTbox.HideSelection = true;
+            changePasswordCreatePasswordTbox.Hint = "New Password";
+            changePasswordCreatePasswordTbox.InsertKeyMode = InsertKeyMode.Default;
+            changePasswordCreatePasswordTbox.LeadingIcon = null;
+            changePasswordCreatePasswordTbox.Location = new Point(19, 86);
+            changePasswordCreatePasswordTbox.Mask = "";
+            changePasswordCreatePasswordTbox.MaxLength = 32767;
+            changePasswordCreatePasswordTbox.MouseState = MaterialSkin.MouseState.OUT;
+            changePasswordCreatePasswordTbox.Name = "changePasswordCreatePasswordTbox";
+            changePasswordCreatePasswordTbox.PasswordChar = '●';
+            changePasswordCreatePasswordTbox.PrefixSuffixText = null;
+            changePasswordCreatePasswordTbox.PromptChar = '_';
+            changePasswordCreatePasswordTbox.ReadOnly = false;
+            changePasswordCreatePasswordTbox.RejectInputOnFirstFailure = false;
+            changePasswordCreatePasswordTbox.ResetOnPrompt = true;
+            changePasswordCreatePasswordTbox.ResetOnSpace = true;
+            changePasswordCreatePasswordTbox.RightToLeft = RightToLeft.No;
+            changePasswordCreatePasswordTbox.SelectedText = "";
+            changePasswordCreatePasswordTbox.SelectionLength = 0;
+            changePasswordCreatePasswordTbox.SelectionStart = 0;
+            changePasswordCreatePasswordTbox.ShortcutsEnabled = true;
+            changePasswordCreatePasswordTbox.ShowAssistiveText = true;
+            changePasswordCreatePasswordTbox.Size = new Size(382, 64);
+            changePasswordCreatePasswordTbox.SkipLiterals = true;
+            changePasswordCreatePasswordTbox.TabIndex = 0;
+            changePasswordCreatePasswordTbox.TabStop = false;
+            changePasswordCreatePasswordTbox.TextAlign = HorizontalAlignment.Left;
+            changePasswordCreatePasswordTbox.TextMaskFormat = MaskFormat.IncludeLiterals;
+            changePasswordCreatePasswordTbox.TrailingIcon = null;
+            changePasswordCreatePasswordTbox.UseSystemPasswordChar = false;
+            changePasswordCreatePasswordTbox.ValidatingType = null;
+            changePasswordCreatePasswordTbox.Enter += AccountTbox_Click;
             // 
             // accountSettingsPanel
             // 
@@ -594,196 +786,6 @@
             confirmBoxNoButton.UseVisualStyleBackColor = true;
             confirmBoxNoButton.Click += confirmBoxNoButton_Click;
             // 
-            // changePasswordPanel
-            // 
-            changePasswordPanel.Controls.Add(changePasswordCurrentPasswordTbox);
-            changePasswordPanel.Controls.Add(changePasswordCancelButton);
-            changePasswordPanel.Controls.Add(changePasswordConfirmButton);
-            changePasswordPanel.Controls.Add(changePasswordConfirmPasswordTbox);
-            changePasswordPanel.Controls.Add(changePasswordCreatePasswordTbox);
-            changePasswordPanel.Location = new Point(649, 16);
-            changePasswordPanel.Name = "changePasswordPanel";
-            changePasswordPanel.Size = new Size(416, 283);
-            changePasswordPanel.TabIndex = 24;
-            // 
-            // changePasswordCurrentPasswordTbox
-            // 
-            changePasswordCurrentPasswordTbox.AllowPromptAsInput = true;
-            changePasswordCurrentPasswordTbox.AnimateReadOnly = false;
-            changePasswordCurrentPasswordTbox.AsciiOnly = false;
-            changePasswordCurrentPasswordTbox.BackgroundImageLayout = ImageLayout.None;
-            changePasswordCurrentPasswordTbox.BeepOnError = false;
-            changePasswordCurrentPasswordTbox.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
-            changePasswordCurrentPasswordTbox.Depth = 0;
-            changePasswordCurrentPasswordTbox.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            changePasswordCurrentPasswordTbox.HidePromptOnLeave = false;
-            changePasswordCurrentPasswordTbox.HideSelection = true;
-            changePasswordCurrentPasswordTbox.Hint = "Current Password";
-            changePasswordCurrentPasswordTbox.InsertKeyMode = InsertKeyMode.Default;
-            changePasswordCurrentPasswordTbox.LeadingIcon = null;
-            changePasswordCurrentPasswordTbox.Location = new Point(19, 3);
-            changePasswordCurrentPasswordTbox.Mask = "";
-            changePasswordCurrentPasswordTbox.MaxLength = 32767;
-            changePasswordCurrentPasswordTbox.MouseState = MaterialSkin.MouseState.OUT;
-            changePasswordCurrentPasswordTbox.Name = "changePasswordCurrentPasswordTbox";
-            changePasswordCurrentPasswordTbox.PasswordChar = '\0';
-            changePasswordCurrentPasswordTbox.PrefixSuffixText = null;
-            changePasswordCurrentPasswordTbox.PromptChar = '_';
-            changePasswordCurrentPasswordTbox.ReadOnly = false;
-            changePasswordCurrentPasswordTbox.RejectInputOnFirstFailure = false;
-            changePasswordCurrentPasswordTbox.ResetOnPrompt = true;
-            changePasswordCurrentPasswordTbox.ResetOnSpace = true;
-            changePasswordCurrentPasswordTbox.RightToLeft = RightToLeft.No;
-            changePasswordCurrentPasswordTbox.SelectedText = "";
-            changePasswordCurrentPasswordTbox.SelectionLength = 0;
-            changePasswordCurrentPasswordTbox.SelectionStart = 0;
-            changePasswordCurrentPasswordTbox.ShortcutsEnabled = true;
-            changePasswordCurrentPasswordTbox.ShowAssistiveText = true;
-            changePasswordCurrentPasswordTbox.Size = new Size(382, 64);
-            changePasswordCurrentPasswordTbox.SkipLiterals = true;
-            changePasswordCurrentPasswordTbox.TabIndex = 7;
-            changePasswordCurrentPasswordTbox.TabStop = false;
-            changePasswordCurrentPasswordTbox.TextAlign = HorizontalAlignment.Left;
-            changePasswordCurrentPasswordTbox.TextMaskFormat = MaskFormat.IncludeLiterals;
-            changePasswordCurrentPasswordTbox.TrailingIcon = null;
-            changePasswordCurrentPasswordTbox.UseSystemPasswordChar = false;
-            changePasswordCurrentPasswordTbox.ValidatingType = null;
-            changePasswordCurrentPasswordTbox.Enter += AccountTbox_Click;
-            // 
-            // changePasswordCancelButton
-            // 
-            changePasswordCancelButton.Anchor = AnchorStyles.None;
-            changePasswordCancelButton.AutoSize = false;
-            changePasswordCancelButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            changePasswordCancelButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            changePasswordCancelButton.Depth = 0;
-            changePasswordCancelButton.HighEmphasis = true;
-            changePasswordCancelButton.Icon = null;
-            changePasswordCancelButton.Location = new Point(214, 220);
-            changePasswordCancelButton.Margin = new Padding(4, 6, 4, 6);
-            changePasswordCancelButton.MouseState = MaterialSkin.MouseState.HOVER;
-            changePasswordCancelButton.Name = "changePasswordCancelButton";
-            changePasswordCancelButton.NoAccentTextColor = Color.Empty;
-            changePasswordCancelButton.Size = new Size(187, 36);
-            changePasswordCancelButton.TabIndex = 6;
-            changePasswordCancelButton.TabStop = false;
-            changePasswordCancelButton.Text = "CANCEL";
-            changePasswordCancelButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            changePasswordCancelButton.UseAccentColor = false;
-            changePasswordCancelButton.UseVisualStyleBackColor = true;
-            changePasswordCancelButton.Click += changePasswordCancelButton_Click;
-            // 
-            // changePasswordConfirmButton
-            // 
-            changePasswordConfirmButton.Anchor = AnchorStyles.None;
-            changePasswordConfirmButton.AutoSize = false;
-            changePasswordConfirmButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            changePasswordConfirmButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            changePasswordConfirmButton.Depth = 0;
-            changePasswordConfirmButton.HighEmphasis = true;
-            changePasswordConfirmButton.Icon = null;
-            changePasswordConfirmButton.Location = new Point(19, 220);
-            changePasswordConfirmButton.Margin = new Padding(4, 6, 4, 6);
-            changePasswordConfirmButton.MouseState = MaterialSkin.MouseState.HOVER;
-            changePasswordConfirmButton.Name = "changePasswordConfirmButton";
-            changePasswordConfirmButton.NoAccentTextColor = Color.Empty;
-            changePasswordConfirmButton.Size = new Size(187, 36);
-            changePasswordConfirmButton.TabIndex = 5;
-            changePasswordConfirmButton.TabStop = false;
-            changePasswordConfirmButton.Text = "CHANGE PASSWORD";
-            changePasswordConfirmButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            changePasswordConfirmButton.UseAccentColor = false;
-            changePasswordConfirmButton.UseVisualStyleBackColor = true;
-            changePasswordConfirmButton.Click += changePasswordConfirmButton_Click;
-            // 
-            // changePasswordConfirmPasswordTbox
-            // 
-            changePasswordConfirmPasswordTbox.AllowPromptAsInput = true;
-            changePasswordConfirmPasswordTbox.AnimateReadOnly = false;
-            changePasswordConfirmPasswordTbox.AsciiOnly = false;
-            changePasswordConfirmPasswordTbox.BackgroundImageLayout = ImageLayout.None;
-            changePasswordConfirmPasswordTbox.BeepOnError = false;
-            changePasswordConfirmPasswordTbox.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
-            changePasswordConfirmPasswordTbox.Depth = 0;
-            changePasswordConfirmPasswordTbox.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            changePasswordConfirmPasswordTbox.HidePromptOnLeave = false;
-            changePasswordConfirmPasswordTbox.HideSelection = true;
-            changePasswordConfirmPasswordTbox.Hint = "Confirm New Password";
-            changePasswordConfirmPasswordTbox.InsertKeyMode = InsertKeyMode.Default;
-            changePasswordConfirmPasswordTbox.LeadingIcon = null;
-            changePasswordConfirmPasswordTbox.Location = new Point(19, 135);
-            changePasswordConfirmPasswordTbox.Mask = "";
-            changePasswordConfirmPasswordTbox.MaxLength = 32767;
-            changePasswordConfirmPasswordTbox.MouseState = MaterialSkin.MouseState.OUT;
-            changePasswordConfirmPasswordTbox.Name = "changePasswordConfirmPasswordTbox";
-            changePasswordConfirmPasswordTbox.PasswordChar = '\0';
-            changePasswordConfirmPasswordTbox.PrefixSuffixText = null;
-            changePasswordConfirmPasswordTbox.PromptChar = '_';
-            changePasswordConfirmPasswordTbox.ReadOnly = false;
-            changePasswordConfirmPasswordTbox.RejectInputOnFirstFailure = false;
-            changePasswordConfirmPasswordTbox.ResetOnPrompt = true;
-            changePasswordConfirmPasswordTbox.ResetOnSpace = true;
-            changePasswordConfirmPasswordTbox.RightToLeft = RightToLeft.No;
-            changePasswordConfirmPasswordTbox.SelectedText = "";
-            changePasswordConfirmPasswordTbox.SelectionLength = 0;
-            changePasswordConfirmPasswordTbox.SelectionStart = 0;
-            changePasswordConfirmPasswordTbox.ShortcutsEnabled = true;
-            changePasswordConfirmPasswordTbox.ShowAssistiveText = true;
-            changePasswordConfirmPasswordTbox.Size = new Size(382, 64);
-            changePasswordConfirmPasswordTbox.SkipLiterals = true;
-            changePasswordConfirmPasswordTbox.TabIndex = 1;
-            changePasswordConfirmPasswordTbox.TabStop = false;
-            changePasswordConfirmPasswordTbox.TextAlign = HorizontalAlignment.Left;
-            changePasswordConfirmPasswordTbox.TextMaskFormat = MaskFormat.IncludeLiterals;
-            changePasswordConfirmPasswordTbox.TrailingIcon = null;
-            changePasswordConfirmPasswordTbox.UseSystemPasswordChar = false;
-            changePasswordConfirmPasswordTbox.ValidatingType = null;
-            changePasswordConfirmPasswordTbox.Enter += AccountTbox_Click;
-            // 
-            // changePasswordCreatePasswordTbox
-            // 
-            changePasswordCreatePasswordTbox.AllowPromptAsInput = true;
-            changePasswordCreatePasswordTbox.AnimateReadOnly = false;
-            changePasswordCreatePasswordTbox.AsciiOnly = false;
-            changePasswordCreatePasswordTbox.BackgroundImageLayout = ImageLayout.None;
-            changePasswordCreatePasswordTbox.BeepOnError = false;
-            changePasswordCreatePasswordTbox.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
-            changePasswordCreatePasswordTbox.Depth = 0;
-            changePasswordCreatePasswordTbox.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            changePasswordCreatePasswordTbox.HidePromptOnLeave = false;
-            changePasswordCreatePasswordTbox.HideSelection = true;
-            changePasswordCreatePasswordTbox.Hint = "New Password";
-            changePasswordCreatePasswordTbox.InsertKeyMode = InsertKeyMode.Default;
-            changePasswordCreatePasswordTbox.LeadingIcon = null;
-            changePasswordCreatePasswordTbox.Location = new Point(19, 86);
-            changePasswordCreatePasswordTbox.Mask = "";
-            changePasswordCreatePasswordTbox.MaxLength = 32767;
-            changePasswordCreatePasswordTbox.MouseState = MaterialSkin.MouseState.OUT;
-            changePasswordCreatePasswordTbox.Name = "changePasswordCreatePasswordTbox";
-            changePasswordCreatePasswordTbox.PasswordChar = '\0';
-            changePasswordCreatePasswordTbox.PrefixSuffixText = null;
-            changePasswordCreatePasswordTbox.PromptChar = '_';
-            changePasswordCreatePasswordTbox.ReadOnly = false;
-            changePasswordCreatePasswordTbox.RejectInputOnFirstFailure = false;
-            changePasswordCreatePasswordTbox.ResetOnPrompt = true;
-            changePasswordCreatePasswordTbox.ResetOnSpace = true;
-            changePasswordCreatePasswordTbox.RightToLeft = RightToLeft.No;
-            changePasswordCreatePasswordTbox.SelectedText = "";
-            changePasswordCreatePasswordTbox.SelectionLength = 0;
-            changePasswordCreatePasswordTbox.SelectionStart = 0;
-            changePasswordCreatePasswordTbox.ShortcutsEnabled = true;
-            changePasswordCreatePasswordTbox.ShowAssistiveText = true;
-            changePasswordCreatePasswordTbox.Size = new Size(382, 64);
-            changePasswordCreatePasswordTbox.SkipLiterals = true;
-            changePasswordCreatePasswordTbox.TabIndex = 0;
-            changePasswordCreatePasswordTbox.TabStop = false;
-            changePasswordCreatePasswordTbox.TextAlign = HorizontalAlignment.Left;
-            changePasswordCreatePasswordTbox.TextMaskFormat = MaskFormat.IncludeLiterals;
-            changePasswordCreatePasswordTbox.TrailingIcon = null;
-            changePasswordCreatePasswordTbox.UseSystemPasswordChar = false;
-            changePasswordCreatePasswordTbox.ValidatingType = null;
-            changePasswordCreatePasswordTbox.Enter += AccountTbox_Click;
-            // 
             // materialTabSelector1
             // 
             materialTabSelector1.Anchor = AnchorStyles.None;
@@ -847,6 +849,7 @@
             tabPage1.PerformLayout();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
+            changePasswordPanel.ResumeLayout(false);
             accountSettingsPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
@@ -855,7 +858,6 @@
             ((System.ComponentModel.ISupportInitialize)profilePbox).EndInit();
             confirmBox.ResumeLayout(false);
             confirmBox.PerformLayout();
-            changePasswordPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)backgroundVideo).EndInit();
             ResumeLayout(false);
         }

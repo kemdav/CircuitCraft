@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             airForm1 = new ReaLTaiizor.Forms.AirForm();
+            loginPanel = new Panel();
+            bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
+            passwordLoginTbox = new MaterialSkin.Controls.MaterialMaskedTextBox();
+            usernameLoginTbox = new MaterialSkin.Controls.MaterialMaskedTextBox();
+            signUpBttn = new MaterialSkin.Controls.MaterialButton();
+            loginBttn = new MaterialSkin.Controls.MaterialButton();
             signUpPanel = new Panel();
             signUpButton = new MaterialSkin.Controls.MaterialButton();
             confirmPasswordTbox = new MaterialSkin.Controls.MaterialMaskedTextBox();
@@ -36,23 +42,17 @@
             createPasswordTbox = new MaterialSkin.Controls.MaterialMaskedTextBox();
             createUsernameTbox = new MaterialSkin.Controls.MaterialMaskedTextBox();
             backButton = new MaterialSkin.Controls.MaterialButton();
-            loginBttn = new MaterialSkin.Controls.MaterialButton();
-            signUpBttn = new MaterialSkin.Controls.MaterialButton();
-            usernameLoginTbox = new MaterialSkin.Controls.MaterialMaskedTextBox();
-            passwordLoginTbox = new MaterialSkin.Controls.MaterialMaskedTextBox();
-            bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
-            loginPanel = new Panel();
             airForm1.SuspendLayout();
-            signUpPanel.SuspendLayout();
             loginPanel.SuspendLayout();
+            signUpPanel.SuspendLayout();
             SuspendLayout();
             // 
             // airForm1
             // 
             airForm1.BackColor = Color.AliceBlue;
             airForm1.BorderStyle = FormBorderStyle.None;
-            airForm1.Controls.Add(loginPanel);
             airForm1.Controls.Add(signUpPanel);
+            airForm1.Controls.Add(loginPanel);
             airForm1.Customization = "AAAA/1paWv9ycnL/";
             airForm1.Dock = DockStyle.Fill;
             airForm1.Font = new Font("Segoe UI", 9F);
@@ -70,6 +70,164 @@
             airForm1.Text = "Login";
             airForm1.TransparencyKey = Color.Fuchsia;
             airForm1.Transparent = false;
+            // 
+            // loginPanel
+            // 
+            loginPanel.Controls.Add(bigLabel1);
+            loginPanel.Controls.Add(passwordLoginTbox);
+            loginPanel.Controls.Add(usernameLoginTbox);
+            loginPanel.Controls.Add(signUpBttn);
+            loginPanel.Controls.Add(loginBttn);
+            loginPanel.Location = new Point(0, 26);
+            loginPanel.Name = "loginPanel";
+            loginPanel.Size = new Size(419, 553);
+            loginPanel.TabIndex = 2;
+            // 
+            // bigLabel1
+            // 
+            bigLabel1.AutoSize = true;
+            bigLabel1.BackColor = Color.Transparent;
+            bigLabel1.FlatStyle = FlatStyle.Popup;
+            bigLabel1.Font = new Font("Swis721 Blk BT", 24.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bigLabel1.ForeColor = Color.CornflowerBlue;
+            bigLabel1.Location = new Point(59, 70);
+            bigLabel1.Name = "bigLabel1";
+            bigLabel1.Size = new Size(298, 40);
+            bigLabel1.TabIndex = 4;
+            bigLabel1.Text = "CIRCUIT CRAFT";
+            // 
+            // passwordLoginTbox
+            // 
+            passwordLoginTbox.AllowPromptAsInput = true;
+            passwordLoginTbox.AnimateReadOnly = false;
+            passwordLoginTbox.AsciiOnly = false;
+            passwordLoginTbox.BackgroundImageLayout = ImageLayout.None;
+            passwordLoginTbox.BeepOnError = true;
+            passwordLoginTbox.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
+            passwordLoginTbox.Depth = 0;
+            passwordLoginTbox.ErrorMessage = "WRONG PASSWORD OR USERNAME!";
+            passwordLoginTbox.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            passwordLoginTbox.HidePromptOnLeave = false;
+            passwordLoginTbox.HideSelection = true;
+            passwordLoginTbox.Hint = "Password";
+            passwordLoginTbox.InsertKeyMode = InsertKeyMode.Default;
+            passwordLoginTbox.LeadingIcon = null;
+            passwordLoginTbox.Location = new Point(58, 244);
+            passwordLoginTbox.Mask = "";
+            passwordLoginTbox.MaxLength = 32767;
+            passwordLoginTbox.MouseState = MaterialSkin.MouseState.OUT;
+            passwordLoginTbox.Name = "passwordLoginTbox";
+            passwordLoginTbox.PasswordChar = '●';
+            passwordLoginTbox.PrefixSuffixText = null;
+            passwordLoginTbox.PromptChar = '_';
+            passwordLoginTbox.ReadOnly = false;
+            passwordLoginTbox.RejectInputOnFirstFailure = false;
+            passwordLoginTbox.ResetOnPrompt = true;
+            passwordLoginTbox.ResetOnSpace = true;
+            passwordLoginTbox.RightToLeft = RightToLeft.No;
+            passwordLoginTbox.SelectedText = "";
+            passwordLoginTbox.SelectionLength = 0;
+            passwordLoginTbox.SelectionStart = 0;
+            passwordLoginTbox.ShortcutsEnabled = true;
+            passwordLoginTbox.ShowAssistiveText = true;
+            passwordLoginTbox.Size = new Size(284, 64);
+            passwordLoginTbox.SkipLiterals = true;
+            passwordLoginTbox.TabIndex = 3;
+            passwordLoginTbox.TabStop = false;
+            passwordLoginTbox.TextAlign = HorizontalAlignment.Left;
+            passwordLoginTbox.TextMaskFormat = MaskFormat.IncludeLiterals;
+            passwordLoginTbox.TrailingIcon = null;
+            passwordLoginTbox.UseSystemPasswordChar = true;
+            passwordLoginTbox.ValidatingType = null;
+            passwordLoginTbox.Click += InformationTbox_Click;
+            // 
+            // usernameLoginTbox
+            // 
+            usernameLoginTbox.AllowPromptAsInput = true;
+            usernameLoginTbox.AnimateReadOnly = false;
+            usernameLoginTbox.AsciiOnly = false;
+            usernameLoginTbox.BackgroundImageLayout = ImageLayout.None;
+            usernameLoginTbox.BeepOnError = true;
+            usernameLoginTbox.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
+            usernameLoginTbox.Depth = 0;
+            usernameLoginTbox.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            usernameLoginTbox.HidePromptOnLeave = false;
+            usernameLoginTbox.HideSelection = true;
+            usernameLoginTbox.Hint = "Username";
+            usernameLoginTbox.InsertKeyMode = InsertKeyMode.Default;
+            usernameLoginTbox.LeadingIcon = null;
+            usernameLoginTbox.Location = new Point(59, 175);
+            usernameLoginTbox.Mask = "";
+            usernameLoginTbox.MaxLength = 32767;
+            usernameLoginTbox.MouseState = MaterialSkin.MouseState.OUT;
+            usernameLoginTbox.Name = "usernameLoginTbox";
+            usernameLoginTbox.PasswordChar = '\0';
+            usernameLoginTbox.PrefixSuffixText = "Username";
+            usernameLoginTbox.PromptChar = '_';
+            usernameLoginTbox.ReadOnly = false;
+            usernameLoginTbox.RejectInputOnFirstFailure = false;
+            usernameLoginTbox.ResetOnPrompt = true;
+            usernameLoginTbox.ResetOnSpace = true;
+            usernameLoginTbox.RightToLeft = RightToLeft.No;
+            usernameLoginTbox.SelectedText = "";
+            usernameLoginTbox.SelectionLength = 0;
+            usernameLoginTbox.SelectionStart = 0;
+            usernameLoginTbox.ShortcutsEnabled = true;
+            usernameLoginTbox.ShowAssistiveText = true;
+            usernameLoginTbox.Size = new Size(284, 64);
+            usernameLoginTbox.SkipLiterals = true;
+            usernameLoginTbox.TabIndex = 2;
+            usernameLoginTbox.TabStop = false;
+            usernameLoginTbox.TextAlign = HorizontalAlignment.Left;
+            usernameLoginTbox.TextMaskFormat = MaskFormat.IncludeLiterals;
+            usernameLoginTbox.TrailingIcon = null;
+            usernameLoginTbox.UseSystemPasswordChar = false;
+            usernameLoginTbox.ValidatingType = null;
+            usernameLoginTbox.Click += InformationTbox_Click;
+            usernameLoginTbox.KeyPress += UsernameTbox_KeyPress;
+            usernameLoginTbox.TextChanged += InformationTbox_Click;
+            // 
+            // signUpBttn
+            // 
+            signUpBttn.AutoSize = false;
+            signUpBttn.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            signUpBttn.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Dense;
+            signUpBttn.Depth = 0;
+            signUpBttn.HighEmphasis = true;
+            signUpBttn.Icon = null;
+            signUpBttn.Location = new Point(276, 305);
+            signUpBttn.Margin = new Padding(4, 6, 4, 6);
+            signUpBttn.MouseState = MaterialSkin.MouseState.HOVER;
+            signUpBttn.Name = "signUpBttn";
+            signUpBttn.NoAccentTextColor = Color.Empty;
+            signUpBttn.Size = new Size(66, 32);
+            signUpBttn.TabIndex = 1;
+            signUpBttn.Text = "Sign up";
+            signUpBttn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
+            signUpBttn.UseAccentColor = false;
+            signUpBttn.UseVisualStyleBackColor = true;
+            signUpBttn.Click += signUpBttn_Click;
+            // 
+            // loginBttn
+            // 
+            loginBttn.AutoSize = false;
+            loginBttn.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            loginBttn.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            loginBttn.Depth = 0;
+            loginBttn.HighEmphasis = true;
+            loginBttn.Icon = null;
+            loginBttn.Location = new Point(134, 427);
+            loginBttn.Margin = new Padding(4, 6, 4, 6);
+            loginBttn.MouseState = MaterialSkin.MouseState.HOVER;
+            loginBttn.Name = "loginBttn";
+            loginBttn.NoAccentTextColor = Color.Empty;
+            loginBttn.Size = new Size(133, 36);
+            loginBttn.TabIndex = 0;
+            loginBttn.Text = "Login";
+            loginBttn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            loginBttn.UseAccentColor = false;
+            loginBttn.UseVisualStyleBackColor = true;
+            loginBttn.Click += loginBttn_Click;
             // 
             // signUpPanel
             // 
@@ -273,164 +431,6 @@
             backButton.UseVisualStyleBackColor = true;
             backButton.Click += backButton_Click;
             // 
-            // loginBttn
-            // 
-            loginBttn.AutoSize = false;
-            loginBttn.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            loginBttn.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            loginBttn.Depth = 0;
-            loginBttn.HighEmphasis = true;
-            loginBttn.Icon = null;
-            loginBttn.Location = new Point(134, 427);
-            loginBttn.Margin = new Padding(4, 6, 4, 6);
-            loginBttn.MouseState = MaterialSkin.MouseState.HOVER;
-            loginBttn.Name = "loginBttn";
-            loginBttn.NoAccentTextColor = Color.Empty;
-            loginBttn.Size = new Size(133, 36);
-            loginBttn.TabIndex = 0;
-            loginBttn.Text = "Login";
-            loginBttn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            loginBttn.UseAccentColor = false;
-            loginBttn.UseVisualStyleBackColor = true;
-            loginBttn.Click += loginBttn_Click;
-            // 
-            // signUpBttn
-            // 
-            signUpBttn.AutoSize = false;
-            signUpBttn.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            signUpBttn.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Dense;
-            signUpBttn.Depth = 0;
-            signUpBttn.HighEmphasis = true;
-            signUpBttn.Icon = null;
-            signUpBttn.Location = new Point(276, 305);
-            signUpBttn.Margin = new Padding(4, 6, 4, 6);
-            signUpBttn.MouseState = MaterialSkin.MouseState.HOVER;
-            signUpBttn.Name = "signUpBttn";
-            signUpBttn.NoAccentTextColor = Color.Empty;
-            signUpBttn.Size = new Size(66, 32);
-            signUpBttn.TabIndex = 1;
-            signUpBttn.Text = "Sign up";
-            signUpBttn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
-            signUpBttn.UseAccentColor = false;
-            signUpBttn.UseVisualStyleBackColor = true;
-            signUpBttn.Click += signUpBttn_Click;
-            // 
-            // usernameLoginTbox
-            // 
-            usernameLoginTbox.AllowPromptAsInput = true;
-            usernameLoginTbox.AnimateReadOnly = false;
-            usernameLoginTbox.AsciiOnly = false;
-            usernameLoginTbox.BackgroundImageLayout = ImageLayout.None;
-            usernameLoginTbox.BeepOnError = true;
-            usernameLoginTbox.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
-            usernameLoginTbox.Depth = 0;
-            usernameLoginTbox.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            usernameLoginTbox.HidePromptOnLeave = false;
-            usernameLoginTbox.HideSelection = true;
-            usernameLoginTbox.Hint = "Username";
-            usernameLoginTbox.InsertKeyMode = InsertKeyMode.Default;
-            usernameLoginTbox.LeadingIcon = null;
-            usernameLoginTbox.Location = new Point(59, 175);
-            usernameLoginTbox.Mask = "";
-            usernameLoginTbox.MaxLength = 32767;
-            usernameLoginTbox.MouseState = MaterialSkin.MouseState.OUT;
-            usernameLoginTbox.Name = "usernameLoginTbox";
-            usernameLoginTbox.PasswordChar = '\0';
-            usernameLoginTbox.PrefixSuffixText = "Username";
-            usernameLoginTbox.PromptChar = '_';
-            usernameLoginTbox.ReadOnly = false;
-            usernameLoginTbox.RejectInputOnFirstFailure = false;
-            usernameLoginTbox.ResetOnPrompt = true;
-            usernameLoginTbox.ResetOnSpace = true;
-            usernameLoginTbox.RightToLeft = RightToLeft.No;
-            usernameLoginTbox.SelectedText = "";
-            usernameLoginTbox.SelectionLength = 0;
-            usernameLoginTbox.SelectionStart = 0;
-            usernameLoginTbox.ShortcutsEnabled = true;
-            usernameLoginTbox.ShowAssistiveText = true;
-            usernameLoginTbox.Size = new Size(284, 64);
-            usernameLoginTbox.SkipLiterals = true;
-            usernameLoginTbox.TabIndex = 2;
-            usernameLoginTbox.TabStop = false;
-            usernameLoginTbox.TextAlign = HorizontalAlignment.Left;
-            usernameLoginTbox.TextMaskFormat = MaskFormat.IncludeLiterals;
-            usernameLoginTbox.TrailingIcon = null;
-            usernameLoginTbox.UseSystemPasswordChar = false;
-            usernameLoginTbox.ValidatingType = null;
-            usernameLoginTbox.Click += InformationTbox_Click;
-            usernameLoginTbox.KeyPress += UsernameTbox_KeyPress;
-            usernameLoginTbox.TextChanged += InformationTbox_Click;
-            // 
-            // passwordLoginTbox
-            // 
-            passwordLoginTbox.AllowPromptAsInput = true;
-            passwordLoginTbox.AnimateReadOnly = false;
-            passwordLoginTbox.AsciiOnly = false;
-            passwordLoginTbox.BackgroundImageLayout = ImageLayout.None;
-            passwordLoginTbox.BeepOnError = true;
-            passwordLoginTbox.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
-            passwordLoginTbox.Depth = 0;
-            passwordLoginTbox.ErrorMessage = "WRONG PASSWORD OR USERNAME!";
-            passwordLoginTbox.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            passwordLoginTbox.HidePromptOnLeave = false;
-            passwordLoginTbox.HideSelection = true;
-            passwordLoginTbox.Hint = "Password";
-            passwordLoginTbox.InsertKeyMode = InsertKeyMode.Default;
-            passwordLoginTbox.LeadingIcon = null;
-            passwordLoginTbox.Location = new Point(58, 244);
-            passwordLoginTbox.Mask = "";
-            passwordLoginTbox.MaxLength = 32767;
-            passwordLoginTbox.MouseState = MaterialSkin.MouseState.OUT;
-            passwordLoginTbox.Name = "passwordLoginTbox";
-            passwordLoginTbox.PasswordChar = '●';
-            passwordLoginTbox.PrefixSuffixText = null;
-            passwordLoginTbox.PromptChar = '_';
-            passwordLoginTbox.ReadOnly = false;
-            passwordLoginTbox.RejectInputOnFirstFailure = false;
-            passwordLoginTbox.ResetOnPrompt = true;
-            passwordLoginTbox.ResetOnSpace = true;
-            passwordLoginTbox.RightToLeft = RightToLeft.No;
-            passwordLoginTbox.SelectedText = "";
-            passwordLoginTbox.SelectionLength = 0;
-            passwordLoginTbox.SelectionStart = 0;
-            passwordLoginTbox.ShortcutsEnabled = true;
-            passwordLoginTbox.ShowAssistiveText = true;
-            passwordLoginTbox.Size = new Size(284, 64);
-            passwordLoginTbox.SkipLiterals = true;
-            passwordLoginTbox.TabIndex = 3;
-            passwordLoginTbox.TabStop = false;
-            passwordLoginTbox.TextAlign = HorizontalAlignment.Left;
-            passwordLoginTbox.TextMaskFormat = MaskFormat.IncludeLiterals;
-            passwordLoginTbox.TrailingIcon = null;
-            passwordLoginTbox.UseSystemPasswordChar = true;
-            passwordLoginTbox.ValidatingType = null;
-            passwordLoginTbox.Click += InformationTbox_Click;
-            // 
-            // bigLabel1
-            // 
-            bigLabel1.AutoSize = true;
-            bigLabel1.BackColor = Color.Transparent;
-            bigLabel1.FlatStyle = FlatStyle.Popup;
-            bigLabel1.Font = new Font("Swis721 Blk BT", 24.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            bigLabel1.ForeColor = Color.CornflowerBlue;
-            bigLabel1.Location = new Point(59, 70);
-            bigLabel1.Name = "bigLabel1";
-            bigLabel1.Size = new Size(298, 40);
-            bigLabel1.TabIndex = 4;
-            bigLabel1.Text = "CIRCUIT CRAFT";
-            // 
-            // loginPanel
-            // 
-            loginPanel.Controls.Add(bigLabel1);
-            loginPanel.Controls.Add(passwordLoginTbox);
-            loginPanel.Controls.Add(usernameLoginTbox);
-            loginPanel.Controls.Add(signUpBttn);
-            loginPanel.Controls.Add(loginBttn);
-            loginPanel.Location = new Point(0, 26);
-            loginPanel.Name = "loginPanel";
-            loginPanel.Size = new Size(419, 553);
-            loginPanel.TabIndex = 2;
-            // 
             // LoginScreenForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -446,10 +446,10 @@
             TransparencyKey = Color.Fuchsia;
             Load += LoginScreenForm_Load;
             airForm1.ResumeLayout(false);
-            signUpPanel.ResumeLayout(false);
-            signUpPanel.PerformLayout();
             loginPanel.ResumeLayout(false);
             loginPanel.PerformLayout();
+            signUpPanel.ResumeLayout(false);
+            signUpPanel.PerformLayout();
             ResumeLayout(false);
         }
 

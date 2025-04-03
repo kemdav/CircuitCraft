@@ -159,7 +159,7 @@ namespace CircuitCraft
             }
         }
 
-        public static void RegisterUser(string username, string passwordText)
+        public static bool RegisterUser(string username, string passwordText)
         {
             string databaseName = "Database.db"; // Name of your SQLite database file
             string connectionString = $"Data Source={databaseName};Version=3;"; // Connection string
@@ -184,10 +184,12 @@ namespace CircuitCraft
                         //MessageBox.Show($"User '{username}' registered successfully.");
                     }
                 }
+                return true;
             }
             catch (SQLiteException ex)
             {
-                MessageBox.Show($"Error inserting user into SQLite database: {ex.Message}");
+                //MessageBox.Show($"Error inserting user into SQLite database: {ex.Message}");
+                return false;
             }
         }
 

@@ -100,6 +100,9 @@ namespace CircuitCraft
         private void signUpBttn_Click(object sender, EventArgs e)
         {
             loginPanel.Hide();
+            createPasswordTbox.Text = "";
+            confirmPasswordTbox.Text = "";
+            createUsernameTbox.Text = "";
             signUpPanel.Show();
         }
 
@@ -157,7 +160,7 @@ namespace CircuitCraft
                 createUsernameTbox.SetErrorState(true);
             }
 
-            if (isValid)
+            if (isValid && DataClass.RegisterUser(createUsernameTbox.Text, createPasswordTbox.Text))
             {
                 var frm = new LoginScreenForm();
                 frm.StartPosition = FormStartPosition.CenterScreen;
@@ -166,9 +169,13 @@ namespace CircuitCraft
                 Hide();
 
                 DataClass.username = createUsernameTbox.Text;
-                DataClass.RegisterUser(createUsernameTbox.Text, createPasswordTbox.Text);
                 DataClass.UpdateUserInformation("profileimage", File.ReadAllBytes(Path.Combine(Application.StartupPath, "Images", "Default Profile Picture", "default.jpg")));
                 DataClass.ResetUserData();
+            }
+            else
+            {
+                createUsernameTbox.ErrorMessage = "Username already exists";
+                createUsernameTbox.SetErrorState(true);
             }
         }
 

@@ -26,6 +26,7 @@ namespace CircuitCraft
             if (!isInitialized)
             {
                 isInitialized = true;
+                DataClass.AqcuireUserInformation();
                 usernameTextBox.Text = DataClass.username;
                 ratingTxt.Text = "RATING: " + DataClass.rating;
                 circuitsCompletedTxt.Text = "" + DataClass.circuitsCompleted;
@@ -253,6 +254,16 @@ namespace CircuitCraft
         {
             confirmBox.Visible = false;
             accountSettingsPanel.Visible = true;
+        }
+
+        private void soundSlider_Validated(object sender, EventArgs e)
+        {
+            DataClass.UpdateUserInformation("soundvolume", soundSlider.Value);
+        }
+
+        private void musicSlider_Validated(object sender, EventArgs e)
+        {
+            DataClass.UpdateUserInformation("musicvolume", musicSlider.Value);
         }
 
         //private void fullScreenCheckBox_CheckedChanged(object sender, EventArgs e)
