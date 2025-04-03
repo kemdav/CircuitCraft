@@ -12,7 +12,7 @@ namespace CircuitCraft
 {
     public partial class GameCanvas : UserControl
     {
-        public List<CircuitElement> CircuitSources { get; set; } = new List<CircuitElement>();
+        public List<CircuitElement> CircuitSources { get; set; }
 
         private int _currentBlockIndex = 0;
         public int CurrentBlockIndex { 
@@ -57,7 +57,32 @@ namespace CircuitCraft
             }
         }
 
-        public void SpawnCircuitElement(CircuitElementType circuitElementType, double voltage, double resistance)
+        public void AddCircuitSource(double voltage)
+        {
+            CircuitElement circuitElement = new GameSource();
+            circuitElement.Voltage = voltage;
+            //circuitElement.CircuitElementSprite = CircuitElementSourceSprite;
+            CircuitSources.Add(circuitElement);
+        }
+
+        public void SimulateCircuit()
+        {
+            foreach (CircuitBlock circuitBlock in CircuitBlocks)
+            {
+                if (circuitBlock.CircuitBlockConnectionType == CircuitBlockConnectionType.Series)
+                { 
+                    foreach (CircuitElement circuitElement in circuitBlock.CircuitElements)
+                    {
+                        if (circuitElement.circuitElementType == CircuitElementType.Resistor)
+                        {
+                            
+                        }
+                    }
+                }
+            }
+        }
+            #region Game Canvas UI
+            public void SpawnCircuitElement(CircuitElementType circuitElementType, double voltage, double resistance)
         {
             CurrentCircuitElementDroppedResistance = resistance;
             CurrentCircuitElementDroppedVoltage = voltage;
@@ -112,6 +137,7 @@ namespace CircuitCraft
             CurrentCircuitElementDropped.Location = new Point(CircuitBlocks[CurrentBlockIndex].Location.X, CurrentCircuitElementDropped.Location.Y + y);
             return true;
         }
+        #endregion
 
         [Category("Game Canvas Settings")]
         [Description("New Circuit ELement Spawn Offset")]

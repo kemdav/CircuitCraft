@@ -23,17 +23,17 @@ namespace CircuitCraft
         public double Current { get; set; } = 0;
     }
 
-    public class Resistor : CircuitElement
+    public class GameResistor : CircuitElement
     {
-        public Resistor()
+        public GameResistor()
         {
             circuitElementType = CircuitElementType.Resistor;
         }
     }
 
-    public class Source : CircuitElement
+    public class GameSource : CircuitElement
     {
-        public Source()
+        public GameSource()
         {
             circuitElementType = CircuitElementType.Source;
         }
