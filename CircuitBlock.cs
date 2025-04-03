@@ -21,6 +21,7 @@ namespace CircuitCraft
     {
         public CircuitBlockConnectionType CircuitBlockConnectionType { get; set; }
         public List<CircuitElement> CircuitElements { get; set; } = new List<CircuitElement>();
+        public List<PictureBox> CircuitElementsUI { get; set; } = new List<PictureBox>();
         public int CurrentElementIndex { get; set; } = 0;
 
         private int _maximumElements = 4;

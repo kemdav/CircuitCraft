@@ -28,10 +28,10 @@ namespace CircuitCraft
                 isInitialized = true;
                 DataClass.AqcuireUserInformation();
                 usernameTextBox.Text = DataClass.username;
-                ratingTxt.Text = "RATING: " + DataClass.rating;
-                circuitsCompletedTxt.Text = "" + DataClass.circuitsCompleted;
-                ledsBurnedTxt.Text = "" + DataClass.burnedLed;
-                resistorsBurnedTxt.Text = "" + DataClass.burnedResistors;
+                ratingTxt.Text = "RATING: " + DataClass.Rating;
+                circuitsCompletedTxt.Text = "" + DataClass.CircuitsCompleted;
+                ledsBurnedTxt.Text = "" + DataClass.BurnedLeds;
+                resistorsBurnedTxt.Text = "" + DataClass.BurnedResistors;
                 if (DataClass.profileImageBytes != null)
                 {
                     using (MemoryStream stream = new MemoryStream(DataClass.profileImageBytes))
