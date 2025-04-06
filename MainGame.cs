@@ -28,13 +28,15 @@ namespace CircuitCraft
 
             gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Series, new Point(60, 110), 40, 120);
             gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Parallel, new Point(140, 110), 40, 120);
+            gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Parallel, new Point(220, 110), 40, 120);
+            gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Parallel, new Point(300, 110), 40, 120);
 
             timer.Interval = 200;
             timer.Tick += new EventHandler(Timer_Tick);
-            UpdateCircuitElementUI();
 
             DataClass.username = "a";
             DataClass.AqcuireUserInformation();
+            UpdateCircuitElementUI();
         }
 
         public void StartTicking()
