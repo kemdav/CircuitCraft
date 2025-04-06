@@ -31,7 +31,7 @@ namespace CircuitCraft
             gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Parallel, new Point(220, 110), 40, 120);
             gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Parallel, new Point(300, 110), 40, 120);
 
-            timer.Interval = 200;
+            timer.Interval = 100;
             timer.Tick += new EventHandler(Timer_Tick);
 
             DataClass.username = "a";
@@ -60,29 +60,7 @@ namespace CircuitCraft
 
         public void UpdateCircuitElementUI()
         {
-            List<double> seriesResistance = new List<double>();
-            List<double> parallelResistance = new List<double>();
-
-            foreach (var block in gameCanvas.CircuitBlocks)
-            {
-                if (block.CircuitBlockConnectionType == CircuitBlockConnectionType.Series)
-                {
-
-                    for (int i = 0; i < block.CircuitElements.Count; i++)
-                    {
-                        seriesResistance.Add(block.CircuitElements[i].Resistance);
-                    }
-                }
-                else if (block.CircuitBlockConnectionType == CircuitBlockConnectionType.Parallel)
-                {
-                    for (int i = 0; i < block.CircuitElements.Count; i++)
-                    {
-                        parallelResistance.Add(block.CircuitElements[i].Resistance);
-                    }
-                }
-            }
-
-            CircuitSimulator.LoadCalculationResult result = CircuitSimulator.CalculateLoadState(DebugSourceVoltage, seriesResistance, parallelResistance, DebugLoadResistance);
+            CircuitSimulator.LoadCalculationResult result = CircuitSimulator.CalculateLoadState(gameCanvas.CircuitBlocks, DebugSourceVoltage, DebugLoadResistance);
             loadCurrentLabel.Text = "Load Current: " + result.LoadCurrent.ToString("F2") + " A";
             loadVoltageLabel.Text = "Load Voltage: " + result.LoadVoltage.ToString("F2") + " V";
             loadResistanceLabel.Text = "Load Resistance: " + result.LoadResistance.ToString("F2") + " Ω";

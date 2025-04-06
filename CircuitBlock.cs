@@ -53,6 +53,16 @@ namespace CircuitCraft
             }
         }
 
+        public double GetEquivalentResistance()
+        {
+            double equivalentResistance = 0;
+            foreach (var element in CircuitElements)
+            {
+                equivalentResistance += element.Resistance;
+            }
+            return equivalentResistance;
+        }
+
         [Category("Circuit Block Settings")]
         [Description("Circuit Block Properties")]
         [DefaultValue(4)]

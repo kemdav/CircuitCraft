@@ -24,7 +24,7 @@ namespace CircuitCraft
             ShortCircuit 
         }
 
-        public static LoadCalculationResult CalculateLoadState(double batteryVoltage, List<double> seriesResistances, List<double> parallelResistances, double loadResistance)
+        public static LoadCalculationResult CalculateLoadState(List<CircuitBlock> circuitBlocks, double batteryVoltage, double loadResistance)
         {
             var result = new LoadCalculationResult
             {
@@ -34,6 +34,20 @@ namespace CircuitCraft
                 Status = CircuitStatus.OK 
             };
 
+            List<double> seriesResistances = new List<double>();
+            List<double> parallelResistances = new List<double>();
+
+            foreach (var block in circuitBlocks)
+            {
+                if (block.CircuitBlockConnectionType == CircuitBlockConnectionType.Series)
+                {
+                    seriesResistances.Add(block.GetEquivalentResistance());
+                }
+                else if (block.CircuitBlockConnectionType == CircuitBlockConnectionType.Parallel)
+                {
+                    parallelResistances.Add(block.GetEquivalentResistance());
+                }
+            }
 
             loadResistance = Math.Max(0.0, loadResistance);
             result.LoadResistance = loadResistance; 
@@ -45,38 +59,37 @@ namespace CircuitCraft
                 rs = seriesResistances.Sum(r => Math.Max(0.0, r));
             }
 
-            double rp = double.PositiveInfinity; 
-            bool parallelShorted = false;
+            double rp = 0.0; 
             if (parallelResistances != null && parallelResistances.Count > 0)
             {
-                double inverseSum = 0.0;
+                int count = 0;
+                foreach (double r in parallelResistances)
+                {
+                    if (r > 0)
+                    {
+                        count++;
+                    }
+                }
                 foreach (double r in parallelResistances)
                 {
                     double resistance = Math.Max(0.0, r);
-                    if (resistance < 1e-9) 
+                    if (resistance <= 0)
                     {
-                        rp = 0.0;
-                        parallelShorted = true;
                         break;
                     }
-                    inverseSum += 1.0 / resistance;
+                    if (count == 1 && resistance > 0)
+                    {
+                        rp = resistance;
+                        break;
+                    }
+                    rp += 1.0 / resistance;
                 }
-
-                if (!parallelShorted)
-                {
-                    if (inverseSum > 1e-12) rp = 1.0 / inverseSum;
-                }
+                rp = 1 / rp;
             }
+
 
             double r_total;
-            if (double.IsPositiveInfinity(rp)) 
-            {
-                r_total = rs + loadResistance;
-            }
-            else
-            {
-                r_total = rs + rp + loadResistance;
-            }
+            r_total = rs + rp + loadResistance;
 
 
             double i_total; 
