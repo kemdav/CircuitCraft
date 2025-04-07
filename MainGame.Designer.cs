@@ -82,16 +82,16 @@
             gameCanvas.CircuitElementResistorSprite = (Image)resources.GetObject("gameCanvas.CircuitElementResistorSprite");
             gameCanvas.CircuitElementSourceSprite = (Image)resources.GetObject("gameCanvas.CircuitElementSourceSprite");
             gameCanvas.CircuitSources = null;
-            gameCanvas.CurrentBlockIndex = -1;
+            gameCanvas.CurrentBlockIndex = 0;
             gameCanvas.CurrentCircuitElementDropped = null;
             gameCanvas.CurrentCircuitElementDroppedResistance = 0D;
             gameCanvas.CurrentCircuitElementDroppedVoltage = 0D;
-            gameCanvas.Location = new Point(12, 46);
+            gameCanvas.Location = new Point(0, 37);
             gameCanvas.MainGame = null;
             gameCanvas.Name = "gameCanvas";
             gameCanvas.OperatingCurrent = 0D;
             gameCanvas.OperatingCurrentTick = 0;
-            gameCanvas.Size = new Size(1240, 612);
+            gameCanvas.Size = new Size(1264, 644);
             gameCanvas.TabIndex = 3;
             // 
             // circuitSourceLabel

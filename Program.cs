@@ -45,7 +45,7 @@ namespace CircuitCraft
 
             ApplicationConfiguration.Initialize();
             DataClass.ConnectionDatabase();
-            Application.Run(new MainGamePrototype());
+            Application.Run(new LoginScreenForm());
         }
 
         public static int CalculateRating(int C, int R, int L)

@@ -13,9 +13,12 @@
   <Class Name="CircuitCraft.LoadingForm" Collapsed="true">
     <Position X="6.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAKAAIAAIAACAAACCAAAAAABAAAAJAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAKAAIAAIAACAAACCAAAAAABAAAAJAAAgAAA=</HashCode>
       <FileName>LoadingForm.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MainMenuForm" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="CircuitCraft.LeaderboardsForm" Collapsed="true">
     <Position X="7.5" Y="5" Width="1.5" />
@@ -51,7 +54,7 @@
   <Class Name="CircuitCraft.MainGame" Collapsed="true">
     <Position X="4" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AEUAQAAAAKkAAgRAAISAQBwGAAAAEAoEQEBkAAgQCIw=</HashCode>
+      <HashCode>AEECQAAIAKkQAgxABYSAQBwGAQAQEAoEwEBkAChQCIw=</HashCode>
       <FileName>MainGame.cs</FileName>
     </TypeIdentifier>
   </Class>

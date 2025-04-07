@@ -48,7 +48,7 @@ namespace CircuitCraft
 
             operatingCurrentTimer.Start();
 
-            DataClass.username = "a";
+            //DataClass.username = "a";
             DataClass.AqcuireUserInformation();
             UpdateCircuitElementUI();
         }
