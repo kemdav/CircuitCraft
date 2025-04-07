@@ -32,6 +32,8 @@ namespace CircuitCraft
             gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Parallel, new Point(220, 110), 40, 120);
             gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Parallel, new Point(300, 110), 40, 120);
 
+            CircuitSimulator.CalculationTest();
+
             timer.Interval = 100;
             timer.Tick += new EventHandler(Timer_Tick);
 

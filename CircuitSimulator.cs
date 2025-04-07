@@ -24,6 +24,54 @@ namespace CircuitCraft
             ShortCircuit 
         }
 
+        public static void CalculationTest()
+        {
+            double SourceVoltage = 10;
+            double LoadResistance = 0;
+            var circuitBlocks = new List<CircuitBlock>
+            {
+                new CircuitBlock
+                {
+                    CircuitBlockConnectionType = CircuitBlockConnectionType.Series,
+                    CircuitElements = new List<CircuitElement>
+                    {
+                        new GameResistor { Resistance = 10 },
+                    }
+                },
+                new CircuitBlock
+                {
+                    CircuitBlockConnectionType = CircuitBlockConnectionType.Parallel,
+                    CircuitElements = new List<CircuitElement>
+                    {
+                        new GameResistor { Resistance = 1 },
+                        new GameSource { Voltage = 1 }
+                    }
+                },
+                new CircuitBlock
+                {
+                    CircuitBlockConnectionType = CircuitBlockConnectionType.Parallel,
+                    CircuitElements = new List<CircuitElement>
+                    {
+                        new GameResistor { Resistance = 1 },
+                        new GameSource { Voltage = 1 }
+                    }
+                },
+                new CircuitBlock
+                {
+                    CircuitBlockConnectionType = CircuitBlockConnectionType.Parallel,
+                    CircuitElements = new List<CircuitElement>
+                    {
+                        new GameResistor { Resistance = 1 },
+                        new GameSource { Voltage = 1 }
+                    }
+                }
+            };
+
+            var result = CalculateLoadState(circuitBlocks, SourceVoltage, LoadResistance);
+            Debug.WriteLine($"Load Voltage: {result.LoadVoltage}, Load Current: {result.LoadCurrent}, Load Resistance: {result.LoadResistance}, Status: {result.Status}");
+        }
+
+
         public static LoadCalculationResult CalculateLoadState(List<CircuitBlock> circuitBlocks, double batteryVoltage, double loadResistance)
         {
             var result = new LoadCalculationResult
@@ -119,9 +167,14 @@ namespace CircuitCraft
             }
             else
             {
-                i_total = ((batteryVoltage + seriesVoltageSource) / r_total) +
-                    (parallelVoltageSources[0] / r_total) + (parallelVoltageSources[1] / r_total) +
-                    (parallelVoltageSources[2] / r_total);
+                double i1 = seriesVoltageSource + batteryVoltage / r_total;
+                double i2 = ((parallelVoltageSources[0] / parallelResistances[0]) * (1/((1/rs) + 
+                    (1 / parallelResistances[0]) + (1 / parallelResistances[1]) + (1 / parallelResistances[2]))))/rs;
+                double i3 = ((parallelVoltageSources[1] / parallelResistances[1]) * (1 / ((1 / rs) +
+                    (1 / parallelResistances[0]) + (1 / parallelResistances[1]) + (1 / parallelResistances[2]))))/rs;
+                double i4 = ((parallelVoltageSources[2] / parallelResistances[2]) * (1 / ((1 / rs) +
+                    (1 / parallelResistances[0]) + (1 / parallelResistances[1]) + (1 / parallelResistances[2]))))/rs;
+                i_total = i1 + i2 + i3 + i4;
                 result.LoadCurrent = i_total;
                 result.Status = CircuitStatus.OK;
             }
