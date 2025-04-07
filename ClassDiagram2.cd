@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CircuitCraft.SettingsForm">
+    <Position X="16.5" Y="3.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AgzCEhACgGIAKHAQABCARgQCRQAAIEAkwAEIQBADAcU=</HashCode>
+      <FileName>SettingsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CircuitCraft.DataClass">
+    <Position X="19" Y="3.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>EIAECCAAFABEACgEgACGAIEGgAAAIAEAIAkEAAgEQIA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SettingsForm" />
+      <Property Name="LeaderboardsForm" />
+      <Property Name="LoginScreenForm" />
+      <Property Name="MainGame" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CircuitCraft.LeaderboardsForm">
+    <Position X="22" Y="3.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>gPtPUADgHSDeIQACACCA8A4CACD8D4B3AABAAQCQAII=</HashCode>
+      <FileName>LeaderboardsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CircuitCraft.LoginScreenForm">
+    <Position X="22" Y="5.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAgBAAhAADAFIAJAAACMAAAOwQAAIAMAQAAAhwAAAIg=</HashCode>
+      <FileName>LoginScreenForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CircuitCraft.MainGame">
+    <Position X="16.5" Y="5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AEUAQAAAAKkAAgRAAISAQBwGAAAAEAoEQEBkAAgQCIw=</HashCode>
+      <FileName>MainGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

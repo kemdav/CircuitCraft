@@ -215,7 +215,6 @@
             playButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
             playButton.UseAccentColor = false;
             playButton.UseVisualStyleBackColor = true;
-            playButton.Click += playButton_Click_1;
             // 
             // panel1
             // 
@@ -233,7 +232,6 @@
             // 
             // MainMenuForm
             // 
-            AspectRatio = 1.77777779F;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
@@ -251,7 +249,6 @@
             Name = "MainMenuForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MainMenuForm";
-            Load += MainMenuForm_Load;
             ((System.ComponentModel.ISupportInitialize)mainMenuBackgroundMedia).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);

@@ -45,7 +45,6 @@
             loadProgressBar.Size = new Size(692, 33);
             loadProgressBar.TabIndex = 0;
             loadProgressBar.Text = "lostProgressBar1";
-            loadProgressBar.Click += loadProgressBar_Click;
             // 
             // bigLabel1
             // 

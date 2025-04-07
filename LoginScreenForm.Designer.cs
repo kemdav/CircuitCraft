@@ -444,7 +444,6 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LoginScreen";
             TransparencyKey = Color.Fuchsia;
-            Load += LoginScreenForm_Load;
             airForm1.ResumeLayout(false);
             loginPanel.ResumeLayout(false);
             loginPanel.PerformLayout();

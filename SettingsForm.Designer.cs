@@ -45,7 +45,6 @@
             accountSettingsPanel = new Panel();
             deleteButton = new MaterialSkin.Controls.MaterialButton();
             changePasswordButton = new MaterialSkin.Controls.MaterialButton();
-            usernameTextBox = new MaterialSkin.Controls.MaterialMaskedTextBox();
             pictureBox4 = new PictureBox();
             bigLabel9 = new ReaLTaiizor.Controls.BigLabel();
             circuitsCompletedTxt = new ReaLTaiizor.Controls.BigLabel();
@@ -193,7 +192,6 @@
             tabPage2.BackColor = Color.White;
             tabPage2.Controls.Add(changePasswordPanel);
             tabPage2.Controls.Add(accountSettingsPanel);
-            tabPage2.Controls.Add(usernameTextBox);
             tabPage2.Controls.Add(pictureBox4);
             tabPage2.Controls.Add(bigLabel9);
             tabPage2.Controls.Add(circuitsCompletedTxt);
@@ -217,7 +215,6 @@
             tabPage2.Size = new Size(1074, 610);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Account Settings";
-            tabPage2.Click += tabPage2_Click;
             // 
             // changePasswordPanel
             // 
@@ -463,49 +460,6 @@
             changePasswordButton.UseAccentColor = false;
             changePasswordButton.UseVisualStyleBackColor = true;
             changePasswordButton.Click += changePasswordButton_Click;
-            // 
-            // usernameTextBox
-            // 
-            usernameTextBox.AllowPromptAsInput = true;
-            usernameTextBox.AnimateReadOnly = false;
-            usernameTextBox.AsciiOnly = false;
-            usernameTextBox.BackgroundImageLayout = ImageLayout.None;
-            usernameTextBox.BeepOnError = false;
-            usernameTextBox.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
-            usernameTextBox.Depth = 0;
-            usernameTextBox.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            usernameTextBox.HidePromptOnLeave = false;
-            usernameTextBox.HideSelection = true;
-            usernameTextBox.InsertKeyMode = InsertKeyMode.Default;
-            usernameTextBox.LeadingIcon = null;
-            usernameTextBox.Location = new Point(393, 18);
-            usernameTextBox.Mask = "";
-            usernameTextBox.MaxLength = 32767;
-            usernameTextBox.MouseState = MaterialSkin.MouseState.OUT;
-            usernameTextBox.Name = "usernameTextBox";
-            usernameTextBox.PasswordChar = '\0';
-            usernameTextBox.PrefixSuffixText = null;
-            usernameTextBox.PromptChar = '_';
-            usernameTextBox.ReadOnly = false;
-            usernameTextBox.RejectInputOnFirstFailure = false;
-            usernameTextBox.ResetOnPrompt = true;
-            usernameTextBox.ResetOnSpace = true;
-            usernameTextBox.RightToLeft = RightToLeft.No;
-            usernameTextBox.SelectedText = "";
-            usernameTextBox.SelectionLength = 0;
-            usernameTextBox.SelectionStart = 0;
-            usernameTextBox.ShortcutsEnabled = true;
-            usernameTextBox.ShowAssistiveText = true;
-            usernameTextBox.Size = new Size(250, 64);
-            usernameTextBox.SkipLiterals = true;
-            usernameTextBox.TabIndex = 23;
-            usernameTextBox.TabStop = false;
-            usernameTextBox.TextAlign = HorizontalAlignment.Left;
-            usernameTextBox.TextMaskFormat = MaskFormat.IncludeLiterals;
-            usernameTextBox.TrailingIcon = null;
-            usernameTextBox.UseSystemPasswordChar = false;
-            usernameTextBox.ValidatingType = null;
-            usernameTextBox.KeyPress += usernameTextBox_KeyPress;
             // 
             // pictureBox4
             // 
@@ -896,7 +850,6 @@
         private MaterialSkin.Controls.MaterialButton confirmBoxYesButton;
         private MaterialSkin.Controls.MaterialButton confirmBoxNoButton;
         private MaterialSkin.Controls.MaterialButton changePasswordButton;
-        private MaterialSkin.Controls.MaterialMaskedTextBox usernameTextBox;
         private Panel accountSettingsPanel;
         private Panel changePasswordPanel;
         private MaterialSkin.Controls.MaterialMaskedTextBox changePasswordCurrentPasswordTbox;

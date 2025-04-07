@@ -6,7 +6,6 @@ using SpiceSharp.Components;
 using System.Data.SQLite;
 using System.Data;
 using SpiceSharp.Simulations;
-using static LockedAspectRatioForm;
 using System.Text;
 using System.Security.Cryptography;
 
@@ -24,7 +23,6 @@ namespace CircuitCraft
     internal static class Program
     {
         public static bool isFullScreen = false;
-        public static System.Windows.Forms.FormBorderStyle originalBorderStyle;
         public static FormWindowState originalWindowState;
         public static Rectangle originalBounds;
 
@@ -47,7 +45,7 @@ namespace CircuitCraft
 
             ApplicationConfiguration.Initialize();
             DataClass.ConnectionDatabase();
-            Application.Run(new MainGame());
+            Application.Run(new LoginScreenForm());
         }
 
         public static int CalculateRating(int C, int R, int L)
@@ -73,39 +71,12 @@ namespace CircuitCraft
 
             return Convert.ToInt32(Math.Max(0, rating));
         }
-
-
-        public static void ApplyTransparentUI(ref PictureBox pbox, ref Label label)
-        {
-            System.Drawing.Point labelPos = label.Location;
-            pbox.Controls.Add(label);
-            label.Location = labelPos;
-            label.BackColor = Color.Transparent;
-        }
-        public static void ApplyTransparentUI(ref PictureBox pbox, ref TextBox tbx)
-        {
-            System.Drawing.Point labelPos = tbx.Location;
-            pbox.Controls.Add(tbx);
-            tbx.Location = labelPos;
-        }
-        public static void ApplyTransparentUI(ref PictureBox pbox, ref ParrotSlider sldr)
-        {
-            System.Drawing.Point labelPos = sldr.Location;
-            pbox.Controls.Add(sldr);
-            sldr.Location = labelPos;
-        }
-        public static void ApplyTransparentUIVideo(ref VideoView media, ref MaterialSkin.Controls.MaterialButton bttn)
-        {
-            System.Drawing.Point labelPos = bttn.Location;
-            media.Controls.Add(bttn);
-            media.Location = labelPos;
-        }
     }
 
     public static class DataClass
     {
-        private static string databaseName = "Database.db"; // Name of your SQLite database file
-        private static string connectionString = $"Data Source={databaseName};Version=3;";
+        private static string databaseName = "Database.db"; 
+        private static string connectionString = $"Data Source={databaseName};Version=3;Foreign Keys=true;";
         public static string username;
         public static byte[] profileImageBytes;
 
@@ -155,8 +126,26 @@ namespace CircuitCraft
             }
         }
 
-        public static int musicVolume;
-        public static int soundVolume;
+        private static int _musicVolume;
+        private static int _soundVolume;
+        public static int MusicVolume
+        {
+            get { return _musicVolume; }
+            set
+            {
+                _musicVolume = value;
+                UpdateUserInformation("MusicVolume", value);
+            }
+        }
+        public static int SoundVolume
+        {
+            get { return _soundVolume; }
+            set
+            {
+                _soundVolume = value;
+                UpdateUserInformation("SoundVolume", value);
+            }
+        }
 
         public static string HashPassword(string password)
         {
@@ -166,7 +155,7 @@ namespace CircuitCraft
                 StringBuilder builder = new StringBuilder();
                 for (int i = 0; i < bytes.Length; i++)
                 {
-                    builder.Append(bytes[i].ToString("x2")); // Convert byte to hex string
+                    builder.Append(bytes[i].ToString("x2"));
                 }
                 return builder.ToString();
             }
@@ -175,7 +164,7 @@ namespace CircuitCraft
         public static bool VerifyPassword(string enteredPassword, string storedHash)
         {
             string hashedEnteredPassword = HashPassword(enteredPassword);
-            return hashedEnteredPassword.Equals(storedHash, StringComparison.OrdinalIgnoreCase); // Case-insensitive comparison
+            return hashedEnteredPassword.Equals(storedHash, StringComparison.OrdinalIgnoreCase);
         }
 
         public static void ResetUserData()
@@ -186,52 +175,65 @@ namespace CircuitCraft
             BurnedResistors = 0;
             BurnedLeds = 0;
             Rating = 0;
-            musicVolume = 100;
-            soundVolume = 100;
+            MusicVolume = 100;
+            SoundVolume = 100;
         }
 
         public static void ConnectionDatabase()
         {
-            string databaseName = "Database.db";
-            string connectionString = $"Data Source={databaseName};Version=3;"; // Connection string
+            string createUserTableSql = @"
+                    CREATE TABLE IF NOT EXISTS User (
+                        Username TEXT PRIMARY KEY NOT NULL UNIQUE,
+                        PasswordHash TEXT NOT NULL,
+                        ProfileImage BLOB
+                    );";
+
+            string createStatsTableSql = @"
+                    CREATE TABLE IF NOT EXISTS GameStatistics (
+                        Username TEXT PRIMARY KEY NOT NULL UNIQUE,
+                        CircuitsCompleted INTEGER NOT NULL DEFAULT 0,
+                        BurnedResistors INTEGER NOT NULL DEFAULT 0,
+                        BurnedLed INTEGER NOT NULL DEFAULT 0,
+                        Rating INTEGER NOT NULL DEFAULT 0,
+                        FOREIGN KEY (Username) REFERENCES User(Username)
+                            ON DELETE CASCADE -- Automatically delete stats if user is deleted
+                    );";
+
+            string createSettingsTableSql = @"
+                    CREATE TABLE IF NOT EXISTS GameSettings (
+                        Username TEXT PRIMARY KEY NOT NULL UNIQUE,
+                        MusicVolume INTEGER NOT NULL DEFAULT 100,
+                        SoundVolume INTEGER NOT NULL DEFAULT 100,
+                        FOREIGN KEY (Username) REFERENCES User(Username)
+                            ON DELETE CASCADE -- Automatically delete settings if user is deleted
+                    );";
             try
             {
                 using (SQLiteConnection connection = new SQLiteConnection(connectionString))
                 {
                     connection.Open();
-
-                    string createTableSql = @"
-                    CREATE TABLE IF NOT EXISTS Users (
-                        Username TEXT PRIMARY KEY NOT NULL UNIQUE,
-                        PasswordHash TEXT NOT NULL,
-                        ProfileImage BLOB,
-                        CircuitsCompleted INTEGER NOT NULL DEFAULT 0,
-                        BurnedResistors INTEGER NOT NULL DEFAULT 0,
-                        BurnedLed INTEGER NOT NULL DEFAULT 0,
-                        Rating INTEGER NOT NULL DEFAULT 0,
-                        MusicVolume INTEGER NOT NULL DEFAULT 100,
-                        SoundVolume INTEGER NOT NULL DEFAULT 100
-                    );";
-
-                    using (SQLiteCommand createTableCommand = new SQLiteCommand(createTableSql, connection))
+                    using (SQLiteCommand command = new SQLiteCommand(connection))
                     {
-                        createTableCommand.ExecuteNonQuery();
-                        //MessageBox.Show("Table 'Users' created (or already exists) with updated schema.");
+                        command.CommandText = createUserTableSql;
+                        command.ExecuteNonQuery();
+
+                        command.CommandText = createStatsTableSql;
+                        command.ExecuteNonQuery(); 
+
+                        command.CommandText = createSettingsTableSql;
+                        command.ExecuteNonQuery();
                     }
                 } 
             }
             catch (SQLiteException ex)
             {
-                MessageBox.Show($"Error connecting to SQLite database: {ex.Message}");
+                //MessageBox.Show($"Error connecting to SQLite database: {ex.Message}");
             }
         }
 
         public static bool RegisterUser(string username, string passwordText)
         {
-            string databaseName = "Database.db"; // Name of your SQLite database file
-            string connectionString = $"Data Source={databaseName};Version=3;"; // Connection string
-
-            string passwordHash = HashPassword(passwordText); // Hash the password
+            string passwordHash = HashPassword(passwordText);
             try
             {
                 using (SQLiteConnection connection = new SQLiteConnection(connectionString))
@@ -239,19 +241,39 @@ namespace CircuitCraft
                     connection.Open();
 
                     string insertUserSql = @"
-                    INSERT INTO Users (Username, PasswordHash, ProfileImage)
+                    INSERT INTO User (Username, PasswordHash, ProfileImage)
                     VALUES (@Username, @PasswordHash, @ProfileImage);";
 
                     using (SQLiteCommand insertUserCommand = new SQLiteCommand(insertUserSql, connection))
                     {
                         insertUserCommand.Parameters.AddWithValue("@Username", username);
                         insertUserCommand.Parameters.AddWithValue("@PasswordHash", passwordHash);
-                        insertUserCommand.Parameters.AddWithValue("@ProfileImage", null);
+                        insertUserCommand.Parameters.AddWithValue("@ProfileImage", DBNull.Value);
                         insertUserCommand.ExecuteNonQuery();
                         //MessageBox.Show($"User '{username}' registered successfully.");
                     }
+
+                    string insertStatsSql = @"
+                        INSERT INTO GameStatistics (Username)
+                        VALUES (@Username);";
+
+                    using (SQLiteCommand insertStatsCommand = new SQLiteCommand(insertStatsSql, connection))
+                    {
+                        insertStatsCommand.Parameters.AddWithValue("@Username", username);
+                        insertStatsCommand.ExecuteNonQuery();
+                    }
+
+                    string insertSettingsSql = @"
+                        INSERT INTO GameSettings (Username)
+                        VALUES (@Username);";
+
+                    using (SQLiteCommand insertSettingsCommand = new SQLiteCommand(insertSettingsSql, connection))
+                    {
+                        insertSettingsCommand.Parameters.AddWithValue("@Username", username);
+                        insertSettingsCommand.ExecuteNonQuery();
+                    }
+                    return true;
                 }
-                return true;
             }
             catch (SQLiteException ex)
             {
@@ -262,10 +284,7 @@ namespace CircuitCraft
 
         public static bool AuthenticateUser(string username, string passwordText)
         {
-            string databaseName = "Database.db"; // Name of your SQLite database file
-            string connectionString = $"Data Source={databaseName};Version=3;"; // Connection string
-
-            string passwordHash = HashPassword(passwordText); // Hash the password
+            string passwordHash = HashPassword(passwordText);
             try
             {
                 using (SQLiteConnection connection = new SQLiteConnection(connectionString))
@@ -274,7 +293,7 @@ namespace CircuitCraft
 
                     string selectUserSql = @"
                     SELECT PasswordHash
-                    FROM Users
+                    FROM User
                     WHERE Username = @Username;";
 
                     using (SQLiteCommand selectUserCommand = new SQLiteCommand(selectUserSql, connection))
@@ -308,50 +327,57 @@ namespace CircuitCraft
         }
 
         public static void AqcuireUserInformation()
-        {
-            string databaseName = "Database.db"; // Name of your SQLite database file
-            string selectUserDataSql = "SELECT * FROM Users WHERE Username = @Username;"; // Select all columns
+        {                    
+            string selectUserDataSql = @"
+        SELECT 
+            U.Username, 
+            U.ProfileImage, 
+            GS.CircuitsCompleted, 
+            GS.BurnedResistors, 
+            GS.BurnedLed, 
+            GS.Rating, 
+            SETT.MusicVolume, 
+            SETT.SoundVolume
+        FROM User U
+        LEFT JOIN GameStatistics GS ON U.Username = GS.Username
+        LEFT JOIN GameSettings SETT ON U.Username = SETT.Username
+        WHERE U.Username = @Username;";
+
             string connectionString = $"Data Source={databaseName};Version=3;"; // Connection string
+
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
                 using (SQLiteCommand selectUserCommand = new SQLiteCommand(selectUserDataSql, connection))
                 {
                     selectUserCommand.Parameters.AddWithValue("@Username", username);
+
                     using (SQLiteDataReader reader = selectUserCommand.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            username = reader.GetString(0); // Username (index 0)
-                                                            // Note: We *don't* retrieve the PasswordHash for security reasons in a real application
-                            profileImageBytes = reader["ProfileImage"] as byte[]; // Get BLOB data
-                            CircuitsCompleted = reader.GetInt32(3); // CircuitsCompleted (index 3)
-                            BurnedResistors = reader.GetInt32(4); // BurnedResistors (index 4)
-                            BurnedLeds = reader.GetInt32(5);    // BurnedLed (index 5)
-                            Rating = reader.GetInt32(6);   // Rating (index 6)
-                            musicVolume = reader.GetInt32(7);   // MusicVolume (index 7)
-                            soundVolume = reader.GetInt32(8);   // SoundVolume (index 8)
 
+                            username = reader.GetString(0);
 
-                            //if (profileImageBytes != null && profileImageBytes.Length > 0)
-                            //{
-                            //    string savedImagePath = "retrieved_profile_image.png"; // Or .jpg, determine type if needed
-                            //    File.WriteAllBytes(savedImagePath, profileImageBytes);
-                            //    Console.WriteLine($"Profile image saved to '{savedImagePath}'.");
-                            //}
-                            //else
-                            //{
-                            //    Console.WriteLine("No profile image found for this user.");
-                            //}
+                            profileImageBytes = reader["ProfileImage"] as byte[];
+
+                            _circuitsCompleted = reader.GetInt32(2); 
+                            _burnedResistors = reader.GetInt32(3);     
+                            _burnedLeds = reader.GetInt32(4);        
+                            _rating = reader.GetInt32(5);            
+                                                                     
+                            _musicVolume = reader.GetInt32(6);         
+                            _soundVolume = reader.GetInt32(7);          
                         }
                         else
                         {
-                           // MessageBox.Show($"User '{username}' not found.");
+                            // MessageBox.Show($"User '{username}' not found.");
                         }
                     }
                 }
             }
         }
+
 
         public static bool UpdateUserInformation(string fieldToUpdate, object newValue)
         {
@@ -374,7 +400,7 @@ namespace CircuitCraft
             }
         }
 
-        public static bool UpdateUserField(SQLiteConnection connection, string usernameToUpdate, string fieldToUpdate, object newValue)
+        private static bool UpdateUserField(SQLiteConnection connection, string usernameToUpdate, string fieldToUpdate, object newValue)
         {
             if (connection == null || connection.State != System.Data.ConnectionState.Open)
             {
@@ -382,53 +408,57 @@ namespace CircuitCraft
                 return false;
             }
 
-            string updateSql = "";
+            string tableName = "";
+            string columnName = fieldToUpdate;
+            object processedValue = newValue;
             switch (fieldToUpdate.ToLower())
             {
-                case "username":
-                    updateSql = "UPDATE Users SET Username = @NewValue WHERE Username = @Username;";
-                    break;
+                case "passwordhash":
                 case "password":
-                    updateSql = "UPDATE Users SET PasswordHash = @NewValue WHERE Username = @Username;";
+                    tableName = "User";
+                    columnName = "PasswordHash";
+                    if (newValue is string pwdString)
+                    {
+                        processedValue = HashPassword(pwdString); 
+                    }
+                    else
+                    {
+                        //Console.WriteLine("Error: Invalid value type provided for password update.");
+                        return false; 
+                    }
                     break;
                 case "profileimage":
-                    updateSql = "UPDATE Users SET ProfileImage = @NewValue WHERE Username = @Username;";
+                    tableName = "User";
+                    processedValue = (newValue is byte[] || newValue == null) ? (newValue ?? DBNull.Value) : newValue;
+                    if (!(processedValue is byte[] || processedValue == DBNull.Value))
+                    {
+                        //Console.WriteLine("Error: Invalid value type provided for ProfileImage update. Expected byte[] or null.");
+                        return false;
+                    }
                     break;
+
                 case "circuitscompleted":
-                    updateSql = "UPDATE Users SET CircuitsCompleted = @NewValue WHERE Username = @Username;";
-                    break;
                 case "burnedresistors":
-                    updateSql = "UPDATE Users SET BurnedResistors = @NewValue WHERE Username = @Username;";
-                    break;
                 case "burnedled":
-                    updateSql = "UPDATE Users SET BurnedLed = @NewValue WHERE Username = @Username;";
-                    break;
                 case "rating":
-                    updateSql = "UPDATE Users SET Rating = @NewValue WHERE Username = @Username;";
+                    tableName = "GameStatistics";
                     break;
+
+
                 case "musicvolume":
-                    updateSql = "UPDATE Users SET MusicVolume = @NewValue WHERE Username = @Username;";
-                    break;
                 case "soundvolume":
-                    updateSql = "UPDATE Users SET SoundVolume = @NewValue WHERE Username = @Username;";
+                    tableName = "GameSettings";
                     break;
                 default:
                     MessageBox.Show($"Error: Field '{fieldToUpdate}' is not a valid field to update.");
                     return false;
             }
 
-            if (string.IsNullOrEmpty(updateSql))
-            {
-                return false;
-            }
+            string updateSql = $"UPDATE {tableName} SET {columnName} = @NewValue WHERE Username = @Username;";
 
             using (SQLiteCommand updateCommand = new SQLiteCommand(updateSql, connection))
             {
-                if (fieldToUpdate.ToLower() == "password")
-                {
-                    newValue = HashPassword(newValue as string);
-                }
-                updateCommand.Parameters.AddWithValue("@NewValue", newValue);
+                updateCommand.Parameters.AddWithValue("@NewValue", processedValue);
                 updateCommand.Parameters.AddWithValue("@Username", usernameToUpdate);
                 try
                 {
@@ -452,7 +482,7 @@ namespace CircuitCraft
                 {
                     connection.Open();
 
-                    string deleteUserSql = "DELETE FROM Users WHERE Username = @Username;";
+                    string deleteUserSql = "DELETE FROM User WHERE Username = @Username;";
                     using (SQLiteCommand deleteCommand = new SQLiteCommand(deleteUserSql, connection))
                     {
                         deleteCommand.Parameters.AddWithValue("@Username", username);
@@ -480,9 +510,20 @@ namespace CircuitCraft
         {
             List<TempUserInformation> sortedUsers = new List<TempUserInformation>();
             string selectSortedUsersSql = @"
-                SELECT Username, ProfileImage, PasswordHash, CircuitsCompleted, BurnedResistors, BurnedLed, Rating, MusicVolume, SoundVolume
-                FROM Users
-                ORDER BY Rating DESC;";
+        SELECT 
+            U.Username, 
+            U.ProfileImage, 
+            GS.CircuitsCompleted, 
+            GS.BurnedResistors, 
+            GS.BurnedLed, 
+            GS.Rating, 
+            SETT.MusicVolume, 
+            SETT.SoundVolume
+        FROM User U
+        LEFT JOIN GameStatistics GS ON U.Username = GS.Username
+        LEFT JOIN GameSettings SETT ON U.Username = SETT.Username
+        ORDER BY GS.Rating DESC;";
+
             try
             {
                 using (SQLiteConnection connection = new SQLiteConnection(connectionString))
@@ -495,7 +536,7 @@ namespace CircuitCraft
                             if (!reader.HasRows)
                             {
                                 Console.WriteLine("No users found in the database.");
-                                return sortedUsers; // Exit the method
+                                return sortedUsers;
                             }
 
                             while (reader.Read())
@@ -503,10 +544,11 @@ namespace CircuitCraft
                                 TempUserInformation tempUserInformation = new TempUserInformation();
                                 tempUserInformation.Username = reader.GetString(0);
                                 tempUserInformation.ProfileImage = reader["ProfileImage"] as byte[];
-                                tempUserInformation.CircuitsCompleted = reader.GetInt32(3);
-                                tempUserInformation.BurnedResistors = reader.GetInt32(4);
-                                tempUserInformation.BurnedLed = reader.GetInt32(5);
-                                tempUserInformation.Rating = reader.GetInt32(6);
+                                tempUserInformation.CircuitsCompleted = reader.IsDBNull(2) ? 0 : reader.GetInt32(2);
+                                tempUserInformation.BurnedResistors = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
+                                tempUserInformation.BurnedLed = reader.IsDBNull(4) ? 0 : reader.GetInt32(4);
+                                tempUserInformation.Rating = reader.IsDBNull(5) ? 0 : reader.GetInt32(5);
+
                                 sortedUsers.Add(tempUserInformation);
                             }
                         }
@@ -515,10 +557,10 @@ namespace CircuitCraft
             }
             catch (SQLiteException ex)
             {
-                //MessageBox.Show($"Error selecting sorted users from SQLite database: {ex.Message}");
             }
             return sortedUsers;
         }
+
 
         public static void ResetUser()
         {
@@ -526,38 +568,6 @@ namespace CircuitCraft
             UpdateUserInformation("BurnedResistors", 0);
             UpdateUserInformation("BurnedLed", 0);
             UpdateUserInformation("Rating", 0);
-        }
-    }
-
-
-    internal static class  ResourceHelper
-    {
-        public static Image LoadVideoFromResource(string imageName)
-        {
-            try
-            {
-                string exePath = Path.Combine(Application.StartupPath, "Images", "CircuitElements", imageName);
-                if (File.Exists(exePath))
-                {
-                    return Image.FromFile(exePath);
-                }
-                string projectPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\Resources\CircuitElements", imageName);
-                if (File.Exists(projectPath))
-                {
-                    return Image.FromFile(projectPath);
-                }
-                throw new FileNotFoundException($"Image file not found: {imageName}.  Checked:\n{exePath}\n{projectPath}");
-            }
-            catch (FileNotFoundException)
-            {
-                MessageBox.Show($"Image file not found: {imageName}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error loading image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
-            }
         }
     }
 }

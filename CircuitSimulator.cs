@@ -3,7 +3,7 @@ using SpiceSharp.Components;
 using SpiceSharp.Simulations;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics; // For Debug.WriteLine
+using System.Diagnostics;
 
 namespace CircuitCraft
 {
@@ -20,101 +20,181 @@ namespace CircuitCraft
         public enum CircuitStatus
         {
             OK,
-            OpenCircuit, // Effectively infinite resistance, zero current
-            ShortCircuit // Effectively zero resistance, infinite current
+            OpenCircuit, 
+            ShortCircuit 
         }
 
-        public static LoadCalculationResult CalculateLoadState(double batteryVoltage, List<double> seriesResistances, List<double> parallelResistances, double loadResistance)
+        public static void CalculationTest()
+        {
+            double SourceVoltage = 10;
+            double LoadResistance = 0;
+            var circuitBlocks = new List<CircuitBlock>
+            {
+                new CircuitBlock
+                {
+                    CircuitBlockConnectionType = CircuitBlockConnectionType.Series,
+                    CircuitElements = new List<CircuitElement>
+                    {
+                        new GameResistor { Resistance = 10 },
+                    }
+                },
+                new CircuitBlock
+                {
+                    CircuitBlockConnectionType = CircuitBlockConnectionType.Parallel,
+                    CircuitElements = new List<CircuitElement>
+                    {
+                        new GameResistor { Resistance = 1 },
+                        new GameSource { Voltage = 10 }
+                    }
+                },
+                new CircuitBlock
+                {
+                    CircuitBlockConnectionType = CircuitBlockConnectionType.Parallel,
+                    CircuitElements = new List<CircuitElement>
+                    {
+                        new GameResistor { Resistance = 1 },
+                        new GameSource { Voltage = 15 }
+                    }
+                },
+                new CircuitBlock
+                {
+                    CircuitBlockConnectionType = CircuitBlockConnectionType.Parallel,
+                    CircuitElements = new List<CircuitElement>
+                    {
+                        new GameResistor { Resistance = 1 },
+                        new GameSource { Voltage = 1 }
+                    }
+                }
+            };
+
+            var result = CalculateLoadState(circuitBlocks, SourceVoltage, LoadResistance);
+            Debug.WriteLine($"Load Voltage: {result.LoadVoltage}, Load Current: {result.LoadCurrent}, Load Resistance: {result.LoadResistance}, Status: {result.Status}");
+        }
+
+
+        public static LoadCalculationResult CalculateLoadState(List<CircuitBlock> circuitBlocks, double batteryVoltage, double loadResistance)
         {
             var result = new LoadCalculationResult
             {
                 LoadResistance = loadResistance,
                 LoadVoltage = 0,
                 LoadCurrent = 0,
-                Status = CircuitStatus.OK // Start assuming OK
+                Status = CircuitStatus.OK 
             };
 
-            // --- Ensure load resistance is valid ---
-            // Treat negative as 0 for calculation, could also throw error
+            List<double> seriesResistances = new List<double>();
+            List<double> parallelResistances = new List<double>();
+            double seriesVoltageSource = 0.0;
+            List<double> parallelVoltageSources = new List<double>();
+
+            seriesResistances.Add(40); // Temp
+
+
+            foreach (var block in circuitBlocks)
+            {
+                if (block.CircuitBlockConnectionType == CircuitBlockConnectionType.Series)
+                {
+                    seriesResistances.Add(block.GetEquivalentResistance());
+                    seriesVoltageSource += block.GetEquivalentSourceVoltage();
+                }
+                else if (block.CircuitBlockConnectionType == CircuitBlockConnectionType.Parallel)
+                {
+                    parallelResistances.Add(block.GetEquivalentResistance());
+                    parallelVoltageSources.Add(block.GetEquivalentSourceVoltage());
+                }
+            }
+
             loadResistance = Math.Max(0.0, loadResistance);
-            result.LoadResistance = loadResistance; // Store the potentially adjusted value
+            result.LoadResistance = loadResistance; 
 
 
-            // --- 1. Calculate Effective Series Resistance (Rs) ---
             double rs = 0.0;
             if (seriesResistances != null && seriesResistances.Count > 0)
             {
                 rs = seriesResistances.Sum(r => Math.Max(0.0, r));
             }
 
-            // --- 2. Calculate Effective Parallel Resistance (Rp) ---
-            double rp = double.PositiveInfinity; // Default to open
-            bool parallelShorted = false;
+            double rp = 0.0; 
             if (parallelResistances != null && parallelResistances.Count > 0)
             {
-                double inverseSum = 0.0;
+                int count = 0;
+                foreach (double r in parallelResistances)
+                {
+                    if (r > 0)
+                    {
+                        count++;
+                    }
+                }
                 foreach (double r in parallelResistances)
                 {
                     double resistance = Math.Max(0.0, r);
-                    if (resistance < 1e-9) // Check for short
+                    if (resistance <= 0)
                     {
-                        rp = 0.0;
-                        parallelShorted = true;
                         break;
                     }
-                    inverseSum += 1.0 / resistance;
+                    if (count == 1 && resistance > 0)
+                    {
+                        rp = resistance;
+                        break;
+                    }
+                    rp += 1.0 / resistance;
                 }
-
-                if (!parallelShorted)
+                if (rp != 0)
                 {
-                    if (inverseSum > 1e-12) rp = 1.0 / inverseSum;
-                    // else rp remains PositiveInfinity (open)
+                    rp = 1 / rp;
                 }
             }
 
-            // --- 3. Calculate Total Circuit Resistance (R_total) ---
+
             double r_total;
-            if (double.IsPositiveInfinity(rp)) // If parallel section is open
-            {
-                r_total = rs + loadResistance;
-            }
-            else // Parallel section has finite resistance (could be 0 if shorted)
-            {
-                r_total = rs + rp + loadResistance;
-            }
+            r_total = rs + rp + loadResistance;
 
 
-            // --- 4/5. Calculate Total/Load Current (I_total / I_load) ---
-            double i_total; // This will also be i_load
+            double i_total; 
 
-            if (r_total < 1e-9) // Check for total short circuit
+            if (r_total < 1e-9)
             {
                 Console.WriteLine($"Warning: Total resistance is near zero ({r_total} Ohm) -> Short Circuit");
                 result.Status = CircuitStatus.ShortCircuit;
-                // Assign infinity to represent the short condition
+
                 result.LoadCurrent = double.PositiveInfinity;
-                result.LoadVoltage = double.PositiveInfinity; // Voltage also undefined/infinite in ideal short
+                result.LoadVoltage = double.PositiveInfinity;
                 return result;
             }
-            else if (double.IsPositiveInfinity(r_total)) // Check for total open circuit
+            else if (double.IsPositiveInfinity(r_total))
             {
                 Console.WriteLine($"Warning: Total resistance is infinite -> Open Circuit");
                 result.Status = CircuitStatus.OpenCircuit;
                 result.LoadCurrent = 0.0;
-                result.LoadVoltage = 0.0; // No current means no voltage drop across load
+                result.LoadVoltage = 0.0; 
                 return result;
             }
             else
             {
-                // Normal calculation
-                i_total = batteryVoltage / r_total;
+                double i1 = seriesVoltageSource + batteryVoltage / r_total;
+                double i2 = ((parallelVoltageSources[0] / parallelResistances[0]) * (1/((1/rs) + 
+                    (1 / parallelResistances[0]) + (1 / parallelResistances[1]) + (1 / parallelResistances[2]))))/rs;
+                if (double.IsNaN(i2) || i2 == double.PositiveInfinity)
+                {
+                    i2 = 0;
+                }
+                double i3 = ((parallelVoltageSources[1] / parallelResistances[1]) * (1 / ((1 / rs) +
+                    (1 / parallelResistances[0]) + (1 / parallelResistances[1]) + (1 / parallelResistances[2]))))/rs;
+                if (double.IsNaN(i3) || i3 == double.PositiveInfinity)
+                {
+                    i3 = 0;
+                }
+                double i4 = ((parallelVoltageSources[2] / parallelResistances[2]) * (1 / ((1 / rs) +
+                    (1 / parallelResistances[0]) + (1 / parallelResistances[1]) + (1 / parallelResistances[2]))))/rs;
+                if (double.IsNaN(i4) || i4 == double.PositiveInfinity)
+                {
+                    i4 = 0;
+                }
+                i_total = i1 + i2 + i3 + i4;
                 result.LoadCurrent = i_total;
                 result.Status = CircuitStatus.OK;
             }
 
-
-            // --- 6. Calculate Voltage Across the Load (V_load) ---
-            // Only calculate if not short/open
             if (result.Status == CircuitStatus.OK)
             {
                 result.LoadVoltage = result.LoadCurrent * result.LoadResistance;

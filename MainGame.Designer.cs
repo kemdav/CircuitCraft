@@ -48,6 +48,10 @@
             resistorBurnedLabel = new MaterialSkin.Controls.MaterialLabel();
             ledBurnedLabel = new MaterialSkin.Controls.MaterialLabel();
             ratingLabel = new MaterialSkin.Controls.MaterialLabel();
+            dropSourceTbox = new MaterialSkin.Controls.MaterialMaskedTextBox();
+            dropVoltageLabel = new MaterialSkin.Controls.MaterialLabel();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // hopeForm1
@@ -68,14 +72,19 @@
             // gameCanvas
             // 
             gameCanvas.BackColor = Color.FromArgb(224, 224, 224);
+            gameCanvas.CircuitBlock = null;
+            gameCanvas.CircuitElement = null;
+            gameCanvas.CircuitElementLedSprite = (Image)resources.GetObject("gameCanvas.CircuitElementLedSprite");
             gameCanvas.CircuitElementOffset = 20;
             gameCanvas.CircuitElementResistorSprite = (Image)resources.GetObject("gameCanvas.CircuitElementResistorSprite");
+            gameCanvas.CircuitElementSourceSprite = (Image)resources.GetObject("gameCanvas.CircuitElementSourceSprite");
             gameCanvas.CircuitSources = null;
-            gameCanvas.CurrentBlockIndex = 0;
+            gameCanvas.CurrentBlockIndex = -1;
             gameCanvas.CurrentCircuitElementDropped = null;
             gameCanvas.CurrentCircuitElementDroppedResistance = 0D;
             gameCanvas.CurrentCircuitElementDroppedVoltage = 0D;
             gameCanvas.Location = new Point(12, 46);
+            gameCanvas.MainGame = null;
             gameCanvas.Name = "gameCanvas";
             gameCanvas.Size = new Size(1240, 612);
             gameCanvas.TabIndex = 3;
@@ -142,9 +151,9 @@
             materialLabel1.Location = new Point(945, 46);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
-            materialLabel1.Size = new Size(292, 118);
+            materialLabel1.Size = new Size(292, 132);
             materialLabel1.TabIndex = 9;
-            materialLabel1.Text = "G - Spawn Falling Resistor\r\nC - Clear Circuit Elements\r\nP - Pause Timer\r\nO - Start Timer\r\nA - Move Circuit Element Left\r\nD - Move Circuit Element Right";
+            materialLabel1.Text = "G - Spawn Falling Resistor\r\nS - Spawn Falling Source\r\nC - Clear Circuit Elements\r\nP - Pause Timer\r\nO - Start Timer\r\nA - Move Circuit Element Left\r\nD - Move Circuit Element Right";
             // 
             // dropResistorTbox
             // 
@@ -161,7 +170,7 @@
             dropResistorTbox.Hint = "Resistor Dropping Resistance";
             dropResistorTbox.InsertKeyMode = InsertKeyMode.Default;
             dropResistorTbox.LeadingIcon = null;
-            dropResistorTbox.Location = new Point(945, 384);
+            dropResistorTbox.Location = new Point(945, 420);
             dropResistorTbox.Mask = "";
             dropResistorTbox.MaxLength = 32767;
             dropResistorTbox.MouseState = MaterialSkin.MouseState.OUT;
@@ -205,7 +214,7 @@
             circuitSourceTbox.Hint = "Circuit Voltage Source";
             circuitSourceTbox.InsertKeyMode = InsertKeyMode.Default;
             circuitSourceTbox.LeadingIcon = null;
-            circuitSourceTbox.Location = new Point(945, 467);
+            circuitSourceTbox.Location = new Point(945, 503);
             circuitSourceTbox.Mask = "";
             circuitSourceTbox.MaxLength = 32767;
             circuitSourceTbox.MouseState = MaterialSkin.MouseState.OUT;
@@ -249,7 +258,7 @@
             loadResistanceTbox.Hint = "Load Resistance";
             loadResistanceTbox.InsertKeyMode = InsertKeyMode.Default;
             loadResistanceTbox.LeadingIcon = null;
-            loadResistanceTbox.Location = new Point(945, 550);
+            loadResistanceTbox.Location = new Point(945, 586);
             loadResistanceTbox.Mask = "";
             loadResistanceTbox.MaxLength = 32767;
             loadResistanceTbox.MouseState = MaterialSkin.MouseState.OUT;
@@ -396,11 +405,80 @@
             ratingLabel.TabIndex = 20;
             ratingLabel.Text = "Current Rating: ";
             // 
+            // dropSourceTbox
+            // 
+            dropSourceTbox.AllowPromptAsInput = true;
+            dropSourceTbox.AnimateReadOnly = false;
+            dropSourceTbox.AsciiOnly = false;
+            dropSourceTbox.BackgroundImageLayout = ImageLayout.None;
+            dropSourceTbox.BeepOnError = false;
+            dropSourceTbox.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
+            dropSourceTbox.Depth = 0;
+            dropSourceTbox.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dropSourceTbox.HidePromptOnLeave = false;
+            dropSourceTbox.HideSelection = true;
+            dropSourceTbox.Hint = "Source Dropping Voltage";
+            dropSourceTbox.InsertKeyMode = InsertKeyMode.Default;
+            dropSourceTbox.LeadingIcon = null;
+            dropSourceTbox.Location = new Point(945, 350);
+            dropSourceTbox.Mask = "";
+            dropSourceTbox.MaxLength = 32767;
+            dropSourceTbox.MouseState = MaterialSkin.MouseState.OUT;
+            dropSourceTbox.Name = "dropSourceTbox";
+            dropSourceTbox.PasswordChar = '\0';
+            dropSourceTbox.PrefixSuffixText = null;
+            dropSourceTbox.PromptChar = '_';
+            dropSourceTbox.ReadOnly = false;
+            dropSourceTbox.RejectInputOnFirstFailure = false;
+            dropSourceTbox.ResetOnPrompt = true;
+            dropSourceTbox.ResetOnSpace = true;
+            dropSourceTbox.RightToLeft = RightToLeft.No;
+            dropSourceTbox.SelectedText = "";
+            dropSourceTbox.SelectionLength = 0;
+            dropSourceTbox.SelectionStart = 0;
+            dropSourceTbox.ShortcutsEnabled = true;
+            dropSourceTbox.ShowAssistiveText = true;
+            dropSourceTbox.Size = new Size(250, 64);
+            dropSourceTbox.SkipLiterals = true;
+            dropSourceTbox.TabIndex = 21;
+            dropSourceTbox.TabStop = false;
+            dropSourceTbox.TextAlign = HorizontalAlignment.Left;
+            dropSourceTbox.TextMaskFormat = MaskFormat.IncludeLiterals;
+            dropSourceTbox.TrailingIcon = null;
+            dropSourceTbox.UseSystemPasswordChar = false;
+            dropSourceTbox.ValidatingType = null;
+            dropSourceTbox.KeyPress += dropSourceTbox_KeyPress;
+            // 
+            // dropVoltageLabel
+            // 
+            dropVoltageLabel.Depth = 0;
+            dropVoltageLabel.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dropVoltageLabel.Location = new Point(945, 320);
+            dropVoltageLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            dropVoltageLabel.Name = "dropVoltageLabel";
+            dropVoltageLabel.Size = new Size(292, 23);
+            dropVoltageLabel.TabIndex = 22;
+            dropVoltageLabel.Text = "Drop Voltage: ";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImageLayout = ImageLayout.None;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(683, 361);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(144, 164);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 23;
+            pictureBox1.TabStop = false;
+            // 
             // MainGame
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1264, 681);
+            Controls.Add(pictureBox1);
+            Controls.Add(dropVoltageLabel);
+            Controls.Add(dropSourceTbox);
             Controls.Add(ratingLabel);
             Controls.Add(ledBurnedLabel);
             Controls.Add(resistorBurnedLabel);
@@ -426,6 +504,7 @@
             Name = "MainGame";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MainGame";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -451,5 +530,8 @@
         private MaterialSkin.Controls.MaterialLabel resistorBurnedLabel;
         private MaterialSkin.Controls.MaterialLabel ledBurnedLabel;
         private MaterialSkin.Controls.MaterialLabel ratingLabel;
+        private MaterialSkin.Controls.MaterialMaskedTextBox dropSourceTbox;
+        private MaterialSkin.Controls.MaterialLabel dropVoltageLabel;
+        private PictureBox pictureBox1;
     }
 }

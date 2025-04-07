@@ -17,6 +17,7 @@ namespace CircuitCraft
         public double DebugLoadResistance { get; set; }
         public double DebugDropResistorResistance { get; set; }
         public double DebugSourceVoltage { get; set; }
+        public double DebugDropSourceVoltage { get; set; }
 
         Timer timer = new Timer();
         public double timerModifier = 1;
@@ -28,13 +29,19 @@ namespace CircuitCraft
 
             gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Series, new Point(60, 110), 40, 120);
             gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Parallel, new Point(140, 110), 40, 120);
+            gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Parallel, new Point(220, 110), 40, 120);
+            gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Parallel, new Point(300, 110), 40, 120);
 
-            timer.Interval = 200;
+            gameCanvas.OperatingCurrent = 0.2;
+
+            //CircuitSimulator.CalculationTest();
+
+            timer.Interval = 100;
             timer.Tick += new EventHandler(Timer_Tick);
-            UpdateCircuitElementUI();
 
-            DataClass.username = "kem";
+            //DataClass.username = "a";
             DataClass.AqcuireUserInformation();
+            UpdateCircuitElementUI();
         }
 
         public void StartTicking()
@@ -51,36 +58,13 @@ namespace CircuitCraft
         {
             if (!gameCanvas.DropDownCircuitElement(10))
             {
-                gameCanvas.SpawnCircuitElement(CircuitElementType.Resistor, 90, DebugDropResistorResistance);
                 UpdateCircuitElementUI();
             }
         }
 
         public void UpdateCircuitElementUI()
         {
-            List<double> seriesResistance = new List<double>();
-            List<double> parallelResistance = new List<double>();
-
-            foreach (var block in gameCanvas.CircuitBlocks)
-            {
-                if (block.CircuitBlockConnectionType == CircuitBlockConnectionType.Series)
-                {
-
-                    for (int i = 0; i < block.CircuitElements.Count; i++)
-                    {
-                        seriesResistance.Add(block.CircuitElements[i].Resistance);
-                    }
-                }
-                else if (block.CircuitBlockConnectionType == CircuitBlockConnectionType.Parallel)
-                {
-                    for (int i = 0; i < block.CircuitElements.Count; i++)
-                    {
-                        parallelResistance.Add(block.CircuitElements[i].Resistance);
-                    }
-                }
-            }
-
-            CircuitSimulator.LoadCalculationResult result = CircuitSimulator.CalculateLoadState(DebugSourceVoltage, seriesResistance, parallelResistance, DebugLoadResistance);
+            CircuitSimulator.LoadCalculationResult result = CircuitSimulator.CalculateLoadState(gameCanvas.CircuitBlocks, DebugSourceVoltage, DebugLoadResistance);
             loadCurrentLabel.Text = "Load Current: " + result.LoadCurrent.ToString("F2") + " A";
             loadVoltageLabel.Text = "Load Voltage: " + result.LoadVoltage.ToString("F2") + " V";
             loadResistanceLabel.Text = "Load Resistance: " + result.LoadResistance.ToString("F2") + " Ω";
@@ -91,6 +75,7 @@ namespace CircuitCraft
             resistorBurnedLabel.Text = "Burned Resistors: " + DataClass.BurnedResistors.ToString();
             ledBurnedLabel.Text = "Burned LEDs: " + DataClass.BurnedLeds.ToString();
             ratingLabel.Text = "Rating: " + DataClass.Rating.ToString("F2");
+            dropVoltageLabel.Text = "Drop Voltage: " + DebugDropSourceVoltage + " V";
         }
 
         private void PlayerInput(object sender, KeyEventArgs e)
@@ -99,6 +84,9 @@ namespace CircuitCraft
             {
                 case Keys.G:
                     gameCanvas.SpawnCircuitElement(CircuitElementType.Resistor, 0, DebugDropResistorResistance);
+                    break;
+                case Keys.S:
+                    gameCanvas.SpawnCircuitElement(CircuitElementType.Source, DebugDropSourceVoltage, 0);
                     break;
                 case Keys.P:
                     StopTicking();
@@ -120,11 +108,6 @@ namespace CircuitCraft
         }
 
         #region Debug
-        private void dropResistorTbox_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void circuitSourceTbox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
@@ -158,8 +141,6 @@ namespace CircuitCraft
             }
         }
 
-        #endregion
-
         private void circuitCompletedButton_Click(object sender, EventArgs e)
         {
             DataClass.CircuitsCompleted++;
@@ -176,6 +157,18 @@ namespace CircuitCraft
         {
             DataClass.BurnedLeds++;
             UpdateCircuitElementUI();
+        }
+        #endregion
+
+        private void dropSourceTbox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                double result;
+                double.TryParse(dropSourceTbox.Text, out result);
+                DebugDropSourceVoltage = result;
+                UpdateCircuitElementUI();
+            }
         }
     }
 }
