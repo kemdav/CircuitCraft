@@ -39,7 +39,7 @@ namespace CircuitCraft
             timer.Interval = 100;
             timer.Tick += new EventHandler(Timer_Tick);
 
-            DataClass.username = "a";
+            //DataClass.username = "a";
             DataClass.AqcuireUserInformation();
             UpdateCircuitElementUI();
         }
