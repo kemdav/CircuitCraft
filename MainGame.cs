@@ -73,23 +73,24 @@ namespace CircuitCraft
 
         private void OperatingCurrentTimer_Tick(object sender, EventArgs e)
         {
-            // TODO: Decreasing the led burn requirement over time rather than setting it to 0 immediately
-            if (gameCanvas.OperatingCurrentTick >= 10000)
+            if (gameCanvas.OperatingCurrentTick >= 10000 && result.LoadCurrent > gameCanvas.OperatingCurrent)
             {
                 // LED Burned
-                gameCanvas.OperatingCurrentTick = 0;
-                operatingCurrentProgress.Progress = 0;
+                //gameCanvas.OperatingCurrentTick = 0;
+                //operatingCurrentProgress.Progress = 0;
+                ledBurnedIndicator.Visible = true;
             }
 
-            if (result.LoadCurrent > gameCanvas.OperatingCurrent)
+            if (result.LoadCurrent > gameCanvas.OperatingCurrent && gameCanvas.OperatingCurrentTick < 10000)
             {
                 gameCanvas.OperatingCurrentTick += 100;
                 operatingCurrentProgress.Progress = Convert.ToInt32((gameCanvas.OperatingCurrentTick / 10000f) * 100);
             }
-            else
+            else if (gameCanvas.OperatingCurrentTick > 0 && result.LoadCurrent < gameCanvas.OperatingCurrent)
             {
-                gameCanvas.OperatingCurrentTick = 0;
-                operatingCurrentProgress.Progress = 0;
+                gameCanvas.OperatingCurrentTick -= 100;
+                operatingCurrentProgress.Progress = Convert.ToInt32((gameCanvas.OperatingCurrentTick / 10000f) * 100);
+                ledBurnedIndicator.Visible = false;
             }
         }
 

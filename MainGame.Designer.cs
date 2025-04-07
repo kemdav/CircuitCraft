@@ -53,6 +53,7 @@
             pictureBox1 = new PictureBox();
             operatingCurrentLabel = new MaterialSkin.Controls.MaterialLabel();
             operatingCurrentProgress = new ReaLTaiizor.Controls.LostProgressBar();
+            ledBurnedIndicator = new MaterialSkin.Controls.MaterialLabel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -81,7 +82,7 @@
             gameCanvas.CircuitElementResistorSprite = (Image)resources.GetObject("gameCanvas.CircuitElementResistorSprite");
             gameCanvas.CircuitElementSourceSprite = (Image)resources.GetObject("gameCanvas.CircuitElementSourceSprite");
             gameCanvas.CircuitSources = null;
-            gameCanvas.CurrentBlockIndex = 0;
+            gameCanvas.CurrentBlockIndex = -1;
             gameCanvas.CurrentCircuitElementDropped = null;
             gameCanvas.CurrentCircuitElementDroppedResistance = 0D;
             gameCanvas.CurrentCircuitElementDroppedVoltage = 0D;
@@ -499,11 +500,26 @@
             operatingCurrentProgress.TabIndex = 25;
             operatingCurrentProgress.Text = "lostProgressBar1";
             // 
+            // ledBurnedIndicator
+            // 
+            ledBurnedIndicator.AutoSize = true;
+            ledBurnedIndicator.Depth = 0;
+            ledBurnedIndicator.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            ledBurnedIndicator.ForeColor = Color.Red;
+            ledBurnedIndicator.Location = new Point(728, 612);
+            ledBurnedIndicator.MouseState = MaterialSkin.MouseState.HOVER;
+            ledBurnedIndicator.Name = "ledBurnedIndicator";
+            ledBurnedIndicator.Size = new Size(99, 19);
+            ledBurnedIndicator.TabIndex = 26;
+            ledBurnedIndicator.Text = "LED BURNED!";
+            ledBurnedIndicator.Visible = false;
+            // 
             // MainGame
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1264, 681);
+            Controls.Add(ledBurnedIndicator);
             Controls.Add(operatingCurrentProgress);
             Controls.Add(operatingCurrentLabel);
             Controls.Add(pictureBox1);
@@ -536,6 +552,7 @@
             Text = "MainGame";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -565,5 +582,6 @@
         private PictureBox pictureBox1;
         private MaterialSkin.Controls.MaterialLabel operatingCurrentLabel;
         private ReaLTaiizor.Controls.LostProgressBar operatingCurrentProgress;
+        private MaterialSkin.Controls.MaterialLabel ledBurnedIndicator;
     }
 }
