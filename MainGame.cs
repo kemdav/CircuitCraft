@@ -32,7 +32,9 @@ namespace CircuitCraft
             gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Parallel, new Point(220, 110), 40, 120);
             gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Parallel, new Point(300, 110), 40, 120);
 
-            CircuitSimulator.CalculationTest();
+            gameCanvas.OperatingCurrent = 0.2;
+
+            //CircuitSimulator.CalculationTest();
 
             timer.Interval = 100;
             timer.Tick += new EventHandler(Timer_Tick);
@@ -56,7 +58,6 @@ namespace CircuitCraft
         {
             if (!gameCanvas.DropDownCircuitElement(10))
             {
-                gameCanvas.SpawnCircuitElement(CircuitElementType.Source, 90, DebugDropResistorResistance);
                 UpdateCircuitElementUI();
             }
         }
@@ -164,7 +165,7 @@ namespace CircuitCraft
             if (e.KeyChar == (char)Keys.Enter)
             {
                 double result;
-                double.TryParse(loadResistanceTbox.Text, out result);
+                double.TryParse(dropSourceTbox.Text, out result);
                 DebugDropSourceVoltage = result;
                 UpdateCircuitElementUI();
             }

@@ -44,7 +44,7 @@ namespace CircuitCraft
                     CircuitElements = new List<CircuitElement>
                     {
                         new GameResistor { Resistance = 1 },
-                        new GameSource { Voltage = 1 }
+                        new GameSource { Voltage = 10 }
                     }
                 },
                 new CircuitBlock
@@ -53,7 +53,7 @@ namespace CircuitCraft
                     CircuitElements = new List<CircuitElement>
                     {
                         new GameResistor { Resistance = 1 },
-                        new GameSource { Voltage = 1 }
+                        new GameSource { Voltage = 15 }
                     }
                 },
                 new CircuitBlock
@@ -87,6 +87,7 @@ namespace CircuitCraft
             double seriesVoltageSource = 0.0;
             List<double> parallelVoltageSources = new List<double>();
 
+            seriesResistances.Add(40); // Temp
 
 
             foreach (var block in circuitBlocks)
@@ -138,7 +139,10 @@ namespace CircuitCraft
                     }
                     rp += 1.0 / resistance;
                 }
-                rp = 1 / rp;
+                if (rp != 0)
+                {
+                    rp = 1 / rp;
+                }
             }
 
 
@@ -170,10 +174,22 @@ namespace CircuitCraft
                 double i1 = seriesVoltageSource + batteryVoltage / r_total;
                 double i2 = ((parallelVoltageSources[0] / parallelResistances[0]) * (1/((1/rs) + 
                     (1 / parallelResistances[0]) + (1 / parallelResistances[1]) + (1 / parallelResistances[2]))))/rs;
+                if (double.IsNaN(i2) || i2 == double.PositiveInfinity)
+                {
+                    i2 = 0;
+                }
                 double i3 = ((parallelVoltageSources[1] / parallelResistances[1]) * (1 / ((1 / rs) +
                     (1 / parallelResistances[0]) + (1 / parallelResistances[1]) + (1 / parallelResistances[2]))))/rs;
+                if (double.IsNaN(i3) || i3 == double.PositiveInfinity)
+                {
+                    i3 = 0;
+                }
                 double i4 = ((parallelVoltageSources[2] / parallelResistances[2]) * (1 / ((1 / rs) +
                     (1 / parallelResistances[0]) + (1 / parallelResistances[1]) + (1 / parallelResistances[2]))))/rs;
+                if (double.IsNaN(i4) || i4 == double.PositiveInfinity)
+                {
+                    i4 = 0;
+                }
                 i_total = i1 + i2 + i3 + i4;
                 result.LoadCurrent = i_total;
                 result.Status = CircuitStatus.OK;

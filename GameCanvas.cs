@@ -13,6 +13,7 @@ namespace CircuitCraft
     public partial class GameCanvas : UserControl
     {
         public List<CircuitElement> CircuitSources { get; set; }
+        public double OperatingCurrent { get; set; } = 0;
 
         private int _currentBlockIndex = 0;
         public int CurrentBlockIndex { 
@@ -45,6 +46,7 @@ namespace CircuitCraft
 
         private Image _circuitElementSourceSprite;
         private Image _circuitElementResistorSprite;
+        private Image _circuitElementLEDSprite;
         
         private int _circuitElementSpawnOffsetY = 20;
 
@@ -139,6 +141,7 @@ namespace CircuitCraft
                     CircuitBlocks[CurrentBlockIndex].Location.Y + CircuitBlocks[CurrentBlockIndex].Height - CurrentCircuitElementDropped.Height - 
                     (CircuitBlocks[CurrentBlockIndex].CircuitElements.Count * CircuitBlocks[CurrentBlockIndex].CircuitElementHeight));
                 CircuitBlocks[CurrentBlockIndex].AddCircuitElement(CircuitElementType.Resistor, CurrentCircuitElementDroppedVoltage, CurrentCircuitElementDroppedResistance);
+                CurrentCircuitElementDropped = null;
                 return false;
             }
             CurrentCircuitElementDropped.Location = new Point(CircuitBlocks[CurrentBlockIndex].Location.X, CurrentCircuitElementDropped.Location.Y + y);
@@ -171,6 +174,15 @@ namespace CircuitCraft
         {
             get { return _circuitElementSourceSprite; }
             set { _circuitElementSourceSprite = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("LED Sprite")]
+        [DefaultValue(null)]
+        public Image CircuitElementLedSprite
+        {
+            get { return _circuitElementLEDSprite; }
+            set { _circuitElementLEDSprite = value; }
         }
 
         [Category("Game Canvas Settings")]

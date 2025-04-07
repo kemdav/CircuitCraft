@@ -50,6 +50,8 @@
             ratingLabel = new MaterialSkin.Controls.MaterialLabel();
             dropSourceTbox = new MaterialSkin.Controls.MaterialMaskedTextBox();
             dropVoltageLabel = new MaterialSkin.Controls.MaterialLabel();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // hopeForm1
@@ -72,11 +74,12 @@
             gameCanvas.BackColor = Color.FromArgb(224, 224, 224);
             gameCanvas.CircuitBlock = null;
             gameCanvas.CircuitElement = null;
+            gameCanvas.CircuitElementLedSprite = (Image)resources.GetObject("gameCanvas.CircuitElementLedSprite");
             gameCanvas.CircuitElementOffset = 20;
             gameCanvas.CircuitElementResistorSprite = (Image)resources.GetObject("gameCanvas.CircuitElementResistorSprite");
             gameCanvas.CircuitElementSourceSprite = (Image)resources.GetObject("gameCanvas.CircuitElementSourceSprite");
             gameCanvas.CircuitSources = null;
-            gameCanvas.CurrentBlockIndex = 0;
+            gameCanvas.CurrentBlockIndex = -1;
             gameCanvas.CurrentCircuitElementDropped = null;
             gameCanvas.CurrentCircuitElementDroppedResistance = 0D;
             gameCanvas.CurrentCircuitElementDroppedVoltage = 0D;
@@ -457,11 +460,23 @@
             dropVoltageLabel.TabIndex = 22;
             dropVoltageLabel.Text = "Drop Voltage: ";
             // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImageLayout = ImageLayout.None;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(683, 361);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(144, 164);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 23;
+            pictureBox1.TabStop = false;
+            // 
             // MainGame
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1264, 681);
+            Controls.Add(pictureBox1);
             Controls.Add(dropVoltageLabel);
             Controls.Add(dropSourceTbox);
             Controls.Add(ratingLabel);
@@ -489,6 +504,7 @@
             Name = "MainGame";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MainGame";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -516,5 +532,6 @@
         private MaterialSkin.Controls.MaterialLabel ratingLabel;
         private MaterialSkin.Controls.MaterialMaskedTextBox dropSourceTbox;
         private MaterialSkin.Controls.MaterialLabel dropVoltageLabel;
+        private PictureBox pictureBox1;
     }
 }
