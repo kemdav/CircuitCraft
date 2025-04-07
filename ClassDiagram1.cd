@@ -7,6 +7,9 @@
     </Compartments>
     <NestedTypes>
       <Struct Name="CircuitCraft.CircuitSimulator.LoadCalculationResult">
+        <Compartments>
+          <Compartment Name="Properties" Collapsed="true" />
+        </Compartments>
         <TypeIdentifier>
           <NewMemberFileName>CircuitSimulator.cs</NewMemberFileName>
         </TypeIdentifier>
@@ -18,14 +21,18 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CircuitSimulator.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CircuitCraft.CircuitBlock">
     <Position X="12" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AYABAAEAACAAACEAACCAAAACAAAAAAAAIEAgQAAAAAQ=</HashCode>
+      <HashCode>AYABAAEAACAAACGAACCAAAACAAAIAAAAIEAgQAAAAAQ=</HashCode>
       <FileName>CircuitBlock.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -59,8 +66,12 @@
   </Class>
   <Class Name="CircuitCraft.GameCanvas">
     <Position X="8.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>gAQAABAEACEAAIAIAGCAAAACAAACEBIAACAAoiAwEAA=</HashCode>
+      <HashCode>gASAABAEACEAAIAIAWCABAACAAAiEBIAACAAoiAwEAA=</HashCode>
       <FileName>GameCanvas.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -70,9 +81,9 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="CircuitCraft.MainGame" Collapsed="true">
-    <Position X="12" Y="5.5" Width="1.5" />
+    <Position X="11.75" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AEUAQAAAAKkAAgRAAISAQBwGAAAAEAoEQEBkAAgQCIw=</HashCode>
+      <HashCode>AEECQAAIAKkQAgxABYSAQBwGAQAQEAoEwEBkAChQCIw=</HashCode>
       <FileName>MainGame.cs</FileName>
     </TypeIdentifier>
   </Class>

@@ -215,6 +215,7 @@
             playButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
             playButton.UseAccentColor = false;
             playButton.UseVisualStyleBackColor = true;
+            playButton.Click += playButton_Click;
             // 
             // panel1
             // 
@@ -242,6 +243,7 @@
             Controls.Add(bigLabel1);
             Controls.Add(versionLABEL);
             Controls.Add(mainMenuBackgroundMedia);
+            DoubleBuffered = true;
             ForeColor = SystemColors.ButtonShadow;
             FormBorderStyle = FormBorderStyle.None;
             MaximumSize = new Size(1920, 1032);

@@ -27,6 +27,14 @@ namespace CircuitCraft
             timer.Start();
         }
 
+        public MainMenuForm MainMenuForm
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         private async void LoadingForm_Load(object sender, EventArgs e)
         {
             await LoadVideoInBackground();

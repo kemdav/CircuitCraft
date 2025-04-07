@@ -22,9 +22,9 @@
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="SettingsForm" />
       <Property Name="LeaderboardsForm" />
       <Property Name="LoginScreenForm" />
+      <Property Name="SettingsForm" />
       <Property Name="MainGame" />
     </ShowAsAssociation>
   </Class>
@@ -59,7 +59,7 @@
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AEUAQAAAAKkAAgRAAISAQBwGAAAAEAoEQEBkAAgQCIw=</HashCode>
+      <HashCode>AEECQAAIAKkQAgxABYSAQBwGAQAQEAoEwEBkAChQCIw=</HashCode>
       <FileName>MainGame.cs</FileName>
     </TypeIdentifier>
   </Class>

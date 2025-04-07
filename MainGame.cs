@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
@@ -19,7 +20,10 @@ namespace CircuitCraft
         public double DebugSourceVoltage { get; set; }
         public double DebugDropSourceVoltage { get; set; }
 
-        Timer timer = new Timer();
+        private CircuitSimulator.LoadCalculationResult result;
+
+        Timer gameTimer = new Timer();
+        Timer operatingCurrentTimer = new Timer();
         public double timerModifier = 1;
         public MainGame()
         {
@@ -36,8 +40,13 @@ namespace CircuitCraft
 
             //CircuitSimulator.CalculationTest();
 
-            timer.Interval = 100;
-            timer.Tick += new EventHandler(Timer_Tick);
+            gameTimer.Interval = 100;
+            gameTimer.Tick += new EventHandler(Timer_Tick);
+
+            operatingCurrentTimer.Interval = 100;
+            operatingCurrentTimer.Tick += new EventHandler(OperatingCurrentTimer_Tick);
+
+            operatingCurrentTimer.Start();
 
             //DataClass.username = "a";
             DataClass.AqcuireUserInformation();
@@ -46,12 +55,12 @@ namespace CircuitCraft
 
         public void StartTicking()
         {
-            timer.Start();
+            gameTimer.Start();
         }
 
         public void StopTicking()
         {
-            timer.Stop();
+            gameTimer.Stop();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -62,9 +71,33 @@ namespace CircuitCraft
             }
         }
 
+        private void OperatingCurrentTimer_Tick(object sender, EventArgs e)
+        {
+            if (gameCanvas.OperatingCurrentTick >= 10000 && result.LoadCurrent > gameCanvas.OperatingCurrent)
+            {
+                // LED Burned
+                //gameCanvas.OperatingCurrentTick = 0;
+                //operatingCurrentProgress.Progress = 0;
+                ledBurnedIndicator.Visible = true;
+            }
+
+            if (result.LoadCurrent > gameCanvas.OperatingCurrent && gameCanvas.OperatingCurrentTick < 10000)
+            {
+                gameCanvas.OperatingCurrentTick += 100;
+                operatingCurrentProgress.Progress = Convert.ToInt32((gameCanvas.OperatingCurrentTick / 10000f) * 100);
+            }
+            else if (gameCanvas.OperatingCurrentTick > 0 && result.LoadCurrent < gameCanvas.OperatingCurrent)
+            {
+                gameCanvas.OperatingCurrentTick -= 100;
+                operatingCurrentProgress.Progress = Convert.ToInt32((gameCanvas.OperatingCurrentTick / 10000f) * 100);
+                ledBurnedIndicator.Visible = false;
+            }
+        }
+
         public void UpdateCircuitElementUI()
         {
-            CircuitSimulator.LoadCalculationResult result = CircuitSimulator.CalculateLoadState(gameCanvas.CircuitBlocks, DebugSourceVoltage, DebugLoadResistance);
+            result = CircuitSimulator.CalculateLoadState(gameCanvas.CircuitBlocks, DebugSourceVoltage, DebugLoadResistance);
+
             loadCurrentLabel.Text = "Load Current: " + result.LoadCurrent.ToString("F2") + " A";
             loadVoltageLabel.Text = "Load Voltage: " + result.LoadVoltage.ToString("F2") + " V";
             loadResistanceLabel.Text = "Load Resistance: " + result.LoadResistance.ToString("F2") + " Ω";
@@ -76,6 +109,7 @@ namespace CircuitCraft
             ledBurnedLabel.Text = "Burned LEDs: " + DataClass.BurnedLeds.ToString();
             ratingLabel.Text = "Rating: " + DataClass.Rating.ToString("F2");
             dropVoltageLabel.Text = "Drop Voltage: " + DebugDropSourceVoltage + " V";
+            operatingCurrentLabel.Text = "Operating Current: " + gameCanvas.OperatingCurrent.ToString("F2") + " A";
         }
 
         private void PlayerInput(object sender, KeyEventArgs e)
