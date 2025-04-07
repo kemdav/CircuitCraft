@@ -17,6 +17,7 @@ namespace CircuitCraft
         public double DebugLoadResistance { get; set; }
         public double DebugDropResistorResistance { get; set; }
         public double DebugSourceVoltage { get; set; }
+        public double DebugDropSourceVoltage { get; set; }
 
         Timer timer = new Timer();
         public double timerModifier = 1;
@@ -53,7 +54,7 @@ namespace CircuitCraft
         {
             if (!gameCanvas.DropDownCircuitElement(10))
             {
-                gameCanvas.SpawnCircuitElement(CircuitElementType.Resistor, 90, DebugDropResistorResistance);
+                gameCanvas.SpawnCircuitElement(CircuitElementType.Source, 90, DebugDropResistorResistance);
                 UpdateCircuitElementUI();
             }
         }
@@ -71,6 +72,7 @@ namespace CircuitCraft
             resistorBurnedLabel.Text = "Burned Resistors: " + DataClass.BurnedResistors.ToString();
             ledBurnedLabel.Text = "Burned LEDs: " + DataClass.BurnedLeds.ToString();
             ratingLabel.Text = "Rating: " + DataClass.Rating.ToString("F2");
+            dropVoltageLabel.Text = "Drop Voltage: " + DebugDropSourceVoltage + " V";
         }
 
         private void PlayerInput(object sender, KeyEventArgs e)
@@ -79,6 +81,9 @@ namespace CircuitCraft
             {
                 case Keys.G:
                     gameCanvas.SpawnCircuitElement(CircuitElementType.Resistor, 0, DebugDropResistorResistance);
+                    break;
+                case Keys.S:
+                    gameCanvas.SpawnCircuitElement(CircuitElementType.Source, DebugDropSourceVoltage, 0);
                     break;
                 case Keys.P:
                     StopTicking();
@@ -151,5 +156,16 @@ namespace CircuitCraft
             UpdateCircuitElementUI();
         }
         #endregion
+
+        private void dropSourceTbox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                double result;
+                double.TryParse(loadResistanceTbox.Text, out result);
+                DebugDropSourceVoltage = result;
+                UpdateCircuitElementUI();
+            }
+        }
     }
 }

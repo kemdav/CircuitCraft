@@ -63,6 +63,16 @@ namespace CircuitCraft
             return equivalentResistance;
         }
 
+        public double GetEquivalentSourceVoltage()
+        {
+            double equivalentVoltage = 0;
+            foreach (var element in CircuitElements)
+            {
+                equivalentVoltage += element.Voltage;
+            }
+            return equivalentVoltage;
+        }
+
         [Category("Circuit Block Settings")]
         [Description("Circuit Block Properties")]
         [DefaultValue(4)]

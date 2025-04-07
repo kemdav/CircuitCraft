@@ -36,16 +36,22 @@ namespace CircuitCraft
 
             List<double> seriesResistances = new List<double>();
             List<double> parallelResistances = new List<double>();
+            double seriesVoltageSource = 0.0;
+            List<double> parallelVoltageSources = new List<double>();
+
+
 
             foreach (var block in circuitBlocks)
             {
                 if (block.CircuitBlockConnectionType == CircuitBlockConnectionType.Series)
                 {
                     seriesResistances.Add(block.GetEquivalentResistance());
+                    seriesVoltageSource += block.GetEquivalentSourceVoltage();
                 }
                 else if (block.CircuitBlockConnectionType == CircuitBlockConnectionType.Parallel)
                 {
                     parallelResistances.Add(block.GetEquivalentResistance());
+                    parallelVoltageSources.Add(block.GetEquivalentSourceVoltage());
                 }
             }
 
@@ -113,7 +119,9 @@ namespace CircuitCraft
             }
             else
             {
-                i_total = batteryVoltage / r_total;
+                i_total = ((batteryVoltage + seriesVoltageSource) / r_total) +
+                    (parallelVoltageSources[0] / r_total) + (parallelVoltageSources[1] / r_total) +
+                    (parallelVoltageSources[2] / r_total);
                 result.LoadCurrent = i_total;
                 result.Status = CircuitStatus.OK;
             }

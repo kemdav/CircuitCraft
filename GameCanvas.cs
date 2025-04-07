@@ -98,6 +98,15 @@ namespace CircuitCraft
                     circuitElementPbox.BringToFront();
                     CurrentCircuitElementDropped = circuitElementPbox;
                     break;
+                case CircuitElementType.Source:
+                    circuitElementPbox.Image = CircuitElementSourceSprite;
+                    circuitElementPbox.Width = CircuitBlocks[CurrentBlockIndex].CircuitElementWidth;
+                    circuitElementPbox.Height = CircuitBlocks[CurrentBlockIndex].CircuitElementHeight;
+                    circuitElementPbox.SizeMode = PictureBoxSizeMode.StretchImage;
+                    Controls.Add(circuitElementPbox);
+                    circuitElementPbox.BringToFront();
+                    CurrentCircuitElementDropped = circuitElementPbox;
+                    break;
             }
         }
 
