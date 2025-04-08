@@ -204,5 +204,17 @@ namespace CircuitCraft
                 UpdateCircuitElementUI();
             }
         }
+
+        private void MainGame_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Escape)
+            {
+                var frm = new MainMenuForm();
+                frm.StartPosition = FormStartPosition.CenterScreen;
+                frm.FormClosing += delegate { Close(); };
+                frm.Show();
+                Hide();
+            }
+        }
     }
 }
