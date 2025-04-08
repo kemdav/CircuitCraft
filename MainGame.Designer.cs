@@ -91,7 +91,7 @@
             gameCanvas.Name = "gameCanvas";
             gameCanvas.OperatingCurrent = 0D;
             gameCanvas.OperatingCurrentTick = 0;
-            gameCanvas.Size = new Size(1264, 644);
+            gameCanvas.Size = new Size(1383, 708);
             gameCanvas.TabIndex = 3;
             // 
             // circuitSourceLabel
@@ -550,6 +550,7 @@
             Name = "MainGame";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MainGame";
+            KeyPress += MainGame_KeyPress;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
