@@ -19,6 +19,8 @@ namespace CircuitCraft
     {      
         public CircuitElementType circuitElementType { get; set; }
         public byte[]? CircuitElementSprite { get; set; }
+        public int Rotation { get; set; } = 0;
+
         public double Resistance { get; set; } = 0;
         public double Voltage { get; set; } = 0;
         public double Current { get; set; } = 0;

@@ -59,6 +59,14 @@ namespace CircuitCraft
             double equivalentResistance = 0;
             foreach (var element in CircuitElements)
             {
+                if (element.circuitElementType == CircuitElementType.Diode && element.Rotation == 90) // Reverse Biased
+                {
+                    return double.NaN;
+                }
+                else if (element.circuitElementType == CircuitElementType.Diode)
+                {
+                    continue;
+                }
                 equivalentResistance += element.Resistance;
             }
             return equivalentResistance;
@@ -69,6 +77,15 @@ namespace CircuitCraft
             double equivalentVoltage = 0;
             foreach (var element in CircuitElements)
             {
+                if (element.circuitElementType == CircuitElementType.Diode && element.Rotation == 90) // Reverse Biased
+                {
+                    return double.NaN;
+                }
+                else if (element.circuitElementType == CircuitElementType.Diode)
+                {
+                    equivalentVoltage -= element.Voltage;
+                    continue;
+                }
                 equivalentVoltage += element.Voltage;
             }
             return equivalentVoltage;
