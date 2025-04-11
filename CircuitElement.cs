@@ -12,7 +12,8 @@ namespace CircuitCraft
     public enum CircuitElementType
     {
         Source,
-        Resistor
+        Resistor,
+        Diode
     }
     public class CircuitElement
     {      
@@ -44,6 +45,14 @@ namespace CircuitCraft
         public GameCircuitLoad()
         {
             circuitElementType = CircuitElementType.Source;
+        }
+    }
+
+    public class GameDiode : CircuitElement
+    {
+        public GameDiode()
+        {
+            circuitElementType = CircuitElementType.Diode;
         }
     }
 }
