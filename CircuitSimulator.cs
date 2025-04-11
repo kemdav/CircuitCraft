@@ -89,22 +89,36 @@ namespace CircuitCraft
 
             seriesResistances.Add(40); // Temp
 
+            foreach (var block in circuitBlocks)
+            {
+                double blockTotalResistance = block.GetEquivalentResistance();
+                double blockTotalVoltage = block.GetEquivalentSourceVoltage();
+
+                if (double.IsNaN(blockTotalResistance) || double.IsNaN(blockTotalVoltage)) // Reverse biased
+                {
+                    block.isEnabled = false;
+                    break;
+                }
+                else
+                {
+                    block.isEnabled = true;
+                }
+            }
 
             foreach (var block in circuitBlocks)
             {
-                if (block.isEnabled == false)
-                {
-                    continue;
-                }
+                double blockTotalResistance = block.GetEquivalentResistance();
+                double blockTotalVoltage = block.GetEquivalentSourceVoltage();
+
                 if (block.CircuitBlockConnectionType == CircuitBlockConnectionType.Series)
                 {
-                    seriesResistances.Add(block.GetEquivalentResistance());
-                    seriesVoltageSource += block.GetEquivalentSourceVoltage();
+                    seriesResistances.Add(blockTotalResistance);
+                    seriesVoltageSource += blockTotalVoltage;
                 }
                 else if (block.CircuitBlockConnectionType == CircuitBlockConnectionType.Parallel)
                 {
-                    parallelResistances.Add(block.GetEquivalentResistance());
-                    parallelVoltageSources.Add(block.GetEquivalentSourceVoltage());
+                    parallelResistances.Add(blockTotalResistance);
+                    parallelVoltageSources.Add(blockTotalVoltage);
                 }
             }
 
