@@ -28,6 +28,7 @@ namespace CircuitCraft
         private int _circuitElementWidth = 40;
         private int _circuitElementHeight = 40;
 
+        public bool isEnabled { get; set; } = true;
 
         public CircuitBlock()
         {
