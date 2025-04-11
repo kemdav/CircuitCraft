@@ -92,6 +92,10 @@ namespace CircuitCraft
 
             foreach (var block in circuitBlocks)
             {
+                if (block.isEnabled == false)
+                {
+                    continue;
+                }
                 if (block.CircuitBlockConnectionType == CircuitBlockConnectionType.Series)
                 {
                     seriesResistances.Add(block.GetEquivalentResistance());
