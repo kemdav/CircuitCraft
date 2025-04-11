@@ -51,6 +51,9 @@
             dropSourceTbox = new MaterialSkin.Controls.MaterialMaskedTextBox();
             dropVoltageLabel = new MaterialSkin.Controls.MaterialLabel();
             pictureBox1 = new PictureBox();
+            operatingCurrentLabel = new MaterialSkin.Controls.MaterialLabel();
+            operatingCurrentProgress = new ReaLTaiizor.Controls.LostProgressBar();
+            ledBurnedIndicator = new MaterialSkin.Controls.MaterialLabel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -79,14 +82,16 @@
             gameCanvas.CircuitElementResistorSprite = (Image)resources.GetObject("gameCanvas.CircuitElementResistorSprite");
             gameCanvas.CircuitElementSourceSprite = (Image)resources.GetObject("gameCanvas.CircuitElementSourceSprite");
             gameCanvas.CircuitSources = null;
-            gameCanvas.CurrentBlockIndex = -1;
+            gameCanvas.CurrentBlockIndex = 0;
             gameCanvas.CurrentCircuitElementDropped = null;
             gameCanvas.CurrentCircuitElementDroppedResistance = 0D;
             gameCanvas.CurrentCircuitElementDroppedVoltage = 0D;
-            gameCanvas.Location = new Point(12, 46);
+            gameCanvas.Location = new Point(0, 37);
             gameCanvas.MainGame = null;
             gameCanvas.Name = "gameCanvas";
-            gameCanvas.Size = new Size(1240, 612);
+            gameCanvas.OperatingCurrent = 0D;
+            gameCanvas.OperatingCurrentTick = 0;
+            gameCanvas.Size = new Size(1383, 708);
             gameCanvas.TabIndex = 3;
             // 
             // circuitSourceLabel
@@ -471,11 +476,52 @@
             pictureBox1.TabIndex = 23;
             pictureBox1.TabStop = false;
             // 
+            // operatingCurrentLabel
+            // 
+            operatingCurrentLabel.Depth = 0;
+            operatingCurrentLabel.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            operatingCurrentLabel.Location = new Point(633, 544);
+            operatingCurrentLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            operatingCurrentLabel.Name = "operatingCurrentLabel";
+            operatingCurrentLabel.Size = new Size(292, 23);
+            operatingCurrentLabel.TabIndex = 24;
+            operatingCurrentLabel.Text = "Operating Current: ";
+            // 
+            // operatingCurrentProgress
+            // 
+            operatingCurrentProgress.BackColor = Color.FromArgb(45, 45, 48);
+            operatingCurrentProgress.Color = Color.FromArgb(255, 128, 128);
+            operatingCurrentProgress.ForeColor = Color.FromArgb(63, 63, 70);
+            operatingCurrentProgress.Hover = false;
+            operatingCurrentProgress.Location = new Point(633, 586);
+            operatingCurrentProgress.Name = "operatingCurrentProgress";
+            operatingCurrentProgress.Progress = 50;
+            operatingCurrentProgress.Size = new Size(292, 23);
+            operatingCurrentProgress.TabIndex = 25;
+            operatingCurrentProgress.Text = "lostProgressBar1";
+            // 
+            // ledBurnedIndicator
+            // 
+            ledBurnedIndicator.AutoSize = true;
+            ledBurnedIndicator.Depth = 0;
+            ledBurnedIndicator.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            ledBurnedIndicator.ForeColor = Color.Red;
+            ledBurnedIndicator.Location = new Point(728, 612);
+            ledBurnedIndicator.MouseState = MaterialSkin.MouseState.HOVER;
+            ledBurnedIndicator.Name = "ledBurnedIndicator";
+            ledBurnedIndicator.Size = new Size(99, 19);
+            ledBurnedIndicator.TabIndex = 26;
+            ledBurnedIndicator.Text = "LED BURNED!";
+            ledBurnedIndicator.Visible = false;
+            // 
             // MainGame
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1264, 681);
+            Controls.Add(ledBurnedIndicator);
+            Controls.Add(operatingCurrentProgress);
+            Controls.Add(operatingCurrentLabel);
             Controls.Add(pictureBox1);
             Controls.Add(dropVoltageLabel);
             Controls.Add(dropSourceTbox);
@@ -504,8 +550,10 @@
             Name = "MainGame";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MainGame";
+            KeyPress += MainGame_KeyPress;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -533,5 +581,8 @@
         private MaterialSkin.Controls.MaterialMaskedTextBox dropSourceTbox;
         private MaterialSkin.Controls.MaterialLabel dropVoltageLabel;
         private PictureBox pictureBox1;
+        private MaterialSkin.Controls.MaterialLabel operatingCurrentLabel;
+        private ReaLTaiizor.Controls.LostProgressBar operatingCurrentProgress;
+        private MaterialSkin.Controls.MaterialLabel ledBurnedIndicator;
     }
 }
