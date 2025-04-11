@@ -48,6 +48,7 @@ namespace CircuitCraft
         private Image _circuitElementSourceSprite;
         private Image _circuitElementResistorSprite;
         private Image _circuitElementLEDSprite;
+        private Image _circuitElementDiodeSprite;
         
         private int _circuitElementSpawnOffsetY = 20;
 
@@ -103,6 +104,15 @@ namespace CircuitCraft
                     break;
                 case CircuitElementType.Source:
                     circuitElementPbox.Image = CircuitElementSourceSprite;
+                    circuitElementPbox.Width = CircuitBlocks[CurrentBlockIndex].CircuitElementWidth;
+                    circuitElementPbox.Height = CircuitBlocks[CurrentBlockIndex].CircuitElementHeight;
+                    circuitElementPbox.SizeMode = PictureBoxSizeMode.StretchImage;
+                    Controls.Add(circuitElementPbox);
+                    circuitElementPbox.BringToFront();
+                    CurrentCircuitElementDropped = circuitElementPbox;
+                    break;
+                case CircuitElementType.Diode:
+                    circuitElementPbox.Image = CircuitElementDiodeSprite;
                     circuitElementPbox.Width = CircuitBlocks[CurrentBlockIndex].CircuitElementWidth;
                     circuitElementPbox.Height = CircuitBlocks[CurrentBlockIndex].CircuitElementHeight;
                     circuitElementPbox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -184,6 +194,15 @@ namespace CircuitCraft
         {
             get { return _circuitElementLEDSprite; }
             set { _circuitElementLEDSprite = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Diode Sprite")]
+        [DefaultValue(null)]
+        public Image CircuitElementDiodeSprite
+        {
+            get { return _circuitElementDiodeSprite; }
+            set { _circuitElementDiodeSprite = value; }
         }
 
         [Category("Game Canvas Settings")]
