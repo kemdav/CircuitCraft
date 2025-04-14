@@ -77,7 +77,7 @@
             gameCanvas.BackColor = Color.FromArgb(224, 224, 224);
             gameCanvas.CircuitBlock = null;
             gameCanvas.CircuitElement = null;
-            gameCanvas.CircuitElementDiodeSpriteNormal = (Image)resources.GetObject("gameCanvas.CircuitElementDiodeSpriteNormal");
+            gameCanvas.CircuitElementDiodeSprite = (Image)resources.GetObject("gameCanvas.CircuitElementDiodeSpriteNormal");
             gameCanvas.CircuitElementDiodeSpriteRotated = (Image)resources.GetObject("gameCanvas.CircuitElementDiodeSpriteRotated");
             gameCanvas.CircuitElementLedSprite = (Image)resources.GetObject("gameCanvas.CircuitElementLedSprite");
             gameCanvas.CircuitElementOffset = 20;
