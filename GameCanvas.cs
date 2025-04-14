@@ -70,6 +70,7 @@ namespace CircuitCraft
 
         public double CurrentCircuitElementDroppedResistance { get; set; }
         public double CurrentCircuitElementDroppedVoltage { get; set; }
+        public CircuitElementType CurrentCircuitElementDroppedType { get; set; }
 
         private List<CircuitBlock> _circuitBlocks { get; set; } = new List<CircuitBlock>();
 
@@ -123,6 +124,7 @@ namespace CircuitCraft
             switch (circuitElementType)
             {
                 case CircuitElementType.Resistor:
+                    CurrentCircuitElementDroppedType = CircuitElementType.Resistor;
                     circuitElementPbox.Image = CircuitElementResistorSprite;
                     circuitElementPbox.Width = CircuitBlocks[CurrentBlockIndex].CircuitElementWidth;
                     circuitElementPbox.Height = CircuitBlocks[CurrentBlockIndex].CircuitElementHeight;
@@ -132,6 +134,7 @@ namespace CircuitCraft
                     CurrentCircuitElementDropped = circuitElementPbox;
                     break;
                 case CircuitElementType.Source:
+                    CurrentCircuitElementDroppedType = CircuitElementType.Source;
                     circuitElementPbox.Image = CircuitElementSourceSprite;
                     circuitElementPbox.Width = CircuitBlocks[CurrentBlockIndex].CircuitElementWidth;
                     circuitElementPbox.Height = CircuitBlocks[CurrentBlockIndex].CircuitElementHeight;
@@ -141,6 +144,7 @@ namespace CircuitCraft
                     CurrentCircuitElementDropped = circuitElementPbox;
                     break;
                 case CircuitElementType.Diode:
+                    CurrentCircuitElementDroppedType = CircuitElementType.Diode;
                     circuitElementPbox.Image = CircuitElementDiodeSpriteNormal;
                     circuitElementPbox.Width = CircuitBlocks[CurrentBlockIndex].CircuitElementWidth;
                     circuitElementPbox.Height = CircuitBlocks[CurrentBlockIndex].CircuitElementHeight;
@@ -180,7 +184,7 @@ namespace CircuitCraft
                 CurrentCircuitElementDropped.Location = new Point(CircuitBlocks[CurrentBlockIndex].Location.X, 
                     CircuitBlocks[CurrentBlockIndex].Location.Y + CircuitBlocks[CurrentBlockIndex].Height - CurrentCircuitElementDropped.Height - 
                     (CircuitBlocks[CurrentBlockIndex].CircuitElements.Count * CircuitBlocks[CurrentBlockIndex].CircuitElementHeight));
-                CircuitBlocks[CurrentBlockIndex].AddCircuitElement(CircuitElementType.Resistor, CurrentCircuitElementDroppedVoltage, CurrentCircuitElementDroppedResistance);
+                CircuitBlocks[CurrentBlockIndex].AddCircuitElement(CurrentCircuitElementDroppedType, CurrentCircuitElementDroppedVoltage, CurrentCircuitElementDroppedResistance, CurrentCircuitElementDroppedOrientation);
                 CurrentCircuitElementDropped = null;
                 return false;
             }

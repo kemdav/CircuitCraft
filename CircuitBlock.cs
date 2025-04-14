@@ -41,14 +41,32 @@ namespace CircuitCraft
             Width = _circuitElementWidth;
         }
 
-        public void AddCircuitElement(CircuitElementType circuitElementType, double voltage, double resistance)
+        public void AddCircuitElement(CircuitElementType circuitElementType, double voltage, double resistance, int orientation)
         {
             switch (circuitElementType)
             {
                 case CircuitElementType.Resistor:
                     CircuitElement circuitElement = new GameResistor();
+                    circuitElement.circuitElementType = CircuitElementType.Resistor;
                     circuitElement.Voltage = voltage;
                     circuitElement.Resistance = resistance;
+                    circuitElement.Orientation = orientation;
+                    CircuitElements.Add(circuitElement);
+                    break;
+                case CircuitElementType.Source:
+                    circuitElement = new GameSource();
+                    circuitElement.circuitElementType = CircuitElementType.Source;
+                    circuitElement.Voltage = voltage;
+                    circuitElement.Resistance = resistance;
+                    circuitElement.Orientation = orientation;
+                    CircuitElements.Add(circuitElement);
+                    break;
+                case CircuitElementType.Diode:
+                    circuitElement = new CircuitElement();
+                    circuitElement.circuitElementType = CircuitElementType.Diode;
+                    circuitElement.Voltage = voltage;
+                    circuitElement.Resistance = resistance;
+                    circuitElement.Orientation = orientation;
                     CircuitElements.Add(circuitElement);
                     break;
             }
@@ -59,7 +77,7 @@ namespace CircuitCraft
             double equivalentResistance = 0;
             foreach (var element in CircuitElements)
             {
-                if (element.circuitElementType == CircuitElementType.Diode && element.Rotation == 90) // Reverse Biased
+                if (element.circuitElementType == CircuitElementType.Diode && element.Orientation == 0) // Reverse Biased
                 {
                     return double.NaN;
                 }
@@ -77,7 +95,7 @@ namespace CircuitCraft
             double equivalentVoltage = 0;
             foreach (var element in CircuitElements)
             {
-                if (element.circuitElementType == CircuitElementType.Diode && element.Rotation == 90) // Reverse Biased
+                if (element.circuitElementType == CircuitElementType.Diode && element.Orientation == 0) // Reverse Biased
                 {
                     return double.NaN;
                 }
