@@ -40,6 +40,34 @@ namespace CircuitCraft
         }
 
         public PictureBox? CurrentCircuitElementDropped { get; set; }
+
+        private int _currentCircuitElementDroppedOrientation = 0; // 0 = normal, 1 = rotated
+        public int CurrentCircuitElementDroppedOrientation 
+        {
+            get
+            {
+                return _currentCircuitElementDroppedOrientation;
+            }
+            set
+            {
+                if (value == 1)
+                {
+                    _currentCircuitElementDroppedOrientation = value;
+                    CurrentCircuitElementDropped?.Image.RotateFlip(RotateFlipType.RotateNoneFlipNone);
+                }
+                else if (value == 0)
+                {
+                    _currentCircuitElementDroppedOrientation = value;
+                    Image currentImage = CurrentCircuitElementDropped?.Image;
+                    if (currentImage != null)
+                    {
+                        currentImage.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                        CurrentCircuitElementDropped.Image = currentImage;
+                    }
+                }
+            }
+        }
+
         public double CurrentCircuitElementDroppedResistance { get; set; }
         public double CurrentCircuitElementDroppedVoltage { get; set; }
 
@@ -48,8 +76,9 @@ namespace CircuitCraft
         private Image _circuitElementSourceSprite;
         private Image _circuitElementResistorSprite;
         private Image _circuitElementLEDSprite;
-        private Image _circuitElementDiodeSprite;
-        
+        private Image _circuitElementDiodeSpriteNormal;
+        private Image _circuitElementDiodeSpriteRotated;
+
         private int _circuitElementSpawnOffsetY = 20;
 
         public GameCanvas()
@@ -112,7 +141,7 @@ namespace CircuitCraft
                     CurrentCircuitElementDropped = circuitElementPbox;
                     break;
                 case CircuitElementType.Diode:
-                    circuitElementPbox.Image = CircuitElementDiodeSprite;
+                    circuitElementPbox.Image = CircuitElementDiodeSpriteNormal;
                     circuitElementPbox.Width = CircuitBlocks[CurrentBlockIndex].CircuitElementWidth;
                     circuitElementPbox.Height = CircuitBlocks[CurrentBlockIndex].CircuitElementHeight;
                     circuitElementPbox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -197,12 +226,21 @@ namespace CircuitCraft
         }
 
         [Category("Game Canvas Settings")]
-        [Description("Diode Sprite")]
+        [Description("Diode Sprite Normal")]
         [DefaultValue(null)]
-        public Image CircuitElementDiodeSprite
+        public Image CircuitElementDiodeSpriteNormal
         {
-            get { return _circuitElementDiodeSprite; }
-            set { _circuitElementDiodeSprite = value; }
+            get { return _circuitElementDiodeSpriteNormal; }
+            set { _circuitElementDiodeSpriteNormal = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Diode Sprite Rotated")]
+        [DefaultValue(null)]
+        public Image CircuitElementDiodeSpriteRotated
+        {
+            get { return _circuitElementDiodeSpriteRotated; }
+            set { _circuitElementDiodeSpriteRotated = value; }
         }
 
         [Category("Game Canvas Settings")]

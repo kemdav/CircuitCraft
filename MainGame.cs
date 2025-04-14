@@ -48,7 +48,7 @@ namespace CircuitCraft
 
             operatingCurrentTimer.Start();
 
-            //DataClass.username = "a";
+            DataClass.username = "a";
             DataClass.AqcuireUserInformation();
             UpdateCircuitElementUI();
         }
@@ -122,6 +122,9 @@ namespace CircuitCraft
                 case Keys.S:
                     gameCanvas.SpawnCircuitElement(CircuitElementType.Source, DebugDropSourceVoltage, 0);
                     break;
+                case Keys.F:
+                    gameCanvas.SpawnCircuitElement(CircuitElementType.Diode, 0, 0);
+                    break;
                 case Keys.P:
                     StopTicking();
                     break;
@@ -136,6 +139,9 @@ namespace CircuitCraft
                     break;
                 case Keys.D:
                     gameCanvas.CurrentBlockIndex++;
+                    break;
+                case Keys.R:
+                    gameCanvas.CurrentCircuitElementDroppedOrientation = 0;
                     break;
             }
 
@@ -215,6 +221,11 @@ namespace CircuitCraft
                 frm.Show();
                 Hide();
             }
+        }
+
+        private void materialLabel1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

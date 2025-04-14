@@ -18,12 +18,25 @@ namespace CircuitCraft
     public class CircuitElement
     {      
         public CircuitElementType circuitElementType { get; set; }
-        public byte[]? CircuitElementSprite { get; set; }
         public int Rotation { get; set; } = 0;
 
         public double Resistance { get; set; } = 0;
         public double Voltage { get; set; } = 0;
         public double Current { get; set; } = 0;
+
+        public void RotateElement(int direction, ref PictureBox circuitSprite)
+        {
+            if (direction == 1)
+            {
+                Rotation = 0;
+                circuitSprite.Image.RotateFlip(RotateFlipType.RotateNoneFlipNone);
+            }
+            else if (direction == 0)
+            {
+                Rotation = 180;
+                circuitSprite.Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+            }
+        }
     }
 
     public class GameResistor : CircuitElement
