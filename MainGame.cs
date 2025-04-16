@@ -38,7 +38,7 @@ namespace CircuitCraft
 
             gameCanvas.OperatingCurrent = 0.2;
 
-            //CircuitSimulator.CalculationTest();
+            CircuitSimulator.CalculationTest();
 
             gameTimer.Interval = 100;
             gameTimer.Tick += new EventHandler(Timer_Tick);
