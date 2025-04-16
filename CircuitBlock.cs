@@ -117,7 +117,19 @@ namespace CircuitCraft
                     equivalentVoltage -= element.Voltage;
                     continue;
                 }
-                equivalentVoltage += element.Voltage;
+                else if (element.circuitElementType == CircuitElementType.Source)
+                {
+                    if (element.Orientation == 0) // Reverse Biased
+                    {
+                        equivalentVoltage -= element.Voltage;
+                        continue;
+                    }
+                    else if (element.Orientation == 1) // Forward Biased
+                    {
+                        equivalentVoltage += element.Voltage;
+                        continue;
+                    }
+                }
             }
             return equivalentVoltage;
         }

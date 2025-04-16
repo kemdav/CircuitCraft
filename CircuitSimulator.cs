@@ -62,7 +62,7 @@ namespace CircuitCraft
                     CircuitElements = new List<CircuitElement>
                     {
                         new GameResistor { Resistance = 1 },
-                        new GameSource { Voltage = 1 }
+                        new GameSource { Voltage = 1, Orientation = 1 }
                     }
                 }
             };
@@ -87,7 +87,7 @@ namespace CircuitCraft
             double seriesVoltageSource = 0.0;
             List<double> parallelVoltageSources = new List<double>();
 
-           seriesResistances.Add(40); // Temp
+           //seriesResistances.Add(40); // Temp
 
             foreach (var block in circuitBlocks)
             {
