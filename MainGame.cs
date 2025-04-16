@@ -143,6 +143,9 @@ namespace CircuitCraft
                 case Keys.R:
                     gameCanvas.CurrentCircuitElementDroppedOrientation = 0;
                     break;
+                case Keys.L:
+                    gameCanvas.CircuitBlocks[gameCanvas.CurrentBlockIndex].RemoveCircuitElement(ref gameCanvas);
+                    break;
             }
 
         }

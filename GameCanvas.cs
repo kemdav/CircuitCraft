@@ -100,15 +100,6 @@ namespace CircuitCraft
 
         public void ClearCircuitElements()
         {
-            foreach (var block in CircuitBlocks)
-            {
-                block.CircuitElements.Clear();
-                foreach (var element in block.CircuitElementsUI)
-                {
-                    Controls.Remove(element);
-                    Invalidate();
-                }
-            }
         }
 
 
@@ -183,7 +174,7 @@ namespace CircuitCraft
                 CurrentCircuitElementDropped.Location = new Point(CircuitBlocks[CurrentBlockIndex].Location.X, 
                     CircuitBlocks[CurrentBlockIndex].Location.Y + CircuitBlocks[CurrentBlockIndex].Height - CurrentCircuitElementDropped.Height - 
                     (CircuitBlocks[CurrentBlockIndex].CircuitElements.Count * CircuitBlocks[CurrentBlockIndex].CircuitElementHeight));
-                CircuitBlocks[CurrentBlockIndex].AddCircuitElement(CurrentCircuitElementDroppedType, CurrentCircuitElementDroppedVoltage, CurrentCircuitElementDroppedResistance, CurrentCircuitElementDroppedOrientation);
+                CircuitBlocks[CurrentBlockIndex].AddCircuitElement(CurrentCircuitElementDroppedType, CurrentCircuitElementDroppedVoltage, CurrentCircuitElementDroppedResistance, CurrentCircuitElementDroppedOrientation, CurrentCircuitElementDropped);
                 CurrentCircuitElementDropped = null;
                 return false;
             }

@@ -21,7 +21,6 @@ namespace CircuitCraft
     {
         public CircuitBlockConnectionType CircuitBlockConnectionType { get; set; }
         public List<CircuitElement> CircuitElements { get; set; } = new List<CircuitElement>();
-        public List<PictureBox> CircuitElementsUI { get; set; } = new List<PictureBox>();
         public int CurrentElementIndex { get; set; } = 0;
 
         private int _maximumElements = 4;
@@ -41,7 +40,18 @@ namespace CircuitCraft
             Width = _circuitElementWidth;
         }
 
-        public void AddCircuitElement(CircuitElementType circuitElementType, double voltage, double resistance, int orientation)
+        public void RemoveCircuitElement(ref GameCanvas gameCanvas, int circuitElementIndex)
+        {
+            if (circuitElementIndex < 0 || circuitElementIndex >= CircuitElements.Count)
+            {
+                throw new ArgumentOutOfRangeException(nameof(circuitElementIndex), "Invalid circuit element index.");
+            }
+            gameCanvas.Controls.Remove(CircuitElements[circuitElementIndex].CircuitELementUI);
+            CircuitElements.RemoveAt(circuitElementIndex);
+            gameCanvas.Invalidate();
+        }
+
+        public void AddCircuitElement(CircuitElementType circuitElementType, double voltage, double resistance, int orientation, PictureBox ciruitElementPbox)
         {
             switch (circuitElementType)
             {
@@ -51,6 +61,7 @@ namespace CircuitCraft
                     circuitElement.Voltage = voltage;
                     circuitElement.Resistance = resistance;
                     circuitElement.Orientation = orientation;
+                    circuitElement.CircuitELementUI = ciruitElementPbox;
                     CircuitElements.Add(circuitElement);
                     break;
                 case CircuitElementType.Source:
@@ -59,6 +70,7 @@ namespace CircuitCraft
                     circuitElement.Voltage = voltage;
                     circuitElement.Resistance = resistance;
                     circuitElement.Orientation = orientation;
+                    circuitElement.CircuitELementUI = ciruitElementPbox;
                     CircuitElements.Add(circuitElement);
                     break;
                 case CircuitElementType.Diode:
@@ -67,6 +79,7 @@ namespace CircuitCraft
                     circuitElement.Voltage = voltage;
                     circuitElement.Resistance = resistance;
                     circuitElement.Orientation = orientation;
+                    circuitElement.CircuitELementUI = ciruitElementPbox;
                     CircuitElements.Add(circuitElement);
                     break;
             }
