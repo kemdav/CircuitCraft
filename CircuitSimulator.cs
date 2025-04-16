@@ -87,7 +87,7 @@ namespace CircuitCraft
             double seriesVoltageSource = 0.0;
             List<double> parallelVoltageSources = new List<double>();
 
-           // seriesResistances.Add(40); // Temp
+           seriesResistances.Add(40); // Temp
 
             foreach (var block in circuitBlocks)
             {
@@ -159,6 +159,10 @@ namespace CircuitCraft
                 }
             }
             rp = 1 / rp;
+            if (double.IsInfinity(rp))
+            {
+                rp = 0;
+            }
 
             double r_total;
             r_total = rs + rp + loadResistance;

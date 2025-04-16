@@ -14,7 +14,9 @@ namespace CircuitCraft
     {
         public List<CircuitElement> CircuitSources { get; set; }
         public double OperatingCurrent { get; set; } = 0;
+        public double MinimumOperatingCurrent { get; set; } = 0;
         public int OperatingCurrentTick { get; set; } = 0;
+        public int MinimumOperatingCurrentTick { get; set; } = 0;
 
         private int _currentBlockIndex = 0;
         public int CurrentBlockIndex { 

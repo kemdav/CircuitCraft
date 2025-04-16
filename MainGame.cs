@@ -37,6 +37,7 @@ namespace CircuitCraft
             gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Parallel, new Point(300, 110), 40, 120);
 
             gameCanvas.OperatingCurrent = 0.2;
+            gameCanvas.MinimumOperatingCurrent = 0.1;
 
             CircuitSimulator.CalculationTest();
 
@@ -79,6 +80,18 @@ namespace CircuitCraft
                 //gameCanvas.OperatingCurrentTick = 0;
                 //operatingCurrentProgress.Progress = 0;
                 ledBurnedIndicator.Visible = true;
+            }
+
+            // In the final game, the indicator will be the LED icon itself on how bright it is
+            if (result.LoadCurrent < gameCanvas.MinimumOperatingCurrent)
+            {
+                operatingCurrentProgress.Color = Color.Red;
+                gameCanvas.MinimumOperatingCurrentTick += 100;
+            }
+            else if (result.LoadCurrent > gameCanvas.MinimumOperatingCurrent)
+            {
+                operatingCurrentProgress.Color = Color.Green;
+                gameCanvas.MinimumOperatingCurrentTick = 0;
             }
 
             if (result.LoadCurrent > gameCanvas.OperatingCurrent && gameCanvas.OperatingCurrentTick < 10000)
@@ -144,7 +157,7 @@ namespace CircuitCraft
                     gameCanvas.CurrentCircuitElementDroppedOrientation = 0;
                     break;
                 case Keys.L:
-                    gameCanvas.CircuitBlocks[gameCanvas.CurrentBlockIndex].RemoveCircuitElement(ref gameCanvas);
+                    gameCanvas.CircuitBlocks[gameCanvas.CurrentBlockIndex].RemoveCircuitElement(ref gameCanvas, 0);
                     break;
             }
 
