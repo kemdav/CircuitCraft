@@ -53,7 +53,8 @@ namespace CircuitCraft
                     CircuitBlockConnectionType = CircuitBlockConnectionType.Parallel,
                     CircuitElements = new List<CircuitElement>
                     {
-                        //new GameResistor { Resistance = 1 }
+                        new GameResistor { Resistance = 20 },
+                        new GameSource { Voltage = 1, Orientation = 1 }
                     }
                 },
                 new CircuitBlock
@@ -62,7 +63,7 @@ namespace CircuitCraft
                     CircuitElements = new List<CircuitElement>
                     {
                         new GameResistor { Resistance = 1 },
-                        new GameSource { Voltage = 1, Orientation = 1 }
+                        new GameSource { Voltage = 1, Orientation = 0 }
                     }
                 }
             };

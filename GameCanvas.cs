@@ -12,6 +12,14 @@ namespace CircuitCraft
 {
     public partial class GameCanvas : UserControl
     {
+        public struct CircuitElementHold
+        {
+            public CircuitElementType CircuitElementType;
+            public double Voltage;
+            public double Resistance;
+        }
+
+        public CircuitElementHold? CurrentCircuitElementHold = null;
         public List<CircuitElement> CircuitSources { get; set; }
         public double OperatingCurrent { get; set; } = 0;
         public double MinimumOperatingCurrent { get; set; } = 0;
@@ -159,6 +167,28 @@ namespace CircuitCraft
             Controls.Add(circuitBlock);
             circuitBlock.BringToFront();
             CircuitBlocks.Add(circuitBlock);
+        }
+
+        public void HoldCircuitElement(CircuitElementType type, double voltage, double resistance)
+        {
+            if (CurrentCircuitElementHold == null)
+            {
+                CurrentCircuitElementHold = new CircuitElementHold()
+                {
+                    CircuitElementType = type,
+                    Voltage = voltage,
+                    Resistance = resistance
+                };
+            }
+        }
+
+        public void UseHoldCircuitElement()
+        {
+            if (CurrentCircuitElementHold != null)
+            {
+                SpawnCircuitElement(CurrentCircuitElementHold.Value.CircuitElementType, CurrentCircuitElementHold.Value.Voltage, CurrentCircuitElementHold.Value.Resistance);
+                CurrentCircuitElementHold = null;
+            }
         }
 
       
