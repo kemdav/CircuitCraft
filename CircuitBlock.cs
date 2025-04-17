@@ -48,6 +48,16 @@ namespace CircuitCraft
             }
             gameCanvas.Controls.Remove(CircuitElements[circuitElementIndex].CircuitELementUI);
             CircuitElements.RemoveAt(circuitElementIndex);
+            RearrangeCircuitElementsUI(ref gameCanvas);
+            gameCanvas.Invalidate();
+        }
+
+        public void RearrangeCircuitElementsUI(ref GameCanvas gameCanvas)
+        {
+            for (int i = 0; i < CircuitElements.Count; i++)
+            {
+                CircuitElements[i].CircuitELementUI.Location = new Point(Location.X, (Location.Y + Height) - ((i + 1) * _circuitElementHeight));
+            }
             gameCanvas.Invalidate();
         }
 
