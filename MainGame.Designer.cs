@@ -77,14 +77,17 @@
             gameCanvas.BackColor = Color.FromArgb(224, 224, 224);
             gameCanvas.CircuitBlock = null;
             gameCanvas.CircuitElement = null;
+            gameCanvas.CircuitElementDiodeSprite = (Image)resources.GetObject("gameCanvas.CircuitElementDiodeSprite");
             gameCanvas.CircuitElementLedSprite = (Image)resources.GetObject("gameCanvas.CircuitElementLedSprite");
             gameCanvas.CircuitElementOffset = 20;
             gameCanvas.CircuitElementResistorSprite = (Image)resources.GetObject("gameCanvas.CircuitElementResistorSprite");
             gameCanvas.CircuitElementSourceSprite = (Image)resources.GetObject("gameCanvas.CircuitElementSourceSprite");
             gameCanvas.CircuitSources = null;
-            gameCanvas.CurrentBlockIndex = 0;
+            gameCanvas.CurrentBlockIndex = -1;
             gameCanvas.CurrentCircuitElementDropped = null;
+            gameCanvas.CurrentCircuitElementDroppedOrientation = 0;
             gameCanvas.CurrentCircuitElementDroppedResistance = 0D;
+            gameCanvas.CurrentCircuitElementDroppedType = CircuitElementType.Source;
             gameCanvas.CurrentCircuitElementDroppedVoltage = 0D;
             gameCanvas.Location = new Point(0, 37);
             gameCanvas.MainGame = null;
@@ -153,12 +156,13 @@
             // 
             materialLabel1.Depth = 0;
             materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel1.Location = new Point(945, 46);
+            materialLabel1.Location = new Point(945, 23);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
-            materialLabel1.Size = new Size(292, 132);
+            materialLabel1.Size = new Size(292, 159);
             materialLabel1.TabIndex = 9;
-            materialLabel1.Text = "G - Spawn Falling Resistor\r\nS - Spawn Falling Source\r\nC - Clear Circuit Elements\r\nP - Pause Timer\r\nO - Start Timer\r\nA - Move Circuit Element Left\r\nD - Move Circuit Element Right";
+            materialLabel1.Text = "G - Spawn Falling Resistor\r\nS - Spawn Falling Source\r\nC - Clear Circuit Elements\r\nP - Pause Timer\r\nO - Start Timer\r\nA - Move Circuit Element Left\r\nD - Move Circuit Element Right\r\nF - Spawn Diode";
+            materialLabel1.Click += materialLabel1_Click;
             // 
             // dropResistorTbox
             // 

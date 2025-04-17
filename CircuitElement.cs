@@ -18,10 +18,13 @@ namespace CircuitCraft
     public class CircuitElement
     {      
         public CircuitElementType circuitElementType { get; set; }
-        public byte[]? CircuitElementSprite { get; set; }
+        public PictureBox CircuitELementUI { get; set; }
+        public int Orientation { get; set; } = 0;
+
         public double Resistance { get; set; } = 0;
         public double Voltage { get; set; } = 0;
         public double Current { get; set; } = 0;
+
     }
 
     public class GameResistor : CircuitElement
