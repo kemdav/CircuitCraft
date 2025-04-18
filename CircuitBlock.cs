@@ -23,6 +23,25 @@ namespace CircuitCraft
         public List<CircuitElement> CircuitElements { get; set; } = new List<CircuitElement>();
         public int CurrentElementIndex { get; set; } = 0;
 
+
+        private bool isSelected = false;
+        public bool IsSelected
+        {
+            get { return isSelected; }
+            set
+            {
+                isSelected = value;
+                if (isSelected)
+                {
+                    this.BackColor = Color.LightBlue;
+                }
+                else
+                {
+                    this.BackColor = Color.Transparent;
+                }
+            }
+        }
+
         private int _maximumElements = 4;
         private int _circuitElementWidth = 40;
         private int _circuitElementHeight = 40;
@@ -32,6 +51,8 @@ namespace CircuitCraft
         public CircuitBlock()
         {
             InitializeComponent();
+            BackColor = Color.Transparent;
+
         }
 
         public void UpdateCircuitBlockSize()
@@ -46,10 +67,10 @@ namespace CircuitCraft
             {
                 throw new ArgumentOutOfRangeException(nameof(circuitElementIndex), "Invalid circuit element index.");
             }
-            gameCanvas.Controls.Remove(CircuitElements[circuitElementIndex].CircuitELementUI);
+            Controls.Remove(CircuitElements[circuitElementIndex].CircuitELementUI);
             CircuitElements.RemoveAt(circuitElementIndex);
             RearrangeCircuitElementsUI(ref gameCanvas);
-            gameCanvas.Invalidate();
+            Invalidate();
         }
 
         public void RearrangeCircuitElementsUI(ref GameCanvas gameCanvas)
@@ -58,7 +79,7 @@ namespace CircuitCraft
             {
                 CircuitElements[i].CircuitELementUI.Location = new Point(Location.X, (Location.Y + Height) - ((i + 1) * _circuitElementHeight));
             }
-            gameCanvas.Invalidate();
+            Invalidate();
         }
 
         public void AddCircuitElement(CircuitElementType circuitElementType, double voltage, double resistance, int orientation, PictureBox ciruitElementPbox)

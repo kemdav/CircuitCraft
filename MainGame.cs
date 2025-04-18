@@ -144,9 +144,6 @@ namespace CircuitCraft
                 case Keys.O:
                     StartTicking();
                     break;
-                case Keys.C:
-                    gameCanvas.ClearCircuitElements();
-                    break;
                 case Keys.A:
                     gameCanvas.CurrentBlockIndex--;
                     break;

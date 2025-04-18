@@ -46,6 +46,17 @@ namespace CircuitCraft
                 {
                     _currentBlockIndex = 0;
                 }
+                foreach (var block in CircuitBlocks)
+                {
+                    if (block == CircuitBlocks[_currentBlockIndex])
+                    {
+                        block.IsSelected = true;
+                    }
+                    else
+                    {
+                        block.IsSelected = false;
+                    }
+                }
             }
         }
 
@@ -108,9 +119,7 @@ namespace CircuitCraft
             CircuitSources.Add(circuitElement);
         }
 
-        public void ClearCircuitElements()
-        {
-        }
+        
 
 
         #region Game Canvas UI
@@ -120,6 +129,8 @@ namespace CircuitCraft
             CurrentCircuitElementDroppedVoltage = voltage;
             CircuitElement circuitElement = null;
             PictureBox circuitElementPbox = new PictureBox();
+            circuitElementPbox.BackColor = Color.Transparent;
+            circuitElementPbox.BringToFront();
             circuitElementPbox.Location = new Point(CircuitBlocks[CurrentBlockIndex].Location.X, CircuitBlocks[CurrentBlockIndex].Location.Y - CircuitBlocks[CurrentBlockIndex].CircuitElementHeight - CircuitElementOffset);
             switch (circuitElementType)
             {
@@ -129,7 +140,7 @@ namespace CircuitCraft
                     circuitElementPbox.Width = CircuitBlocks[CurrentBlockIndex].CircuitElementWidth;
                     circuitElementPbox.Height = CircuitBlocks[CurrentBlockIndex].CircuitElementHeight;
                     circuitElementPbox.SizeMode = PictureBoxSizeMode.StretchImage;
-                    Controls.Add(circuitElementPbox);
+                    CircuitBlocks[CurrentBlockIndex].Controls.Add(circuitElementPbox);
                     circuitElementPbox.BringToFront();
                     CurrentCircuitElementDropped = circuitElementPbox;
                     break;
@@ -139,7 +150,7 @@ namespace CircuitCraft
                     circuitElementPbox.Width = CircuitBlocks[CurrentBlockIndex].CircuitElementWidth;
                     circuitElementPbox.Height = CircuitBlocks[CurrentBlockIndex].CircuitElementHeight;
                     circuitElementPbox.SizeMode = PictureBoxSizeMode.StretchImage;
-                    Controls.Add(circuitElementPbox);
+                    CircuitBlocks[CurrentBlockIndex].Controls.Add(circuitElementPbox);
                     circuitElementPbox.BringToFront();
                     CurrentCircuitElementDropped = circuitElementPbox;
                     break;
@@ -149,7 +160,7 @@ namespace CircuitCraft
                     circuitElementPbox.Width = CircuitBlocks[CurrentBlockIndex].CircuitElementWidth;
                     circuitElementPbox.Height = CircuitBlocks[CurrentBlockIndex].CircuitElementHeight;
                     circuitElementPbox.SizeMode = PictureBoxSizeMode.StretchImage;
-                    Controls.Add(circuitElementPbox);
+                    CircuitBlocks[CurrentBlockIndex].Controls.Add(circuitElementPbox);
                     circuitElementPbox.BringToFront();
                     CurrentCircuitElementDropped = circuitElementPbox;
                     break;
@@ -199,18 +210,21 @@ namespace CircuitCraft
             {
                 return false;
             }
+
+            CurrentCircuitElementDropped.Parent = CircuitBlocks[CurrentBlockIndex];
+
             if (CurrentCircuitElementDropped.Location.Y + CurrentCircuitElementDropped.Height + y > 
                 CircuitBlocks[CurrentBlockIndex].Location.Y + CircuitBlocks[CurrentBlockIndex].Height - 
                 (CircuitBlocks[CurrentBlockIndex].CircuitElements.Count * CircuitBlocks[CurrentBlockIndex].CircuitElementHeight))
             {
-                CurrentCircuitElementDropped.Location = new Point(CircuitBlocks[CurrentBlockIndex].Location.X, 
+                CurrentCircuitElementDropped.Location = new Point(0, 
                     CircuitBlocks[CurrentBlockIndex].Location.Y + CircuitBlocks[CurrentBlockIndex].Height - CurrentCircuitElementDropped.Height - 
                     (CircuitBlocks[CurrentBlockIndex].CircuitElements.Count * CircuitBlocks[CurrentBlockIndex].CircuitElementHeight));
                 CircuitBlocks[CurrentBlockIndex].AddCircuitElement(CurrentCircuitElementDroppedType, CurrentCircuitElementDroppedVoltage, CurrentCircuitElementDroppedResistance, CurrentCircuitElementDroppedOrientation, CurrentCircuitElementDropped);
                 CurrentCircuitElementDropped = null;
                 return false;
             }
-            CurrentCircuitElementDropped.Location = new Point(CircuitBlocks[CurrentBlockIndex].Location.X, CurrentCircuitElementDropped.Location.Y + y);
+            CurrentCircuitElementDropped.Location = new Point(0, CurrentCircuitElementDropped.Location.Y + y);
             return true;
         }
         #endregion
