@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReaLTaiizor.Controls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -93,12 +94,17 @@ namespace CircuitCraft
         public double CurrentCircuitElementDroppedVoltage { get; set; }
         public CircuitElementType CurrentCircuitElementDroppedType { get; set; }
 
+        public bool WillUseHoldCircuitElement { get; set; } = false;
+
         private List<CircuitBlock> _circuitBlocks { get; set; } = new List<CircuitBlock>();
 
         private Image _circuitElementSourceSprite;
         private Image _circuitElementResistorSprite;
         private Image _circuitElementLEDSprite;
         private Image _circuitElementDiodeSprite;
+
+        private PictureBox _holdComponentPbox;
+        private BigLabel _holdComponentLabel;
 
         private int _circuitElementSpawnOffsetY = 20;
 
@@ -125,6 +131,17 @@ namespace CircuitCraft
         #region Game Canvas UI
         public void SpawnCircuitElement(CircuitElementType circuitElementType, double voltage, double resistance)
         {
+            if (WillUseHoldCircuitElement && CurrentCircuitElementHold != null)
+            {
+                circuitElementType = CurrentCircuitElementHold.Value.CircuitElementType;
+                voltage = CurrentCircuitElementHold.Value.Voltage;
+                resistance = CurrentCircuitElementHold.Value.Resistance;
+
+                HoldComponentPbox.Image = null;
+                HoldComponentLabel.Text = "";
+
+                WillUseHoldCircuitElement = false;
+            }
             CurrentCircuitElementDroppedResistance = resistance;
             CurrentCircuitElementDroppedVoltage = voltage;
             CircuitElement circuitElement = null;
@@ -182,8 +199,30 @@ namespace CircuitCraft
 
         public void HoldCircuitElement(CircuitElementType type, double voltage, double resistance)
         {
+            // TODO Add cooldown
+
             if (CurrentCircuitElementHold == null)
             {
+                CircuitBlocks[CurrentBlockIndex].Controls.Remove(CurrentCircuitElementDropped);
+                CurrentCircuitElementDropped = null;
+                
+                switch (type)
+                {
+                    case CircuitElementType.Resistor:
+                        HoldComponentPbox.Image = CircuitElementResistorSprite;
+                        HoldComponentLabel.Text = resistance +  " Ω";
+                        break;
+                    case CircuitElementType.Source:
+                        HoldComponentPbox.Image = CircuitElementSourceSprite;
+                        HoldComponentLabel.Text = voltage + " V";
+                        break;
+                    case CircuitElementType.Diode:
+                        HoldComponentPbox.Image = CircuitElementDiodeSprite;
+                        HoldComponentLabel.Text = voltage + " V";
+                        break;
+                }
+
+
                 CurrentCircuitElementHold = new CircuitElementHold()
                 {
                     CircuitElementType = type,
@@ -193,16 +232,6 @@ namespace CircuitCraft
             }
         }
 
-        public void UseHoldCircuitElement()
-        {
-            if (CurrentCircuitElementHold != null)
-            {
-                SpawnCircuitElement(CurrentCircuitElementHold.Value.CircuitElementType, CurrentCircuitElementHold.Value.Voltage, CurrentCircuitElementHold.Value.Resistance);
-                CurrentCircuitElementHold = null;
-            }
-        }
-
-      
 
         public bool DropDownCircuitElement(int y)
         {
@@ -275,12 +304,30 @@ namespace CircuitCraft
         }
 
         [Category("Game Canvas Settings")]
-        [Description("New Circuit ELement Spawn Offset")]
+        [Description("New Circuit Element Spawn Offset")]
         [DefaultValue(null)]
         public int CircuitElementOffset
         {
             get { return _circuitElementSpawnOffsetY; }
             set { _circuitElementSpawnOffsetY = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Hold Element Picture Box")]
+        [DefaultValue(null)]
+        public PictureBox HoldComponentPbox
+        {
+            get { return _holdComponentPbox; }
+            set { _holdComponentPbox = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Hold Element Label")]
+        [DefaultValue(null)]
+        public BigLabel HoldComponentLabel
+        {
+            get { return _holdComponentLabel; }
+            set { _holdComponentLabel = value; }
         }
 
         public CircuitBlock CircuitBlock

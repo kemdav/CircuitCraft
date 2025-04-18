@@ -53,8 +53,15 @@ namespace CircuitCraft
                 case Keys.D:
                     gameCanvas.CurrentBlockIndex++;
                     break;
+                case Keys.W:
+                    gameCanvas.HoldCircuitElement(gameCanvas.CurrentCircuitElementDroppedType, 
+                        gameCanvas.CurrentCircuitElementDroppedVoltage, gameCanvas.CurrentCircuitElementDroppedResistance);
+                    break;
+                case Keys.S:
+                    gameCanvas.WillUseHoldCircuitElement = true;
+                    break;
                 case Keys.G:
-                    gameCanvas.SpawnCircuitElement(CircuitElementType.Resistor, 0, 2);
+                    gameCanvas.SpawnCircuitElement(CircuitElementType.Source, 10, 0);
                     break;
             }
         }

@@ -463,6 +463,8 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.CurrentCircuitElementDroppedType = CircuitElementType.Source;
             gameCanvas.CurrentCircuitElementDroppedVoltage = 0D;
             gameCanvas.Dock = DockStyle.Fill;
+            gameCanvas.HoldComponentLabel = lblHoldElementValue;
+            gameCanvas.HoldComponentPbox = picHoldElement;
             gameCanvas.Location = new Point(5, 5);
             gameCanvas.MainGame = null;
             gameCanvas.MinimumOperatingCurrent = 0D;
@@ -472,6 +474,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.OperatingCurrentTick = 0;
             gameCanvas.Size = new Size(674, 521);
             gameCanvas.TabIndex = 1;
+            gameCanvas.WillUseHoldCircuitElement = false;
             // 
             // MainGamePrototype
             // 
