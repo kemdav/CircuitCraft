@@ -32,6 +32,8 @@ namespace CircuitCraft
                 gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Series, new Point(5 + (56 * i), 6), 50, 130);
             }
 
+            CircuitSimulator.CalculationTest();
+
             gameTimer.Start();
         }
 

@@ -13,7 +13,8 @@ namespace CircuitCraft
     public enum CircuitBlockConnectionType
     {
         Series,
-        Parallel
+        Parallel,
+        Trash
     }
 
     [Serializable]

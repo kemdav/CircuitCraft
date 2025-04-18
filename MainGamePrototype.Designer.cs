@@ -45,6 +45,9 @@ namespace CircuitCraft // Ensure this namespace matches your project
             lblLevel = new BigLabel();
             lblScore = new BigLabel();
             pnlHoldArea = new System.Windows.Forms.Panel();
+            panelVoltageArea = new System.Windows.Forms.Panel();
+            initialVoltageSourceLabel = new BigLabel();
+            pictureBox1 = new PictureBox();
             btnRemoveComponent = new System.Windows.Forms.Button();
             pnlHoldElementContainer = new System.Windows.Forms.Panel();
             lblHoldElementValue = new BigLabel();
@@ -71,6 +74,8 @@ namespace CircuitCraft // Ensure this namespace matches your project
             pnlTopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picPauseButton).BeginInit();
             pnlHoldArea.SuspendLayout();
+            panelVoltageArea.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnlHoldElementContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picHoldElement).BeginInit();
             pnlNextArea.SuspendLayout();
@@ -164,6 +169,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             // pnlHoldArea
             // 
             pnlHoldArea.BackColor = Color.FromArgb(208, 215, 222);
+            pnlHoldArea.Controls.Add(panelVoltageArea);
             pnlHoldArea.Controls.Add(btnRemoveComponent);
             pnlHoldArea.Controls.Add(pnlHoldElementContainer);
             pnlHoldArea.Controls.Add(lblHoldTitle);
@@ -175,6 +181,39 @@ namespace CircuitCraft // Ensure this namespace matches your project
             pnlHoldArea.Padding = new Padding(10);
             pnlHoldArea.Size = new Size(160, 535);
             pnlHoldArea.TabIndex = 2;
+            // 
+            // panelVoltageArea
+            // 
+            panelVoltageArea.BorderStyle = BorderStyle.FixedSingle;
+            panelVoltageArea.Controls.Add(initialVoltageSourceLabel);
+            panelVoltageArea.Controls.Add(pictureBox1);
+            panelVoltageArea.Location = new Point(12, 387);
+            panelVoltageArea.Name = "panelVoltageArea";
+            panelVoltageArea.Size = new Size(135, 135);
+            panelVoltageArea.TabIndex = 41;
+            // 
+            // initialVoltageSourceLabel
+            // 
+            initialVoltageSourceLabel.BackColor = Color.Transparent;
+            initialVoltageSourceLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            initialVoltageSourceLabel.ForeColor = Color.FromArgb(80, 80, 80);
+            initialVoltageSourceLabel.Location = new Point(8, 5);
+            initialVoltageSourceLabel.Name = "initialVoltageSourceLabel";
+            initialVoltageSourceLabel.Size = new Size(122, 24);
+            initialVoltageSourceLabel.TabIndex = 39;
+            initialVoltageSourceLabel.Text = "10V";
+            initialVoltageSourceLabel.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.Transparent;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(14, 32);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(110, 98);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
             // 
             // btnRemoveComponent
             // 
@@ -427,6 +466,8 @@ namespace CircuitCraft // Ensure this namespace matches your project
             // picLedStatus
             // 
             picLedStatus.Anchor = AnchorStyles.Bottom;
+            picLedStatus.BackColor = Color.White;
+            picLedStatus.Image = (Image)resources.GetObject("picLedStatus.Image");
             picLedStatus.Location = new Point(296, 8);
             picLedStatus.Name = "picLedStatus";
             picLedStatus.Size = new Size(74, 74);
@@ -456,15 +497,17 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.CircuitElementResistorSprite = (Image)resources.GetObject("gameCanvas.CircuitElementResistorSprite");
             gameCanvas.CircuitElementSourceSprite = (Image)resources.GetObject("gameCanvas.CircuitElementSourceSprite");
             gameCanvas.CircuitSources = null;
-            gameCanvas.CurrentBlockIndex = -1;
+            gameCanvas.CurrentBlockIndex = 0;
             gameCanvas.CurrentCircuitElementDropped = null;
             gameCanvas.CurrentCircuitElementDroppedOrientation = 0;
             gameCanvas.CurrentCircuitElementDroppedResistance = 0D;
             gameCanvas.CurrentCircuitElementDroppedType = CircuitElementType.Source;
             gameCanvas.CurrentCircuitElementDroppedVoltage = 0D;
+            gameCanvas.CurrentValueLabel = lblCurrentValue;
             gameCanvas.Dock = DockStyle.Fill;
             gameCanvas.HoldComponentLabel = lblHoldElementValue;
             gameCanvas.HoldComponentPbox = picHoldElement;
+            gameCanvas.InitialVoltageValueLabel = initialVoltageSourceLabel;
             gameCanvas.Location = new Point(5, 5);
             gameCanvas.MainGame = null;
             gameCanvas.MinimumOperatingCurrent = 0D;
@@ -499,6 +542,8 @@ namespace CircuitCraft // Ensure this namespace matches your project
             ((System.ComponentModel.ISupportInitialize)picPauseButton).EndInit();
             pnlHoldArea.ResumeLayout(false);
             pnlHoldArea.PerformLayout();
+            panelVoltageArea.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             pnlHoldElementContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)picHoldElement).EndInit();
             pnlNextArea.ResumeLayout(false);
@@ -546,5 +591,8 @@ namespace CircuitCraft // Ensure this namespace matches your project
         private BigLabel lblMaxThreshold;
         private BigLabel lblMinThreshold;
         private VerticalProgressBar operatingCurrentProgressBar;
+        private System.Windows.Forms.Panel panelVoltageArea;
+        private BigLabel initialVoltageSourceLabel;
+        private PictureBox pictureBox1;
     }
 }

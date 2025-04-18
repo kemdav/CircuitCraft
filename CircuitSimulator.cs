@@ -65,6 +65,15 @@ namespace CircuitCraft
                         new GameResistor { Resistance = 1 },
                         new GameSource { Voltage = 1, Orientation = 0 }
                     }
+                },
+                new CircuitBlock
+                {
+                    CircuitBlockConnectionType = CircuitBlockConnectionType.Parallel,
+                    CircuitElements = new List<CircuitElement>
+                    {
+                        new GameResistor { Resistance = 1 },
+                        new GameSource { Voltage = 1, Orientation = 0 }
+                    }
                 }
             };
 
@@ -88,7 +97,7 @@ namespace CircuitCraft
             double seriesVoltageSource = 0.0;
             List<double> parallelVoltageSources = new List<double>();
 
-           //seriesResistances.Add(40); // Temp
+           seriesResistances.Add(1); // Temp
 
             foreach (var block in circuitBlocks)
             {
@@ -134,9 +143,9 @@ namespace CircuitCraft
             }
 
             double rp = 0.0; 
+            int count = 0;
             if (parallelResistances != null && parallelResistances.Count > 0)
             {
-                int count = 0;
                 foreach (double r in parallelResistances)
                 {
                     if (r > 0)
@@ -159,7 +168,10 @@ namespace CircuitCraft
                     rp += 1.0 / resistance;
                 }
             }
-            rp = 1 / rp;
+            if (count != 1)
+            {
+                rp = 1 / rp;
+            }
             if (double.IsInfinity(rp))
             {
                 rp = 0;
@@ -190,90 +202,39 @@ namespace CircuitCraft
             }
             else
             {
-                double i1 = seriesVoltageSource + batteryVoltage / r_total;
-
-                // When a branch has no resistrs, it has infinite in calculation due to 1/0
-                // So the main issue is the introduction of infinite in the calculation
-
-                double currentCalculation1, currentCalculation2, currentCalculation3;
-                double inverseResistance1, inverseResistance2, inverseResistance3;
-
-                // Empty Branch Checks
-                if (parallelResistances[0] == 0 && parallelVoltageSources[0] == 0)
+                double load_current = seriesVoltageSource + batteryVoltage / r_total;
+                double inverseResistanceCalculation = 1/rs;
+                for (int i = 0; i < parallelResistances.Count; i++)
                 {
-                    currentCalculation1 = 0;
-                    inverseResistance1 = 0;
+                    if (parallelResistances[i] > 0)
+                    {
+                        inverseResistanceCalculation += 1.0 / parallelResistances[i];
+                    }
                 }
-                else if (parallelResistances[0] == 0 && parallelVoltageSources[0] != 0)
+                if (inverseResistanceCalculation != 0)
                 {
-                    result.Status = CircuitStatus.Incalculable;
-                    result.LoadCurrent = double.NaN;
-                    result.LoadVoltage = double.NaN;
-                    return result;
-                }
-                else
-                {
-                    currentCalculation1 = parallelVoltageSources[0] / parallelResistances[0];
-                    inverseResistance1 = 1 / parallelResistances[0];
+                    inverseResistanceCalculation = 1 / inverseResistanceCalculation;
                 }
 
-                if (parallelResistances[1] == 0 && parallelVoltageSources[1] == 0)
+                for (int i = 0; i < parallelResistances.Count; i++)
                 {
-                    currentCalculation2 = 0;
-                    inverseResistance2 = 0;
-                }
-                else if (parallelResistances[1] == 0 && parallelVoltageSources[1] != 0)
-                {
-                    result.Status = CircuitStatus.Incalculable;
-                    result.LoadCurrent = double.NaN;
-                    result.LoadVoltage = double.NaN;
-                    return result;
-                }
-                else
-                {
-                    currentCalculation2 = parallelVoltageSources[1] / parallelResistances[1];
-                    inverseResistance2 = 1 / parallelResistances[1];
+                    if (parallelResistances[i] == 0 && parallelVoltageSources[i] == 0)
+                    {
+                        continue;
+                    }
+                    if (parallelVoltageSources[i] != 0 && parallelResistances[i] == 0)
+                    {
+                        result.Status = CircuitStatus.Incalculable;
+                        return result;
+                    }
+                    double branchCurrent = ((parallelVoltageSources[i] / parallelResistances[i]) * inverseResistanceCalculation)/rs;
+                    if (parallelResistances[i] > 0)
+                    {
+                        load_current += branchCurrent;
+                    }
                 }
 
-                if (parallelResistances[2] == 0 && parallelVoltageSources[2] == 0)
-                {
-                    currentCalculation3 = 0;
-                    inverseResistance3 = 0;
-                }
-                else if (parallelResistances[2] == 0 && parallelVoltageSources[2] != 0)
-                {
-                    result.Status = CircuitStatus.Incalculable;
-                    result.LoadCurrent = double.NaN;
-                    result.LoadVoltage = double.NaN;
-                    return result;
-                }
-                else
-                {
-                    currentCalculation3 = parallelVoltageSources[2] / parallelResistances[2];
-                    inverseResistance3 = 1 / parallelResistances[2];
-                }
-                double currentCalculationPart = inverseResistance1 + inverseResistance2 + inverseResistance3;
-
-                double i2 = (currentCalculation1 * (1/((1/rs) +
-                    currentCalculationPart)))/rs;
-                double i3 = (currentCalculation2 * (1 / ((1 / rs) +
-                    currentCalculationPart)))/rs;
-                double i4 = (currentCalculation3 * (1 / ((1 / rs) +
-                    currentCalculationPart)))/rs;
-                if (double.IsNaN(i2) || i2 == double.PositiveInfinity)
-                {
-                    i2 = 0;
-                }
-                if (double.IsNaN(i3) || i3 == double.PositiveInfinity)
-                {
-                    i3 = 0;
-                }
-                if (double.IsNaN(i4) || i4 == double.PositiveInfinity)
-                {
-                    i4 = 0;
-                }
-                i_total = i1 + i2 + i3 + i4;
-                result.LoadCurrent = i_total;
+                result.LoadCurrent = load_current;
                 result.Status = CircuitStatus.OK;
             }
 

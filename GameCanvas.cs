@@ -106,11 +106,16 @@ namespace CircuitCraft
         private PictureBox _holdComponentPbox;
         private BigLabel _holdComponentLabel;
 
+        private BigLabel _currentValueLabel;
+
+        private BigLabel _initialVoltageSourceLabel;
+
         private int _circuitElementSpawnOffsetY = 20;
 
         public GameCanvas()
         {
             InitializeComponent();
+            //UpdateCircuitElementUI();
             if (_circuitBlocks == null)
             {
                 _circuitBlocks = new List<CircuitBlock>();
@@ -125,12 +130,28 @@ namespace CircuitCraft
             CircuitSources.Add(circuitElement);
         }
 
-        
+        private CircuitSimulator.LoadCalculationResult result;
+        public double SourceVoltage = 10;
+        public double LoadResistance = 0;
+
+        public void UpdateCircuitElementUI()
+        {
+            result = CircuitSimulator.CalculateLoadState(CircuitBlocks, SourceVoltage, LoadResistance);
+            if (CurrentCircuitElementDropped != null)
+            {
+                CurrentValueLabel.Text = "Current: " + result.LoadCurrent.ToString("F2") + " A";
+            }
+            else
+            {
+                CurrentValueLabel.Text = "Current: 0.00 A";
+            }
+        }
 
 
         #region Game Canvas UI
         public void SpawnCircuitElement(CircuitElementType circuitElementType, double voltage, double resistance)
         {
+            UpdateCircuitElementUI();
             if (WillUseHoldCircuitElement && CurrentCircuitElementHold != null)
             {
                 circuitElementType = CurrentCircuitElementHold.Value.CircuitElementType;
@@ -251,6 +272,7 @@ namespace CircuitCraft
                     (CircuitBlocks[CurrentBlockIndex].CircuitElements.Count * CircuitBlocks[CurrentBlockIndex].CircuitElementHeight));
                 CircuitBlocks[CurrentBlockIndex].AddCircuitElement(CurrentCircuitElementDroppedType, CurrentCircuitElementDroppedVoltage, CurrentCircuitElementDroppedResistance, CurrentCircuitElementDroppedOrientation, CurrentCircuitElementDropped);
                 CurrentCircuitElementDropped = null;
+                //UpdateCircuitElementUI();
                 return false;
             }
             CurrentCircuitElementDropped.Location = new Point(0, CurrentCircuitElementDropped.Location.Y + y);
@@ -328,6 +350,24 @@ namespace CircuitCraft
         {
             get { return _holdComponentLabel; }
             set { _holdComponentLabel = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Current Value Label")]
+        [DefaultValue(null)]
+        public BigLabel CurrentValueLabel
+        {
+            get { return _currentValueLabel; }
+            set { _currentValueLabel = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Initial Voltage Value Label")]
+        [DefaultValue(null)]
+        public BigLabel InitialVoltageValueLabel
+        {
+            get { return _initialVoltageSourceLabel; }
+            set { _initialVoltageSourceLabel = value; }
         }
 
         public CircuitBlock CircuitBlock
