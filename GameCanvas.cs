@@ -157,6 +157,13 @@ namespace CircuitCraft
             CircuitSources.Add(circuitElement);
         }
 
+        public void SpawnNextComponent()
+        {
+            SpawnCircuitElement(NextCircuitElements[0].CircuitElementType, NextCircuitElements[0].Voltage, NextCircuitElements[0].Resistance);
+            NextCircuitElements.RemoveAt(0);
+            FillUpNextComponents();
+        }
+
         public void FillUpNextComponents()
         {
             List<PictureBox> nextComponentsPboxs = new List<PictureBox>() { NextComponentPictureBox1, NextComponentPictureBox2};
@@ -167,6 +174,25 @@ namespace CircuitCraft
 
                 if (NextCircuitElements.Count < 2)
                 {
+                    if (NextCircuitElements.Count == 1 && i == 0) 
+                    {
+                        switch (NextCircuitElements[0].CircuitElementType)
+                        {
+                            case CircuitElementType.Resistor:
+                                nextComponentsPboxs[i].Image = CircuitElementResistorSprite;
+                                nextComponentsLabels[i].Text = NextCircuitElements[0].Resistance + " Ω";
+                                break;
+                            case CircuitElementType.Source:
+                                nextComponentsPboxs[i].Image = CircuitElementSourceSprite;
+                                nextComponentsLabels[i].Text = NextCircuitElements[0].Voltage + " V";
+                                break;
+                            case CircuitElementType.Diode:
+                                nextComponentsPboxs[i].Image = CircuitElementDiodeSprite;
+                                nextComponentsLabels[i].Text = NextCircuitElements[0].Voltage + " V";
+                                break;
+                        }
+                        continue; 
+                    }
                     NextCircuitElements.Add(circuitElement);
 
                     switch (circuitElement.CircuitElementType)

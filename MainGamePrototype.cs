@@ -57,7 +57,7 @@ namespace CircuitCraft
                     gameCanvas.WillUseHoldCircuitElement = true;
                     break;
                 case Keys.G:
-                    gameCanvas.SpawnCircuitElement(CircuitElementType.Resistor, 0, 20);
+                    gameCanvas.SpawnNextComponent();
                     break;
             }
         }
