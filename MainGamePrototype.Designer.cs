@@ -495,7 +495,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.CircuitElementResistorSprite = (Image)resources.GetObject("gameCanvas.CircuitElementResistorSprite");
             gameCanvas.CircuitElementSourceSprite = (Image)resources.GetObject("gameCanvas.CircuitElementSourceSprite");
             gameCanvas.CircuitSources = null;
-            gameCanvas.CurrentBlockIndex = 0;
+            gameCanvas.CurrentBlockIndex = -1;
             gameCanvas.CurrentCircuitElementDropped = null;
             gameCanvas.CurrentCircuitElementDroppedOrientation = 0;
             gameCanvas.CurrentCircuitElementDroppedResistance = 0D;
@@ -511,6 +511,10 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.MinimumOperatingCurrent = 0D;
             gameCanvas.MinimumOperatingCurrentTick = 0;
             gameCanvas.Name = "gameCanvas";
+            gameCanvas.NextComponentLabel1 = lblNextElementValue1;
+            gameCanvas.NextComponentLabel2 = lblNextElementValue2;
+            gameCanvas.NextComponentPictureBox1 = picNextElement1;
+            gameCanvas.NextComponentPictureBox2 = picNextElement2;
             gameCanvas.OperatingCurrent = 0D;
             gameCanvas.OperatingCurrentMaxLabel = lblMaxThreshold;
             gameCanvas.OperatingCurrentMinLabel = lblMinThreshold;

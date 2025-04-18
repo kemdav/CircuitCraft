@@ -33,6 +33,8 @@ namespace CircuitCraft
 
             gameCanvas.OperatingCurrent = 0.2;
             gameCanvas.MinimumOperatingCurrent = 0.1;
+
+            gameCanvas.FillUpNextComponents();
         }
 
        

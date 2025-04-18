@@ -14,14 +14,14 @@ namespace CircuitCraft
 {
     public partial class GameCanvas : UserControl
     {
-        public struct CircuitElementHold
+        public struct CircuitElementTemp
         {
             public CircuitElementType CircuitElementType;
             public double Voltage;
             public double Resistance;
         }
 
-        public CircuitElementHold? CurrentCircuitElementHold = null;
+        public CircuitElementTemp? CurrentCircuitElementHold = null;
         public List<CircuitElement> CircuitSources { get; set; }
         public double OperatingCurrent { get; set; } = 0.2;
         public double MinimumOperatingCurrent { get; set; } = 0.1;
@@ -99,6 +99,8 @@ namespace CircuitCraft
 
         private List<CircuitBlock> _circuitBlocks { get; set; } = new List<CircuitBlock>();
 
+        private List<CircuitElementTemp> NextCircuitElements { get; set; } = new List<CircuitElementTemp>();
+
         private Image _circuitElementSourceSprite;
         private Image _circuitElementResistorSprite;
         private Image _circuitElementLEDSprite;
@@ -106,6 +108,13 @@ namespace CircuitCraft
 
         private PictureBox _holdComponentPbox;
         private BigLabel _holdComponentLabel;
+
+        private PictureBox _nextComponentPbox1;
+        private BigLabel _nextComponentLabel1;
+
+        private PictureBox _nextComponentPbox2;
+        private BigLabel _nextComponentLabel2;
+
 
         private BigLabel _currentValueLabel;
 
@@ -146,6 +155,116 @@ namespace CircuitCraft
             circuitElement.Voltage = voltage;
             //circuitElement.CircuitElementSprite = CircuitElementSourceSprite;
             CircuitSources.Add(circuitElement);
+        }
+
+        public void FillUpNextComponents()
+        {
+            List<PictureBox> nextComponentsPboxs = new List<PictureBox>() { NextComponentPictureBox1, NextComponentPictureBox2};
+            List<BigLabel> nextComponentsLabels = new List<BigLabel>() { NextComponentLabel1, NextComponentLabel2 };
+            for (int i = 0; i < 2; i++)
+            {
+                CircuitElementTemp circuitElement = GenerateRandomCircuitComponent();
+
+                if (NextCircuitElements.Count < 2)
+                {
+                    NextCircuitElements.Add(circuitElement);
+
+                    switch (circuitElement.CircuitElementType)
+                    {
+                        case CircuitElementType.Resistor:
+                            nextComponentsPboxs[i].Image = CircuitElementResistorSprite;
+                            nextComponentsLabels[i].Text = circuitElement.Resistance + " Ω";
+                            break;
+                        case CircuitElementType.Source:
+                            nextComponentsPboxs[i].Image = CircuitElementSourceSprite;
+                            nextComponentsLabels[i].Text = circuitElement.Voltage + " V";
+                            break;
+                        case CircuitElementType.Diode:
+                            nextComponentsPboxs[i].Image = CircuitElementDiodeSprite;
+                            nextComponentsLabels[i].Text = circuitElement.Voltage + " V";
+                            break;
+                    }
+
+                }
+
+            }
+        }
+
+        public CircuitElementTemp GenerateRandomCircuitComponent()
+        {
+            Random rng = new Random();
+            int randomNumber1 = rng.Next(1, 101);
+            int randomNumber2 = rng.Next(1, 4);
+
+            double randomResistance = 0;
+            double randomVoltage = 0;
+
+            CircuitElementType circuitElementType;
+
+            switch (randomNumber2)
+            {
+                case 1:
+                    circuitElementType = CircuitElementType.Resistor;
+                    break;
+                case 2:
+                    circuitElementType = CircuitElementType.Source;
+                    break;
+                case 3:
+                    circuitElementType = CircuitElementType.Diode;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(randomNumber2), "Invalid random number for circuit element type.");
+            }
+
+            if (randomNumber1 > 0 && randomNumber1 <= 20)
+            {
+                randomResistance = 5;
+                randomVoltage = 5;
+            }
+            else if (randomNumber1 > 20 && randomNumber1 <= 40)
+            {
+                randomResistance = 10;
+                randomVoltage = 10;
+            }
+            else if (randomNumber1 > 40 && randomNumber1 <= 60)
+            {
+                randomResistance = 15;
+                randomVoltage = 15;
+            }
+            else if (randomNumber1 > 60 && randomNumber1 <= 80)
+            {
+                randomResistance = 20;
+                randomVoltage = 20;
+            }
+            else if (randomNumber1 > 80 && randomNumber1 <= 100)
+            {
+                randomResistance = 25;
+                randomVoltage = 25;
+            }
+
+            switch (circuitElementType)
+            {
+                case CircuitElementType.Resistor:
+                    return new CircuitElementTemp()
+                    {
+                        CircuitElementType = circuitElementType,
+                        Resistance = randomResistance
+                    };
+                case CircuitElementType.Source:
+                    return new CircuitElementTemp()
+                    {
+                        CircuitElementType = circuitElementType,
+                        Voltage = randomVoltage
+                    };
+                case CircuitElementType.Diode:
+                    return new CircuitElementTemp()
+                    {
+                        CircuitElementType = circuitElementType,
+                        Voltage = randomVoltage
+                    };
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(circuitElementType), "Invalid circuit element type.");
+            }
         }
 
         private CircuitSimulator.LoadCalculationResult result;
@@ -308,7 +427,7 @@ namespace CircuitCraft
                 }
 
 
-                CurrentCircuitElementHold = new CircuitElementHold()
+                CurrentCircuitElementHold = new CircuitElementTemp()
                 {
                     CircuitElementType = type,
                     Voltage = voltage,
@@ -477,6 +596,42 @@ namespace CircuitCraft
         {
             get { return _warningLowProgressBar; }
             set { _warningLowProgressBar = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Next Component Picture Box 1")]
+        [DefaultValue(null)]
+        public PictureBox NextComponentPictureBox1
+        {
+            get { return _nextComponentPbox1; }
+            set { _nextComponentPbox1 = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Next Component Label 1")]
+        [DefaultValue(null)]
+        public BigLabel NextComponentLabel1
+        {
+            get { return _nextComponentLabel1; }
+            set { _nextComponentLabel1 = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Next Component Picture Box 2")]
+        [DefaultValue(null)]
+        public PictureBox NextComponentPictureBox2
+        {
+            get { return _nextComponentPbox2; }
+            set { _nextComponentPbox2 = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Next Component Label 2")]
+        [DefaultValue(null)]
+        public BigLabel NextComponentLabel2
+        {
+            get { return _nextComponentLabel2; }
+            set { _nextComponentLabel2 = value; }
         }
 
         public CircuitBlock CircuitBlock
