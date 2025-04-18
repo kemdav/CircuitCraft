@@ -427,13 +427,12 @@ namespace CircuitCraft // Ensure this namespace matches your project
             progressBarWarningLow.Color = Color.SteelBlue;
             progressBarWarningLow.ForeColor = Color.FromArgb(63, 63, 70);
             progressBarWarningLow.Hover = false;
-            progressBarWarningLow.Location = new Point(603, 55);
+            progressBarWarningLow.Location = new Point(633, 52);
             progressBarWarningLow.Name = "progressBarWarningLow";
             progressBarWarningLow.Progress = 0;
             progressBarWarningLow.Size = new Size(141, 12);
             progressBarWarningLow.TabIndex = 29;
             progressBarWarningLow.Text = "lowWarn";
-            progressBarWarningLow.Visible = false;
             // 
             // progressBarWarningHigh
             // 
@@ -442,13 +441,12 @@ namespace CircuitCraft // Ensure this namespace matches your project
             progressBarWarningHigh.Color = Color.FromArgb(255, 128, 0);
             progressBarWarningHigh.ForeColor = Color.FromArgb(63, 63, 70);
             progressBarWarningHigh.Hover = false;
-            progressBarWarningHigh.Location = new Point(603, 21);
+            progressBarWarningHigh.Location = new Point(633, 24);
             progressBarWarningHigh.Name = "progressBarWarningHigh";
             progressBarWarningHigh.Progress = 0;
             progressBarWarningHigh.Size = new Size(141, 12);
             progressBarWarningHigh.TabIndex = 28;
             progressBarWarningHigh.Text = "highWarn";
-            progressBarWarningHigh.Visible = false;
             // 
             // lblCurrentValue
             // 
@@ -458,7 +456,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             lblCurrentValue.ForeColor = Color.White;
             lblCurrentValue.Location = new Point(472, 24);
             lblCurrentValue.Name = "lblCurrentValue";
-            lblCurrentValue.Size = new Size(125, 40);
+            lblCurrentValue.Size = new Size(155, 40);
             lblCurrentValue.TabIndex = 1;
             lblCurrentValue.Text = "--- mA";
             lblCurrentValue.TextAlign = ContentAlignment.MiddleCenter;
@@ -514,9 +512,14 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.MinimumOperatingCurrentTick = 0;
             gameCanvas.Name = "gameCanvas";
             gameCanvas.OperatingCurrent = 0D;
+            gameCanvas.OperatingCurrentMaxLabel = lblMaxThreshold;
+            gameCanvas.OperatingCurrentMinLabel = lblMinThreshold;
+            gameCanvas.OperatingCurrentProgressBar = operatingCurrentProgressBar;
             gameCanvas.OperatingCurrentTick = 0;
             gameCanvas.Size = new Size(674, 521);
             gameCanvas.TabIndex = 1;
+            gameCanvas.WarningHighProgressBar = progressBarWarningHigh;
+            gameCanvas.WarningLowProgressBar = progressBarWarningLow;
             gameCanvas.WillUseHoldCircuitElement = false;
             // 
             // MainGamePrototype

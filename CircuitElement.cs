@@ -19,7 +19,7 @@ namespace CircuitCraft
     {      
         public CircuitElementType circuitElementType { get; set; }
         public PictureBox CircuitELementUI { get; set; }
-        public int Orientation { get; set; } = 0;
+        public int Orientation { get; set; } = 1;
 
         public double Resistance { get; set; } = 0;
         public double Voltage { get; set; } = 0;

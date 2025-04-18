@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Timer = System.Windows.Forms.Timer;
 
 namespace CircuitCraft
 {
@@ -22,8 +23,8 @@ namespace CircuitCraft
 
         public CircuitElementHold? CurrentCircuitElementHold = null;
         public List<CircuitElement> CircuitSources { get; set; }
-        public double OperatingCurrent { get; set; } = 0;
-        public double MinimumOperatingCurrent { get; set; } = 0;
+        public double OperatingCurrent { get; set; } = 0.2;
+        public double MinimumOperatingCurrent { get; set; } = 0.1;
         public int OperatingCurrentTick { get; set; } = 0;
         public int MinimumOperatingCurrentTick { get; set; } = 0;
 
@@ -63,7 +64,7 @@ namespace CircuitCraft
 
         public PictureBox? CurrentCircuitElementDropped { get; set; }
 
-        private int _currentCircuitElementDroppedOrientation = 0; // 0 = normal, 1 = rotated
+        private int _currentCircuitElementDroppedOrientation = 1; // 0 = normal, 1 = rotated
         public int CurrentCircuitElementDroppedOrientation 
         {
             get
@@ -110,16 +111,33 @@ namespace CircuitCraft
 
         private BigLabel _initialVoltageSourceLabel;
 
+        private ProgressBar _operatingCurrentProgressBar;
+        private BigLabel _operatingCurrentMaxLabel;
+        private BigLabel _operatingCurrentMinLabel;
+
+        private LostProgressBar _warningHighProgressBar;
+        private LostProgressBar _warningLowProgressBar;
+
         private int _circuitElementSpawnOffsetY = 20;
+
+        public Timer gameTimer = new Timer();
+        public Timer warningTimer = new Timer();
 
         public GameCanvas()
         {
             InitializeComponent();
-            //UpdateCircuitElementUI();
+            MinimumOperatingCurrent = 0.1;
+            OperatingCurrent = 0.2;
             if (_circuitBlocks == null)
             {
                 _circuitBlocks = new List<CircuitBlock>();
             }
+
+            gameTimer.Interval = 1;
+            gameTimer.Tick += new EventHandler(Timer_Tick);
+
+            warningTimer.Interval = 100;
+            warningTimer.Tick += new EventHandler(OperatingCurrentTimer_Tick);
         }
 
         public void AddCircuitSource(double voltage)
@@ -136,14 +154,59 @@ namespace CircuitCraft
 
         public void UpdateCircuitElementUI()
         {
+            double rangeScale = (100 - 0) / (OperatingCurrent - MinimumOperatingCurrent);
             result = CircuitSimulator.CalculateLoadState(CircuitBlocks, SourceVoltage, LoadResistance);
-            if (CurrentCircuitElementDropped != null)
+            double normalized_value = ((result.LoadCurrent - MinimumOperatingCurrent) * rangeScale);
+            int clampedValue = Convert.ToInt32(Math.Clamp(normalized_value, 0, 100));
+            OperatingCurrentMaxLabel.Text = OperatingCurrent.ToString("F3") + " A";
+            OperatingCurrentMinLabel.Text = MinimumOperatingCurrent.ToString("F3") + " A";
+            OperatingCurrentProgressBar.Value = clampedValue;
+            CurrentValueLabel.Text = (result.LoadCurrent).ToString("F3") + " A";
+        }
+
+        private void OperatingCurrentTimer_Tick(object sender, EventArgs e)
+        {
+            if (OperatingCurrentTick >= 10000 && result.LoadCurrent > OperatingCurrent)
             {
-                CurrentValueLabel.Text = "Current: " + result.LoadCurrent.ToString("F2") + " A";
+                // LED Burned
+                //gameCanvas.OperatingCurrentTick = 0;
+                //operatingCurrentProgress.Progress = 0;
+
+                //ledBurnedIndicator.Visible = true;
             }
-            else
+
+            // In the final game, the indicator will be the LED icon itself on how bright it is
+            if (result.LoadCurrent < MinimumOperatingCurrent && MinimumOperatingCurrentTick < 10000)
             {
-                CurrentValueLabel.Text = "Current: 0.00 A";
+                MinimumOperatingCurrentTick += 100;
+                WarningLowProgressBar.Progress = Convert.ToInt32((MinimumOperatingCurrentTick / 10000f) * 100);
+            }
+            else if (MinimumOperatingCurrentTick > 0 && result.LoadCurrent > MinimumOperatingCurrent)
+            {
+                MinimumOperatingCurrentTick -= 100;
+                WarningLowProgressBar.Progress = Convert.ToInt32((MinimumOperatingCurrentTick / 10000f) * 100);
+                //ledBurnedIndicator.Visible = false;
+            }
+
+            if (result.LoadCurrent > OperatingCurrent && OperatingCurrentTick < 10000)
+            {
+                OperatingCurrentTick += 100;
+                WarningHighProgressBar.Progress = Convert.ToInt32((OperatingCurrentTick / 10000f) * 100);
+            }
+            else if (OperatingCurrentTick > 0 && result.LoadCurrent < OperatingCurrent)
+            {
+                OperatingCurrentTick -= 100;
+                WarningHighProgressBar.Progress = Convert.ToInt32((OperatingCurrentTick / 10000f) * 100);
+                //ledBurnedIndicator.Visible = false;
+            }
+        }
+
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            if (!DropDownCircuitElement(2))
+            {
+                //UpdateCircuitElementUI();
             }
         }
 
@@ -152,6 +215,7 @@ namespace CircuitCraft
         public void SpawnCircuitElement(CircuitElementType circuitElementType, double voltage, double resistance)
         {
             UpdateCircuitElementUI();
+            CurrentCircuitElementDroppedOrientation = 1;
             if (WillUseHoldCircuitElement && CurrentCircuitElementHold != null)
             {
                 circuitElementType = CurrentCircuitElementHold.Value.CircuitElementType;
@@ -272,7 +336,7 @@ namespace CircuitCraft
                     (CircuitBlocks[CurrentBlockIndex].CircuitElements.Count * CircuitBlocks[CurrentBlockIndex].CircuitElementHeight));
                 CircuitBlocks[CurrentBlockIndex].AddCircuitElement(CurrentCircuitElementDroppedType, CurrentCircuitElementDroppedVoltage, CurrentCircuitElementDroppedResistance, CurrentCircuitElementDroppedOrientation, CurrentCircuitElementDropped);
                 CurrentCircuitElementDropped = null;
-                //UpdateCircuitElementUI();
+                UpdateCircuitElementUI();
                 return false;
             }
             CurrentCircuitElementDropped.Location = new Point(0, CurrentCircuitElementDropped.Location.Y + y);
@@ -368,6 +432,51 @@ namespace CircuitCraft
         {
             get { return _initialVoltageSourceLabel; }
             set { _initialVoltageSourceLabel = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Operating Current Progress Bar")]
+        [DefaultValue(null)]
+        public ProgressBar OperatingCurrentProgressBar
+        {
+            get { return _operatingCurrentProgressBar; }
+            set { _operatingCurrentProgressBar = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Operating Current Max Label")]
+        [DefaultValue(null)]
+        public BigLabel OperatingCurrentMaxLabel
+        {
+            get { return _operatingCurrentMaxLabel; }
+            set { _operatingCurrentMaxLabel = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Operating Current Min Label")]
+        [DefaultValue(null)]
+        public BigLabel OperatingCurrentMinLabel
+        {
+            get { return _operatingCurrentMinLabel; }
+            set { _operatingCurrentMinLabel = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Warning High Progress Bar")]
+        [DefaultValue(null)]
+        public LostProgressBar WarningHighProgressBar
+        {
+            get { return _warningHighProgressBar; }
+            set { _warningHighProgressBar = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Warning Low Progress Bar")]
+        [DefaultValue(null)]
+        public LostProgressBar WarningLowProgressBar
+        {
+            get { return _warningLowProgressBar; }
+            set { _warningLowProgressBar = value; }
         }
 
         public CircuitBlock CircuitBlock

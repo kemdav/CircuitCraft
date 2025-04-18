@@ -15,35 +15,27 @@ namespace CircuitCraft
     {
         private int Joule { get; set; }
 
-        Timer gameTimer = new Timer();
-
 
         public MainGamePrototype()
         {
             InitializeComponent();
             KeyPreview = true;
             KeyDown += new KeyEventHandler(PlayerInput);
-
-            gameTimer.Interval = 1;
-            gameTimer.Tick += new EventHandler(Timer_Tick);
+           
 
             for (int i = 0; i < 12; i++)
             {
                 gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Series, new Point(5 + (56 * i), 6), 50, 130);
             }
 
-            CircuitSimulator.CalculationTest();
+            gameCanvas.gameTimer.Start();
+            gameCanvas.warningTimer.Start();
 
-            gameTimer.Start();
+            gameCanvas.OperatingCurrent = 0.2;
+            gameCanvas.MinimumOperatingCurrent = 0.1;
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            if (!gameCanvas.DropDownCircuitElement(2))
-            {
-                //UpdateCircuitElementUI();
-            }
-        }
+       
 
         private void PlayerInput(object sender, KeyEventArgs e)
         {
@@ -63,7 +55,7 @@ namespace CircuitCraft
                     gameCanvas.WillUseHoldCircuitElement = true;
                     break;
                 case Keys.G:
-                    gameCanvas.SpawnCircuitElement(CircuitElementType.Source, 10, 0);
+                    gameCanvas.SpawnCircuitElement(CircuitElementType.Resistor, 0, 20);
                     break;
             }
         }
