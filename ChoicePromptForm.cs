@@ -11,6 +11,13 @@ using System.Windows.Forms;
 
 namespace CircuitCraft
 {
+    public struct ChoicePromptData
+    {
+        public Cards Cards;
+        public string CardDescription;
+        public Image CardImage;
+        public int Cost;
+    }
     public partial class ChoicePromptForm : Form
     {
         public event EventHandler TheButtonClicked;
@@ -25,9 +32,26 @@ namespace CircuitCraft
             get { return cardDescription; }
         }
 
-        public BigLabel JouleCurrencyLabel
+        public BigLabel CostLabel
         {
-            get { return jouleCurrencyLabel; }
+            get { return costLabel; }
+        }
+
+        private ChoicePromptData _choicePromptData;
+        public ChoicePromptData ChoicePromptData
+        {
+            get { return _choicePromptData; }
+            set
+            {
+                _choicePromptData = value;
+
+                cardImagePbox.Image = value.CardImage;
+                cardImagePbox.SizeMode = PictureBoxSizeMode.Zoom;
+
+                cardDescription.Text = value.CardDescription;
+
+                costLabel.Text = value.Cost.ToString();
+            }
         }
 
         public ChoicePromptForm()

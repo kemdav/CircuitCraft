@@ -547,8 +547,17 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.OperatingCurrentMinLabel = lblMinThreshold;
             gameCanvas.OperatingCurrentProgressBar = operatingCurrentProgressBar;
             gameCanvas.OperatingCurrentTick = 0;
+            gameCanvas.ParallelCircuitBlockCardCost = 10;
+            gameCanvas.ParallelCircuitBlockCardDescription = "Unlock a Parallel Circuit Branch";
+            gameCanvas.ParallelCircuitBlockCardImage = (Image)resources.GetObject("gameCanvas.ParallelCircuitBlockCardImage");
+            gameCanvas.SeriesCircuitBlockCardCost = 10;
+            gameCanvas.SeriesCircuitBlockCardDescription = "Unlock a Series Circuit Branch";
+            gameCanvas.SeriesCircuitBlockCardImage = (Image)resources.GetObject("gameCanvas.SeriesCircuitBlockCardImage");
             gameCanvas.Size = new Size(1586, 873);
             gameCanvas.TabIndex = 1;
+            gameCanvas.TrashCircuitBlockCardCost = 10;
+            gameCanvas.TrashCircuitBlockCardDescription = "Unlock a Disposable Circuit Branch";
+            gameCanvas.TrashCircuitBlockCardImage = (Image)resources.GetObject("gameCanvas.TrashCircuitBlockCardImage");
             gameCanvas.WarningHighProgressBar = progressBarWarningHigh;
             gameCanvas.WarningLowProgressBar = progressBarWarningLow;
             gameCanvas.WillUseHoldCircuitElement = false;

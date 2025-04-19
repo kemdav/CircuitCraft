@@ -188,6 +188,20 @@ namespace CircuitCraft
 
         private Image _lockedCircuitBlockImage;
 
+        #region Circuit Block Cards
+        private Image _seriesCircuitBlockCardImage;
+        private string _seriesCircuitBlockCardText = "Series Circuit Block";
+        private int _seriesCircuitBlockCardCost = 10;
+
+        private Image _parallelCircuitBlockCardImage;
+        private string _parallelCircuitBlockCardText = "Parallel Circuit Block";
+        private int _parallelCircuitBlockCardCost = 10;
+
+        private Image _trashCircuitBlockCardImage;
+        private string _trashCircuitBlockCardText = "Trash Circuit Block";
+        private int _trashCircuitBlockCardCost = 10;
+        #endregion
+
         private int _circuitElementSpawnOffsetY = 20;
 
         public Timer gameTimer = new Timer();
@@ -216,6 +230,33 @@ namespace CircuitCraft
             circuitElement.Voltage = voltage;
             //circuitElement.CircuitElementSprite = CircuitElementSourceSprite;
             CircuitSources.Add(circuitElement);
+        }
+
+        public bool UnlockCircuitBlock(Cards cards)
+        {
+            foreach (CircuitBlock circuitBlock in CircuitBlocks)
+            {
+                if (circuitBlock.CircuitBlockConnectionType == CircuitBlockConnectionType.Locked)
+                {
+                    switch (cards)
+                    {
+                        case Cards.SeriesCircuit:
+                            circuitBlock.CircuitBlockConnectionType = CircuitBlockConnectionType.Series;
+                            circuitBlock.BackgroundImage = null;
+                            break;
+                        case Cards.ParallelCircuit:
+                            circuitBlock.CircuitBlockConnectionType = CircuitBlockConnectionType.Parallel;
+                            circuitBlock.BackgroundImage = null;
+                            break;
+                        case Cards.TrashCircuit:
+                            circuitBlock.CircuitBlockConnectionType = CircuitBlockConnectionType.Trash;
+                            circuitBlock.BackgroundImage = null;
+                            break;
+                    }
+                    return true;
+                }
+            }
+            return false;
         }
 
         public void SpawnNextComponent()
@@ -750,6 +791,88 @@ namespace CircuitCraft
         {
             get { return _jouleCurrencyLabel; }
             set { _jouleCurrencyLabel = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Series Circuit Block Card Image")]
+        [DefaultValue(null)]
+        public Image SeriesCircuitBlockCardImage
+        {
+            get { return _seriesCircuitBlockCardImage; }
+            set { _seriesCircuitBlockCardImage = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Parallel Circuit Block Card Image")]
+        [DefaultValue(null)]
+        public Image ParallelCircuitBlockCardImage
+        {
+            get { return _parallelCircuitBlockCardImage; }
+            set { _parallelCircuitBlockCardImage = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Trash Circuit Block Card Image")]
+        [DefaultValue(null)]
+        public Image TrashCircuitBlockCardImage
+        {
+            get { return _trashCircuitBlockCardImage; }
+            set { _trashCircuitBlockCardImage = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Series Circuit Block Card Description")]
+        [DefaultValue(null)]
+        public string SeriesCircuitBlockCardDescription
+        {
+            get { return _seriesCircuitBlockCardText; }
+            set { _seriesCircuitBlockCardText = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Parallel Circuit Block Card Description")]
+        [DefaultValue(null)]
+        public string ParallelCircuitBlockCardDescription
+        {
+            get { return _parallelCircuitBlockCardText; }
+            set { _parallelCircuitBlockCardText = value; }
+        }
+
+
+        [Category("Game Canvas Settings")]
+        [Description("Trash Circuit Block Card Description")]
+        [DefaultValue(null)]
+        public string TrashCircuitBlockCardDescription
+        {
+            get { return _trashCircuitBlockCardText; }
+            set { _trashCircuitBlockCardText = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Series Circuit Block Card Cost")]
+        [DefaultValue(null)]
+        public int SeriesCircuitBlockCardCost
+        {
+            get { return _seriesCircuitBlockCardCost; }
+            set { _seriesCircuitBlockCardCost = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Parallel Circuit Block Card Cost")]
+        [DefaultValue(null)]
+        public int ParallelCircuitBlockCardCost
+        {
+            get { return _parallelCircuitBlockCardCost; }
+            set { _parallelCircuitBlockCardCost = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Trash Circuit Block Card Cost")]
+        [DefaultValue(null)]
+        public int TrashCircuitBlockCardCost
+        {
+            get { return _trashCircuitBlockCardCost; }
+            set { _trashCircuitBlockCardCost = value; }
         }
 
         public CircuitBlock CircuitBlock

@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChoicePromptForm));
             panel1 = new Panel();
-            jouleCurrencyLabel = new ReaLTaiizor.Controls.BigLabel();
+            costLabel = new ReaLTaiizor.Controls.BigLabel();
             pictureBox2 = new PictureBox();
             cyberColorPicker1 = new ReaLTaiizor.Controls.CyberColorPicker();
             selectButton = new MaterialSkin.Controls.MaterialButton();
@@ -44,7 +44,7 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
-            panel1.Controls.Add(jouleCurrencyLabel);
+            panel1.Controls.Add(costLabel);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(cyberColorPicker1);
             panel1.Controls.Add(selectButton);
@@ -57,15 +57,15 @@
             // 
             // jouleCurrencyLabel
             // 
-            jouleCurrencyLabel.BackColor = Color.Transparent;
-            jouleCurrencyLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            jouleCurrencyLabel.ForeColor = Color.FromArgb(80, 80, 80);
-            jouleCurrencyLabel.Location = new Point(78, 218);
-            jouleCurrencyLabel.Name = "jouleCurrencyLabel";
-            jouleCurrencyLabel.Size = new Size(169, 44);
-            jouleCurrencyLabel.TabIndex = 5;
-            jouleCurrencyLabel.Text = "1000 J";
-            jouleCurrencyLabel.TextAlign = ContentAlignment.MiddleCenter;
+            costLabel.BackColor = Color.Transparent;
+            costLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            costLabel.ForeColor = Color.FromArgb(80, 80, 80);
+            costLabel.Location = new Point(78, 218);
+            costLabel.Name = "jouleCurrencyLabel";
+            costLabel.Size = new Size(169, 44);
+            costLabel.TabIndex = 5;
+            costLabel.Text = "1000 J";
+            costLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pictureBox2
             // 
@@ -153,7 +153,7 @@
         private MaterialSkin.Controls.MaterialButton selectButton;
         private ReaLTaiizor.Controls.BigLabel cardDescription;
         private PictureBox cardImagePbox;
-        private ReaLTaiizor.Controls.BigLabel jouleCurrencyLabel;
+        private ReaLTaiizor.Controls.BigLabel costLabel;
         private PictureBox pictureBox2;
         private ReaLTaiizor.Controls.CyberColorPicker cyberColorPicker1;
     }
