@@ -38,7 +38,6 @@ namespace CircuitCraft // Ensure this namespace matches your project
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainGamePrototype));
-            hopeForm1 = new HopeForm();
             pnlTopBar = new System.Windows.Forms.Panel();
             panel1 = new System.Windows.Forms.Panel();
             pictureBox2 = new PictureBox();
@@ -93,22 +92,6 @@ namespace CircuitCraft // Ensure this namespace matches your project
             panelGameCanvasContainer.SuspendLayout();
             SuspendLayout();
             // 
-            // hopeForm1
-            // 
-            hopeForm1.ControlBoxColorH = Color.FromArgb(228, 231, 237);
-            hopeForm1.ControlBoxColorHC = Color.FromArgb(245, 108, 108);
-            hopeForm1.ControlBoxColorN = Color.White;
-            hopeForm1.Dock = DockStyle.Top;
-            hopeForm1.Font = new Font("Segoe UI", 12F);
-            hopeForm1.ForeColor = Color.FromArgb(242, 246, 252);
-            hopeForm1.Image = null;
-            hopeForm1.Location = new Point(0, 0);
-            hopeForm1.Name = "hopeForm1";
-            hopeForm1.Size = new Size(1008, 40);
-            hopeForm1.TabIndex = 0;
-            hopeForm1.ThemeColor = Color.FromArgb(92, 173, 255);
-            hopeForm1.Visible = false;
-            // 
             // pnlTopBar
             // 
             pnlTopBar.BackColor = Color.FromArgb(218, 225, 232);
@@ -118,16 +101,16 @@ namespace CircuitCraft // Ensure this namespace matches your project
             pnlTopBar.Controls.Add(lblLevel);
             pnlTopBar.Controls.Add(lblScore);
             pnlTopBar.Dock = DockStyle.Top;
-            pnlTopBar.Location = new Point(0, 40);
+            pnlTopBar.Location = new Point(0, 0);
             pnlTopBar.Name = "pnlTopBar";
-            pnlTopBar.Size = new Size(1008, 55);
+            pnlTopBar.Size = new Size(1920, 55);
             pnlTopBar.TabIndex = 1;
             // 
             // panel1
             // 
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(jouleCurrencyLabel);
-            panel1.Location = new Point(666, 3);
+            panel1.Location = new Point(868, 3);
             panel1.Name = "panel1";
             panel1.Size = new Size(182, 51);
             panel1.TabIndex = 48;
@@ -162,7 +145,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             picPauseButton.BackColor = Color.Transparent;
             picPauseButton.Cursor = Cursors.Hand;
             picPauseButton.Image = (Image)resources.GetObject("picPauseButton.Image");
-            picPauseButton.Location = new Point(951, 8);
+            picPauseButton.Location = new Point(1863, 8);
             picPauseButton.Name = "picPauseButton";
             picPauseButton.Size = new Size(40, 40);
             picPauseButton.SizeMode = PictureBoxSizeMode.Zoom;
@@ -176,7 +159,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             lblTime.BackColor = Color.Transparent;
             lblTime.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTime.ForeColor = Color.FromArgb(80, 80, 80);
-            lblTime.Location = new Point(456, 15);
+            lblTime.Location = new Point(1567, 15);
             lblTime.Name = "lblTime";
             lblTime.Size = new Size(99, 25);
             lblTime.TabIndex = 2;
@@ -214,12 +197,12 @@ namespace CircuitCraft // Ensure this namespace matches your project
             pnlHoldArea.Controls.Add(pnlHoldElementContainer);
             pnlHoldArea.Controls.Add(lblHoldTitle);
             pnlHoldArea.Dock = DockStyle.Left;
-            pnlHoldArea.Location = new Point(0, 95);
+            pnlHoldArea.Location = new Point(0, 55);
             pnlHoldArea.MaximumSize = new Size(160, 0);
             pnlHoldArea.MinimumSize = new Size(160, 0);
             pnlHoldArea.Name = "pnlHoldArea";
             pnlHoldArea.Padding = new Padding(10);
-            pnlHoldArea.Size = new Size(160, 535);
+            pnlHoldArea.Size = new Size(160, 887);
             pnlHoldArea.TabIndex = 2;
             // 
             // panelVoltageArea
@@ -321,12 +304,12 @@ namespace CircuitCraft // Ensure this namespace matches your project
             pnlNextArea.Controls.Add(pnlNextElement1Container);
             pnlNextArea.Controls.Add(lblNextTitle);
             pnlNextArea.Dock = DockStyle.Right;
-            pnlNextArea.Location = new Point(848, 95);
+            pnlNextArea.Location = new Point(1760, 55);
             pnlNextArea.MaximumSize = new Size(160, 0);
             pnlNextArea.MinimumSize = new Size(160, 0);
             pnlNextArea.Name = "pnlNextArea";
             pnlNextArea.Padding = new Padding(10);
-            pnlNextArea.Size = new Size(160, 535);
+            pnlNextArea.Size = new Size(160, 887);
             pnlNextArea.TabIndex = 3;
             // 
             // pnlNextElement2Container
@@ -420,14 +403,15 @@ namespace CircuitCraft // Ensure this namespace matches your project
             pnlBottomStatus.Controls.Add(picLedStatus);
             pnlBottomStatus.Dock = DockStyle.Bottom;
             pnlBottomStatus.ForeColor = Color.White;
-            pnlBottomStatus.Location = new Point(0, 630);
+            pnlBottomStatus.Location = new Point(0, 942);
             pnlBottomStatus.Name = "pnlBottomStatus";
-            pnlBottomStatus.Size = new Size(1008, 90);
+            pnlBottomStatus.Size = new Size(1920, 90);
             pnlBottomStatus.TabIndex = 4;
             // 
             // operatingCurrentProgressBar
             // 
-            operatingCurrentProgressBar.Location = new Point(412, 24);
+            operatingCurrentProgressBar.Anchor = AnchorStyles.Bottom;
+            operatingCurrentProgressBar.Location = new Point(868, 26);
             operatingCurrentProgressBar.Name = "operatingCurrentProgressBar";
             operatingCurrentProgressBar.Size = new Size(47, 40);
             operatingCurrentProgressBar.Style = ProgressBarStyle.Continuous;
@@ -441,7 +425,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             lblMaxThreshold.BackColor = Color.Transparent;
             lblMaxThreshold.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblMaxThreshold.ForeColor = Color.FromArgb(255, 128, 128);
-            lblMaxThreshold.Location = new Point(412, 8);
+            lblMaxThreshold.Location = new Point(868, 8);
             lblMaxThreshold.Name = "lblMaxThreshold";
             lblMaxThreshold.Size = new Size(49, 13);
             lblMaxThreshold.TabIndex = 31;
@@ -454,7 +438,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             lblMinThreshold.BackColor = Color.Transparent;
             lblMinThreshold.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblMinThreshold.ForeColor = Color.FromArgb(160, 192, 255);
-            lblMinThreshold.Location = new Point(412, 69);
+            lblMinThreshold.Location = new Point(868, 69);
             lblMinThreshold.Name = "lblMinThreshold";
             lblMinThreshold.Size = new Size(47, 13);
             lblMinThreshold.TabIndex = 30;
@@ -467,7 +451,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             progressBarWarningLow.Color = Color.SteelBlue;
             progressBarWarningLow.ForeColor = Color.FromArgb(63, 63, 70);
             progressBarWarningLow.Hover = false;
-            progressBarWarningLow.Location = new Point(633, 52);
+            progressBarWarningLow.Location = new Point(1089, 52);
             progressBarWarningLow.Name = "progressBarWarningLow";
             progressBarWarningLow.Progress = 0;
             progressBarWarningLow.Size = new Size(141, 12);
@@ -481,7 +465,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             progressBarWarningHigh.Color = Color.FromArgb(255, 128, 0);
             progressBarWarningHigh.ForeColor = Color.FromArgb(63, 63, 70);
             progressBarWarningHigh.Hover = false;
-            progressBarWarningHigh.Location = new Point(633, 24);
+            progressBarWarningHigh.Location = new Point(1089, 24);
             progressBarWarningHigh.Name = "progressBarWarningHigh";
             progressBarWarningHigh.Progress = 0;
             progressBarWarningHigh.Size = new Size(141, 12);
@@ -494,7 +478,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             lblCurrentValue.BackColor = Color.Transparent;
             lblCurrentValue.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblCurrentValue.ForeColor = Color.White;
-            lblCurrentValue.Location = new Point(472, 24);
+            lblCurrentValue.Location = new Point(928, 24);
             lblCurrentValue.Name = "lblCurrentValue";
             lblCurrentValue.Size = new Size(155, 40);
             lblCurrentValue.TabIndex = 1;
@@ -506,7 +490,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             picLedStatus.Anchor = AnchorStyles.Bottom;
             picLedStatus.BackColor = Color.White;
             picLedStatus.Image = (Image)resources.GetObject("picLedStatus.Image");
-            picLedStatus.Location = new Point(296, 8);
+            picLedStatus.Location = new Point(752, 8);
             picLedStatus.Name = "picLedStatus";
             picLedStatus.Size = new Size(74, 74);
             picLedStatus.SizeMode = PictureBoxSizeMode.Zoom;
@@ -519,10 +503,10 @@ namespace CircuitCraft // Ensure this namespace matches your project
             panelGameCanvasContainer.BorderStyle = BorderStyle.Fixed3D;
             panelGameCanvasContainer.Controls.Add(gameCanvas);
             panelGameCanvasContainer.Dock = DockStyle.Fill;
-            panelGameCanvasContainer.Location = new Point(160, 95);
+            panelGameCanvasContainer.Location = new Point(160, 55);
             panelGameCanvasContainer.Name = "panelGameCanvasContainer";
             panelGameCanvasContainer.Padding = new Padding(5);
-            panelGameCanvasContainer.Size = new Size(688, 535);
+            panelGameCanvasContainer.Size = new Size(1600, 887);
             panelGameCanvasContainer.TabIndex = 5;
             // 
             // gameCanvas
@@ -535,7 +519,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.CircuitElementResistorSprite = (Image)resources.GetObject("gameCanvas.CircuitElementResistorSprite");
             gameCanvas.CircuitElementSourceSprite = (Image)resources.GetObject("gameCanvas.CircuitElementSourceSprite");
             gameCanvas.CircuitSources = null;
-            gameCanvas.CurrentBlockIndex = 0;
+            gameCanvas.CurrentBlockIndex = -1;
             gameCanvas.CurrentCircuitElementDropped = null;
             gameCanvas.CurrentCircuitElementDroppedOrientation = 0;
             gameCanvas.CurrentCircuitElementDroppedResistance = 0D;
@@ -563,7 +547,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.OperatingCurrentMinLabel = lblMinThreshold;
             gameCanvas.OperatingCurrentProgressBar = operatingCurrentProgressBar;
             gameCanvas.OperatingCurrentTick = 0;
-            gameCanvas.Size = new Size(674, 521);
+            gameCanvas.Size = new Size(1586, 873);
             gameCanvas.TabIndex = 1;
             gameCanvas.WarningHighProgressBar = progressBarWarningHigh;
             gameCanvas.WarningLowProgressBar = progressBarWarningLow;
@@ -575,13 +559,12 @@ namespace CircuitCraft // Ensure this namespace matches your project
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(235, 240, 245);
-            ClientSize = new Size(1008, 720);
+            ClientSize = new Size(1920, 1032);
             Controls.Add(panelGameCanvasContainer);
             Controls.Add(pnlNextArea);
             Controls.Add(pnlHoldArea);
             Controls.Add(pnlBottomStatus);
             Controls.Add(pnlTopBar);
-            Controls.Add(hopeForm1);
             FormBorderStyle = FormBorderStyle.None;
             MaximumSize = new Size(1920, 1032);
             MinimumSize = new Size(190, 40);
@@ -615,8 +598,6 @@ namespace CircuitCraft // Ensure this namespace matches your project
         }
 
         #endregion
-
-        private ReaLTaiizor.Forms.HopeForm hopeForm1;
         private System.Windows.Forms.Panel pnlTopBar;
         private ReaLTaiizor.Controls.BigLabel lblScore;
         private ReaLTaiizor.Controls.BigLabel lblLevel;

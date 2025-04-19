@@ -30,65 +30,107 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChoicePromptForm));
             panel1 = new Panel();
-            materialButton1 = new MaterialSkin.Controls.MaterialButton();
-            bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
-            pictureBox1 = new PictureBox();
+            jouleCurrencyLabel = new ReaLTaiizor.Controls.BigLabel();
+            pictureBox2 = new PictureBox();
+            cyberColorPicker1 = new ReaLTaiizor.Controls.CyberColorPicker();
+            selectButton = new MaterialSkin.Controls.MaterialButton();
+            cardDescription = new ReaLTaiizor.Controls.BigLabel();
+            cardImagePbox = new PictureBox();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cardImagePbox).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.White;
-            panel1.Controls.Add(materialButton1);
-            panel1.Controls.Add(bigLabel1);
-            panel1.Controls.Add(pictureBox1);
+            panel1.Controls.Add(jouleCurrencyLabel);
+            panel1.Controls.Add(pictureBox2);
+            panel1.Controls.Add(cyberColorPicker1);
+            panel1.Controls.Add(selectButton);
+            panel1.Controls.Add(cardDescription);
+            panel1.Controls.Add(cardImagePbox);
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(263, 419);
             panel1.TabIndex = 1;
             // 
-            // materialButton1
+            // jouleCurrencyLabel
             // 
-            materialButton1.AutoSize = false;
-            materialButton1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton1.Depth = 0;
-            materialButton1.HighEmphasis = true;
-            materialButton1.Icon = null;
-            materialButton1.Location = new Point(19, 366);
-            materialButton1.Margin = new Padding(4, 6, 4, 6);
-            materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton1.Name = "materialButton1";
-            materialButton1.NoAccentTextColor = Color.Empty;
-            materialButton1.Size = new Size(228, 36);
-            materialButton1.TabIndex = 2;
-            materialButton1.Text = "Select";
-            materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton1.UseAccentColor = false;
-            materialButton1.UseVisualStyleBackColor = true;
+            jouleCurrencyLabel.BackColor = Color.Transparent;
+            jouleCurrencyLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            jouleCurrencyLabel.ForeColor = Color.FromArgb(80, 80, 80);
+            jouleCurrencyLabel.Location = new Point(78, 218);
+            jouleCurrencyLabel.Name = "jouleCurrencyLabel";
+            jouleCurrencyLabel.Size = new Size(169, 44);
+            jouleCurrencyLabel.TabIndex = 5;
+            jouleCurrencyLabel.Text = "1000 J";
+            jouleCurrencyLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // bigLabel1
+            // pictureBox2
             // 
-            bigLabel1.BackColor = Color.Transparent;
-            bigLabel1.Font = new Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            bigLabel1.ForeColor = Color.FromArgb(80, 80, 80);
-            bigLabel1.Location = new Point(31, 214);
-            bigLabel1.Name = "bigLabel1";
-            bigLabel1.Size = new Size(216, 97);
-            bigLabel1.TabIndex = 1;
-            bigLabel1.Text = "Add one series vertical space\r\n";
-            bigLabel1.TextAlign = ContentAlignment.MiddleCenter;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(19, 217);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(53, 47);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 4;
+            pictureBox2.TabStop = false;
             // 
-            // pictureBox1
+            // cyberColorPicker1
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(19, 26);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(228, 185);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            cyberColorPicker1.BackColor = Color.Transparent;
+            cyberColorPicker1.ForeColor = Color.WhiteSmoke;
+            cyberColorPicker1.Location = new Point(122, 239);
+            cyberColorPicker1.Name = "cyberColorPicker1";
+            cyberColorPicker1.SelectedColor = Color.Empty;
+            cyberColorPicker1.Size = new Size(8, 8);
+            cyberColorPicker1.TabIndex = 3;
+            cyberColorPicker1.Tag = "Cyber";
+            // 
+            // selectButton
+            // 
+            selectButton.AutoSize = false;
+            selectButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            selectButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            selectButton.Depth = 0;
+            selectButton.HighEmphasis = true;
+            selectButton.Icon = null;
+            selectButton.Location = new Point(19, 366);
+            selectButton.Margin = new Padding(4, 6, 4, 6);
+            selectButton.MouseState = MaterialSkin.MouseState.HOVER;
+            selectButton.Name = "selectButton";
+            selectButton.NoAccentTextColor = Color.Empty;
+            selectButton.Size = new Size(228, 36);
+            selectButton.TabIndex = 2;
+            selectButton.TabStop = false;
+            selectButton.Text = "Select";
+            selectButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            selectButton.UseAccentColor = false;
+            selectButton.UseVisualStyleBackColor = true;
+            selectButton.Click += selectButton_Click;
+            // 
+            // cardDescription
+            // 
+            cardDescription.BackColor = Color.Transparent;
+            cardDescription.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cardDescription.ForeColor = Color.FromArgb(80, 80, 80);
+            cardDescription.Location = new Point(31, 262);
+            cardDescription.Name = "cardDescription";
+            cardDescription.Size = new Size(216, 98);
+            cardDescription.TabIndex = 1;
+            cardDescription.Text = "Add one series vertical space\r\n";
+            cardDescription.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // cardImagePbox
+            // 
+            cardImagePbox.Image = (Image)resources.GetObject("cardImagePbox.Image");
+            cardImagePbox.Location = new Point(19, 26);
+            cardImagePbox.Name = "cardImagePbox";
+            cardImagePbox.Size = new Size(228, 185);
+            cardImagePbox.SizeMode = PictureBoxSizeMode.Zoom;
+            cardImagePbox.TabIndex = 0;
+            cardImagePbox.TabStop = false;
             // 
             // ChoicePromptForm
             // 
@@ -100,15 +142,19 @@
             Name = "ChoicePromptForm";
             Text = "ChoicePromptForm";
             panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cardImagePbox).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel panel1;
-        private MaterialSkin.Controls.MaterialButton materialButton1;
-        private ReaLTaiizor.Controls.BigLabel bigLabel1;
-        private PictureBox pictureBox1;
+        private MaterialSkin.Controls.MaterialButton selectButton;
+        private ReaLTaiizor.Controls.BigLabel cardDescription;
+        private PictureBox cardImagePbox;
+        private ReaLTaiizor.Controls.BigLabel jouleCurrencyLabel;
+        private PictureBox pictureBox2;
+        private ReaLTaiizor.Controls.CyberColorPicker cyberColorPicker1;
     }
 }
