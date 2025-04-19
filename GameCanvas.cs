@@ -130,23 +130,18 @@ namespace CircuitCraft
             }
             set
             {
-                if (value > 1)
+                int newOrientation = (value % 2 == 0) ? 0 : 1;
+
+                if (_currentCircuitElementDroppedOrientation != newOrientation)
                 {
-                    value = 0;
-                }
-                if (value == 1)
-                {
-                    _currentCircuitElementDroppedOrientation = value;
-                    CurrentCircuitElementDropped?.Image.RotateFlip(RotateFlipType.RotateNoneFlipNone);
-                }
-                else if (value == 0)
-                {
-                    _currentCircuitElementDroppedOrientation = value;
-                    Image currentImage = CurrentCircuitElementDropped?.Image;
-                    if (currentImage != null)
+                    _currentCircuitElementDroppedOrientation = newOrientation;
+
+                    if (CurrentCircuitElementDropped != null)
                     {
-                        currentImage.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                        CurrentCircuitElementDropped.Image = currentImage;
+                        CurrentCircuitElementDropped.Image?.Dispose();
+                        CurrentCircuitElementDropped.Image = GetOrientedImageClone(
+                            CurrentCircuitElementDroppedType,
+                            _currentCircuitElementDroppedOrientation);
                     }
                 }
             }
@@ -273,6 +268,37 @@ namespace CircuitCraft
             }
             NextCircuitElements.RemoveAt(0);
             FillUpNextComponents();
+        }
+
+        private Image GetOrientedImageClone(CircuitElementType type, int orientation)
+        {
+            Image baseImage = null;
+            switch (type)
+            {
+                case CircuitElementType.Resistor:
+                    baseImage = this.CircuitElementResistorSprite;
+                    break;
+                case CircuitElementType.Source:
+                    baseImage = this.CircuitElementSourceSprite;
+                    break;
+                case CircuitElementType.Diode:
+                    baseImage = this.CircuitElementDiodeSprite;
+                    break;
+                default:
+                    return null; // return a default placeholder image
+            }
+
+            if (baseImage == null) return null;
+
+            Image clonedImage = (Image)baseImage.Clone();
+
+            // Apply rotation based on orientation (0 = flipped, 1 = normal)
+            if (orientation == 0) 
+            {
+                clonedImage.RotateFlip(RotateFlipType.Rotate180FlipNone);
+            }
+
+            return clonedImage;
         }
 
         public void FillUpNextComponents()
@@ -472,7 +498,7 @@ namespace CircuitCraft
         public void SpawnCircuitElement(CircuitElementType circuitElementType, double voltage, double resistance)
         {
             UpdateCircuitElementUI();
-            CurrentCircuitElementDroppedOrientation = 1;
+            _currentCircuitElementDroppedOrientation = 1;
             if (WillUseHoldCircuitElement && CurrentCircuitElementHold != null)
             {
                 circuitElementType = CurrentCircuitElementHold.Value.CircuitElementType;
@@ -482,19 +508,22 @@ namespace CircuitCraft
                 HoldComponentPbox.Image = null;
                 HoldComponentLabel.Text = "";
 
+                CurrentCircuitElementHold = null;
+
             }
             CurrentCircuitElementDroppedResistance = resistance;
             CurrentCircuitElementDroppedVoltage = voltage;
+            CurrentCircuitElementDroppedType = circuitElementType;
+
             CircuitElement circuitElement = null;
             PictureBox circuitElementPbox = new PictureBox();
             circuitElementPbox.BackColor = Color.Transparent;
-            circuitElementPbox.BringToFront();
-            circuitElementPbox.Location = new Point(CircuitBlocks[CurrentBlockIndex].Location.X, CircuitBlocks[CurrentBlockIndex].Location.Y - CircuitBlocks[CurrentBlockIndex].CircuitElementHeight - CircuitElementOffset);
+            circuitElementPbox.Location = new Point(0, CircuitBlocks[CurrentBlockIndex].Location.Y - CircuitBlocks[CurrentBlockIndex].CircuitElementHeight - CircuitElementOffset);
+            circuitElementPbox.Image = GetOrientedImageClone(circuitElementType, _currentCircuitElementDroppedOrientation);
             switch (circuitElementType)
             {
                 case CircuitElementType.Resistor:
                     CurrentCircuitElementDroppedType = CircuitElementType.Resistor;
-                    circuitElementPbox.Image = CircuitElementResistorSprite;
                     circuitElementPbox.Width = CircuitBlocks[CurrentBlockIndex].CircuitElementWidth;
                     circuitElementPbox.Height = CircuitBlocks[CurrentBlockIndex].CircuitElementHeight;
                     circuitElementPbox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -504,7 +533,6 @@ namespace CircuitCraft
                     break;
                 case CircuitElementType.Source:
                     CurrentCircuitElementDroppedType = CircuitElementType.Source;
-                    circuitElementPbox.Image = CircuitElementSourceSprite;
                     circuitElementPbox.Width = CircuitBlocks[CurrentBlockIndex].CircuitElementWidth;
                     circuitElementPbox.Height = CircuitBlocks[CurrentBlockIndex].CircuitElementHeight;
                     circuitElementPbox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -514,7 +542,6 @@ namespace CircuitCraft
                     break;
                 case CircuitElementType.Diode:
                     CurrentCircuitElementDroppedType = CircuitElementType.Diode;
-                    circuitElementPbox.Image = CircuitElementDiodeSprite;
                     circuitElementPbox.Width = CircuitBlocks[CurrentBlockIndex].CircuitElementWidth;
                     circuitElementPbox.Height = CircuitBlocks[CurrentBlockIndex].CircuitElementHeight;
                     circuitElementPbox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -606,6 +633,14 @@ namespace CircuitCraft
             }
             CurrentCircuitElementDropped.Location = new Point(0, CurrentCircuitElementDropped.Location.Y + y);
             return true;
+        }
+
+        public void SnapCurrentDropElementToLowest()
+        {
+            if (CurrentCircuitElementDropped == null) return;
+            CurrentCircuitElementDropped.Location = new Point(0,
+                    CircuitBlocks[CurrentBlockIndex].Location.Y + CircuitBlocks[CurrentBlockIndex].Height - CurrentCircuitElementDropped.Height -
+                    (CircuitBlocks[CurrentBlockIndex].CircuitElements.Count * CircuitBlocks[CurrentBlockIndex].CircuitElementHeight));
         }
         #endregion
 

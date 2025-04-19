@@ -74,7 +74,7 @@ namespace CircuitCraft
 
         private void PlayerInput(object sender, KeyEventArgs e)
         {
-            // Rotation
+
             // A way to instant down the circuit component
             // A way to prevent putting elements in a full capacity circuit block
 
@@ -99,8 +99,11 @@ namespace CircuitCraft
                 case Keys.R:
                     gameCanvas.CurrentCircuitElementDroppedOrientation++;
                     break;
-                case Keys.Space:
+                case Keys.S:
                     gameCanvas.WillUseHoldCircuitElement = true;
+                    break;
+                case Keys.Space:
+                    gameCanvas.SnapCurrentDropElementToLowest();
                     break;
                 case Keys.G:
                     gameCanvas.SpawnNextComponent();
