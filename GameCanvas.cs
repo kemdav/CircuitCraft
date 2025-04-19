@@ -203,6 +203,11 @@ namespace CircuitCraft
         public void SpawnNextComponent()
         {
             SpawnCircuitElement(NextCircuitElements[0].CircuitElementType, NextCircuitElements[0].Voltage, NextCircuitElements[0].Resistance);
+            if (WillUseHoldCircuitElement && CurrentCircuitElementHold != null) 
+            {
+                WillUseHoldCircuitElement = false;
+                return; 
+            }
             NextCircuitElements.RemoveAt(0);
             FillUpNextComponents();
         }
@@ -413,7 +418,6 @@ namespace CircuitCraft
                 HoldComponentPbox.Image = null;
                 HoldComponentLabel.Text = "";
 
-                WillUseHoldCircuitElement = false;
             }
             CurrentCircuitElementDroppedResistance = resistance;
             CurrentCircuitElementDroppedVoltage = voltage;
