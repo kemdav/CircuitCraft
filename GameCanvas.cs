@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.XPath;
 using Timer = System.Windows.Forms.Timer;
 
 namespace CircuitCraft
@@ -178,6 +179,8 @@ namespace CircuitCraft
 
         private BigLabel _jouleCurrencyLabel;
 
+        private BigLabel _maintainTimerLabel;
+
         private ProgressBar _operatingCurrentProgressBar;
         private BigLabel _operatingCurrentMaxLabel;
         private BigLabel _operatingCurrentMinLabel;
@@ -204,7 +207,10 @@ namespace CircuitCraft
         private int _circuitElementSpawnOffsetY = 20;
 
         public Timer gameTimer = new Timer();
+        public Timer gameLedTimer = new Timer();
         public Timer warningTimer = new Timer();
+
+        public int timeLeftToMaintainInSeconds { get; set; } = 60;
 
         public GameCanvas()
         {
@@ -221,6 +227,34 @@ namespace CircuitCraft
 
             warningTimer.Interval = 100;
             warningTimer.Tick += new EventHandler(OperatingCurrentTimer_Tick);
+
+            gameLedTimer.Interval = 1000;
+            gameLedTimer.Tick += new EventHandler(GameLedTimer_Tick);
+
+        }
+
+        double joulesAccumulation = 0;
+        private void GameLedTimer_Tick(object sender, EventArgs e)
+        {
+            timeLeftToMaintainInSeconds -= 1;
+
+            if (!double.IsNaN(result.LoadCurrent) && result.LoadCurrent > 0)
+            {
+                joulesAccumulation += result.LoadCurrent;
+                if (joulesAccumulation > 1)
+                {
+                    JouleCurrency += Convert.ToInt32(joulesAccumulation);
+                    joulesAccumulation = 0;
+                }
+            }
+
+            if (timeLeftToMaintainInSeconds < 0)
+            {
+                timeLeftToMaintainInSeconds = 0;
+                // Continue Logic
+            }
+            TimeSpan time = TimeSpan.FromSeconds(timeLeftToMaintainInSeconds);
+            MaintainTimerLabel.Text = "Time Left: " + time.ToString(@"mm\:ss") + " s";
         }
 
         public void AddCircuitSource(double voltage)
@@ -929,6 +963,15 @@ namespace CircuitCraft
         {
             get { return _trashCircuitBlockCardCost; }
             set { _trashCircuitBlockCardCost = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Maintain Timer Label")]
+        [DefaultValue(null)]
+        public BigLabel MaintainTimerLabel
+        {
+            get { return _maintainTimerLabel; }
+            set { _maintainTimerLabel = value; }
         }
 
         public CircuitBlock CircuitBlock

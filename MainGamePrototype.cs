@@ -51,6 +51,7 @@ namespace CircuitCraft
 
             gameCanvas.gameTimer.Start();
             gameCanvas.warningTimer.Start();
+            gameCanvas.gameLedTimer.Start();
 
             gameCanvas.OperatingCurrent = 0.2;
             gameCanvas.MinimumOperatingCurrent = 0.1;
@@ -74,8 +75,6 @@ namespace CircuitCraft
 
         private void PlayerInput(object sender, KeyEventArgs e)
         {
-
-            // A working timer
 
             // A way to earn Joules
 

@@ -161,9 +161,9 @@ namespace CircuitCraft // Ensure this namespace matches your project
             lblTime.ForeColor = Color.FromArgb(80, 80, 80);
             lblTime.Location = new Point(1567, 15);
             lblTime.Name = "lblTime";
-            lblTime.Size = new Size(99, 25);
+            lblTime.Size = new Size(150, 25);
             lblTime.TabIndex = 2;
-            lblTime.Text = "Time: 1:30";
+            lblTime.Text = "Time Left: 1:30 s";
             // 
             // lblLevel
             // 
@@ -519,7 +519,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.CircuitElementResistorSprite = (Image)resources.GetObject("gameCanvas.CircuitElementResistorSprite");
             gameCanvas.CircuitElementSourceSprite = (Image)resources.GetObject("gameCanvas.CircuitElementSourceSprite");
             gameCanvas.CircuitSources = null;
-            gameCanvas.CurrentBlockIndex = 0;
+            gameCanvas.CurrentBlockIndex = -1;
             gameCanvas.CurrentCircuitElementDropped = null;
             gameCanvas.CurrentCircuitElementDroppedOrientation = 0;
             gameCanvas.CurrentCircuitElementDroppedResistance = 0D;
@@ -535,6 +535,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.Location = new Point(5, 5);
             gameCanvas.LockedCircuitBlockImage = (Image)resources.GetObject("gameCanvas.LockedCircuitBlockImage");
             gameCanvas.MainGame = null;
+            gameCanvas.MaintainTimerLabel = lblTime;
             gameCanvas.MinimumOperatingCurrent = 0D;
             gameCanvas.MinimumOperatingCurrentTick = 0;
             gameCanvas.Name = "gameCanvas";
@@ -555,6 +556,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.SeriesCircuitBlockCardImage = (Image)resources.GetObject("gameCanvas.SeriesCircuitBlockCardImage");
             gameCanvas.Size = new Size(1586, 873);
             gameCanvas.TabIndex = 1;
+            gameCanvas.timeLeftToMaintainInSeconds = 60;
             gameCanvas.TrashCircuitBlockCardCost = 10;
             gameCanvas.TrashCircuitBlockCardDescription = "Unlock a Disposable Circuit Branch";
             gameCanvas.TrashCircuitBlockCardImage = (Image)resources.GetObject("gameCanvas.TrashCircuitBlockCardImage");
