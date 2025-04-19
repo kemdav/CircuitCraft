@@ -14,7 +14,8 @@ namespace CircuitCraft
     {
         Series,
         Parallel,
-        Trash
+        Trash,
+        Locked
     }
 
     [Serializable]

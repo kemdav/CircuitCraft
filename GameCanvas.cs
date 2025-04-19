@@ -36,6 +36,7 @@ namespace CircuitCraft
             }
             set
             {
+                int previousIndex = _currentBlockIndex;
                 if (value >= 0 && value < CircuitBlocks.Count)
                 {
                     _currentBlockIndex = value;
@@ -48,6 +49,48 @@ namespace CircuitCraft
                 {
                     _currentBlockIndex = 0;
                 }
+
+
+                if (CircuitBlocks.Count > 0)
+                {
+                    if (CircuitBlocks[_currentBlockIndex].CircuitBlockConnectionType == CircuitBlockConnectionType.Locked)
+                    {
+                        for (int i = 1; i < CircuitBlocks.Count; i++)
+                        {
+                            if (_currentBlockIndex < previousIndex)
+                            {
+                                if (_currentBlockIndex - i > -1)
+                                {
+                                    if (CircuitBlocks[_currentBlockIndex - i].CircuitBlockConnectionType != CircuitBlockConnectionType.Locked)
+                                    {
+                                        _currentBlockIndex = _currentBlockIndex - i;
+                                        break;
+                                    }
+                                }
+                                else
+                                {
+                                    _currentBlockIndex = previousIndex;
+                                }
+                            }
+                            else if (_currentBlockIndex > previousIndex)
+                            {
+                                if (_currentBlockIndex + i < CircuitBlocks.Count)
+                                {
+                                    if (CircuitBlocks[_currentBlockIndex + i].CircuitBlockConnectionType != CircuitBlockConnectionType.Locked)
+                                    {
+                                        _currentBlockIndex = _currentBlockIndex + i;
+                                        break;
+                                    }
+                                }
+                                else
+                                {
+                                    _currentBlockIndex = previousIndex;
+                                }
+                            }
+                        }                  
+                    }
+                }
+
                 foreach (var block in CircuitBlocks)
                 {
                     if (block == CircuitBlocks[_currentBlockIndex])

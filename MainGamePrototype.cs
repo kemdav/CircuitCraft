@@ -21,10 +21,15 @@ namespace CircuitCraft
             InitializeComponent();
             KeyPreview = true;
             KeyDown += new KeyEventHandler(PlayerInput);
-           
+
 
             for (int i = 0; i < 12; i++)
             {
+                if (i == 2 || i == 11) 
+                { 
+                    gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Locked, new Point(5 + (56 * i), 6), 50, 130);
+                    continue;
+                }
                 gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Series, new Point(5 + (56 * i), 6), 50, 130);
             }
 
