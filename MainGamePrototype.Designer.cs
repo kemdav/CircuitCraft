@@ -210,7 +210,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             panelVoltageArea.BorderStyle = BorderStyle.FixedSingle;
             panelVoltageArea.Controls.Add(initialVoltageSourceLabel);
             panelVoltageArea.Controls.Add(pictureBox1);
-            panelVoltageArea.Location = new Point(12, 387);
+            panelVoltageArea.Location = new Point(12, 715);
             panelVoltageArea.Name = "panelVoltageArea";
             panelVoltageArea.Size = new Size(135, 135);
             panelVoltageArea.TabIndex = 41;
@@ -519,7 +519,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.CircuitElementResistorSprite = (Image)resources.GetObject("gameCanvas.CircuitElementResistorSprite");
             gameCanvas.CircuitElementSourceSprite = (Image)resources.GetObject("gameCanvas.CircuitElementSourceSprite");
             gameCanvas.CircuitSources = null;
-            gameCanvas.CurrentBlockIndex = -1;
+            gameCanvas.CurrentBlockIndex = 0;
             gameCanvas.CurrentCircuitElementDropped = null;
             gameCanvas.CurrentCircuitElementDroppedOrientation = 0;
             gameCanvas.CurrentCircuitElementDroppedResistance = 0D;

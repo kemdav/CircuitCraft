@@ -130,6 +130,10 @@ namespace CircuitCraft
             }
             set
             {
+                if (value > 1)
+                {
+                    value = 0;
+                }
                 if (value == 1)
                 {
                     _currentCircuitElementDroppedOrientation = value;
@@ -409,6 +413,7 @@ namespace CircuitCraft
             double rangeScale = (100 - 0) / (OperatingCurrent - MinimumOperatingCurrent);
             result = CircuitSimulator.CalculateLoadState(CircuitBlocks, SourceVoltage, LoadResistance);
             double normalized_value = ((result.LoadCurrent - MinimumOperatingCurrent) * rangeScale);
+            if (double.IsNaN(normalized_value)) { normalized_value = 0; }
             int clampedValue = Convert.ToInt32(Math.Clamp(normalized_value, 0, 100));
             OperatingCurrentMaxLabel.Text = OperatingCurrent.ToString("F3") + " A";
             OperatingCurrentMinLabel.Text = MinimumOperatingCurrent.ToString("F3") + " A";

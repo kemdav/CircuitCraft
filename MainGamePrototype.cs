@@ -74,6 +74,16 @@ namespace CircuitCraft
 
         private void PlayerInput(object sender, KeyEventArgs e)
         {
+            // Rotation
+            // A way to instant down the circuit component
+            // A way to prevent putting elements in a full capacity circuit block
+
+            // A working timer
+
+            // A way to earn Joules
+
+            // A way to differentiate between different circuit blocks
+
             switch (e.KeyCode)
             {
                 case Keys.A:
@@ -86,7 +96,10 @@ namespace CircuitCraft
                     gameCanvas.HoldCircuitElement(gameCanvas.CurrentCircuitElementDroppedType,
                         gameCanvas.CurrentCircuitElementDroppedVoltage, gameCanvas.CurrentCircuitElementDroppedResistance);
                     break;
-                case Keys.S:
+                case Keys.R:
+                    gameCanvas.CurrentCircuitElementDroppedOrientation++;
+                    break;
+                case Keys.Space:
                     gameCanvas.WillUseHoldCircuitElement = true;
                     break;
                 case Keys.G:
