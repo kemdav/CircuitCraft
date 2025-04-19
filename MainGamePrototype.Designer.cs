@@ -40,6 +40,9 @@ namespace CircuitCraft // Ensure this namespace matches your project
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainGamePrototype));
             hopeForm1 = new HopeForm();
             pnlTopBar = new System.Windows.Forms.Panel();
+            panel1 = new System.Windows.Forms.Panel();
+            pictureBox2 = new PictureBox();
+            jouleCurrencyLabel = new BigLabel();
             picPauseButton = new PictureBox();
             lblTime = new BigLabel();
             lblLevel = new BigLabel();
@@ -72,6 +75,8 @@ namespace CircuitCraft // Ensure this namespace matches your project
             panelGameCanvasContainer = new System.Windows.Forms.Panel();
             gameCanvas = new GameCanvas();
             pnlTopBar.SuspendLayout();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picPauseButton).BeginInit();
             pnlHoldArea.SuspendLayout();
             panelVoltageArea.SuspendLayout();
@@ -102,10 +107,12 @@ namespace CircuitCraft // Ensure this namespace matches your project
             hopeForm1.Size = new Size(1008, 40);
             hopeForm1.TabIndex = 0;
             hopeForm1.ThemeColor = Color.FromArgb(92, 173, 255);
+            hopeForm1.Visible = false;
             // 
             // pnlTopBar
             // 
             pnlTopBar.BackColor = Color.FromArgb(218, 225, 232);
+            pnlTopBar.Controls.Add(panel1);
             pnlTopBar.Controls.Add(picPauseButton);
             pnlTopBar.Controls.Add(lblTime);
             pnlTopBar.Controls.Add(lblLevel);
@@ -115,6 +122,39 @@ namespace CircuitCraft // Ensure this namespace matches your project
             pnlTopBar.Name = "pnlTopBar";
             pnlTopBar.Size = new Size(1008, 55);
             pnlTopBar.TabIndex = 1;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(pictureBox2);
+            panel1.Controls.Add(jouleCurrencyLabel);
+            panel1.Location = new Point(666, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(182, 51);
+            panel1.TabIndex = 48;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(3, 1);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(53, 47);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 0;
+            pictureBox2.TabStop = false;
+            // 
+            // jouleCurrencyLabel
+            // 
+            jouleCurrencyLabel.Anchor = AnchorStyles.Top;
+            jouleCurrencyLabel.AutoSize = true;
+            jouleCurrencyLabel.BackColor = Color.Transparent;
+            jouleCurrencyLabel.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            jouleCurrencyLabel.ForeColor = Color.FromArgb(80, 80, 80);
+            jouleCurrencyLabel.Location = new Point(62, 12);
+            jouleCurrencyLabel.Name = "jouleCurrencyLabel";
+            jouleCurrencyLabel.Size = new Size(23, 25);
+            jouleCurrencyLabel.TabIndex = 47;
+            jouleCurrencyLabel.Text = "0";
+            jouleCurrencyLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // picPauseButton
             // 
@@ -495,7 +535,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.CircuitElementResistorSprite = (Image)resources.GetObject("gameCanvas.CircuitElementResistorSprite");
             gameCanvas.CircuitElementSourceSprite = (Image)resources.GetObject("gameCanvas.CircuitElementSourceSprite");
             gameCanvas.CircuitSources = null;
-            gameCanvas.CurrentBlockIndex = -1;
+            gameCanvas.CurrentBlockIndex = 0;
             gameCanvas.CurrentCircuitElementDropped = null;
             gameCanvas.CurrentCircuitElementDroppedOrientation = 0;
             gameCanvas.CurrentCircuitElementDroppedResistance = 0D;
@@ -506,7 +546,10 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.HoldComponentLabel = lblHoldElementValue;
             gameCanvas.HoldComponentPbox = picHoldElement;
             gameCanvas.InitialVoltageValueLabel = initialVoltageSourceLabel;
+            gameCanvas.JouleCurrency = 0;
+            gameCanvas.JouleCurrencyLabel = jouleCurrencyLabel;
             gameCanvas.Location = new Point(5, 5);
+            gameCanvas.LockedCircuitBlockImage = (Image)resources.GetObject("gameCanvas.LockedCircuitBlockImage");
             gameCanvas.MainGame = null;
             gameCanvas.MinimumOperatingCurrent = 0D;
             gameCanvas.MinimumOperatingCurrentTick = 0;
@@ -525,6 +568,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.WarningHighProgressBar = progressBarWarningHigh;
             gameCanvas.WarningLowProgressBar = progressBarWarningLow;
             gameCanvas.WillUseHoldCircuitElement = false;
+            gameCanvas.Load += gameCanvas_Load;
             // 
             // MainGamePrototype
             // 
@@ -544,8 +588,12 @@ namespace CircuitCraft // Ensure this namespace matches your project
             Name = "MainGamePrototype";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "CircuitCraft";
+            Shown += MainGamePrototype_Shown;
             pnlTopBar.ResumeLayout(false);
             pnlTopBar.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)picPauseButton).EndInit();
             pnlHoldArea.ResumeLayout(false);
             pnlHoldArea.PerformLayout();
@@ -601,5 +649,8 @@ namespace CircuitCraft // Ensure this namespace matches your project
         private System.Windows.Forms.Panel panelVoltageArea;
         private BigLabel initialVoltageSourceLabel;
         private PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel1;
+        private BigLabel jouleCurrencyLabel;
+        private PictureBox pictureBox2;
     }
 }

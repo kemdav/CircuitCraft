@@ -21,6 +21,20 @@ namespace CircuitCraft
             public double Resistance;
         }
 
+        private int _jouleCurrency;
+        public int JouleCurrency {
+            get
+            {
+                return _jouleCurrency;
+            }
+            set
+            {
+                _jouleCurrency = value;
+                if (JouleCurrencyLabel == null) { return; }
+                JouleCurrencyLabel.Text = _jouleCurrency.ToString() + " J";
+            }
+        }
+
         public CircuitElementTemp? CurrentCircuitElementHold = null;
         public List<CircuitElement> CircuitSources { get; set; }
         public double OperatingCurrent { get; set; } = 0.2;
@@ -163,12 +177,16 @@ namespace CircuitCraft
 
         private BigLabel _initialVoltageSourceLabel;
 
+        private BigLabel _jouleCurrencyLabel;
+
         private ProgressBar _operatingCurrentProgressBar;
         private BigLabel _operatingCurrentMaxLabel;
         private BigLabel _operatingCurrentMinLabel;
 
         private LostProgressBar _warningHighProgressBar;
         private LostProgressBar _warningLowProgressBar;
+
+        private Image _lockedCircuitBlockImage;
 
         private int _circuitElementSpawnOffsetY = 20;
 
@@ -469,9 +487,18 @@ namespace CircuitCraft
             circuitBlock.CircuitElementWidth = _circuitElementWidth;
             circuitBlock.CircuitElementHeight = _circuitElementHeight;
             circuitBlock.Location = _location;
+            UpdateCircuitBlock(circuitBlock);
             Controls.Add(circuitBlock);
             circuitBlock.BringToFront();
             CircuitBlocks.Add(circuitBlock);
+        }
+
+        public void UpdateCircuitBlock(CircuitBlock circuitBlock)
+        {
+            if (circuitBlock.CircuitBlockConnectionType == CircuitBlockConnectionType.Locked)
+            {
+                circuitBlock.BackgroundImage = LockedCircuitBlockImage;
+            }
         }
 
         public void HoldCircuitElement(CircuitElementType type, double voltage, double resistance)
@@ -705,6 +732,24 @@ namespace CircuitCraft
         {
             get { return _nextComponentLabel2; }
             set { _nextComponentLabel2 = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Locked Circuit Block Image")]
+        [DefaultValue(null)]
+        public Image LockedCircuitBlockImage
+        {
+            get { return _lockedCircuitBlockImage; }
+            set { _lockedCircuitBlockImage = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Joule Currency Label")]
+        [DefaultValue(null)]
+        public BigLabel JouleCurrencyLabel
+        {
+            get { return _jouleCurrencyLabel; }
+            set { _jouleCurrencyLabel = value; }
         }
 
         public CircuitBlock CircuitBlock

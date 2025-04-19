@@ -55,7 +55,7 @@ namespace CircuitCraft
             InitializeComponent();
             BackColor = Color.Transparent;
 
-        }
+        }       
 
         public void UpdateCircuitBlockSize()
         {
