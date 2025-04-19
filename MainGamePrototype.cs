@@ -75,9 +75,6 @@ namespace CircuitCraft
         private void PlayerInput(object sender, KeyEventArgs e)
         {
 
-            // A way to instant down the circuit component
-            // A way to prevent putting elements in a full capacity circuit block
-
             // A working timer
 
             // A way to earn Joules

@@ -67,7 +67,7 @@ namespace CircuitCraft
 
                 if (CircuitBlocks.Count > 0)
                 {
-                    if (CircuitBlocks[_currentBlockIndex].CircuitBlockConnectionType == CircuitBlockConnectionType.Locked)
+                    if (CircuitBlocks[_currentBlockIndex].CircuitBlockConnectionType == CircuitBlockConnectionType.Locked || CircuitBlocks[_currentBlockIndex].CircuitBlockConnectionType == CircuitBlockConnectionType.Full)
                     {
                         for (int i = 1; i < CircuitBlocks.Count; i++)
                         {
@@ -75,7 +75,7 @@ namespace CircuitCraft
                             {
                                 if (_currentBlockIndex - i > -1)
                                 {
-                                    if (CircuitBlocks[_currentBlockIndex - i].CircuitBlockConnectionType != CircuitBlockConnectionType.Locked)
+                                    if (CircuitBlocks[_currentBlockIndex - i].CircuitBlockConnectionType != CircuitBlockConnectionType.Locked && CircuitBlocks[_currentBlockIndex - i].CircuitBlockConnectionType != CircuitBlockConnectionType.Full)
                                     {
                                         _currentBlockIndex = _currentBlockIndex - i;
                                         break;
@@ -90,7 +90,7 @@ namespace CircuitCraft
                             {
                                 if (_currentBlockIndex + i < CircuitBlocks.Count)
                                 {
-                                    if (CircuitBlocks[_currentBlockIndex + i].CircuitBlockConnectionType != CircuitBlockConnectionType.Locked)
+                                    if (CircuitBlocks[_currentBlockIndex + i].CircuitBlockConnectionType != CircuitBlockConnectionType.Locked && CircuitBlocks[_currentBlockIndex + i].CircuitBlockConnectionType != CircuitBlockConnectionType.Full)
                                     {
                                         _currentBlockIndex = _currentBlockIndex + i;
                                         break;
@@ -628,6 +628,22 @@ namespace CircuitCraft
                     (CircuitBlocks[CurrentBlockIndex].CircuitElements.Count * CircuitBlocks[CurrentBlockIndex].CircuitElementHeight));
                 CircuitBlocks[CurrentBlockIndex].AddCircuitElement(CurrentCircuitElementDroppedType, CurrentCircuitElementDroppedVoltage, CurrentCircuitElementDroppedResistance, CurrentCircuitElementDroppedOrientation, CurrentCircuitElementDropped);
                 CurrentCircuitElementDropped = null;
+
+                if (CircuitBlocks[CurrentBlockIndex].CircuitElements.Count >= CircuitBlocks[CurrentBlockIndex].MaximumElements)
+                {
+                    CircuitBlocks[CurrentBlockIndex].CircuitBlockConnectionType = CircuitBlockConnectionType.Full;
+                    int currentBlockIndex = CurrentBlockIndex;
+                    CurrentBlockIndex++;
+                    if (currentBlockIndex == CurrentBlockIndex)
+                    {
+                        CurrentBlockIndex--;
+                        if (currentBlockIndex == CurrentBlockIndex)
+                        {
+                            //No available, game over
+                        }
+                    }
+                }
+
                 UpdateCircuitElementUI();
                 return false;
             }

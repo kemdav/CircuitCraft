@@ -15,14 +15,16 @@ namespace CircuitCraft
         Series,
         Parallel,
         Trash,
-        Locked
+        Locked,
+        Full
     }
 
     [Serializable]
     public partial class CircuitBlock : UserControl
     {
         public CircuitBlockConnectionType CircuitBlockConnectionType { get; set; }
-        public List<CircuitElement> CircuitElements { get; set; } = new List<CircuitElement>();
+
+        public List<CircuitElement> CircuitElements = new List<CircuitElement>();
         public int CurrentElementIndex { get; set; } = 0;
 
 
@@ -86,6 +88,7 @@ namespace CircuitCraft
 
         public void AddCircuitElement(CircuitElementType circuitElementType, double voltage, double resistance, int orientation, PictureBox ciruitElementPbox)
         {
+            
             switch (circuitElementType)
             {
                 case CircuitElementType.Resistor:
@@ -115,6 +118,8 @@ namespace CircuitCraft
                     circuitElement.CircuitELementUI = ciruitElementPbox;
                     CircuitElements.Add(circuitElement);
                     break;
+                default:
+                    return;
             }
         }
 
