@@ -80,8 +80,8 @@
             gameCanvas.CircuitElementDiodeSprite = (Image)resources.GetObject("gameCanvas.CircuitElementDiodeSprite");
             gameCanvas.CircuitElementLedSprite = (Image)resources.GetObject("gameCanvas.CircuitElementLedSprite");
             gameCanvas.CircuitElementOffset = 20;
-            gameCanvas.CircuitElementResistorSprite = (Image)resources.GetObject("gameCanvas.CircuitElementResistorSprite");
-            gameCanvas.CircuitElementSourceSprite = (Image)resources.GetObject("gameCanvas.CircuitElementSourceSprite");
+            gameCanvas.CircuitElementResistorSprite5 = (Image)resources.GetObject("gameCanvas.CircuitElementResistorSprite");
+            gameCanvas.CircuitElementSourceSprite5 = (Image)resources.GetObject("gameCanvas.CircuitElementSourceSprite");
             gameCanvas.CircuitSources = null;
             gameCanvas.CurrentBlockIndex = -1;
             gameCanvas.CurrentCircuitElementDropped = null;

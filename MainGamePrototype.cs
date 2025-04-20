@@ -31,22 +31,23 @@ namespace CircuitCraft
 
             for (int i = 0; i < 12; i++)
             {
+                int distance = 133;
                 if (i == 0)
                 {
-                    gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Series, new Point(5 + (140 * i), 0), 130, 220);
+                    gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Series, new Point(2 + (distance * i), 0), 130, 220);
                     continue;
                 }
                 if (i == 1)
                 {
-                    gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Parallel, new Point(5 + (140 * i), 0), 130, 220);
+                    gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Parallel, new Point(2 + (distance * i), 0), 130, 220);
                     continue;
                 }
                 if (i == 2)
                 {
-                    gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Parallel, new Point(5 + (140 * i), 0), 130, 220);
+                    gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Parallel, new Point(2 + (distance * i), 0), 130, 220);
                     continue;
                 }
-                gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Locked, new Point(5 + (132 * i), 0), 130, 220);
+                gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Locked, new Point(2 + (distance * i), 0), 130, 220);
             }
 
             gameCanvas.gameTimer.Start();
@@ -75,10 +76,27 @@ namespace CircuitCraft
 
         private void PlayerInput(object sender, KeyEventArgs e)
         {
+            // TODO Continous spawning of components must be i think 10 seconds or 5 seconds
 
-            // A way to earn Joules
+            // TODO Differentiating between different values of components
+            // IDEA That is to have different components with specific color assigned to a specific value
+            // Ex: For a resistor with 5ohms, it will have a red center. For 10ohms maybe a green center.
 
-            // A way to differentiate between different circuit blocks
+            // TODO A gameplay loop where there is a clear start and a game over, the player can proceed to next level when current is completed
+
+            // TODO Music and Background
+
+            // TODO Sorting in leaderboard, and Searching
+
+            // TODO Game Balancing
+
+            // If time allows:
+            // More Cards
+
+            // Presentation Need to Remember
+            // Address how AI can be integrated to the game
+            // Address how the game can be used to teach students
+            // Improvements could be achievements, store, and more circuit components
 
             switch (e.KeyCode)
             {

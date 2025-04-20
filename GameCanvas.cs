@@ -158,8 +158,18 @@ namespace CircuitCraft
 
         private List<CircuitElementTemp> NextCircuitElements { get; set; } = new List<CircuitElementTemp>();
 
-        private Image _circuitElementSourceSprite;
-        private Image _circuitElementResistorSprite;
+        private Image _circuitElementSourceSprite5;
+        private Image _circuitElementSourceSprite4;
+        private Image _circuitElementSourceSprite3;
+        private Image _circuitElementSourceSprite2;
+        private Image _circuitElementSourceSprite1;
+
+        private Image _circuitElementResistorSprite5;
+        private Image _circuitElementResistorSprite4;
+        private Image _circuitElementResistorSprite3;
+        private Image _circuitElementResistorSprite2;
+        private Image _circuitElementResistorSprite1;
+
         private Image _circuitElementLEDSprite;
         private Image _circuitElementDiodeSprite;
 
@@ -231,6 +241,7 @@ namespace CircuitCraft
             gameLedTimer.Interval = 1000;
             gameLedTimer.Tick += new EventHandler(GameLedTimer_Tick);
 
+            Awake();
         }
 
         double joulesAccumulation = 0;
@@ -265,6 +276,29 @@ namespace CircuitCraft
             CircuitSources.Add(circuitElement);
         }
 
+        private Dictionary<double, Image> VoltageValues;
+        private Dictionary<double, Image> ResistanceValues;
+
+        void Awake()
+        {
+            VoltageValues = new Dictionary<double, Image>() {
+                { 1.0 , CircuitElementSourceSprite1 },
+                { 2.0 , CircuitElementSourceSprite2 },
+                { 3.0 , CircuitElementSourceSprite3 },
+                { 4.0 , CircuitElementSourceSprite4 },
+                { 5.0 , CircuitElementSourceSprite5 }
+            };
+
+            ResistanceValues = new Dictionary<double, Image>()
+            {
+                { 1.0 , CircuitElementResistorSprite1 },
+                { 2.0 , CircuitElementResistorSprite2 },
+                { 3.0 , CircuitElementResistorSprite3 },
+                { 4.0 , CircuitElementResistorSprite4 },
+                { 5.0 , CircuitElementResistorSprite5 }
+            };
+        }
+
         public bool UnlockCircuitBlock(Cards cards)
         {
             foreach (CircuitBlock circuitBlock in CircuitBlocks)
@@ -286,6 +320,7 @@ namespace CircuitCraft
                             circuitBlock.BackgroundImage = null;
                             break;
                     }
+                    UpdateCircuitBlock(circuitBlock);
                     return true;
                 }
             }
@@ -306,14 +341,15 @@ namespace CircuitCraft
 
         private Image GetOrientedImageClone(CircuitElementType type, int orientation)
         {
+            Awake();
             Image baseImage = null;
             switch (type)
             {
                 case CircuitElementType.Resistor:
-                    baseImage = this.CircuitElementResistorSprite;
+                    baseImage = ResistanceValues[CurrentCircuitElementDroppedResistance];
                     break;
                 case CircuitElementType.Source:
-                    baseImage = this.CircuitElementSourceSprite;
+                    baseImage = VoltageValues[CurrentCircuitElementDroppedVoltage];
                     break;
                 case CircuitElementType.Diode:
                     baseImage = this.CircuitElementDiodeSprite;
@@ -350,16 +386,16 @@ namespace CircuitCraft
                         switch (NextCircuitElements[0].CircuitElementType)
                         {
                             case CircuitElementType.Resistor:
-                                nextComponentsPboxs[i].Image = CircuitElementResistorSprite;
-                                nextComponentsLabels[i].Text = NextCircuitElements[0].Resistance + " Ω";
+                                nextComponentsPboxs[i].Image = ResistanceValues[NextCircuitElements[i].Resistance];
+                                nextComponentsLabels[i].Text = NextCircuitElements[i].Resistance + " Ω";
                                 break;
                             case CircuitElementType.Source:
-                                nextComponentsPboxs[i].Image = CircuitElementSourceSprite;
-                                nextComponentsLabels[i].Text = NextCircuitElements[0].Voltage + " V";
+                                nextComponentsPboxs[i].Image = VoltageValues[NextCircuitElements[i].Voltage];
+                                nextComponentsLabels[i].Text = NextCircuitElements[i].Voltage + " V";
                                 break;
                             case CircuitElementType.Diode:
                                 nextComponentsPboxs[i].Image = CircuitElementDiodeSprite;
-                                nextComponentsLabels[i].Text = NextCircuitElements[0].Voltage + " V";
+                                nextComponentsLabels[i].Text = NextCircuitElements[i].Voltage + " V";
                                 break;
                         }
                         continue; 
@@ -369,11 +405,11 @@ namespace CircuitCraft
                     switch (circuitElement.CircuitElementType)
                     {
                         case CircuitElementType.Resistor:
-                            nextComponentsPboxs[i].Image = CircuitElementResistorSprite;
+                            nextComponentsPboxs[i].Image = ResistanceValues[circuitElement.Resistance];
                             nextComponentsLabels[i].Text = circuitElement.Resistance + " Ω";
                             break;
                         case CircuitElementType.Source:
-                            nextComponentsPboxs[i].Image = CircuitElementSourceSprite;
+                            nextComponentsPboxs[i].Image = VoltageValues[circuitElement.Voltage];
                             nextComponentsLabels[i].Text = circuitElement.Voltage + " V";
                             break;
                         case CircuitElementType.Diode:
@@ -415,28 +451,28 @@ namespace CircuitCraft
 
             if (randomNumber1 > 0 && randomNumber1 <= 20)
             {
-                randomResistance = 5;
-                randomVoltage = 5;
+                randomResistance = 1;
+                randomVoltage = 1;
             }
             else if (randomNumber1 > 20 && randomNumber1 <= 40)
             {
-                randomResistance = 10;
-                randomVoltage = 10;
+                randomResistance = 2;
+                randomVoltage = 2;
             }
             else if (randomNumber1 > 40 && randomNumber1 <= 60)
             {
-                randomResistance = 15;
-                randomVoltage = 15;
+                randomResistance = 3;
+                randomVoltage = 3;
             }
             else if (randomNumber1 > 60 && randomNumber1 <= 80)
             {
-                randomResistance = 20;
-                randomVoltage = 20;
+                randomResistance = 4;
+                randomVoltage = 4;
             }
             else if (randomNumber1 > 80 && randomNumber1 <= 100)
             {
-                randomResistance = 25;
-                randomVoltage = 25;
+                randomResistance = 5;
+                randomVoltage = 5;
             }
 
             switch (circuitElementType)
@@ -457,7 +493,7 @@ namespace CircuitCraft
                     return new CircuitElementTemp()
                     {
                         CircuitElementType = circuitElementType,
-                        Voltage = randomVoltage
+                        Voltage = 0
                     };
                 default:
                     throw new ArgumentOutOfRangeException(nameof(circuitElementType), "Invalid circuit element type.");
@@ -601,10 +637,24 @@ namespace CircuitCraft
         }
 
         public void UpdateCircuitBlock(CircuitBlock circuitBlock)
-        {
-            if (circuitBlock.CircuitBlockConnectionType == CircuitBlockConnectionType.Locked)
+        {          
+            switch (circuitBlock.CircuitBlockConnectionType)
             {
-                circuitBlock.BackgroundImage = LockedCircuitBlockImage;
+                case CircuitBlockConnectionType.Locked:
+                    circuitBlock.BackgroundImage = LockedCircuitBlockImage;
+                    break;
+                case CircuitBlockConnectionType.Series:
+                    circuitBlock.BackgroundImage = SeriesCircuitBlockCardImage;
+                    circuitBlock.BackgroundImageLayout = ImageLayout.Zoom;
+                    break;
+                case CircuitBlockConnectionType.Parallel:
+                    circuitBlock.BackgroundImage = ParallelCircuitBlockCardImage;
+                    circuitBlock.BackgroundImageLayout = ImageLayout.Zoom;
+                    break;
+                case CircuitBlockConnectionType.Trash:
+                    circuitBlock.BackgroundImage = TrashCircuitBlockCardImage;
+                    circuitBlock.BackgroundImageLayout = ImageLayout.Zoom;
+                    break;
             }
         }
 
@@ -620,11 +670,11 @@ namespace CircuitCraft
                 switch (type)
                 {
                     case CircuitElementType.Resistor:
-                        HoldComponentPbox.Image = CircuitElementResistorSprite;
+                        HoldComponentPbox.Image = CircuitElementResistorSprite5;
                         HoldComponentLabel.Text = resistance +  " Ω";
                         break;
                     case CircuitElementType.Source:
-                        HoldComponentPbox.Image = CircuitElementSourceSprite;
+                        HoldComponentPbox.Image = CircuitElementSourceSprite5;
                         HoldComponentLabel.Text = voltage + " V";
                         break;
                     case CircuitElementType.Diode:
@@ -706,19 +756,91 @@ namespace CircuitCraft
         [Category("Game Canvas Settings")]
         [Description("Resistor Sprite")]
         [DefaultValue(null)]
-        public Image CircuitElementResistorSprite
+        public Image CircuitElementResistorSprite5
         {
-            get { return _circuitElementResistorSprite; }
-            set { _circuitElementResistorSprite = value; }
+            get { return _circuitElementResistorSprite5; }
+            set { _circuitElementResistorSprite5 = value; }
         }
 
         [Category("Game Canvas Settings")]
         [Description("Resistor Sprite")]
         [DefaultValue(null)]
-        public Image CircuitElementSourceSprite
+        public Image CircuitElementResistorSprite4
         {
-            get { return _circuitElementSourceSprite; }
-            set { _circuitElementSourceSprite = value; }
+            get { return _circuitElementResistorSprite4; }
+            set { _circuitElementResistorSprite4 = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Resistor Sprite")]
+        [DefaultValue(null)]
+        public Image CircuitElementResistorSprite3
+        {
+            get { return _circuitElementResistorSprite3; }
+            set { _circuitElementResistorSprite3 = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Resistor Sprite")]
+        [DefaultValue(null)]
+        public Image CircuitElementResistorSprite2
+        {
+            get { return _circuitElementResistorSprite2; }
+            set { _circuitElementResistorSprite2 = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Resistor Sprite")]
+        [DefaultValue(null)]
+        public Image CircuitElementResistorSprite1
+        {
+            get { return _circuitElementResistorSprite1; }
+            set { _circuitElementResistorSprite1 = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Resistor Sprite")]
+        [DefaultValue(null)]
+        public Image CircuitElementSourceSprite5
+        {
+            get { return _circuitElementSourceSprite5; }
+            set { _circuitElementSourceSprite5 = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Resistor Sprite")]
+        [DefaultValue(null)]
+        public Image CircuitElementSourceSprite4
+        {
+            get { return _circuitElementSourceSprite4; }
+            set { _circuitElementSourceSprite4 = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Resistor Sprite")]
+        [DefaultValue(null)]
+        public Image CircuitElementSourceSprite3
+        {
+            get { return _circuitElementSourceSprite3; }
+            set { _circuitElementSourceSprite3 = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Resistor Sprite")]
+        [DefaultValue(null)]
+        public Image CircuitElementSourceSprite2
+        {
+            get { return _circuitElementSourceSprite2; }
+            set { _circuitElementSourceSprite2 = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Resistor Sprite")]
+        [DefaultValue(null)]
+        public Image CircuitElementSourceSprite1
+        {
+            get { return _circuitElementSourceSprite1; }
+            set { _circuitElementSourceSprite1 = value; }
         }
 
         [Category("Game Canvas Settings")]
