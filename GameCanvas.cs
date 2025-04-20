@@ -36,7 +36,7 @@ namespace CircuitCraft
             {
                 _currentLevel = value;
                 if (LevelLabel == null) { return; }
-                LevelLabel.Text = "Level: " + _jouleCurrency.ToString();
+                LevelLabel.Text = "Level: " + _currentLevel.ToString();
             }
         }
         public int LedBurnedCount { get; set; } = 0;
