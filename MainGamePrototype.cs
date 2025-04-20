@@ -47,7 +47,7 @@ namespace CircuitCraft
                     gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Parallel, new Point(2 + (distance * i), 0), 130, 220);
                     continue;
                 }
-                gameCanvas.SpawnCircuitBlock(CircuitBlockConnectionType.Locked, new Point(2 + (distance * i), 0), 130, 220);
+                gameCanvas.SpawnCircuitBlock(CircuitBlockState.Locked, new Point(2 + (distance * i), 0), 130, 220);
             }
 
             gameCanvas.gameTimer.Start();
@@ -232,7 +232,7 @@ namespace CircuitCraft
 
         private void gameCanvas_Load(object sender, EventArgs e)
         {
-            gameCanvas.JouleCurrency = 1000;
+            gameCanvas.JouleCurrency = 0;
         }
 
         private void MainGamePrototype_Shown(object sender, EventArgs e)

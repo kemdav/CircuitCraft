@@ -22,6 +22,9 @@ namespace CircuitCraft
             public double Resistance;
         }
 
+        public double SourceValueMultiplier { get; set; } = 0.2;
+        public double ResistanceValueMultiplier { get; set; } = 2;
+
         private int _jouleCurrency;
         public int JouleCurrency {
             get
@@ -68,7 +71,7 @@ namespace CircuitCraft
 
                 if (CircuitBlocks.Count > 0)
                 {
-                    if (CircuitBlocks[_currentBlockIndex].CircuitBlockConnectionType == CircuitBlockConnectionType.Locked || CircuitBlocks[_currentBlockIndex].CircuitBlockConnectionType == CircuitBlockConnectionType.Full)
+                    if (CircuitBlocks[_currentBlockIndex].CircuitBlockState == CircuitBlockState.Locked || CircuitBlocks[_currentBlockIndex].CircuitBlockState == CircuitBlockState.Full)
                     {
                         for (int i = 1; i < CircuitBlocks.Count; i++)
                         {
@@ -76,7 +79,7 @@ namespace CircuitCraft
                             {
                                 if (_currentBlockIndex - i > -1)
                                 {
-                                    if (CircuitBlocks[_currentBlockIndex - i].CircuitBlockConnectionType != CircuitBlockConnectionType.Locked && CircuitBlocks[_currentBlockIndex - i].CircuitBlockConnectionType != CircuitBlockConnectionType.Full)
+                                    if (CircuitBlocks[_currentBlockIndex - i].CircuitBlockState != CircuitBlockState.Locked && CircuitBlocks[_currentBlockIndex - i].CircuitBlockState != CircuitBlockState.Full)
                                     {
                                         _currentBlockIndex = _currentBlockIndex - i;
                                         break;
@@ -91,7 +94,7 @@ namespace CircuitCraft
                             {
                                 if (_currentBlockIndex + i < CircuitBlocks.Count)
                                 {
-                                    if (CircuitBlocks[_currentBlockIndex + i].CircuitBlockConnectionType != CircuitBlockConnectionType.Locked && CircuitBlocks[_currentBlockIndex + i].CircuitBlockConnectionType != CircuitBlockConnectionType.Full)
+                                    if (CircuitBlocks[_currentBlockIndex + i].CircuitBlockState != CircuitBlockState.Locked && CircuitBlocks[_currentBlockIndex + i].CircuitBlockState != CircuitBlockState.Full)
                                     {
                                         _currentBlockIndex = _currentBlockIndex + i;
                                         break;
@@ -320,20 +323,20 @@ namespace CircuitCraft
         void Awake()
         {
             VoltageValues = new Dictionary<double, Image>() {
-                { 1.0 , CircuitElementSourceSprite1 },
-                { 2.0 , CircuitElementSourceSprite2 },
-                { 3.0 , CircuitElementSourceSprite3 },
-                { 4.0 , CircuitElementSourceSprite4 },
-                { 5.0 , CircuitElementSourceSprite5 }
+                { 1.0 * SourceValueMultiplier, CircuitElementSourceSprite1 },
+                { 2.0 * SourceValueMultiplier, CircuitElementSourceSprite2 },
+                { 3.0 * SourceValueMultiplier, CircuitElementSourceSprite3 },
+                { 4.0 * SourceValueMultiplier, CircuitElementSourceSprite4 },
+                { 5.0 * SourceValueMultiplier, CircuitElementSourceSprite5 }
             };
 
             ResistanceValues = new Dictionary<double, Image>()
             {
-                { 1.0 , CircuitElementResistorSprite1 },
-                { 2.0 , CircuitElementResistorSprite2 },
-                { 3.0 , CircuitElementResistorSprite3 },
-                { 4.0 , CircuitElementResistorSprite4 },
-                { 5.0 , CircuitElementResistorSprite5 }
+                { 1.0 * ResistanceValueMultiplier, CircuitElementResistorSprite1 },
+                { 2.0 * ResistanceValueMultiplier, CircuitElementResistorSprite2 },
+                { 3.0 * ResistanceValueMultiplier, CircuitElementResistorSprite3 },
+                { 4.0 * ResistanceValueMultiplier, CircuitElementResistorSprite4 },
+                { 5.0 * ResistanceValueMultiplier, CircuitElementResistorSprite5 }
             };
         }
 
@@ -341,7 +344,7 @@ namespace CircuitCraft
         {
             foreach (CircuitBlock circuitBlock in CircuitBlocks)
             {
-                if (circuitBlock.CircuitBlockConnectionType == CircuitBlockConnectionType.Locked)
+                if (circuitBlock.CircuitBlockState == CircuitBlockState.Locked)
                 {
                     switch (cards)
                     {
@@ -493,28 +496,28 @@ namespace CircuitCraft
 
             if (randomNumber1 > 0 && randomNumber1 <= 20)
             {
-                randomResistance = 1;
-                randomVoltage = 1;
+                randomResistance = 1 * ResistanceValueMultiplier;
+                randomVoltage = 1 * SourceValueMultiplier;
             }
             else if (randomNumber1 > 20 && randomNumber1 <= 40)
             {
-                randomResistance = 2;
-                randomVoltage = 2;
+                randomResistance = 2 * ResistanceValueMultiplier;
+                randomVoltage = 2 * SourceValueMultiplier;
             }
             else if (randomNumber1 > 40 && randomNumber1 <= 60)
             {
-                randomResistance = 3;
-                randomVoltage = 3;
+                randomResistance = 3 * ResistanceValueMultiplier;
+                randomVoltage = 3 * SourceValueMultiplier;
             }
             else if (randomNumber1 > 60 && randomNumber1 <= 80)
             {
-                randomResistance = 4;
-                randomVoltage = 4;
+                randomResistance = 4 * ResistanceValueMultiplier;
+                randomVoltage = 4 * SourceValueMultiplier;
             }
             else if (randomNumber1 > 80 && randomNumber1 <= 100)
             {
-                randomResistance = 5;
-                randomVoltage = 5;
+                randomResistance = 5 * ResistanceValueMultiplier;
+                randomVoltage = 5 * SourceValueMultiplier;
             }
 
             switch (circuitElementType)
@@ -544,7 +547,7 @@ namespace CircuitCraft
         }
 
         private CircuitSimulator.LoadCalculationResult result;
-        public double SourceVoltage = 10;
+        public double SourceVoltage = 3;
         public double LoadResistance = 0;
 
         public void UpdateCircuitElementUI()
@@ -681,14 +684,30 @@ namespace CircuitCraft
             CircuitBlocks.Add(circuitBlock);
         }
 
+        public void SpawnCircuitBlock(CircuitBlockState circuitBlockState, Point _location, int _circuitElementWidth, int _circuitElementHeight)
+        {
+            if (CurrentBlockIndex == -1) CurrentBlockIndex = 0;
+            CircuitBlock circuitBlock = new CircuitBlock();
+            circuitBlock.CircuitBlockState = circuitBlockState;
+            circuitBlock.CircuitElementWidth = _circuitElementWidth;
+            circuitBlock.CircuitElementHeight = _circuitElementHeight;
+            circuitBlock.Location = _location;
+            UpdateCircuitBlock(circuitBlock);
+            Controls.Add(circuitBlock);
+            circuitBlock.BringToFront();
+            CircuitBlocks.Add(circuitBlock);
+        }
+
         public void UpdateCircuitBlock(CircuitBlock circuitBlock)
         {          
+            if (circuitBlock.CircuitBlockState == CircuitBlockState.Locked)
+            {
+                circuitBlock.BackgroundImage = LockedCircuitBlockImage;
+                circuitBlock.BackgroundImageLayout = ImageLayout.Zoom;
+                return;
+            }
             switch (circuitBlock.CircuitBlockConnectionType)
             {
-                case CircuitBlockConnectionType.Locked:
-                    circuitBlock.BackgroundImage = LockedCircuitBlockImage;
-                    circuitBlock.BackgroundImageLayout = ImageLayout.Zoom;
-                    break;
                 case CircuitBlockConnectionType.Series:
                     circuitBlock.BackgroundImage = SeriesCircuitBlockImage;
                     circuitBlock.BackgroundImageLayout = ImageLayout.Zoom;
@@ -760,7 +779,7 @@ namespace CircuitCraft
 
                 if (CircuitBlocks[CurrentBlockIndex].CircuitElements.Count >= CircuitBlocks[CurrentBlockIndex].MaximumElements)
                 {
-                    CircuitBlocks[CurrentBlockIndex].CircuitBlockConnectionType = CircuitBlockConnectionType.Full;
+                    CircuitBlocks[CurrentBlockIndex].CircuitBlockState = CircuitBlockState.Full;
                     int currentBlockIndex = CurrentBlockIndex;
                     CurrentBlockIndex++;
                     if (currentBlockIndex == CurrentBlockIndex)

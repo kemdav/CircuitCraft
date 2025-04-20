@@ -107,7 +107,7 @@ namespace CircuitCraft
                 if (double.IsNaN(blockTotalResistance) || double.IsNaN(blockTotalVoltage)) // Reverse biased
                 {
                     block.isEnabled = false;
-                    break;
+                    continue;
                 }
                 else
                 {
@@ -178,6 +178,7 @@ namespace CircuitCraft
             }
 
             double r_total;
+            if (double.IsNaN(rp)) rp = 0;
             r_total = rs + rp + loadResistance;
 
 

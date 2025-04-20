@@ -14,7 +14,12 @@ namespace CircuitCraft
     {
         Series,
         Parallel,
-        Trash,
+        Trash
+    }
+
+    public enum CircuitBlockState
+    {
+        Unlocked,
         Locked,
         Full
     }
@@ -23,6 +28,7 @@ namespace CircuitCraft
     public partial class CircuitBlock : UserControl
     {
         public CircuitBlockConnectionType CircuitBlockConnectionType { get; set; }
+        public CircuitBlockState CircuitBlockState { get; set; } = CircuitBlockState.Unlocked;
 
         public List<CircuitElement> CircuitElements = new List<CircuitElement>();
         public int CurrentElementIndex { get; set; } = 0;
