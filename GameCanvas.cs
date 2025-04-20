@@ -829,6 +829,14 @@ namespace CircuitCraft
                 // Game over screen
             }
 
+            if (MinimumOperatingCurrentTick >= 10000 && result.LoadCurrent < MinimumOperatingCurrent)
+            {
+                // LED Unpowered
+                GameOverPrompt();
+                PauseGame();
+                // Game over screen
+            }
+
             if (result.LoadCurrent < MinimumOperatingCurrent && MinimumOperatingCurrentTick < 10000)
             {
                 MinimumOperatingCurrentTick += 100;
