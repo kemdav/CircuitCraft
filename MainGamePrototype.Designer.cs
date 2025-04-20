@@ -57,6 +57,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             picHoldElement = new PictureBox();
             lblHoldTitle = new BigLabel();
             pnlNextArea = new System.Windows.Forms.Panel();
+            nextComponentProgressBar = new LostProgressBar();
             pnlNextElement2Container = new System.Windows.Forms.Panel();
             lblNextElementValue2 = new BigLabel();
             picNextElement2 = new PictureBox();
@@ -251,7 +252,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             initialVoltageSourceLabel.Name = "initialVoltageSourceLabel";
             initialVoltageSourceLabel.Size = new Size(122, 24);
             initialVoltageSourceLabel.TabIndex = 39;
-            initialVoltageSourceLabel.Text = "10V";
+            initialVoltageSourceLabel.Text = "0 V";
             initialVoltageSourceLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
@@ -313,6 +314,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             // pnlNextArea
             // 
             pnlNextArea.BackColor = Color.FromArgb(208, 215, 222);
+            pnlNextArea.Controls.Add(nextComponentProgressBar);
             pnlNextArea.Controls.Add(pnlNextElement2Container);
             pnlNextArea.Controls.Add(pnlNextElement1Container);
             pnlNextArea.Controls.Add(lblNextTitle);
@@ -325,13 +327,26 @@ namespace CircuitCraft // Ensure this namespace matches your project
             pnlNextArea.Size = new Size(160, 887);
             pnlNextArea.TabIndex = 3;
             // 
+            // nextComponentProgressBar
+            // 
+            nextComponentProgressBar.BackColor = Color.FromArgb(45, 45, 48);
+            nextComponentProgressBar.Color = Color.DodgerBlue;
+            nextComponentProgressBar.ForeColor = Color.FromArgb(63, 63, 70);
+            nextComponentProgressBar.Hover = false;
+            nextComponentProgressBar.Location = new Point(11, 43);
+            nextComponentProgressBar.Name = "nextComponentProgressBar";
+            nextComponentProgressBar.Progress = 0;
+            nextComponentProgressBar.Size = new Size(134, 23);
+            nextComponentProgressBar.TabIndex = 43;
+            nextComponentProgressBar.Text = "lostProgressBar1";
+            // 
             // pnlNextElement2Container
             // 
             pnlNextElement2Container.BackColor = Color.FromArgb(240, 240, 240);
             pnlNextElement2Container.BorderStyle = BorderStyle.FixedSingle;
             pnlNextElement2Container.Controls.Add(lblNextElementValue2);
             pnlNextElement2Container.Controls.Add(picNextElement2);
-            pnlNextElement2Container.Location = new Point(15, 195);
+            pnlNextElement2Container.Location = new Point(13, 208);
             pnlNextElement2Container.Name = "pnlNextElement2Container";
             pnlNextElement2Container.Size = new Size(130, 130);
             pnlNextElement2Container.TabIndex = 41;
@@ -364,7 +379,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             pnlNextElement1Container.BorderStyle = BorderStyle.FixedSingle;
             pnlNextElement1Container.Controls.Add(lblNextElementValue1);
             pnlNextElement1Container.Controls.Add(picNextElement1);
-            pnlNextElement1Container.Location = new Point(15, 59);
+            pnlNextElement1Container.Location = new Point(13, 72);
             pnlNextElement1Container.Name = "pnlNextElement1Container";
             pnlNextElement1Container.Size = new Size(130, 130);
             pnlNextElement1Container.TabIndex = 40;
@@ -568,6 +583,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.NextComponentLabel2 = lblNextElementValue2;
             gameCanvas.NextComponentPictureBox1 = picNextElement1;
             gameCanvas.NextComponentPictureBox2 = picNextElement2;
+            gameCanvas.NextComponentProgressbar = nextComponentProgressBar;
             gameCanvas.OperatingCurrent = 0D;
             gameCanvas.OperatingCurrentMaxLabel = lblMaxThreshold;
             gameCanvas.OperatingCurrentMinLabel = lblMinThreshold;
@@ -586,6 +602,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.ShowChoicesPrompt = null;
             gameCanvas.Size = new Size(1586, 873);
             gameCanvas.SourceValueMultiplier = 0.2D;
+            gameCanvas.SourceVoltage = 0D;
             gameCanvas.TabIndex = 1;
             gameCanvas.timeLeftToMaintainInSeconds = 60;
             gameCanvas.TrashCircuitBlockCardCost = 10;
@@ -677,5 +694,6 @@ namespace CircuitCraft // Ensure this namespace matches your project
         private PictureBox pictureBox2;
         private BigLabel holdCooldownLabel;
         private LostProgressBar holdCooldownProgressBar;
+        private LostProgressBar nextComponentProgressBar;
     }
 }

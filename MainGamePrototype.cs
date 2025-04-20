@@ -50,7 +50,7 @@ namespace CircuitCraft
                 gameCanvas.SpawnCircuitBlock(CircuitBlockState.Locked, new Point(2 + (distance * i), 0), 130, 220);
             }
 
-
+            gameCanvas.StartRound(3, 0.1, 0.2);
             gameCanvas.FillUpNextComponents();
 
             gameCanvas.ShowChoicesPrompt = CardsChoicePrompt;
@@ -74,6 +74,8 @@ namespace CircuitCraft
         {
             // TODO Continous spawning of components must be i think 10 seconds or 5 seconds
             // TODO A gameplay loop where there is a clear start and a game over, the player can proceed to next level when current is completed
+
+            // TODO Remember to not allow ShowPrompts to repeatedly spawning prompts
 
             // TODO Resistors Burned
 

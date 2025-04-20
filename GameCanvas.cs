@@ -227,6 +227,8 @@ namespace CircuitCraft
 
         private BigLabel _ratingLabel;
 
+        private LostProgressBar _nextComponentProgressbar;
+
         private ProgressBar _operatingCurrentProgressBar;
         private BigLabel _operatingCurrentMaxLabel;
         private BigLabel _operatingCurrentMinLabel;
@@ -259,6 +261,7 @@ namespace CircuitCraft
         public Timer gameLedTimer = new Timer();
         public Timer warningTimer = new Timer();
         public Timer holdCooldownTimer = new Timer();
+        public Timer nextComponentTimer = new Timer();
 
         public int timeLeftToMaintainInSeconds { get; set; } = 60;
 
@@ -287,6 +290,9 @@ namespace CircuitCraft
             holdCooldownTimer.Interval = 500;
             holdCooldownTimer.Tick += new EventHandler(HoldCooldownTimer_Tick);
 
+            nextComponentTimer.Interval = 100;
+            nextComponentTimer.Tick += new EventHandler(NextComponentTimer_Tick);
+
             UpdateImageKeys();
         }
 
@@ -299,6 +305,21 @@ namespace CircuitCraft
             gameTimer.Start();
             warningTimer.Start();
             gameLedTimer.Start();
+        }
+
+        private int nextComponentTimerTick = 0;
+        private int nextComponentCooldown = 3000;
+        public void NextComponentTimer_Tick(object sender, EventArgs e)
+        {
+            nextComponentTimerTick += 100;
+            NextComponentProgressbar.Progress = Convert.ToInt32((nextComponentTimerTick / (float)nextComponentCooldown) * 100);
+
+            if (nextComponentTimerTick >= nextComponentCooldown)
+            {
+                nextComponentTimerTick = 0;
+                SpawnNextComponent();
+                nextComponentTimer.Stop();
+            }
         }
 
 
@@ -330,7 +351,8 @@ namespace CircuitCraft
                     if (JouleCurrency > 3)
                     {
                         if (ShowChoicesPrompt != null)
-                        {
+                        { 
+
                             // Show the three choices
 
                             // The first three instances of choosing will be the circuit blocks
@@ -830,6 +852,8 @@ namespace CircuitCraft
                     Voltage = voltage,
                     Resistance = resistance
                 };
+
+                nextComponentTimer.Start();
             }
         }
 
@@ -866,6 +890,10 @@ namespace CircuitCraft
                             //No available, game over
                         }
                     }
+                }
+                else
+                {
+                    nextComponentTimer.Start();
                 }
 
                 UpdateCircuitElementUI();
@@ -1297,6 +1325,15 @@ namespace CircuitCraft
         {
             get { return _ratingLabel; }
             set { _ratingLabel = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Next Component Progress Bar")]
+        [DefaultValue(null)]
+        public LostProgressBar NextComponentProgressbar
+        {
+            get { return _nextComponentProgressbar; }
+            set { _nextComponentProgressbar = value; }
         }
 
 
