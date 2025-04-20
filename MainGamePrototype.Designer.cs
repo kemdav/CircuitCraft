@@ -47,10 +47,11 @@ namespace CircuitCraft // Ensure this namespace matches your project
             lblLevel = new BigLabel();
             lblScore = new BigLabel();
             pnlHoldArea = new System.Windows.Forms.Panel();
+            holdCooldownLabel = new BigLabel();
+            holdCooldownProgressBar = new LostProgressBar();
             panelVoltageArea = new System.Windows.Forms.Panel();
             initialVoltageSourceLabel = new BigLabel();
             pictureBox1 = new PictureBox();
-            btnRemoveComponent = new System.Windows.Forms.Button();
             pnlHoldElementContainer = new System.Windows.Forms.Panel();
             lblHoldElementValue = new BigLabel();
             picHoldElement = new PictureBox();
@@ -192,8 +193,9 @@ namespace CircuitCraft // Ensure this namespace matches your project
             // pnlHoldArea
             // 
             pnlHoldArea.BackColor = Color.FromArgb(208, 215, 222);
+            pnlHoldArea.Controls.Add(holdCooldownLabel);
+            pnlHoldArea.Controls.Add(holdCooldownProgressBar);
             pnlHoldArea.Controls.Add(panelVoltageArea);
-            pnlHoldArea.Controls.Add(btnRemoveComponent);
             pnlHoldArea.Controls.Add(pnlHoldElementContainer);
             pnlHoldArea.Controls.Add(lblHoldTitle);
             pnlHoldArea.Dock = DockStyle.Left;
@@ -204,6 +206,31 @@ namespace CircuitCraft // Ensure this namespace matches your project
             pnlHoldArea.Padding = new Padding(10);
             pnlHoldArea.Size = new Size(160, 887);
             pnlHoldArea.TabIndex = 2;
+            // 
+            // holdCooldownLabel
+            // 
+            holdCooldownLabel.BackColor = Color.Transparent;
+            holdCooldownLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            holdCooldownLabel.ForeColor = Color.DarkGreen;
+            holdCooldownLabel.Location = new Point(5, 221);
+            holdCooldownLabel.Name = "holdCooldownLabel";
+            holdCooldownLabel.Size = new Size(149, 32);
+            holdCooldownLabel.TabIndex = 43;
+            holdCooldownLabel.Text = "Ready!";
+            holdCooldownLabel.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // holdCooldownProgressBar
+            // 
+            holdCooldownProgressBar.BackColor = Color.FromArgb(45, 45, 48);
+            holdCooldownProgressBar.Color = Color.DodgerBlue;
+            holdCooldownProgressBar.ForeColor = Color.FromArgb(63, 63, 70);
+            holdCooldownProgressBar.Hover = false;
+            holdCooldownProgressBar.Location = new Point(13, 195);
+            holdCooldownProgressBar.Name = "holdCooldownProgressBar";
+            holdCooldownProgressBar.Progress = 100;
+            holdCooldownProgressBar.Size = new Size(134, 23);
+            holdCooldownProgressBar.TabIndex = 42;
+            holdCooldownProgressBar.Text = "lostProgressBar1";
             // 
             // panelVoltageArea
             // 
@@ -238,19 +265,6 @@ namespace CircuitCraft // Ensure this namespace matches your project
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // btnRemoveComponent
-            // 
-            btnRemoveComponent.BackColor = Color.FromArgb(255, 192, 192);
-            btnRemoveComponent.FlatStyle = FlatStyle.Flat;
-            btnRemoveComponent.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRemoveComponent.ForeColor = Color.FromArgb(192, 0, 0);
-            btnRemoveComponent.Location = new Point(18, 233);
-            btnRemoveComponent.Name = "btnRemoveComponent";
-            btnRemoveComponent.Size = new Size(124, 40);
-            btnRemoveComponent.TabIndex = 40;
-            btnRemoveComponent.Text = "Remove Mode";
-            btnRemoveComponent.UseVisualStyleBackColor = false;
-            // 
             // pnlHoldElementContainer
             // 
             pnlHoldElementContainer.BackColor = Color.FromArgb(240, 240, 240);
@@ -271,7 +285,6 @@ namespace CircuitCraft // Ensure this namespace matches your project
             lblHoldElementValue.Name = "lblHoldElementValue";
             lblHoldElementValue.Size = new Size(122, 24);
             lblHoldElementValue.TabIndex = 38;
-            lblHoldElementValue.Text = "5 Ω";
             lblHoldElementValue.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // picHoldElement
@@ -537,6 +550,8 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.Dock = DockStyle.Fill;
             gameCanvas.HoldComponentLabel = lblHoldElementValue;
             gameCanvas.HoldComponentPbox = picHoldElement;
+            gameCanvas.HoldCooldownLabel = holdCooldownLabel;
+            gameCanvas.HoldCooldownProgressbar = holdCooldownProgressBar;
             gameCanvas.InitialVoltageValueLabel = initialVoltageSourceLabel;
             gameCanvas.JouleCurrency = 0;
             gameCanvas.JouleCurrencyLabel = jouleCurrencyLabel;
@@ -631,7 +646,6 @@ namespace CircuitCraft // Ensure this namespace matches your project
         private System.Windows.Forms.Panel pnlHoldElementContainer;
         private ReaLTaiizor.Controls.BigLabel lblHoldElementValue;
         private System.Windows.Forms.PictureBox picHoldElement;
-        private System.Windows.Forms.Button btnRemoveComponent;
         private System.Windows.Forms.Panel pnlNextElement2Container;
         private ReaLTaiizor.Controls.BigLabel lblNextElementValue2;
         private System.Windows.Forms.PictureBox picNextElement2;
@@ -652,5 +666,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
         private System.Windows.Forms.Panel panel1;
         private BigLabel jouleCurrencyLabel;
         private PictureBox pictureBox2;
+        private BigLabel holdCooldownLabel;
+        private LostProgressBar holdCooldownProgressBar;
     }
 }

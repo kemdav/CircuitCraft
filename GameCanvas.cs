@@ -219,8 +219,12 @@ namespace CircuitCraft
         public Timer gameTimer = new Timer();
         public Timer gameLedTimer = new Timer();
         public Timer warningTimer = new Timer();
+        public Timer holdCooldownTimer = new Timer();
 
         public int timeLeftToMaintainInSeconds { get; set; } = 60;
+
+        private BigLabel _holdCooldownLabel;
+        private LostProgressBar _holdCooldownProgressBar;
 
         public GameCanvas()
         {
@@ -240,6 +244,9 @@ namespace CircuitCraft
 
             gameLedTimer.Interval = 1000;
             gameLedTimer.Tick += new EventHandler(GameLedTimer_Tick);
+
+            holdCooldownTimer.Interval = 500;
+            holdCooldownTimer.Tick += new EventHandler(HoldCooldownTimer_Tick);
 
             Awake();
         }
@@ -266,6 +273,30 @@ namespace CircuitCraft
             }
             TimeSpan time = TimeSpan.FromSeconds(timeLeftToMaintainInSeconds);
             MaintainTimerLabel.Text = "Time Left: " + time.ToString(@"mm\:ss") + " s";
+        }
+
+        public bool holdOnCooldown = false;
+        public int holdCooldownTime = 10000; // in ms
+        public int holdCooldownTick = 0;
+        private void HoldCooldownTimer_Tick(object sender, EventArgs e)
+        {
+            holdCooldownTick += 500; 
+            HoldCooldownProgressbar.Progress = Convert.ToInt32((holdCooldownTick / (float)holdCooldownTime) * 100);
+            if (holdCooldownTick == holdCooldownTime)
+            {
+                HoldCooldownProgressbar.Progress = 100;
+                HoldCooldownLabel.Text = "Ready!";
+                HoldCooldownLabel.ForeColor = Color.DarkGreen;
+                HoldCooldownProgressbar.ForeColor = Color.DarkGreen;
+                holdOnCooldown = false;
+                holdCooldownTimer.Stop();
+            }
+            else
+            {
+                HoldCooldownLabel.Text = "Cooldown!";
+                HoldCooldownProgressbar.ForeColor = Color.Red;
+                HoldCooldownLabel.ForeColor = Color.Red;
+            }
         }
 
         public void AddCircuitSource(double voltage)
@@ -333,6 +364,7 @@ namespace CircuitCraft
             if (WillUseHoldCircuitElement && CurrentCircuitElementHold != null) 
             {
                 WillUseHoldCircuitElement = false;
+                CurrentCircuitElementHold = null;
                 return; 
             }
             NextCircuitElements.RemoveAt(0);
@@ -571,14 +603,16 @@ namespace CircuitCraft
             _currentCircuitElementDroppedOrientation = 1;
             if (WillUseHoldCircuitElement && CurrentCircuitElementHold != null)
             {
+                holdOnCooldown = true;
+                holdCooldownTick = 0;
+                holdCooldownTimer.Start();
+
                 circuitElementType = CurrentCircuitElementHold.Value.CircuitElementType;
                 voltage = CurrentCircuitElementHold.Value.Voltage;
                 resistance = CurrentCircuitElementHold.Value.Resistance;
 
                 HoldComponentPbox.Image = null;
                 HoldComponentLabel.Text = "";
-
-                CurrentCircuitElementHold = null;
 
             }
             CurrentCircuitElementDroppedResistance = resistance;
@@ -660,9 +694,8 @@ namespace CircuitCraft
 
         public void HoldCircuitElement(CircuitElementType type, double voltage, double resistance)
         {
-            // TODO Add cooldown
-
-            if (CurrentCircuitElementHold == null)
+            Awake();
+            if (CurrentCircuitElementHold == null && !holdOnCooldown)
             {
                 CircuitBlocks[CurrentBlockIndex].Controls.Remove(CurrentCircuitElementDropped);
                 CurrentCircuitElementDropped = null;
@@ -670,11 +703,11 @@ namespace CircuitCraft
                 switch (type)
                 {
                     case CircuitElementType.Resistor:
-                        HoldComponentPbox.Image = CircuitElementResistorSprite5;
+                        HoldComponentPbox.Image = ResistanceValues[resistance];
                         HoldComponentLabel.Text = resistance +  " Ω";
                         break;
                     case CircuitElementType.Source:
-                        HoldComponentPbox.Image = CircuitElementSourceSprite5;
+                        HoldComponentPbox.Image = VoltageValues[voltage];
                         HoldComponentLabel.Text = voltage + " V";
                         break;
                     case CircuitElementType.Diode:
@@ -1094,6 +1127,24 @@ namespace CircuitCraft
         {
             get { return _maintainTimerLabel; }
             set { _maintainTimerLabel = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Hold Cooldown Label")]
+        [DefaultValue(null)]
+        public BigLabel HoldCooldownLabel
+        {
+            get { return _holdCooldownLabel; }
+            set { _holdCooldownLabel = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Hold Cooldown Progress Bar")]
+        [DefaultValue(null)]
+        public LostProgressBar HoldCooldownProgressbar
+        {
+            get { return _holdCooldownProgressBar; }
+            set { _holdCooldownProgressBar = value; }
         }
 
         public CircuitBlock CircuitBlock

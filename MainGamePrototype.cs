@@ -78,10 +78,7 @@ namespace CircuitCraft
         {
             // TODO Continous spawning of components must be i think 10 seconds or 5 seconds
 
-            // TODO Differentiating between different values of components
-            // IDEA That is to have different components with specific color assigned to a specific value
-            // Ex: For a resistor with 5ohms, it will have a red center. For 10ohms maybe a green center.
-
+            // TODO Add cooldown to hold element
             // TODO A gameplay loop where there is a clear start and a game over, the player can proceed to next level when current is completed
 
             // TODO Music and Background
