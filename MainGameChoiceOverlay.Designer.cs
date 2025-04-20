@@ -31,6 +31,7 @@
             choicePanel1 = new Panel();
             choicePanel2 = new Panel();
             choicePanel3 = new Panel();
+            gameoverFormPos = new Panel();
             SuspendLayout();
             // 
             // choicePanel1
@@ -39,7 +40,7 @@
             choicePanel1.BackColor = Color.Transparent;
             choicePanel1.Location = new Point(52, 117);
             choicePanel1.Name = "choicePanel1";
-            choicePanel1.Size = new Size(263, 419);
+            choicePanel1.Size = new Size(174, 419);
             choicePanel1.TabIndex = 2;
             // 
             // choicePanel2
@@ -60,12 +61,22 @@
             choicePanel3.Size = new Size(263, 419);
             choicePanel3.TabIndex = 4;
             // 
+            // gameoverFormPos
+            // 
+            gameoverFormPos.Anchor = AnchorStyles.None;
+            gameoverFormPos.BackColor = Color.Transparent;
+            gameoverFormPos.Location = new Point(232, 173);
+            gameoverFormPos.Name = "gameoverFormPos";
+            gameoverFormPos.Size = new Size(569, 320);
+            gameoverFormPos.TabIndex = 4;
+            // 
             // MainGameChoiceOverlay
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             ClientSize = new Size(1008, 720);
+            Controls.Add(gameoverFormPos);
             Controls.Add(choicePanel3);
             Controls.Add(choicePanel2);
             Controls.Add(choicePanel1);
@@ -81,5 +92,6 @@
         private Panel choicePanel1;
         private Panel choicePanel2;
         private Panel choicePanel3;
+        private Panel gameoverFormPos;
     }
 }

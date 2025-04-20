@@ -71,7 +71,7 @@ namespace CircuitCraft
             Width = _circuitElementWidth;
         }
 
-        public void RemoveCircuitElement(ref GameCanvas gameCanvas, int circuitElementIndex)
+        public void RemoveCircuitElement(int circuitElementIndex)
         {
             if (circuitElementIndex < 0 || circuitElementIndex >= CircuitElements.Count)
             {
@@ -79,11 +79,11 @@ namespace CircuitCraft
             }
             Controls.Remove(CircuitElements[circuitElementIndex].CircuitELementUI);
             CircuitElements.RemoveAt(circuitElementIndex);
-            RearrangeCircuitElementsUI(ref gameCanvas);
+            RearrangeCircuitElementsUI();
             Invalidate();
         }
 
-        public void RearrangeCircuitElementsUI(ref GameCanvas gameCanvas)
+        public void RearrangeCircuitElementsUI()
         {
             for (int i = 0; i < CircuitElements.Count; i++)
             {

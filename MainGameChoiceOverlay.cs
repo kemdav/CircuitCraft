@@ -35,6 +35,11 @@ namespace CircuitCraft
             get { return choicePanel3; }
         }
 
+        public Panel GameOverPanel
+        {
+            get { return gameoverFormPos; }
+        }
+
         public MainGameChoiceOverlay()
         {
             InitializeComponent();
@@ -63,5 +68,7 @@ namespace CircuitCraft
             // Handle all other messages normally (including painting, messages for child controls, etc.)
             base.WndProc(ref m);
         }
+
+
     }
 }

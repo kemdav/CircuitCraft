@@ -66,6 +66,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             picNextElement1 = new PictureBox();
             lblNextTitle = new BigLabel();
             pnlBottomStatus = new System.Windows.Forms.Panel();
+            warningTimerLabel = new BigLabel();
             operatingCurrentProgressBar = new VerticalProgressBar();
             lblMaxThreshold = new BigLabel();
             lblMinThreshold = new BigLabel();
@@ -74,6 +75,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             lblCurrentValue = new BigLabel();
             picLedStatus = new PictureBox();
             panelGameCanvasContainer = new System.Windows.Forms.Panel();
+            gameMessageLabel = new BigLabel();
             gameCanvas = new GameCanvas();
             pnlTopBar.SuspendLayout();
             panel1.SuspendLayout();
@@ -422,6 +424,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             // pnlBottomStatus
             // 
             pnlBottomStatus.BackColor = Color.FromArgb(64, 64, 64);
+            pnlBottomStatus.Controls.Add(warningTimerLabel);
             pnlBottomStatus.Controls.Add(operatingCurrentProgressBar);
             pnlBottomStatus.Controls.Add(lblMaxThreshold);
             pnlBottomStatus.Controls.Add(lblMinThreshold);
@@ -435,6 +438,19 @@ namespace CircuitCraft // Ensure this namespace matches your project
             pnlBottomStatus.Name = "pnlBottomStatus";
             pnlBottomStatus.Size = new Size(1920, 90);
             pnlBottomStatus.TabIndex = 4;
+            // 
+            // warningTimerLabel
+            // 
+            warningTimerLabel.BackColor = Color.Transparent;
+            warningTimerLabel.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            warningTimerLabel.ForeColor = Color.White;
+            warningTimerLabel.Location = new Point(1249, 8);
+            warningTimerLabel.Name = "warningTimerLabel";
+            warningTimerLabel.Size = new Size(534, 73);
+            warningTimerLabel.TabIndex = 33;
+            warningTimerLabel.Text = "5";
+            warningTimerLabel.TextAlign = ContentAlignment.MiddleCenter;
+            warningTimerLabel.Visible = false;
             // 
             // operatingCurrentProgressBar
             // 
@@ -529,6 +545,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             // 
             panelGameCanvasContainer.BackColor = Color.FromArgb(40, 40, 40);
             panelGameCanvasContainer.BorderStyle = BorderStyle.Fixed3D;
+            panelGameCanvasContainer.Controls.Add(gameMessageLabel);
             panelGameCanvasContainer.Controls.Add(gameCanvas);
             panelGameCanvasContainer.Dock = DockStyle.Fill;
             panelGameCanvasContainer.Location = new Point(160, 55);
@@ -536,6 +553,20 @@ namespace CircuitCraft // Ensure this namespace matches your project
             panelGameCanvasContainer.Padding = new Padding(5);
             panelGameCanvasContainer.Size = new Size(1600, 887);
             panelGameCanvasContainer.TabIndex = 5;
+            // 
+            // gameMessageLabel
+            // 
+            gameMessageLabel.Anchor = AnchorStyles.Top;
+            gameMessageLabel.AutoSize = true;
+            gameMessageLabel.BackColor = Color.Black;
+            gameMessageLabel.Font = new Font("Segoe UI", 72F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            gameMessageLabel.ForeColor = Color.White;
+            gameMessageLabel.Location = new Point(590, 57);
+            gameMessageLabel.Name = "gameMessageLabel";
+            gameMessageLabel.Size = new Size(495, 128);
+            gameMessageLabel.TabIndex = 6;
+            gameMessageLabel.Text = "bigLabel1";
+            gameMessageLabel.Visible = false;
             // 
             // gameCanvas
             // 
@@ -564,6 +595,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.CurrentLevel = 1;
             gameCanvas.CurrentValueLabel = lblCurrentValue;
             gameCanvas.Dock = DockStyle.Fill;
+            gameCanvas.GameMessageLabel = gameMessageLabel;
             gameCanvas.HoldComponentLabel = lblHoldElementValue;
             gameCanvas.HoldComponentPbox = picHoldElement;
             gameCanvas.HoldCooldownLabel = holdCooldownLabel;
@@ -575,6 +607,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.Location = new Point(5, 5);
             gameCanvas.LockedCircuitBlockImage = (Image)resources.GetObject("gameCanvas.LockedCircuitBlockImage");
             gameCanvas.MainGame = null;
+            gameCanvas.MainGamePrototype = null;
             gameCanvas.MaintainTimerLabel = lblTime;
             gameCanvas.MinimumOperatingCurrent = 0D;
             gameCanvas.MinimumOperatingCurrentTick = 0;
@@ -611,6 +644,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.TrashCircuitBlockImage = (Image)resources.GetObject("gameCanvas.TrashCircuitBlockImage");
             gameCanvas.WarningHighProgressBar = progressBarWarningHigh;
             gameCanvas.WarningLowProgressBar = progressBarWarningLow;
+            gameCanvas.WarningTimerLabel = warningTimerLabel;
             gameCanvas.WillUseHoldCircuitElement = false;
             gameCanvas.Load += gameCanvas_Load;
             // 
@@ -654,6 +688,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             pnlBottomStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picLedStatus).EndInit();
             panelGameCanvasContainer.ResumeLayout(false);
+            panelGameCanvasContainer.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -695,5 +730,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
         private BigLabel holdCooldownLabel;
         private LostProgressBar holdCooldownProgressBar;
         private LostProgressBar nextComponentProgressBar;
+        private BigLabel gameMessageLabel;
+        private BigLabel warningTimerLabel;
     }
 }

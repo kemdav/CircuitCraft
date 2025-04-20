@@ -15,6 +15,7 @@ namespace CircuitCraft
 {
     public partial class GameCanvas : UserControl
     {
+        public MainGamePrototype MainGamePrototype { get; set; }
         public struct CircuitElementTemp
         {
             public CircuitElementType CircuitElementType;
@@ -25,8 +26,10 @@ namespace CircuitCraft
         public double SourceValueMultiplier { get; set; } = 0.2;
         public double ResistanceValueMultiplier { get; set; } = 2;
         public int CurrentLevel { get; set; } = 1;
+        public int LedBurnedCount { get; set; } = 0;
 
         public Action ShowChoicesPrompt { get; set; } = null;
+        public Action GameOverPrompt { get; set; } = null;
 
         private int _jouleCurrency;
         public int JouleCurrency {
@@ -214,6 +217,7 @@ namespace CircuitCraft
         private PictureBox _nextComponentPbox2;
         private BigLabel _nextComponentLabel2;
 
+        private BigLabel _gameMessageLabel;
 
         private BigLabel _currentValueLabel;
 
@@ -226,6 +230,8 @@ namespace CircuitCraft
         private BigLabel _levelLabel;
 
         private BigLabel _ratingLabel;
+
+        private BigLabel _warningTimerLabel;
 
         private LostProgressBar _nextComponentProgressbar;
 
@@ -262,6 +268,8 @@ namespace CircuitCraft
         public Timer warningTimer = new Timer();
         public Timer holdCooldownTimer = new Timer();
         public Timer nextComponentTimer = new Timer();
+        public Timer warningStartTimer = new Timer();
+        public Timer roundStartTimer = new Timer();
 
         public int timeLeftToMaintainInSeconds { get; set; } = 60;
 
@@ -293,6 +301,12 @@ namespace CircuitCraft
             nextComponentTimer.Interval = 100;
             nextComponentTimer.Tick += new EventHandler(NextComponentTimer_Tick);
 
+            warningStartTimer.Interval = 1000;
+            warningStartTimer.Tick += new EventHandler(WarningStartTimer_Tick);
+
+            roundStartTimer.Interval = 1000;
+            roundStartTimer.Tick += new EventHandler(RoundStartTimer_Tick);
+
             UpdateImageKeys();
         }
 
@@ -302,9 +316,90 @@ namespace CircuitCraft
             MinimumOperatingCurrent = minimumOperatingCurrent;
             OperatingCurrent = maximumOperatingCurrent;
 
+            roundStartTimer.Start();
+
+            FillUpNextComponents();
+            SpawnNextComponent();
+        }
+
+        public void PauseGame()
+        {
+            gameTimer.Stop();
+            gameLedTimer.Stop();
+            warningTimer.Stop();
+            
+
+
+            holdCooldownTimer.Stop();
+            nextComponentTimer.Stop();
+        }
+
+        public void ResumeGame()
+        {
             gameTimer.Start();
-            warningTimer.Start();
             gameLedTimer.Start();
+            warningTimer.Start();
+
+            if (holdCooldownTick != 0) holdCooldownTimer.Start();
+            if (nextComponentTimerTick != 0) nextComponentTimer.Start();
+        }
+
+        public void ResetGame()
+        {
+            gameTimer.Stop();
+            gameLedTimer.Stop();
+            warningTimer.Stop();
+
+            holdCooldownTimer.Stop();
+            nextComponentTimer.Stop();
+            roundStartTimer.Stop();
+
+            CurrentBlockIndex = 0;
+            CurrentCircuitElementDropped = null;
+
+            holdCooldownTick = 0;
+            holdOnCooldown = false;
+
+            MinimumOperatingCurrentTick = 0;
+            OperatingCurrentTick = 0;
+
+            CurrentLevel = 1;
+            JouleCurrency = 0;
+
+            for (int i = 0; i < CircuitBlocks.Count; i++)
+            {
+                if (i == 0 || i == 1 || i == 2)
+                {
+                    CircuitBlocks[i].CircuitBlockState = CircuitBlockState.Unlocked;
+                }
+                else
+                {
+                    CircuitBlocks[i].CircuitBlockState = CircuitBlockState.Locked;
+                }
+                for (int j = 0; j < CircuitBlocks[i].CircuitElements.Count; j++)
+                {
+                    CircuitBlocks[i].RemoveCircuitElement(0);
+                }
+                UpdateCircuitBlock(CircuitBlocks[i]);
+            }
+        }
+
+        private int roundStartTimerTick = 0;
+        private int roundStartTime = 5000;
+        public void RoundStartTimer_Tick(object sender, EventArgs e)
+        {
+            GameMessage("STARTING IN " + (roundStartTime - roundStartTimerTick)/1000 + "...");
+            roundStartTimerTick += 1000;
+
+            if (roundStartTimerTick >= roundStartTime)
+            {
+                GameMessage();
+                roundStartTimerTick = 0;
+                gameTimer.Start();
+                gameLedTimer.Start();
+                warningStartTimer.Start();
+                roundStartTimer.Stop();
+            }
         }
 
         private int nextComponentTimerTick = 0;
@@ -320,6 +415,45 @@ namespace CircuitCraft
                 SpawnNextComponent();
                 nextComponentTimer.Stop();
             }
+        }
+
+        private int warningStartTimerTick = 0;
+        private int warningStartCooldown = 11000; // in ms
+        public void WarningStartTimer_Tick(object sender, EventArgs e)
+        {
+            WarningTimerLabel.Visible = true;
+            warningStartTimerTick += 1000;
+
+            WarningTimerLabel.Text = "Measuring in " + (warningStartCooldown - warningStartTimerTick) / 1000 + "...";
+            if (warningStartTimerTick >= warningStartCooldown)
+            {
+                WarningTimerLabel.Visible = false;
+                warningStartTimerTick = 0;
+                WarningHighProgressBar.Progress = 0;
+                WarningLowProgressBar.Progress = 0;
+                warningTimer.Start();
+                warningStartTimer.Stop();
+            }
+        }
+
+
+        public void GameMessage(string message)
+        {
+            GameMessageLabel.Parent = MainGamePrototype;
+            GameMessageLabel.Text = message;
+            GameMessageLabel.Visible = true;
+            GameMessageLabel.BringToFront();
+
+            int newLeft = (MainGamePrototype.ClientSize.Width - GameMessageLabel.Width) / 2;
+
+            GameMessageLabel.Location = new Point(newLeft, GameMessageLabel.Location.Y);
+        }
+
+        public void GameMessage()
+        {
+            GameMessageLabel.Parent = MainGamePrototype;
+            GameMessageLabel.Text = "";
+            GameMessageLabel.Visible = false;
         }
 
 
@@ -348,7 +482,7 @@ namespace CircuitCraft
                     JouleCurrency += Convert.ToInt32(joulesAccumulation);
                     joulesAccumulation = 0;
 
-                    if (JouleCurrency > 3)
+                    if (JouleCurrency > LevelJouleRequirements[CurrentLevel])
                     {
                         if (ShowChoicesPrompt != null)
                         { 
@@ -357,6 +491,8 @@ namespace CircuitCraft
 
                             // The first three instances of choosing will be the circuit blocks
                             // After that, it would become like choosing the probabilities of circuit components appearing
+                            PauseGame();
+                            CurrentLevel++;
                             ShowChoicesPrompt();
                         }
                     }
@@ -666,13 +802,12 @@ namespace CircuitCraft
             if (OperatingCurrentTick >= 10000 && result.LoadCurrent > OperatingCurrent)
             {
                 // LED Burned
-                //gameCanvas.OperatingCurrentTick = 0;
-                //operatingCurrentProgress.Progress = 0;
-
-                //ledBurnedIndicator.Visible = true;
+                LedBurnedCount++;
+                GameOverPrompt();
+                PauseGame();
+                // Game over screen
             }
 
-            // In the final game, the indicator will be the LED icon itself on how bright it is
             if (result.LoadCurrent < MinimumOperatingCurrent && MinimumOperatingCurrentTick < 10000)
             {
                 MinimumOperatingCurrentTick += 100;
@@ -1335,6 +1470,25 @@ namespace CircuitCraft
             get { return _nextComponentProgressbar; }
             set { _nextComponentProgressbar = value; }
         }
+
+        [Category("Game Canvas Settings")]
+        [Description("Game Message Label")]
+        [DefaultValue(null)]
+        public BigLabel GameMessageLabel
+        {
+            get { return _gameMessageLabel; }
+            set { _gameMessageLabel = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Warning Timer Label")]
+        [DefaultValue(null)]
+        public BigLabel WarningTimerLabel
+        {
+            get { return _warningTimerLabel; }
+            set { _warningTimerLabel = value; }
+        }
+
 
 
         public CircuitBlock CircuitBlock

@@ -52,9 +52,9 @@ namespace CircuitCraft
 
             gameCanvas.StartRound(3, 0.1, 0.2);
             gameCanvas.FillUpNextComponents();
-
+            gameCanvas.MainGamePrototype = this;
             gameCanvas.ShowChoicesPrompt = CardsChoicePrompt;
-        
+            gameCanvas.GameOverPrompt = GameOverScreenPrompt;
         }
 
         public void EnterFullScreen()
@@ -72,12 +72,12 @@ namespace CircuitCraft
 
         private void PlayerInput(object sender, KeyEventArgs e)
         {
-            // TODO Continous spawning of components must be i think 10 seconds or 5 seconds
+
             // TODO A gameplay loop where there is a clear start and a game over, the player can proceed to next level when current is completed
 
             // TODO Remember to not allow ShowPrompts to repeatedly spawning prompts
 
-            // TODO Resistors Burned
+            // TODO Resistors Burned (could also just replace the resistors burned stat to the total joules gathered)
 
             // TODO Music and Background
 
@@ -120,6 +120,9 @@ namespace CircuitCraft
                 case Keys.P:
                     CardsChoicePrompt();
                     break;
+                case Keys.T:
+                    gameCanvas.ResetGame();
+                    break;
             }
         }
 
@@ -161,6 +164,38 @@ namespace CircuitCraft
                 };
                 choicePromptForms.Add(frmPrompt1);
             }
+        }
+
+        public void GameOverScreenPrompt()
+        {
+            MainGameChoiceOverlay frm = new MainGameChoiceOverlay();
+            frm.Location = Location;
+            frm.Opacity = 0.7f;
+            frm.StartPosition = FormStartPosition.Manual;
+            if (WindowState == FormWindowState.Maximized)
+            {
+                frm.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                frm.Width = Width;
+                frm.Height = Height;
+            }
+            frm.ShowInTaskbar = false;
+            frm.Show();
+
+            GameOverScreenForm frmPrompt1 = new GameOverScreenForm();
+            frmPrompt1.StartPosition = FormStartPosition.Manual;
+            Point panelTopLeftOnScreen = frm.GameOverPanel.PointToScreen(Point.Empty);
+            frmPrompt1.Location = panelTopLeftOnScreen;
+            frmPrompt1.ShowInTaskbar = false;
+            frmPrompt1.Show();
+            frmPrompt1.TheButtonClicked += GameOver_PlayAgainButtonClicked;
+            frmPrompt1.FormClosed += (s, args) =>
+            {
+                frmPrompt1.TheButtonClicked -= GameOver_PlayAgainButtonClicked;
+                frm.Close();
+            };
         }
 
         public List<ChoicePromptData> GenerateThreeRandomCards()
@@ -221,11 +256,23 @@ namespace CircuitCraft
             if (sourceForm != null)
             {
                 gameCanvas.UnlockCircuitBlock(sourceForm.ChoicePromptData.Cards);
+                gameCanvas.ResumeGame();
             }
             foreach (ChoicePromptForm form in choicePromptForms)
             {
                 form.Close();
             }
+        }
+
+        private void GameOver_PlayAgainButtonClicked(object sender, EventArgs e)
+        {
+            GameOverScreenForm sourceForm = sender as GameOverScreenForm;
+            if (sourceForm != null)
+            {
+                gameCanvas.ResetGame();
+                gameCanvas.StartRound(3, 0.1, 0.2);
+            }
+            sourceForm.Close();
         }
 
         private void gameCanvas_Load(object sender, EventArgs e)
