@@ -264,15 +264,21 @@ namespace CircuitCraft
         {
             timeLeftToMaintainInSeconds -= 1;
 
-            if (!double.IsNaN(result.LoadCurrent) && result.LoadCurrent > 0)
+            if (!double.IsNaN(result.LoadCurrent) && result.LoadCurrent > 0 )
             {
-                joulesAccumulation += result.LoadCurrent;
+                if (result.LoadCurrent < OperatingCurrent + 1)
+                {
+                    joulesAccumulation += result.LoadCurrent;
+                }
                 if (joulesAccumulation > 1)
                 {
                     JouleCurrency += Convert.ToInt32(joulesAccumulation);
                     joulesAccumulation = 0;
 
+                    if (JouleCurrency > 10)
+                    {
 
+                    }
                 }
             }
 
@@ -346,6 +352,7 @@ namespace CircuitCraft
             {
                 if (circuitBlock.CircuitBlockState == CircuitBlockState.Locked)
                 {
+                    circuitBlock.CircuitBlockState = CircuitBlockState.Unlocked;
                     switch (cards)
                     {
                         case Cards.SeriesCircuit:
