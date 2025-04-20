@@ -254,6 +254,8 @@ namespace CircuitCraft
             Awake();
         }
 
+
+
         double joulesAccumulation = 0;
         private void GameLedTimer_Tick(object sender, EventArgs e)
         {
@@ -266,6 +268,8 @@ namespace CircuitCraft
                 {
                     JouleCurrency += Convert.ToInt32(joulesAccumulation);
                     joulesAccumulation = 0;
+
+
                 }
             }
 
@@ -408,6 +412,7 @@ namespace CircuitCraft
 
         public void FillUpNextComponents()
         {
+            Awake();
             List<PictureBox> nextComponentsPboxs = new List<PictureBox>() { NextComponentPictureBox1, NextComponentPictureBox2};
             List<BigLabel> nextComponentsLabels = new List<BigLabel>() { NextComponentLabel1, NextComponentLabel2 };
             for (int i = 0; i < 2; i++)
@@ -462,26 +467,28 @@ namespace CircuitCraft
         {
             Random rng = new Random();
             int randomNumber1 = rng.Next(1, 101);
-            int randomNumber2 = rng.Next(1, 4);
+            int randomNumber2 = rng.Next(1, 101);
 
             double randomResistance = 0;
             double randomVoltage = 0;
 
             CircuitElementType circuitElementType;
 
-            switch (randomNumber2)
+            if (randomNumber1 > 0 && randomNumber1 <= 20)
             {
-                case 1:
-                    circuitElementType = CircuitElementType.Resistor;
-                    break;
-                case 2:
-                    circuitElementType = CircuitElementType.Source;
-                    break;
-                case 3:
-                    circuitElementType = CircuitElementType.Diode;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(randomNumber2), "Invalid random number for circuit element type.");
+                circuitElementType = CircuitElementType.Diode;
+            }
+            else if (randomNumber1 > 20 && randomNumber1 <= 50)
+            {
+                circuitElementType = CircuitElementType.Source;
+            }
+            else if (randomNumber1 > 50 && randomNumber1 <= 100)
+            {
+                circuitElementType = CircuitElementType.Resistor;
+            }
+            else
+            {
+                circuitElementType = CircuitElementType.Source;
             }
 
             if (randomNumber1 > 0 && randomNumber1 <= 20)
@@ -522,7 +529,8 @@ namespace CircuitCraft
                     return new CircuitElementTemp()
                     {
                         CircuitElementType = circuitElementType,
-                        Voltage = randomVoltage
+                        Voltage = randomVoltage,
+                        Resistance = 0.001
                     };
                 case CircuitElementType.Diode:
                     return new CircuitElementTemp()
