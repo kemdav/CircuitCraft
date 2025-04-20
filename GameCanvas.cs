@@ -24,6 +24,9 @@ namespace CircuitCraft
 
         public double SourceValueMultiplier { get; set; } = 0.2;
         public double ResistanceValueMultiplier { get; set; } = 2;
+        public int CurrentLevel { get; set; } = 1;
+
+        public Action ShowChoicesPrompt { get; set; } = null;
 
         private int _jouleCurrency;
         public int JouleCurrency {
@@ -41,8 +44,34 @@ namespace CircuitCraft
 
         public CircuitElementTemp? CurrentCircuitElementHold = null;
         public List<CircuitElement> CircuitSources { get; set; }
-        public double OperatingCurrent { get; set; } = 0.2;
-        public double MinimumOperatingCurrent { get; set; } = 0.1;
+        private double _operatingCurrent;
+        public double OperatingCurrent
+        {
+            get
+            {
+                return _operatingCurrent;
+            }
+            set
+            {
+                _operatingCurrent = value;
+                if (OperatingCurrentMaxLabel == null) { return; }
+                OperatingCurrentMaxLabel.Text = _operatingCurrent.ToString() + " J";
+            }
+        }
+        private double _minimumOperatingCurrent;
+        public double MinimumOperatingCurrent
+        {
+            get
+            {
+                return _minimumOperatingCurrent;
+            }
+            set
+            {
+                _minimumOperatingCurrent = value;
+                if (OperatingCurrentMinLabel == null) { return; }
+                OperatingCurrentMinLabel.Text = _minimumOperatingCurrent.ToString() + " J";
+            }
+        }
         public int OperatingCurrentTick { get; set; } = 0;
         public int MinimumOperatingCurrentTick { get; set; } = 0;
 
@@ -194,6 +223,10 @@ namespace CircuitCraft
 
         private BigLabel _maintainTimerLabel;
 
+        private BigLabel _levelLabel;
+
+        private BigLabel _ratingLabel;
+
         private ProgressBar _operatingCurrentProgressBar;
         private BigLabel _operatingCurrentMaxLabel;
         private BigLabel _operatingCurrentMinLabel;
@@ -254,10 +287,29 @@ namespace CircuitCraft
             holdCooldownTimer.Interval = 500;
             holdCooldownTimer.Tick += new EventHandler(HoldCooldownTimer_Tick);
 
-            Awake();
+            UpdateImageKeys();
+        }
+
+        public void StartRound(double startingSourceVoltage, double minimumOperatingCurrent, double maximumOperatingCurrent)
+        {
+            SourceVoltage = startingSourceVoltage;
+            MinimumOperatingCurrent = minimumOperatingCurrent;
+            OperatingCurrent = maximumOperatingCurrent;
+
+            gameTimer.Start();
+            warningTimer.Start();
+            gameLedTimer.Start();
         }
 
 
+        public Dictionary<int, int> LevelJouleRequirements = new Dictionary<int, int>()
+        {
+            { 1, 3 },
+            { 2, 10 },
+            { 3, 30 },
+            { 4, 60 },
+            { 5, 100 }
+        };
 
         double joulesAccumulation = 0;
         private void GameLedTimer_Tick(object sender, EventArgs e)
@@ -275,9 +327,16 @@ namespace CircuitCraft
                     JouleCurrency += Convert.ToInt32(joulesAccumulation);
                     joulesAccumulation = 0;
 
-                    if (JouleCurrency > 10)
+                    if (JouleCurrency > 3)
                     {
+                        if (ShowChoicesPrompt != null)
+                        {
+                            // Show the three choices
 
+                            // The first three instances of choosing will be the circuit blocks
+                            // After that, it would become like choosing the probabilities of circuit components appearing
+                            ShowChoicesPrompt();
+                        }
                     }
                 }
             }
@@ -326,7 +385,7 @@ namespace CircuitCraft
         private Dictionary<double, Image> VoltageValues;
         private Dictionary<double, Image> ResistanceValues;
 
-        void Awake()
+        void UpdateImageKeys()
         {
             VoltageValues = new Dictionary<double, Image>() {
                 { 1.0 * SourceValueMultiplier, CircuitElementSourceSprite1 },
@@ -390,7 +449,7 @@ namespace CircuitCraft
 
         private Image GetOrientedImageClone(CircuitElementType type, int orientation)
         {
-            Awake();
+            UpdateImageKeys();
             Image baseImage = null;
             switch (type)
             {
@@ -422,7 +481,7 @@ namespace CircuitCraft
 
         public void FillUpNextComponents()
         {
-            Awake();
+            UpdateImageKeys();
             List<PictureBox> nextComponentsPboxs = new List<PictureBox>() { NextComponentPictureBox1, NextComponentPictureBox2};
             List<BigLabel> nextComponentsLabels = new List<BigLabel>() { NextComponentLabel1, NextComponentLabel2 };
             for (int i = 0; i < 2; i++)
@@ -554,7 +613,17 @@ namespace CircuitCraft
         }
 
         private CircuitSimulator.LoadCalculationResult result;
-        public double SourceVoltage = 3;
+        private double _sourceVoltage;
+        public double SourceVoltage
+        {
+            get { return _sourceVoltage; }
+            set 
+            {
+                _sourceVoltage = value;
+                if (InitialVoltageValueLabel == null) { return; }
+                InitialVoltageValueLabel.Text = _sourceVoltage.ToString() + " V";
+            }
+        }
         public double LoadResistance = 0;
 
         public void UpdateCircuitElementUI()
@@ -732,7 +801,7 @@ namespace CircuitCraft
 
         public void HoldCircuitElement(CircuitElementType type, double voltage, double resistance)
         {
-            Awake();
+            UpdateImageKeys();
             if (CurrentCircuitElementHold == null && !holdOnCooldown)
             {
                 CircuitBlocks[CurrentBlockIndex].Controls.Remove(CurrentCircuitElementDropped);
@@ -1211,6 +1280,25 @@ namespace CircuitCraft
             get { return _holdCooldownProgressBar; }
             set { _holdCooldownProgressBar = value; }
         }
+
+        [Category("Game Canvas Settings")]
+        [Description("Level Label")]
+        [DefaultValue(null)]
+        public BigLabel LevelLabel
+        {
+            get { return _levelLabel; }
+            set { _levelLabel = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Rating Label")]
+        [DefaultValue(null)]
+        public BigLabel RatingLabel
+        {
+            get { return _ratingLabel; }
+            set { _ratingLabel = value; }
+        }
+
 
         public CircuitBlock CircuitBlock
         {

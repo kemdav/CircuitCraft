@@ -50,14 +50,10 @@ namespace CircuitCraft
                 gameCanvas.SpawnCircuitBlock(CircuitBlockState.Locked, new Point(2 + (distance * i), 0), 130, 220);
             }
 
-            gameCanvas.gameTimer.Start();
-            gameCanvas.warningTimer.Start();
-            gameCanvas.gameLedTimer.Start();
-
-            gameCanvas.OperatingCurrent = 0.2;
-            gameCanvas.MinimumOperatingCurrent = 0.1;
 
             gameCanvas.FillUpNextComponents();
+
+            gameCanvas.ShowChoicesPrompt = CardsChoicePrompt;
         
         }
 

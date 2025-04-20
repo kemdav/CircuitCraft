@@ -45,7 +45,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             picPauseButton = new PictureBox();
             lblTime = new BigLabel();
             lblLevel = new BigLabel();
-            lblScore = new BigLabel();
+            lblRating = new BigLabel();
             pnlHoldArea = new System.Windows.Forms.Panel();
             holdCooldownLabel = new BigLabel();
             holdCooldownProgressBar = new LostProgressBar();
@@ -100,7 +100,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             pnlTopBar.Controls.Add(picPauseButton);
             pnlTopBar.Controls.Add(lblTime);
             pnlTopBar.Controls.Add(lblLevel);
-            pnlTopBar.Controls.Add(lblScore);
+            pnlTopBar.Controls.Add(lblRating);
             pnlTopBar.Dock = DockStyle.Top;
             pnlTopBar.Location = new Point(0, 0);
             pnlTopBar.Name = "pnlTopBar";
@@ -178,17 +178,17 @@ namespace CircuitCraft // Ensure this namespace matches your project
             lblLevel.TabIndex = 1;
             lblLevel.Text = "Level: 1";
             // 
-            // lblScore
+            // lblRating
             // 
-            lblScore.AutoSize = true;
-            lblScore.BackColor = Color.Transparent;
-            lblScore.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold);
-            lblScore.ForeColor = Color.FromArgb(80, 80, 80);
-            lblScore.Location = new Point(12, 15);
-            lblScore.Name = "lblScore";
-            lblScore.Size = new Size(80, 25);
-            lblScore.TabIndex = 0;
-            lblScore.Text = "Score: 0";
+            lblRating.AutoSize = true;
+            lblRating.BackColor = Color.Transparent;
+            lblRating.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold);
+            lblRating.ForeColor = Color.FromArgb(80, 80, 80);
+            lblRating.Location = new Point(12, 15);
+            lblRating.Name = "lblRating";
+            lblRating.Size = new Size(89, 25);
+            lblRating.TabIndex = 0;
+            lblRating.Text = "Rating: 0";
             // 
             // pnlHoldArea
             // 
@@ -546,6 +546,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.CurrentCircuitElementDroppedResistance = 0D;
             gameCanvas.CurrentCircuitElementDroppedType = CircuitElementType.Source;
             gameCanvas.CurrentCircuitElementDroppedVoltage = 0D;
+            gameCanvas.CurrentLevel = 1;
             gameCanvas.CurrentValueLabel = lblCurrentValue;
             gameCanvas.Dock = DockStyle.Fill;
             gameCanvas.HoldComponentLabel = lblHoldElementValue;
@@ -555,6 +556,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.InitialVoltageValueLabel = initialVoltageSourceLabel;
             gameCanvas.JouleCurrency = 0;
             gameCanvas.JouleCurrencyLabel = jouleCurrencyLabel;
+            gameCanvas.LevelLabel = lblLevel;
             gameCanvas.Location = new Point(5, 5);
             gameCanvas.LockedCircuitBlockImage = (Image)resources.GetObject("gameCanvas.LockedCircuitBlockImage");
             gameCanvas.MainGame = null;
@@ -575,11 +577,15 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.ParallelCircuitBlockCardDescription = "Unlock a Parallel Circuit Branch";
             gameCanvas.ParallelCircuitBlockCardImage = (Image)resources.GetObject("gameCanvas.ParallelCircuitBlockCardImage");
             gameCanvas.ParallelCircuitBlockImage = (Image)resources.GetObject("gameCanvas.ParallelCircuitBlockImage");
+            gameCanvas.RatingLabel = lblRating;
+            gameCanvas.ResistanceValueMultiplier = 2D;
             gameCanvas.SeriesCircuitBlockCardCost = 10;
             gameCanvas.SeriesCircuitBlockCardDescription = "Unlock a Series Circuit Branch";
             gameCanvas.SeriesCircuitBlockCardImage = (Image)resources.GetObject("gameCanvas.SeriesCircuitBlockCardImage");
             gameCanvas.SeriesCircuitBlockImage = (Image)resources.GetObject("gameCanvas.SeriesCircuitBlockImage");
+            gameCanvas.ShowChoicesPrompt = null;
             gameCanvas.Size = new Size(1586, 873);
+            gameCanvas.SourceValueMultiplier = 0.2D;
             gameCanvas.TabIndex = 1;
             gameCanvas.timeLeftToMaintainInSeconds = 60;
             gameCanvas.TrashCircuitBlockCardCost = 10;
@@ -636,7 +642,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
 
         #endregion
         private System.Windows.Forms.Panel pnlTopBar;
-        private ReaLTaiizor.Controls.BigLabel lblScore;
+        private ReaLTaiizor.Controls.BigLabel lblRating;
         private ReaLTaiizor.Controls.BigLabel lblLevel;
         private ReaLTaiizor.Controls.BigLabel lblTime;
         private System.Windows.Forms.PictureBox picPauseButton;
