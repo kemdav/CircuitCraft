@@ -87,7 +87,7 @@ namespace CircuitCraft
         {
             for (int i = 0; i < CircuitElements.Count; i++)
             {
-                CircuitElements[i].CircuitELementUI.Location = new Point(Location.X, (Location.Y + Height) - ((i + 1) * _circuitElementHeight));
+                CircuitElements[i].CircuitELementUI.Location = new Point(0, (Location.Y + Height) - ((i + 1) * _circuitElementHeight));
             }
             Invalidate();
         }

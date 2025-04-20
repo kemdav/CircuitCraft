@@ -25,7 +25,20 @@ namespace CircuitCraft
 
         public double SourceValueMultiplier { get; set; } = 0.2;
         public double ResistanceValueMultiplier { get; set; } = 2;
-        public int CurrentLevel { get; set; } = 1;
+
+        private int _currentLevel = 1;
+        public int CurrentLevel {
+            get
+            {
+                return _currentLevel;
+            }
+            set
+            {
+                _currentLevel = value;
+                if (LevelLabel == null) { return; }
+                LevelLabel.Text = "Level: " + _jouleCurrency.ToString();
+            }
+        }
         public int LedBurnedCount { get; set; } = 0;
 
         public Action ShowChoicesPrompt { get; set; } = null;
@@ -384,6 +397,18 @@ namespace CircuitCraft
             }
         }
 
+        public void ClearCircuitElements()
+        {
+            for (int i = 0; i < CircuitBlocks.Count; i++)
+            {
+                while (CircuitBlocks[i].CircuitElements.Count > 0)
+                {
+                    CircuitBlocks[i].RemoveCircuitElement(0);
+                }
+                UpdateCircuitBlock(CircuitBlocks[i]);
+            }
+        }
+
         private int roundStartTimerTick = 0;
         private int roundStartTime = 5000;
         public void RoundStartTimer_Tick(object sender, EventArgs e)
@@ -486,12 +511,8 @@ namespace CircuitCraft
                     {
                         if (ShowChoicesPrompt != null)
                         { 
-
-                            // Show the three choices
-
-                            // The first three instances of choosing will be the circuit blocks
-                            // After that, it would become like choosing the probabilities of circuit components appearing
                             PauseGame();
+                            JouleCurrency -= LevelJouleRequirements[CurrentLevel];
                             CurrentLevel++;
                             ShowChoicesPrompt();
                         }
@@ -1022,14 +1043,12 @@ namespace CircuitCraft
                         CurrentBlockIndex--;
                         if (currentBlockIndex == CurrentBlockIndex)
                         {
-                            //No available, game over
+                            GameOverPrompt();
+                            PauseGame();
                         }
                     }
                 }
-                else
-                {
-                    nextComponentTimer.Start();
-                }
+                nextComponentTimer.Start();
 
                 UpdateCircuitElementUI();
                 return false;

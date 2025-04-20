@@ -75,8 +75,6 @@ namespace CircuitCraft
 
             // TODO A gameplay loop where there is a clear start and a game over, the player can proceed to next level when current is completed
 
-            // TODO Remember to not allow ShowPrompts to repeatedly spawning prompts
-
             // TODO Resistors Burned (could also just replace the resistors burned stat to the total joules gathered)
 
             // TODO Music and Background
@@ -256,6 +254,7 @@ namespace CircuitCraft
             if (sourceForm != null)
             {
                 gameCanvas.UnlockCircuitBlock(sourceForm.ChoicePromptData.Cards);
+                gameCanvas.ClearCircuitElements();
                 gameCanvas.ResumeGame();
             }
             foreach (ChoicePromptForm form in choicePromptForms)
