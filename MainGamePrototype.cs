@@ -77,9 +77,9 @@ namespace CircuitCraft
         private void PlayerInput(object sender, KeyEventArgs e)
         {
             // TODO Continous spawning of components must be i think 10 seconds or 5 seconds
-
-            // TODO Add cooldown to hold element
             // TODO A gameplay loop where there is a clear start and a game over, the player can proceed to next level when current is completed
+
+            // TODO Resistors Burned
 
             // TODO Music and Background
 

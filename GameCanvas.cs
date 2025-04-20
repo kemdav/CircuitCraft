@@ -199,6 +199,9 @@ namespace CircuitCraft
         private LostProgressBar _warningLowProgressBar;
 
         private Image _lockedCircuitBlockImage;
+        private Image _seriesCircuitBlockImage;
+        private Image _parallelCircuitBlockImage;
+        private Image _trashCircuitBlockImage;
 
         #region Circuit Block Cards
         private Image _seriesCircuitBlockCardImage;
@@ -676,17 +679,18 @@ namespace CircuitCraft
             {
                 case CircuitBlockConnectionType.Locked:
                     circuitBlock.BackgroundImage = LockedCircuitBlockImage;
+                    circuitBlock.BackgroundImageLayout = ImageLayout.Zoom;
                     break;
                 case CircuitBlockConnectionType.Series:
-                    circuitBlock.BackgroundImage = SeriesCircuitBlockCardImage;
+                    circuitBlock.BackgroundImage = SeriesCircuitBlockImage;
                     circuitBlock.BackgroundImageLayout = ImageLayout.Zoom;
                     break;
                 case CircuitBlockConnectionType.Parallel:
-                    circuitBlock.BackgroundImage = ParallelCircuitBlockCardImage;
+                    circuitBlock.BackgroundImage = ParallelCircuitBlockImage;
                     circuitBlock.BackgroundImageLayout = ImageLayout.Zoom;
                     break;
                 case CircuitBlockConnectionType.Trash:
-                    circuitBlock.BackgroundImage = TrashCircuitBlockCardImage;
+                    circuitBlock.BackgroundImage = TrashCircuitBlockImage;
                     circuitBlock.BackgroundImageLayout = ImageLayout.Zoom;
                     break;
             }
@@ -1027,6 +1031,33 @@ namespace CircuitCraft
         {
             get { return _lockedCircuitBlockImage; }
             set { _lockedCircuitBlockImage = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Series Circuit Block Image")]
+        [DefaultValue(null)]
+        public Image SeriesCircuitBlockImage
+        {
+            get { return _seriesCircuitBlockImage; }
+            set { _seriesCircuitBlockImage = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Parallel Circuit Block Image")]
+        [DefaultValue(null)]
+        public Image ParallelCircuitBlockImage
+        {
+            get { return _parallelCircuitBlockImage; }
+            set { _parallelCircuitBlockImage = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Trash Circuit Block Image")]
+        [DefaultValue(null)]
+        public Image TrashCircuitBlockImage
+        {
+            get { return _trashCircuitBlockImage; }
+            set { _trashCircuitBlockImage = value; }
         }
 
         [Category("Game Canvas Settings")]
