@@ -278,6 +278,22 @@ namespace CircuitCraft
         private Image _trashCircuitBlockCardImage;
         private string _trashCircuitBlockCardText = "Trash Circuit Block";
         private int _trashCircuitBlockCardCost = 10;
+
+        private Image _sourceIncreaseChanceCardImage;
+        private string _sourceIncreaseChanceText = "Increase source chance";
+        private int _sourceIncreaseChanceCost = 10;
+
+        private Image _resistorIncreaseChanceCardImage;
+        private string _resistorIncreaseChanceText = "Increase resistor chance";
+        private int _resistorIncreaseChanceCost = 10;
+
+        private Image _diodeIncreaseChanceCardImage;
+        private string _diodeIncreaseChanceText = "Increase diode chance";
+        private int _diodeIncreaseChanceCost = 10;
+
+        private Image _initialVoltageIncreaseCardImage;
+        private string _initialVoltageIncreaseText = "Increase inital voltage";
+        private int _initialVoltageIncreaseCost = 10;
         #endregion
 
         private int _circuitElementSpawnOffsetY = 20;
@@ -1663,6 +1679,42 @@ namespace CircuitCraft
         }
 
         [Category("Game Canvas Settings")]
+        [Description("Source Increase Chance Card Image")]
+        [DefaultValue(null)]
+        public Image SourceIncreaseChanceCardImage
+        {
+            get { return _sourceIncreaseChanceCardImage; }
+            set { _sourceIncreaseChanceCardImage = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Resistor Increase Chance Card Image")]
+        [DefaultValue(null)]
+        public Image ResistorIncreaseChanceCardImage
+        {
+            get { return _resistorIncreaseChanceCardImage; }
+            set { _resistorIncreaseChanceCardImage = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Diode Increase Chance Card Image")]
+        [DefaultValue(null)]
+        public Image DiodeIncreaseChanceCardImage
+        {
+            get { return _diodeIncreaseChanceCardImage; }
+            set { _diodeIncreaseChanceCardImage = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Increase Initial Voltage Card Image")]
+        [DefaultValue(null)]
+        public Image IncreaseInitialVoltageCardImage
+        {
+            get { return _initialVoltageIncreaseCardImage; }
+            set { _initialVoltageIncreaseCardImage = value; }
+        }
+
+        [Category("Game Canvas Settings")]
         [Description("Series Circuit Block Card Description")]
         [DefaultValue(null)]
         public string SeriesCircuitBlockCardDescription
@@ -1691,6 +1743,42 @@ namespace CircuitCraft
         }
 
         [Category("Game Canvas Settings")]
+        [Description("Source Increase Chance Card Description")]
+        [DefaultValue(null)]
+        public string SourceIncreaseChanceCardDescription
+        {
+            get { return _sourceIncreaseChanceText; }
+            set { _sourceIncreaseChanceText = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Diode Increase Chance Card Description")]
+        [DefaultValue(null)]
+        public string DiodeIncreaseChanceCardDescription
+        {
+            get { return _diodeIncreaseChanceText; }
+            set { _diodeIncreaseChanceText = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Resistor Increase Chance Card Description")]
+        [DefaultValue(null)]
+        public string ResistorIncreaseChanceCardDescription
+        {
+            get { return _resistorIncreaseChanceText; }
+            set { _resistorIncreaseChanceText = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Increase Initial Voltage Card Description")]
+        [DefaultValue(null)]
+        public string IncreaseInitialVoltageCardDescription
+        {
+            get { return _initialVoltageIncreaseText; }
+            set { _initialVoltageIncreaseText = value; }
+        }
+
+        [Category("Game Canvas Settings")]
         [Description("Series Circuit Block Card Cost")]
         [DefaultValue(null)]
         public int SeriesCircuitBlockCardCost
@@ -1715,6 +1803,42 @@ namespace CircuitCraft
         {
             get { return _trashCircuitBlockCardCost; }
             set { _trashCircuitBlockCardCost = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Source Increase Chance Card Cost")]
+        [DefaultValue(null)]
+        public int SourceIncreaseChanceCardCost
+        {
+            get { return _sourceIncreaseChanceCost; }
+            set { _sourceIncreaseChanceCost = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Diode Increase Chance Card Cost")]
+        [DefaultValue(null)]
+        public int DiodeIncreaseChanceCardCost
+        {
+            get { return _diodeIncreaseChanceCost; }
+            set { _diodeIncreaseChanceCost = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Increase Initial Voltage Card Cost")]
+        [DefaultValue(null)]
+        public int IncreaseInitialVoltageCardCost
+        {
+            get { return _initialVoltageIncreaseCost; }
+            set { _initialVoltageIncreaseCost = value; }
+        }
+
+        [Category("Game Canvas Settings")]
+        [Description("Resistor Increase Chance Card Cost")]
+        [DefaultValue(null)]
+        public int ResistorIncreaseChanceCardCost
+        {
+            get { return _resistorIncreaseChanceCost; }
+            set { _resistorIncreaseChanceCost = value; }
         }
 
         [Category("Game Canvas Settings")]

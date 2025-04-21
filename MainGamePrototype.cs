@@ -261,6 +261,46 @@ namespace CircuitCraft
                         };
                         cardsList.Add(choicePromptData3);
                         break;
+                    case Cards.SourceIncreaseChance:
+                        ChoicePromptData choicePromptData4 = new ChoicePromptData
+                        {
+                            Cards = Cards.SourceIncreaseChance,
+                            CardImage = gameCanvas.SourceIncreaseChanceCardImage,
+                            CardDescription = gameCanvas.SourceIncreaseChanceCardDescription,
+                            Cost = gameCanvas.SourceIncreaseChanceCardCost
+                        };
+                        cardsList.Add(choicePromptData4);
+                        break;
+                    case Cards.DiodeIncreaseChance:
+                        ChoicePromptData choicePromptData5 = new ChoicePromptData
+                        {
+                            Cards = Cards.DiodeIncreaseChance,
+                            CardImage = gameCanvas.DiodeIncreaseChanceCardImage,
+                            CardDescription = gameCanvas.DiodeIncreaseChanceCardDescription,
+                            Cost = gameCanvas.DiodeIncreaseChanceCardCost
+                        };
+                        cardsList.Add(choicePromptData5);
+                        break;
+                    case Cards.ResistorIncreaseChance:
+                        ChoicePromptData choicePromptData6 = new ChoicePromptData
+                        {
+                            Cards = Cards.ResistorIncreaseChance,
+                            CardImage = gameCanvas.ResistorIncreaseChanceCardImage,
+                            CardDescription = gameCanvas.ResistorIncreaseChanceCardDescription,
+                            Cost = gameCanvas.ResistorIncreaseChanceCardCost
+                        };
+                        cardsList.Add(choicePromptData6);
+                        break;
+                    case Cards.InitialVoltageIncrease:
+                        ChoicePromptData choicePromptData7 = new ChoicePromptData
+                        {
+                            Cards = Cards.InitialVoltageIncrease,
+                            CardImage = gameCanvas.IncreaseInitialVoltageCardImage,
+                            CardDescription = gameCanvas.IncreaseInitialVoltageCardDescription,
+                            Cost = gameCanvas.IncreaseInitialVoltageCardCost
+                        };
+                        cardsList.Add(choicePromptData7);
+                        break;
                 }
                 UniqueCards.RemoveAt(randomIndex);
             }
@@ -272,7 +312,14 @@ namespace CircuitCraft
             ChoicePromptForm sourceForm = sender as ChoicePromptForm;
             if (sourceForm != null)
             {
-                gameCanvas.UnlockCircuitBlock(sourceForm.ChoicePromptData.Cards);
+                if (gameCanvas.GameState == GameState.BranchUnlocking)
+                {
+                    gameCanvas.UnlockCircuitBlock(sourceForm.ChoicePromptData.Cards);
+                }
+                else
+                {
+                    //
+                }
                 gameCanvas.NextRoundReset();
                 gameCanvas.StartRound();
             }
