@@ -161,7 +161,7 @@ namespace CircuitCraft
             }
         }
 
-        public void GameOverScreenPrompt()
+        public void GameOverScreenPrompt(string gameOverMessage)
         {
             MainGameChoiceOverlay frm = new MainGameChoiceOverlay();
             frm.Location = Location;
@@ -185,10 +185,13 @@ namespace CircuitCraft
             frmPrompt1.Location = panelTopLeftOnScreen;
             frmPrompt1.ShowInTaskbar = false;
             frmPrompt1.Show();
-            frmPrompt1.TheButtonClicked += GameOver_PlayAgainButtonClicked;
+            frmPrompt1.SetGameOverText(gameOverMessage);
+            frmPrompt1.OnPlayAgainButtonClicked += GameOver_PlayAgainButtonClicked;
+            frmPrompt1.OnBackToMainMenuClicked += GameOver_MainMenuButtonClicked;
             frmPrompt1.FormClosed += (s, args) =>
             {
-                frmPrompt1.TheButtonClicked -= GameOver_PlayAgainButtonClicked;
+                frmPrompt1.OnPlayAgainButtonClicked -= GameOver_PlayAgainButtonClicked;
+                frmPrompt1.OnBackToMainMenuClicked -= GameOver_MainMenuButtonClicked;
                 frm.Close();
             };
         }
@@ -267,6 +270,30 @@ namespace CircuitCraft
             {
                 gameCanvas.ResetGame();
                 gameCanvas.StartRound(3, 0.1, 0.2);
+            }
+            sourceForm.Close();
+        }
+
+        private void GameOver_MainMenuButtonClicked(object sender, EventArgs e)
+        {
+            GameOverScreenForm sourceForm = sender as GameOverScreenForm;
+            if (sourceForm != null)
+            {
+                var frm = new MainMenuForm();
+                frm.Location = Location;
+                frm.StartPosition = FormStartPosition.Manual;
+                if (WindowState == FormWindowState.Maximized)
+                {
+                    frm.WindowState = FormWindowState.Maximized;
+                }
+                else
+                {
+                    frm.Width = Width;
+                    frm.Height = Height;
+                }
+                frm.FormClosing += delegate { Close(); };
+                frm.Show();
+                Hide();
             }
             sourceForm.Close();
         }

@@ -42,7 +42,7 @@ namespace CircuitCraft
         public int LedBurnedCount { get; set; } = 0;
 
         public Action ShowChoicesPrompt { get; set; } = null;
-        public Action GameOverPrompt { get; set; } = null;
+        public Action<string> GameOverPrompt { get; set; } = null;
 
         private int _jouleCurrency;
         public int JouleCurrency {
@@ -377,6 +377,10 @@ namespace CircuitCraft
             MinimumOperatingCurrentTick = 0;
             OperatingCurrentTick = 0;
 
+            OperatingCurrentProgressBar.Value = 0;
+            WarningHighProgressBar.Progress = 0;
+            WarningLowProgressBar.Progress = 0;
+
             CurrentLevel = 1;
             JouleCurrency = 0;
 
@@ -501,16 +505,24 @@ namespace CircuitCraft
         public Dictionary<int, int> LevelJouleRequirements = new Dictionary<int, int>()
         {
             { 1, 3 },
-            { 2, 10 },
-            { 3, 30 },
-            { 4, 60 },
-            { 5, 100 }
+            { 2, 3 },
+            { 3, 3 },
+            { 4, 3 },
+            { 5, 3 },
+            { 6, 3 },
+            { 7, 3 },
+            { 8, 3 },
+            { 9, 3 },
         };
 
         double joulesAccumulation = 0;
+        private bool isTimed = false;
         private void GameLedTimer_Tick(object sender, EventArgs e)
         {
-            timeLeftToMaintainInSeconds -= 1;
+            if (!isTimed) 
+            { 
+                timeLeftToMaintainInSeconds -= 1;
+            }
 
             if (!double.IsNaN(result.LoadCurrent) && result.LoadCurrent > 0 )
             {
@@ -826,7 +838,7 @@ namespace CircuitCraft
             double rangeScale = (100 - 0) / (OperatingCurrent - MinimumOperatingCurrent);
             result = CircuitSimulator.CalculateLoadState(CircuitBlocks, SourceVoltage, LoadResistance);
             if (double.IsNaN(result.LoadCurrent)) {
-                GameOverPrompt();
+                GameOverPrompt("The diode blocked all current!");
                 PauseGame();
                 return;
             }
@@ -845,7 +857,7 @@ namespace CircuitCraft
             {
                 // LED Burned
                 LedBurnedCount++;
-                GameOverPrompt();
+                GameOverPrompt("Ooops! You burned the LED!");
                 PauseGame();
                 // Game over screen
             }
@@ -853,7 +865,7 @@ namespace CircuitCraft
             if (MinimumOperatingCurrentTick >= 10000 && result.LoadCurrent < MinimumOperatingCurrent)
             {
                 // LED Unpowered
-                GameOverPrompt();
+                GameOverPrompt("Umm... You did not power the LED!");
                 PauseGame();
                 // Game over screen
             }
@@ -1072,7 +1084,7 @@ namespace CircuitCraft
                         CurrentBlockIndex--;
                         if (currentBlockIndex == CurrentBlockIndex)
                         {
-                            GameOverPrompt();
+                            GameOverPrompt("You ran out of space!");
                             PauseGame();
                         }
                     }

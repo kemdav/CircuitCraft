@@ -31,6 +31,7 @@
             bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
             playAgainButton = new MaterialSkin.Controls.MaterialButton();
             mainMenuButton = new MaterialSkin.Controls.MaterialButton();
+            gameOverMessage = new ReaLTaiizor.Controls.BigLabel();
             SuspendLayout();
             // 
             // bigLabel1
@@ -52,13 +53,14 @@
             playAgainButton.Depth = 0;
             playAgainButton.HighEmphasis = true;
             playAgainButton.Icon = null;
-            playAgainButton.Location = new Point(160, 166);
+            playAgainButton.Location = new Point(160, 209);
             playAgainButton.Margin = new Padding(4, 6, 4, 6);
             playAgainButton.MouseState = MaterialSkin.MouseState.HOVER;
             playAgainButton.Name = "playAgainButton";
             playAgainButton.NoAccentTextColor = Color.Empty;
             playAgainButton.Size = new Size(263, 36);
             playAgainButton.TabIndex = 1;
+            playAgainButton.TabStop = false;
             playAgainButton.Text = "PLAY AGAIN";
             playAgainButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             playAgainButton.UseAccentColor = false;
@@ -73,23 +75,38 @@
             mainMenuButton.Depth = 0;
             mainMenuButton.HighEmphasis = true;
             mainMenuButton.Icon = null;
-            mainMenuButton.Location = new Point(160, 229);
+            mainMenuButton.Location = new Point(160, 257);
             mainMenuButton.Margin = new Padding(4, 6, 4, 6);
             mainMenuButton.MouseState = MaterialSkin.MouseState.HOVER;
             mainMenuButton.Name = "mainMenuButton";
             mainMenuButton.NoAccentTextColor = Color.Empty;
             mainMenuButton.Size = new Size(263, 36);
             mainMenuButton.TabIndex = 2;
+            mainMenuButton.TabStop = false;
             mainMenuButton.Text = "BACK TO MAIN MENU";
             mainMenuButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             mainMenuButton.UseAccentColor = false;
             mainMenuButton.UseVisualStyleBackColor = true;
+            mainMenuButton.Click += mainMenuButton_Click;
+            // 
+            // gameOverMessage
+            // 
+            gameOverMessage.BackColor = Color.Transparent;
+            gameOverMessage.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            gameOverMessage.ForeColor = Color.IndianRed;
+            gameOverMessage.Location = new Point(32, 118);
+            gameOverMessage.Name = "gameOverMessage";
+            gameOverMessage.Size = new Size(510, 85);
+            gameOverMessage.TabIndex = 3;
+            gameOverMessage.Text = "Game over message";
+            gameOverMessage.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // GameOverScreenForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(569, 320);
+            Controls.Add(gameOverMessage);
             Controls.Add(mainMenuButton);
             Controls.Add(playAgainButton);
             Controls.Add(bigLabel1);
@@ -104,5 +121,6 @@
         private ReaLTaiizor.Controls.BigLabel bigLabel1;
         private MaterialSkin.Controls.MaterialButton playAgainButton;
         private MaterialSkin.Controls.MaterialButton mainMenuButton;
+        private ReaLTaiizor.Controls.BigLabel gameOverMessage;
     }
 }
