@@ -449,6 +449,7 @@ namespace CircuitCraft
         public void NextRoundReset()
         {
             ClearCircuitElements();
+            ClearHoldCircuitElement();
 
             warningTimer.Stop();
 
