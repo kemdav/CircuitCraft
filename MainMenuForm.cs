@@ -18,12 +18,10 @@ namespace CircuitCraft
         private LibVLC _libvlc;
         private MediaPlayer _mediaPlayer;
 
-        private SoundPlayer sfxPlayer;
-        private string sfxFilePath_ClickButton = @"Assets\Audio\ClickButton.wav";
-
         public MainMenuForm()
         {
             InitializeComponent();
+            
             LibVLC _libvlc = new LibVLC();
             MediaPlayer _mediaPlayer = new MediaPlayer(_libvlc);
 
@@ -31,6 +29,7 @@ namespace CircuitCraft
             mainMenuBackgroundMedia.SendToBack();
             _mediaPlayer.Play(Program.mainMenuMedia);
         }
+
 
         public MainGame MainGame
         {
@@ -74,18 +73,7 @@ namespace CircuitCraft
 
         private void playButton_Click(object sender, EventArgs e)
         {
-            var frm = new MainGame();
-            frm.Location = Location;
-            frm.StartPosition = FormStartPosition.Manual;
-            if (WindowState == FormWindowState.Maximized)
-            {
-                frm.WindowState = FormWindowState.Maximized;
-            }
-            else
-            {
-                frm.Width = Width;
-                frm.Height = Height;
-            }
+            var frm = new MainGamePrototype();
             frm.FormClosing += delegate { Close(); };
             frm.Show();
             Hide();

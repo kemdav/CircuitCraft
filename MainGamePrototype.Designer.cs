@@ -67,6 +67,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             picNextElement1 = new PictureBox();
             lblNextTitle = new BigLabel();
             pnlBottomStatus = new System.Windows.Forms.Panel();
+            gameMessageLabel = new BigLabel();
             warningTimerLabel = new BigLabel();
             operatingCurrentProgressBar = new VerticalProgressBar();
             lblMaxThreshold = new BigLabel();
@@ -76,7 +77,6 @@ namespace CircuitCraft // Ensure this namespace matches your project
             lblCurrentValue = new BigLabel();
             picLedStatus = new PictureBox();
             panelGameCanvasContainer = new System.Windows.Forms.Panel();
-            gameMessageLabel = new BigLabel();
             gameCanvas = new GameCanvas();
             pnlTopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)mainMenuButton).BeginInit();
@@ -445,6 +445,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             // pnlBottomStatus
             // 
             pnlBottomStatus.BackColor = Color.FromArgb(64, 64, 64);
+            pnlBottomStatus.Controls.Add(gameMessageLabel);
             pnlBottomStatus.Controls.Add(warningTimerLabel);
             pnlBottomStatus.Controls.Add(operatingCurrentProgressBar);
             pnlBottomStatus.Controls.Add(lblMaxThreshold);
@@ -460,11 +461,26 @@ namespace CircuitCraft // Ensure this namespace matches your project
             pnlBottomStatus.Size = new Size(1920, 90);
             pnlBottomStatus.TabIndex = 4;
             // 
+            // gameMessageLabel
+            // 
+            gameMessageLabel.Anchor = AnchorStyles.Top;
+            gameMessageLabel.BackColor = Color.Transparent;
+            gameMessageLabel.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            gameMessageLabel.ForeColor = Color.White;
+            gameMessageLabel.Location = new Point(13, 8);
+            gameMessageLabel.Name = "gameMessageLabel";
+            gameMessageLabel.Size = new Size(667, 71);
+            gameMessageLabel.TabIndex = 6;
+            gameMessageLabel.Text = "bigLabel1";
+            gameMessageLabel.TextAlign = ContentAlignment.MiddleLeft;
+            gameMessageLabel.Visible = false;
+            // 
             // warningTimerLabel
             // 
             warningTimerLabel.BackColor = Color.Transparent;
             warningTimerLabel.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             warningTimerLabel.ForeColor = Color.White;
+            warningTimerLabel.ImageAlign = ContentAlignment.MiddleLeft;
             warningTimerLabel.Location = new Point(1249, 8);
             warningTimerLabel.Name = "warningTimerLabel";
             warningTimerLabel.Size = new Size(534, 73);
@@ -566,7 +582,6 @@ namespace CircuitCraft // Ensure this namespace matches your project
             // 
             panelGameCanvasContainer.BackColor = Color.FromArgb(40, 40, 40);
             panelGameCanvasContainer.BorderStyle = BorderStyle.Fixed3D;
-            panelGameCanvasContainer.Controls.Add(gameMessageLabel);
             panelGameCanvasContainer.Controls.Add(gameCanvas);
             panelGameCanvasContainer.Dock = DockStyle.Fill;
             panelGameCanvasContainer.Location = new Point(160, 55);
@@ -574,20 +589,6 @@ namespace CircuitCraft // Ensure this namespace matches your project
             panelGameCanvasContainer.Padding = new Padding(5);
             panelGameCanvasContainer.Size = new Size(1600, 887);
             panelGameCanvasContainer.TabIndex = 5;
-            // 
-            // gameMessageLabel
-            // 
-            gameMessageLabel.Anchor = AnchorStyles.Top;
-            gameMessageLabel.AutoSize = true;
-            gameMessageLabel.BackColor = Color.Black;
-            gameMessageLabel.Font = new Font("Segoe UI", 72F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            gameMessageLabel.ForeColor = Color.White;
-            gameMessageLabel.Location = new Point(590, 57);
-            gameMessageLabel.Name = "gameMessageLabel";
-            gameMessageLabel.Size = new Size(495, 128);
-            gameMessageLabel.TabIndex = 6;
-            gameMessageLabel.Text = "bigLabel1";
-            gameMessageLabel.Visible = false;
             // 
             // gameCanvas
             // 
@@ -606,6 +607,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.CircuitElementSourceSprite3 = (Image)resources.GetObject("gameCanvas.CircuitElementSourceSprite3");
             gameCanvas.CircuitElementSourceSprite4 = (Image)resources.GetObject("gameCanvas.CircuitElementSourceSprite4");
             gameCanvas.CircuitElementSourceSprite5 = (Image)resources.GetObject("gameCanvas.CircuitElementSourceSprite5");
+            gameCanvas.CircuitOverflowCount = 0;
             gameCanvas.CircuitSources = null;
             gameCanvas.CurrentBlockIndex = 0;
             gameCanvas.CurrentCircuitElementDropped = null;
@@ -658,10 +660,18 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.ParallelCircuitBlockImage = (Image)resources.GetObject("gameCanvas.ParallelCircuitBlockImage");
             gameCanvas.PauseButtonImage = (Image)resources.GetObject("gameCanvas.PauseButtonImage");
             gameCanvas.PlayButtonImage = (Image)resources.GetObject("gameCanvas.PlayButtonImage");
+            gameCanvas.RecordedCircuitOverflowed = 0;
+            gameCanvas.RecordedDiodeBlocked = 0;
+            gameCanvas.RecordedHighestJoule = 0;
+            gameCanvas.RecordedHighestLevel = 0;
+            gameCanvas.RecordedLedBurned = 0;
+            gameCanvas.RecordedLedUnpowered = 0;
+            gameCanvas.RecordedRating = 0;
             gameCanvas.ResistanceValueMultiplier = 2D;
             gameCanvas.ResistorIncreaseChanceCardCost = 0;
             gameCanvas.ResistorIncreaseChanceCardDescription = "Increase Resistor Spawn Rate by 10%";
             gameCanvas.ResistorIncreaseChanceCardImage = (Image)resources.GetObject("gameCanvas.ResistorIncreaseChanceCardImage");
+            gameCanvas.ReverseDiodeCount = 0;
             gameCanvas.SeriesCircuitBlockCardCost = 10;
             gameCanvas.SeriesCircuitBlockCardDescription = "Unlock a Series Circuit Branch";
             gameCanvas.SeriesCircuitBlockCardImage = (Image)resources.GetObject("gameCanvas.SeriesCircuitBlockCardImage");
@@ -679,6 +689,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.TrashCircuitBlockCardDescription = "Unlock a Disposable Circuit Branch";
             gameCanvas.TrashCircuitBlockCardImage = (Image)resources.GetObject("gameCanvas.TrashCircuitBlockCardImage");
             gameCanvas.TrashCircuitBlockImage = (Image)resources.GetObject("gameCanvas.TrashCircuitBlockImage");
+            gameCanvas.UnpoweredLedCount = 0;
             gameCanvas.WarningHighProgressBar = progressBarWarningHigh;
             gameCanvas.WarningLowProgressBar = progressBarWarningLow;
             gameCanvas.WarningTimerLabel = warningTimerLabel;
@@ -727,7 +738,6 @@ namespace CircuitCraft // Ensure this namespace matches your project
             pnlBottomStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picLedStatus).EndInit();
             panelGameCanvasContainer.ResumeLayout(false);
-            panelGameCanvasContainer.PerformLayout();
             ResumeLayout(false);
         }
 

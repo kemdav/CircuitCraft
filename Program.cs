@@ -30,6 +30,7 @@ namespace CircuitCraft
         public static Rectangle originalBounds;
 
         public static Media mainMenuMedia;
+
         private static string GetLibVLCPath()
         {
             var architectureFolder = IntPtr.Size == 8 ? "win-x64" : "win-x86";

@@ -60,6 +60,16 @@ namespace CircuitCraft
             gameCanvas.MainGamePrototype = this;
             gameCanvas.ShowChoicesPrompt = CardsChoicePrompt;
             gameCanvas.GameOverPrompt = GameOverScreenPrompt;
+
+            DataClass.AqcuireUserInformation();
+            gameCanvas.RecordedHighestLevel = DataClass.HighestLevelReached;
+            gameCanvas.RecordedLedBurned = DataClass.BurnedLeds;
+            gameCanvas.RecordedLedUnpowered = DataClass.UnpoweredLeds;
+            gameCanvas.RecordedHighestJoule = DataClass.HighestJoulesObtained;
+            gameCanvas.RecordedRating = DataClass.Rating;
+            gameCanvas.RecordedDiodeBlocked = DataClass.DiodeBlocked;
+            gameCanvas.RecordedCircuitOverflowed = DataClass.CircuitOverflowed;
+
         }
 
         public void EnterFullScreen()
@@ -208,7 +218,27 @@ namespace CircuitCraft
             frmPrompt1.RecordedDiodeBlocked = gameCanvas.RecordedDiodeBlocked;
             frmPrompt1.RecordedCircuitOverflowed  = gameCanvas.RecordedCircuitOverflowed;
 
-        frmPrompt1.FormClosed += (s, args) =>
+            DataClass.BurnedLeds = gameCanvas.LedBurnedCount + gameCanvas.RecordedLedBurned;
+            DataClass.UnpoweredLeds = gameCanvas.UnpoweredLedCount + gameCanvas.RecordedLedUnpowered;
+            DataClass.HighestLevelReached = gameCanvas.CurrentLevel;
+            DataClass.DiodeBlocked = gameCanvas.ReverseDiodeCount + gameCanvas.RecordedDiodeBlocked;
+            DataClass.CircuitOverflowed = gameCanvas.CircuitOverflowCount + gameCanvas.RecordedCircuitOverflowed;
+            DataClass.HighestJoulesObtained = gameCanvas.JouleCurrency;
+
+            frmPrompt1.LedBurned = gameCanvas.LedBurnedCount + gameCanvas.RecordedLedBurned;
+            gameCanvas.LedBurnedCount = 0;
+            frmPrompt1.LedUnpowered = gameCanvas.UnpoweredLedCount + gameCanvas.RecordedLedUnpowered;
+            gameCanvas.UnpoweredLedCount = 0;
+            frmPrompt1.HighestLevel = gameCanvas.CurrentLevel;
+            frmPrompt1.ReverseDiode = gameCanvas.ReverseDiodeCount + gameCanvas.RecordedDiodeBlocked;
+            gameCanvas.ReverseDiodeCount = 0;
+            frmPrompt1.Overflow = gameCanvas.CircuitOverflowCount + gameCanvas.RecordedCircuitOverflowed;
+            gameCanvas.CircuitOverflowCount = 0;
+            frmPrompt1.HighestJoule = gameCanvas.JouleCurrency;
+            frmPrompt1.Rating = DataClass.Rating;
+
+
+            frmPrompt1.FormClosed += (s, args) =>
             {
                 frmPrompt1.OnPlayAgainButtonClicked -= GameOver_PlayAgainButtonClicked;
                 frmPrompt1.OnBackToMainMenuClicked -= GameOver_MainMenuButtonClicked;
@@ -431,16 +461,6 @@ namespace CircuitCraft
         {
             var frm = new MainMenuForm();
             frm.Location = Location;
-            frm.StartPosition = FormStartPosition.Manual;
-            if (WindowState == FormWindowState.Maximized)
-            {
-                frm.WindowState = FormWindowState.Maximized;
-            }
-            else
-            {
-                frm.Width = Width;
-                frm.Height = Height;
-            }
             frm.FormClosing += delegate { Close(); };
             frm.Show();
             Hide();

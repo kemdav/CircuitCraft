@@ -57,6 +57,9 @@ namespace CircuitCraft
             }
         }
         public int LedBurnedCount { get; set; } = 0;
+        public int UnpoweredLedCount { get; set; } = 0;
+        public int ReverseDiodeCount { get; set; } = 0;
+        public int CircuitOverflowCount { get; set; } = 0;
 
         public Action ShowChoicesPrompt { get; set; } = null;
         public Action<string> GameOverPrompt { get; set; } = null;
@@ -534,11 +537,11 @@ namespace CircuitCraft
 
 
         private int roundStartTimerTick = 0;
-        private int roundStartTime = 5000;
+        private int roundStartTime = 6000;
         public void RoundStartTimer_Tick(object sender, EventArgs e)
         {
-            GameMessage("STARTING IN " + (roundStartTime - roundStartTimerTick)/1000 + "...");
             roundStartTimerTick += 1000;
+            GameMessage("ROUND STARTING IN " + ((roundStartTime - roundStartTimerTick)/1000) + "...");
 
             if (roundStartTimerTick >= roundStartTime)
             {
@@ -567,13 +570,13 @@ namespace CircuitCraft
         }
 
         private int warningStartTimerTick = 0;
-        private int warningStartCooldown = 11000; // in ms
+        private int warningStartCooldown = 10000; // in ms
         public void WarningStartTimer_Tick(object sender, EventArgs e)
         {
-            WarningTimerLabel.Visible = true;
             warningStartTimerTick += 1000;
 
-            WarningTimerLabel.Text = "Measuring in " + (warningStartCooldown - warningStartTimerTick) / 1000 + "...";
+            WarningTimerLabel.Text = "MEASURING STARTING IN " + (warningStartCooldown - warningStartTimerTick) / 1000 + "...";
+            WarningTimerLabel.Visible = true;
             if (warningStartTimerTick >= warningStartCooldown)
             {
                 WarningTimerLabel.Visible = false;
@@ -588,19 +591,13 @@ namespace CircuitCraft
 
         public void GameMessage(string message)
         {
-            GameMessageLabel.Parent = MainGamePrototype;
             GameMessageLabel.Text = message;
             GameMessageLabel.Visible = true;
             GameMessageLabel.BringToFront();
-
-            int newLeft = (MainGamePrototype.ClientSize.Width - GameMessageLabel.Width) / 2;
-
-            GameMessageLabel.Location = new Point(newLeft, GameMessageLabel.Location.Y);
         }
 
         public void GameMessage()
         {
-            GameMessageLabel.Parent = MainGamePrototype;
             GameMessageLabel.Text = "";
             GameMessageLabel.Visible = false;
         }
@@ -1154,6 +1151,7 @@ namespace CircuitCraft
             if (MinimumOperatingCurrentTick >= 10000 && result.LoadCurrent < MinimumOperatingCurrent)
             {
                 // LED Unpowered
+                UnpoweredLedCount++;
                 GameOverPrompt("Umm... You did not power the LED!");
                 PauseGame();
                 // Game over screen
