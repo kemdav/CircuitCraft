@@ -409,9 +409,9 @@ namespace CircuitCraft
             CurrentBlockIndex = 0;
             CircuitBlocks[CurrentBlockIndex].Controls.Remove(CurrentCircuitElementDropped);
             CurrentCircuitElementDropped = null;
+            ClearUpNextComponents();
+            ClearHoldCircuitElement();
 
-            holdCooldownTick = 0;
-            holdOnCooldown = false;
 
             MinimumOperatingCurrentTick = 0;
             OperatingCurrentTick = 0;
@@ -419,6 +419,8 @@ namespace CircuitCraft
             OperatingCurrentProgressBar.Value = 0;
             WarningHighProgressBar.Progress = 0;
             WarningLowProgressBar.Progress = 0;
+
+            NextComponentProgressbar.Progress = 100;
 
             CurrentLevel = 1;
             JouleCurrency = 0;
@@ -445,8 +447,13 @@ namespace CircuitCraft
         {
             ClearCircuitElements();
 
+            warningTimer.Stop();
+            warningStartTimer.Start();
+
             MinimumOperatingCurrentTick = 0;
             OperatingCurrentTick = 0;
+
+            ClearUpNextComponents();
 
             CircuitBlocks[CurrentBlockIndex].Controls.Remove(CurrentCircuitElementDropped);
             CurrentCircuitElementDropped = null;
@@ -467,6 +474,7 @@ namespace CircuitCraft
                 UpdateCircuitBlock(CircuitBlocks[i]);
             }
         }
+
 
         private int roundStartTimerTick = 0;
         private int roundStartTime = 5000;
@@ -580,7 +588,23 @@ namespace CircuitCraft
                         { 
                             PauseGame();
                             JouleCurrency -= LevelJouleRequirements[CurrentLevel];
-                            CurrentLevel++;
+                            DifficultyManager.UpdateDifficulty(new List<Image>()
+                            {
+                                CircuitElementSourceSprite1,
+                                CircuitElementSourceSprite2,
+                                CircuitElementSourceSprite3,
+                                CircuitElementSourceSprite4,
+                                CircuitElementSourceSprite5
+                            },
+                            new List<Image>()
+                            {
+                                CircuitElementResistorSprite1,
+                                CircuitElementResistorSprite2,
+                                CircuitElementResistorSprite3,
+                                CircuitElementResistorSprite4,
+                                CircuitElementResistorSprite5
+                            }, ref _currentLevel, CurrentLevel + 1);
+                            UpdateDifficultyValues();
                             ShowChoicesPrompt();
                         }
                     }
@@ -715,6 +739,18 @@ namespace CircuitCraft
             }
 
             return clonedImage;
+        }
+
+        public void ClearUpNextComponents()
+        {
+            List<PictureBox> nextComponentsPboxs = new List<PictureBox>() { NextComponentPictureBox1, NextComponentPictureBox2 };
+            List<BigLabel> nextComponentsLabels = new List<BigLabel>() { NextComponentLabel1, NextComponentLabel2 };
+
+            for (int i = 0; i < 2; i++)
+            {
+                nextComponentsPboxs[i].Image = null;
+                nextComponentsLabels[i].Text = "";
+            }
         }
 
         public void FillUpNextComponents()
@@ -1062,6 +1098,20 @@ namespace CircuitCraft
                     circuitBlock.BackgroundImageLayout = ImageLayout.Zoom;
                     break;
             }
+        }
+
+        public void ClearHoldCircuitElement()
+        {
+            HoldComponentPbox.Image = null;
+            HoldComponentLabel.Text = "";
+
+            holdCooldownTick = 0;
+            holdOnCooldown = false;
+
+            HoldCooldownProgressbar.Progress = 100;
+            holdCooldownTimer.Stop();
+
+            CurrentCircuitElementHold = null;
         }
 
         public void HoldCircuitElement(CircuitElementType type, double voltage, double resistance)
