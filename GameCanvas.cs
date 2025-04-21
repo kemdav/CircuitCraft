@@ -13,6 +13,11 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace CircuitCraft
 {
+    public enum GameState
+    {
+        BranchUnlocking,
+        Survival
+    }
     public partial class GameCanvas : UserControl
     {
         public MainGamePrototype MainGamePrototype { get; set; }
@@ -23,6 +28,7 @@ namespace CircuitCraft
             public double Resistance;
         }
 
+        public GameState GameState { get; set; } = GameState.BranchUnlocking;
         public double SourceValueMultiplier { get; set; } = 0.2;
         public double ResistanceValueMultiplier { get; set; } = 2;
 
@@ -587,7 +593,14 @@ namespace CircuitCraft
                         if (ShowChoicesPrompt != null)
                         { 
                             PauseGame();
-                            JouleCurrency -= LevelJouleRequirements[CurrentLevel];
+                            if (CurrentLevel + 1 >= 10)
+                            {
+                                GameState = GameState.Survival;
+                            }
+                            if (GameState == GameState.BranchUnlocking)
+                            {
+                                JouleCurrency -= LevelJouleRequirements[CurrentLevel];
+                            }
                             DifficultyManager.UpdateDifficulty(new List<Image>()
                             {
                                 CircuitElementSourceSprite1,
