@@ -81,28 +81,31 @@ namespace CircuitCraft
         public static byte[] profileImageBytes;
 
 
-        private static int _circuitsCompleted;
-        private static int _burnedResistors;
+        private static int _highestLevelReached;
+        private static int _highestJoulesObtained;
+        private static int _unpoweredLeds;
         private static int _burnedLeds;
+        private static int _diodeBlocked;
+        private static int _circuitOverflowed;
         private static int _rating;
 
-        public static int CircuitsCompleted
+        public static int HighestLevelReached
         {
-            get { return _circuitsCompleted; }
+            get { return _highestLevelReached; }
             set
             {
-                _circuitsCompleted = value;
-                Rating = Program.CalculateRating(_circuitsCompleted, _burnedResistors, _burnedLeds);
+                _highestLevelReached = value;
+                Rating = Program.CalculateRating(_highestLevelReached, _unpoweredLeds, _burnedLeds);
                 UpdateUserInformation("CircuitsCompleted", value);
             }
         }
-        public static int BurnedResistors
+        public static int UnpoweredLeds
         {
-            get { return _burnedResistors; }
+            get { return _unpoweredLeds; }
             set
             {
-                _burnedResistors = value;
-                Rating = Program.CalculateRating(_circuitsCompleted, _burnedResistors, _burnedLeds);
+                _unpoweredLeds = value;
+                Rating = Program.CalculateRating(_highestLevelReached, _unpoweredLeds, _burnedLeds);
                 UpdateUserInformation("BurnedResistors", value);
             }
         }
@@ -112,7 +115,7 @@ namespace CircuitCraft
             set
             {
                 _burnedLeds = value;
-                Rating = Program.CalculateRating(_circuitsCompleted, _burnedResistors, _burnedLeds);
+                Rating = Program.CalculateRating(_highestLevelReached, _unpoweredLeds, _burnedLeds);
                 UpdateUserInformation("BurnedLed", value);
             }
         }
@@ -171,8 +174,8 @@ namespace CircuitCraft
         {
             username = string.Empty;
             profileImageBytes = null;
-            CircuitsCompleted = 0;
-            BurnedResistors = 0;
+            HighestLevelReached = 0;
+            UnpoweredLeds = 0;
             BurnedLeds = 0;
             Rating = 0;
             MusicVolume = 100;
@@ -191,9 +194,12 @@ namespace CircuitCraft
             string createStatsTableSql = @"
                     CREATE TABLE IF NOT EXISTS GameStatistics (
                         Username TEXT PRIMARY KEY NOT NULL UNIQUE,
-                        CircuitsCompleted INTEGER NOT NULL DEFAULT 0,
-                        BurnedResistors INTEGER NOT NULL DEFAULT 0,
+                        HighestLevelReached INTEGER NOT NULL DEFAULT 0,
+                        HighestJoulesObtained INTEGER NOT NULL DEFAULT 0,
+                        UnpoweredLed INTEGER NOT NULL DEFAULT 0,
                         BurnedLed INTEGER NOT NULL DEFAULT 0,
+                        DiodeBlocked INTEGER NOT NULL DEFAULT 0,
+                        CircuitOverflowed INTEGER NOT NULL DEFAULT 0,
                         Rating INTEGER NOT NULL DEFAULT 0,
                         FOREIGN KEY (Username) REFERENCES User(Username)
                             ON DELETE CASCADE -- Automatically delete stats if user is deleted
@@ -332,10 +338,13 @@ namespace CircuitCraft
         SELECT 
             U.Username, 
             U.ProfileImage, 
-            GS.CircuitsCompleted, 
-            GS.BurnedResistors, 
+            GS.HighestLevelReached, 
+            GS.HighestJoulesObtained, 
+            GS.UnpoweredLed, 
             GS.BurnedLed, 
-            GS.Rating, 
+            GS.DiodeBlocked,
+            GS.CircuitOverflowed,
+            GS.Rating,
             SETT.MusicVolume, 
             SETT.SoundVolume
         FROM User U
@@ -361,13 +370,16 @@ namespace CircuitCraft
 
                             profileImageBytes = reader["ProfileImage"] as byte[];
 
-                            _circuitsCompleted = reader.GetInt32(2); 
-                            _burnedResistors = reader.GetInt32(3);     
-                            _burnedLeds = reader.GetInt32(4);        
-                            _rating = reader.GetInt32(5);            
-                                                                     
-                            _musicVolume = reader.GetInt32(6);         
-                            _soundVolume = reader.GetInt32(7);          
+                            _highestLevelReached = reader.GetInt32(2);
+                            _highestJoulesObtained = reader.GetInt32(3);
+                            _unpoweredLeds = reader.GetInt32(4);
+                            _burnedLeds = reader.GetInt32(5);
+                            _diodeBlocked = reader.GetInt32(6);
+                            _circuitOverflowed = reader.GetInt32(7);
+                            _rating = reader.GetInt32(8);
+                                  
+                            _musicVolume = reader.GetInt32(9);         
+                            _soundVolume = reader.GetInt32(10);          
                         }
                         else
                         {
@@ -437,9 +449,12 @@ namespace CircuitCraft
                     }
                     break;
 
-                case "circuitscompleted":
-                case "burnedresistors":
+                case "highestlevelreached":
+                case "highestjoulesobtained":
+                case "unpoweredled":
                 case "burnedled":
+                case "diodeblocked":
+                case "circuitoverflowed":
                 case "rating":
                     tableName = "GameStatistics";
                     break;
@@ -513,9 +528,12 @@ namespace CircuitCraft
         SELECT 
             U.Username, 
             U.ProfileImage, 
-            GS.CircuitsCompleted, 
-            GS.BurnedResistors, 
+            GS.HighestLevelReached, 
+            GS.HighestJoulesObtained, 
+            GS.UnpoweredLed, 
             GS.BurnedLed, 
+            GS.DiodeBlocked,
+            GS.CircuitOverflowed,
             GS.Rating, 
             SETT.MusicVolume, 
             SETT.SoundVolume
@@ -564,9 +582,12 @@ namespace CircuitCraft
 
         public static void ResetUser()
         {
-            UpdateUserInformation("CircuitsCompleted", 0);
-            UpdateUserInformation("BurnedResistors", 0);
+            UpdateUserInformation("HighestLevelReached", 0);
+            UpdateUserInformation("HighestJoulesObtained", 0);
+            UpdateUserInformation("UnpoweredLed", 0);
             UpdateUserInformation("BurnedLed", 0);
+            UpdateUserInformation("DiodeBlocked", 0);
+            UpdateUserInformation("CircuitOverflowed", 0);
             UpdateUserInformation("Rating", 0);
         }
 

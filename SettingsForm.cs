@@ -28,9 +28,9 @@ namespace CircuitCraft
                 DataClass.AqcuireUserInformation();
                 usernameTxt.Text = "USERNAME: " + DataClass.username;
                 ratingTxt.Text = "RATING: " + DataClass.Rating;
-                circuitsCompletedTxt.Text = "" + DataClass.CircuitsCompleted;
+                circuitsCompletedTxt.Text = "" + DataClass.HighestLevelReached;
                 ledsBurnedTxt.Text = "" + DataClass.BurnedLeds;
-                resistorsBurnedTxt.Text = "" + DataClass.BurnedResistors;
+                resistorsBurnedTxt.Text = "" + DataClass.UnpoweredLeds;
                 if (DataClass.profileImageBytes != null)
                 {
                     using (MemoryStream stream = new MemoryStream(DataClass.profileImageBytes))
