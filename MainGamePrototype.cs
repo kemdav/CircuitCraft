@@ -16,7 +16,11 @@ namespace CircuitCraft
     {
         SeriesCircuit,
         ParallelCircuit,
-        TrashCircuit
+        TrashCircuit,
+        DiodeIncreaseChance,
+        SourceIncreaseChance,
+        ResistorIncreaseChance,
+        InitialVoltageIncrease
     }
     public partial class MainGamePrototype : Form
     {
@@ -198,12 +202,26 @@ namespace CircuitCraft
 
         public List<ChoicePromptData> GenerateThreeRandomCards()
         {
-            List<Cards> UniqueCards = new List<Cards>()
+            List<Cards> UniqueCards;
+            if (gameCanvas.GameState == GameState.BranchUnlocking)
             {
-                Cards.SeriesCircuit,
-                Cards.ParallelCircuit,
-                Cards.TrashCircuit
-            };
+                UniqueCards = new List<Cards>()
+                {
+                    Cards.SeriesCircuit,
+                    Cards.ParallelCircuit,
+                    Cards.TrashCircuit
+                };
+            }
+            else
+            {
+                UniqueCards = new List<Cards>()
+                {
+                    Cards.SourceIncreaseChance,
+                    Cards.DiodeIncreaseChance,
+                    Cards.ResistorIncreaseChance,
+                    Cards.InitialVoltageIncrease
+                };
+            }
 
             Random random = new Random();
             List<ChoicePromptData> cardsList = new List<ChoicePromptData>();
@@ -218,7 +236,7 @@ namespace CircuitCraft
                             Cards = Cards.SeriesCircuit,
                             CardImage = gameCanvas.SeriesCircuitBlockCardImage,
                             CardDescription = gameCanvas.SeriesCircuitBlockCardDescription,
-                            Cost = gameCanvas.SeriesCircuitBlockCardCost
+                            Cost = 0
                         };
                         cardsList.Add(choicePromptData);
                         break;
@@ -228,7 +246,7 @@ namespace CircuitCraft
                             Cards = Cards.ParallelCircuit,
                             CardImage = gameCanvas.ParallelCircuitBlockCardImage,
                             CardDescription = gameCanvas.ParallelCircuitBlockCardDescription,
-                            Cost = gameCanvas.ParallelCircuitBlockCardCost
+                            Cost = 0
                         };
                         cardsList.Add(choicePromptData2);
                         break;
@@ -238,7 +256,7 @@ namespace CircuitCraft
                             Cards = Cards.TrashCircuit,
                             CardImage = gameCanvas.TrashCircuitBlockCardImage,
                             CardDescription = gameCanvas.TrashCircuitBlockCardDescription,
-                            Cost = gameCanvas.TrashCircuitBlockCardCost
+                            Cost = 0
                         };
                         cardsList.Add(choicePromptData3);
                         break;

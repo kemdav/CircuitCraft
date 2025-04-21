@@ -834,6 +834,122 @@ namespace CircuitCraft
             }
         }
 
+
+        private double currentDiodeProbability = 20.0;
+        private double currentSourceProbability = 30.0;
+        private double currentResistorProbability = 50.0;
+
+        public int DiodeProbability => (int)Math.Round(currentDiodeProbability);
+        public int SourceProbability => (int)Math.Round(currentSourceProbability);
+        public int ResistorProbability => 100 - DiodeProbability - SourceProbability;
+
+        public void AdjustProbability(CircuitElementType typeToIncrease, double increaseAmount)
+        {
+            if (increaseAmount <= 0) // Only handle increases here
+            {
+                Console.WriteLine("Increase amount must be positive.");
+                return;
+            }
+
+            // References to the probabilities based on the type
+            double probToIncrease;
+            double probToReduce1, probToReduce2;
+            Action<double> setIncreased, setReduced1, setReduced2;
+
+            // Assign references based on the type selected
+            switch (typeToIncrease)
+            {
+                case CircuitElementType.Diode:
+                    probToIncrease = currentDiodeProbability;
+                    probToReduce1 = currentSourceProbability;
+                    probToReduce2 = currentResistorProbability;
+                    setIncreased = (v) => currentDiodeProbability = v;
+                    setReduced1 = (v) => currentSourceProbability = v;
+                    setReduced2 = (v) => currentResistorProbability = v;
+                    break;
+
+                case CircuitElementType.Source:
+                    probToIncrease = currentSourceProbability;
+                    probToReduce1 = currentDiodeProbability;
+                    probToReduce2 = currentResistorProbability;
+                    setIncreased = (v) => currentSourceProbability = v;
+                    setReduced1 = (v) => currentDiodeProbability = v;
+                    setReduced2 = (v) => currentResistorProbability = v;
+                    break;
+
+                case CircuitElementType.Resistor:
+                    probToIncrease = currentResistorProbability;
+                    probToReduce1 = currentDiodeProbability;
+                    probToReduce2 = currentSourceProbability;
+                    setIncreased = (v) => currentResistorProbability = v;
+                    setReduced1 = (v) => currentDiodeProbability = v;
+                    setReduced2 = (v) => currentSourceProbability = v;
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(typeToIncrease), "Invalid component type");
+            }
+
+            // 1. Clamp the requested increase: Cannot go above 100%
+            increaseAmount = Math.Min(increaseAmount, 100.0 - probToIncrease);
+            if (increaseAmount <= 1e-6) // Check if increase is practically zero
+            {
+                Console.WriteLine("Cannot increase probability further (already at or near 100%).");
+                return;
+            }
+
+            // 2. Calculate the pool of probability available for reduction
+            double reductionPool = probToReduce1 + probToReduce2;
+
+            // 3. Check if reduction is possible
+            if (reductionPool <= 1e-6) // Use tolerance for floating point comparison
+            {
+                Console.WriteLine("Cannot increase probability; other probabilities are already at or near zero.");
+                // Even though we clamped increaseAmount before, this handles the case
+                // where the target is not 100%, but the *others* are 0%.
+                return;
+            }
+
+            // 4. Calculate proportional reduction amounts
+            double ratio1 = probToReduce1 / reductionPool;
+            double ratio2 = probToReduce2 / reductionPool; // Or ratio2 = 1.0 - ratio1;
+
+            double reduction1 = increaseAmount * ratio1;
+            double reduction2 = increaseAmount * ratio2;
+
+            // 5. Apply changes (ensure no probability goes below zero)
+            double finalIncreasedProb = probToIncrease + increaseAmount;
+            double finalReducedProb1 = Math.Max(0.0, probToReduce1 - reduction1);
+            double finalReducedProb2 = Math.Max(0.0, probToReduce2 - reduction2);
+
+            // 6. Optional: Fine-tune due to clamping/floating point to ensure sum is exactly 100
+            // Calculate the actual total reduction achieved
+            double actualTotalReduction = (probToReduce1 - finalReducedProb1) + (probToReduce2 - finalReducedProb2);
+            // Adjust the increased probability by the reduction actually achieved
+            finalIncreasedProb = probToIncrease + actualTotalReduction;
+
+            // Final check to prevent exceeding 100 due to float issues and ensure sum is 100
+            finalIncreasedProb = Math.Min(100.0, finalIncreasedProb); // Clamp just in case
+            double currentSum = finalIncreasedProb + finalReducedProb1 + finalReducedProb2;
+
+            // If sum isn't 100 adjust the largest reducer (or the increased one) slightly
+            if (Math.Abs(currentSum - 100.0) > 1e-6)
+            {
+                double diff = 100.0 - currentSum;
+                // Apply correction to the last one calculated or the largest pool contributor
+                finalReducedProb2 += diff;
+                // Re-clamp after correction
+                finalReducedProb2 = Math.Max(0.0, Math.Min(100.0, finalReducedProb2));
+            }
+
+
+            // 7. Update the actual member variables using the setters
+            setIncreased(finalIncreasedProb);
+            setReduced1(finalReducedProb1);
+            setReduced2(finalReducedProb2);
+        }
+
+
         public CircuitElementTemp GenerateRandomCircuitComponent()
         {
             Random rng = new Random();
@@ -843,17 +959,18 @@ namespace CircuitCraft
             double randomResistance = 0;
             double randomVoltage = 0;
 
+
             CircuitElementType circuitElementType;
 
-            if (randomNumber1 > 0 && randomNumber1 <= 20)
+            if (randomNumber1 > 0 && randomNumber1 <= currentDiodeProbability)
             {
                 circuitElementType = CircuitElementType.Diode;
             }
-            else if (randomNumber1 > 20 && randomNumber1 <= 50)
+            else if (randomNumber1 > currentDiodeProbability && randomNumber1 <= currentDiodeProbability + currentSourceProbability)
             {
                 circuitElementType = CircuitElementType.Source;
             }
-            else if (randomNumber1 > 50 && randomNumber1 <= 100)
+            else if (randomNumber1 > currentDiodeProbability + currentSourceProbability && randomNumber1 <= 100)
             {
                 circuitElementType = CircuitElementType.Resistor;
             }
