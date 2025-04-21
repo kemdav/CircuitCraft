@@ -128,6 +128,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             mainMenuButton.SizeMode = PictureBoxSizeMode.Zoom;
             mainMenuButton.TabIndex = 50;
             mainMenuButton.TabStop = false;
+            mainMenuButton.Click += mainMenuButton_Click;
             // 
             // restartButton
             // 
@@ -620,7 +621,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.CircuitElementSourceSprite4 = (Image)resources.GetObject("gameCanvas.CircuitElementSourceSprite4");
             gameCanvas.CircuitElementSourceSprite5 = (Image)resources.GetObject("gameCanvas.CircuitElementSourceSprite5");
             gameCanvas.CircuitSources = null;
-            gameCanvas.CurrentBlockIndex = 0;
+            gameCanvas.CurrentBlockIndex = -1;
             gameCanvas.CurrentCircuitElementDropped = null;
             gameCanvas.CurrentCircuitElementDroppedOrientation = 0;
             gameCanvas.CurrentCircuitElementDroppedResistance = 0D;

@@ -121,7 +121,7 @@
   <data name="mainMenuButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAjYAAAJUCAYAAAAGimxkAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EQAACxEBf2RfkQAALFZJREFUeF7t1ufz9e1a1/cNJCamaMoDu2IHe8GOiBWxASIgjmU0mZRJMimTTJJJ
+        EAAACxABrSO9dQAALFZJREFUeF7t1ufz9e1a1/cNJCamaMoDu2IHe8GOiBWxASIgjmU0mZRJMimTTJJJ
         Rp1kkomOCihl05EqVYp0Aekd7OZfyOR5VGqOY29u93Hv/bnvta7rOn/nb61zvd4zr2Hv4wHzm7n2+p6f
         t/z4j/84AMAR4hEA4B7FIwDAPYpHAIB7FI8AAPcoHgEA7lE8TtV/Vvo/AMCrkpaUNkuLx6kybABYRVpS
         2iwtHqfKsAFgFWlJabO0eJwqwwaAVaQlpc3S4nGqDBsAVpGWlDZLi8epMmwAWEVaUtosLR6nyrABYBVp
@@ -316,7 +316,7 @@
   <data name="restartButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAiwAAAIsCAYAAADRd/LpAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EQAACxEBf2RfkQAARBpJREFUeF7t3Xm8rWP9//FlzJh5nqKiNGiiklKiAUV9o0nf0jyHVH4NKApFo0gk
+        EAAACxABrSO9dQAARBpJREFUeF7t3Xm8rWP9//FlzJh5nqKiNGiiklKiAUV9o0nf0jyHVH4NKApFo0gk
         idJIKkpzJEWGEmWWKVPmeej3/pz9Pc71Pufae6+19hru+7per8fj+cfFPufse037s9e6h85///tfAACA
         Rsv+RwAAgCbJ/kcAAIAm8QUR1dia8lR5oewgO8lecoj8UH4jp8rpcrb8XS6QS+UquU5uktslXkhSt8oN
         co1cLhdK/Pn4e/4sp8hJ8h05WPaWXeVN8jJ5rmwga8gSQkQVZTOKLYiolFaRGEJeIm+TPeVQ+amcIZfJ
@@ -3127,7 +3127,7 @@
   <data name="gameCanvas.DiodeIncreaseChanceCardImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAANYAAAIQCAYAAAD9zZCuAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DwAACw8BkvkDpQAAJTJJREFUeF7tnQ3QdVdZnj8IP0kISghIECGIhQZBKAQpPxGwmmIJYgoFx6qAgGWk
+        DgAACw4BQL7hQQAAJTJJREFUeF7tnQ3QdVdZnj8IP0kISghIECGIhQZBKAQpPxGwmmIJYgoFx6qAgGWk
         lKFSUAiFIFRG1BmsErWoQ0V+q5CKgyDYQUXCPwlgSQD5FbAQCAmEyF/o/Tzffp/vTrK+L+usvdZZa533
         vmauGeYh3zn7rLOv9z3vOfvsfeBb3/qWlLKyyaGUcp3JoZRyncmhlHKdyaGUcp3JoZRyncmhlHKdyaGU
         cp3JoZRynVcfiG1xU3gX+ED4WPgs+AfwdfB98AvQnpAc7b+1f2P/9veh3Zbd5unwX0C7L7EFoiOOygei
@@ -3292,7 +3292,7 @@
   <data name="gameCanvas.IncreaseInitialVoltageCardImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAASYAAAH2CAYAAADd+iH1AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DwAACw8BkvkDpQAAM2dJREFUeF7tnQn4buW4/zeKlIqIkiGZMhQZwp9zkGMmY455ajhoODLmmJKIcMwU
+        DgAACw4BQL7hQQAAM2dJREFUeF7tnQn4buW4/zeKlIqIkiGZMhQZwp9zkGMmY455ajhoODLmmJKIcMwU
         OWWIcMwKZYx0yEwpcyhpQJIk5f/97n3tu/ve+/n99u+31rPW86z1fD/X9bnOdd9na6/3Xev97net9xlW
         /POf/1xLIcQkuRK8OXwQ3AseCN8O3w0/AI+Eh8M3whfDp8Kd4BbwCrAoIYN8YU0hxBTYCDKEXgtPhBdB
         foC7eDb8NHwBvAO8IhyVkEG+sKYQolY2hI+Hn4R/gz5ccnoWfBv8VzjKt6mQQb6wphCiNm4K3wzPhz5A
@@ -4210,7 +4210,7 @@
   <data name="gameCanvas.PlayButtonImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAigAAAIoCAYAAABDDRCFAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EQAACxEBf2RfkQAALMlJREFUeF7t3QmUdHdd5+HkTViSkJCAnCMkBhcUGTSAWdi3g7gdTURghhkVBBxF
+        EAAACxABrSO9dQAALMlJREFUeF7t3QmUdHdd5+HkTViSkJCAnCMkBhcUGTSAWdi3g7gdTURghhkVBBxF
         RiEE4oYEBAyoRBQXlgTQUYRxRhkFBAkhDGBYRjYhCaNHyAYSQiArSzbn+8uLyb/S1f1Wd213eT7nPJwc
         uru6tnvr9/676t69/u3f/g0AoFN2/4+ksbRv3DnuFQ+PR8WT4oR4frws/iT+Mt4a74oPxifiX+Kz8YX4
         UlwRV8dX49q44evqv+v/q6/V99T31s/Uz9ZlfDzqMuuy63fU76rfWb+7rsMz4olR162u4xFR17muu6QR
@@ -4407,7 +4407,7 @@
   <data name="gameCanvas.ResistorIncreaseChanceCardImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAj0AAADhCAYAAAAj8gR8AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DwAACw8BkvkDpQAAGJBJREFUeF7t3Xv0tXOZx/HHIQyjmOT45Pgop8jKTE3WNNOcGg0yM1GIqUjFUFSI
+        DgAACw4BQL7hQQAAGJBJREFUeF7t3Xv0tXOZx/HHIQyjmOT45Pgop8jKTE3WNNOcGg0yM1GIqUjFUFSI
         GYdKNeTYVIzDNBVpknRQWYMZNGvUGArJ6XEox8mxhIU887lYeH729fB9fr/r+93Xvr/v91qvf/aifXe7
         79++9n3as+bNmwcAADB47osAAABD474IAAAwNO6LAAAAQ+O+CAAAMDTuiwAAAEPjvggAADA07osAAABD
         474IAAAwNO6LAAAAQ+O+CAAAMDTuiwAAAEPjvggAADA07osAAABD474IAAAwNO6LAAAAQ+O+CAAAMDSU
@@ -4877,7 +4877,7 @@
   <data name="gameCanvas.SourceIncreaseChanceCardImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAkAAAAGkCAYAAADZp5o/AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DwAACw8BkvkDpQAAO0BJREFUeF7t3Xn8vdtc9/GfO905xkwJCYXSZDrGwsnQRCokFQkhs9J4l8ySolJu
+        DgAACw4BQL7hQQAAO0BJREFUeF7t3Xn8vdtc9/GfO905xkwJCYXSZDrGwsnQRCokFQkhs9J4l8ySolJu
         ZchUQmUoJMNxUncqUQgpQxSVzGOa3O91vv3O+ax1Pvuz197XtfZ3ret6PR+P1x/r93D2+u7f/l3X92NP
         14nPfOYzRERERKvK/UMiIiKiJef+IREREdGSc/+QiIiIaMm5f0hERES05Nw/JCIiIlpy7h8SERERLTn3
         D4mIiIiWnPuHREREREsuXwDo3eXVr6pPqXTQ0uH7pHqMuqQC0DE745TlCwA9u52yv4jpePuE+lYFoFN2
