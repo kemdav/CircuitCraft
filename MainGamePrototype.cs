@@ -224,6 +224,7 @@ namespace CircuitCraft
             DataClass.DiodeBlocked = gameCanvas.ReverseDiodeCount + gameCanvas.RecordedDiodeBlocked;
             DataClass.CircuitOverflowed = gameCanvas.CircuitOverflowCount + gameCanvas.RecordedCircuitOverflowed;
             DataClass.HighestJoulesObtained = gameCanvas.JouleCurrency;
+            DataClass.Rating = DataClass.Rating;
 
             frmPrompt1.LedBurned = gameCanvas.LedBurnedCount + gameCanvas.RecordedLedBurned;
             gameCanvas.LedBurnedCount = 0;
@@ -406,16 +407,6 @@ namespace CircuitCraft
             {
                 var frm = new MainMenuForm();
                 frm.Location = Location;
-                frm.StartPosition = FormStartPosition.Manual;
-                if (WindowState == FormWindowState.Maximized)
-                {
-                    frm.WindowState = FormWindowState.Maximized;
-                }
-                else
-                {
-                    frm.Width = Width;
-                    frm.Height = Height;
-                }
                 frm.FormClosing += delegate { Close(); };
                 frm.Show();
                 Hide();

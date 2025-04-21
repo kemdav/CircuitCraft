@@ -385,6 +385,20 @@ namespace CircuitCraft
         public void StartRound()
         {
             roundStartTimer.Start();
+            if (CurrentLevel== 10)
+            {
+                GameState = GameState.Survival;
+            }
+            if (GameState == GameState.BranchUnlocking)
+            { 
+                MaintainTimerLabel.Visible = false;
+            }
+            if (GameState == GameState.Survival)
+            {
+                MaintainTimerLabel.Visible = true;
+                timeLeftToMaintainInSeconds = 60 + CurrentLevel;
+            }
+
             ClearUpNextComponents();
             DifficultyManager.UpdateDifficulty(new List<Image>()
             {
@@ -473,6 +487,8 @@ namespace CircuitCraft
             WarningHighProgressBar.Progress = 0;
             WarningLowProgressBar.Progress = 0;
 
+            GameState = GameState.BranchUnlocking;
+
             roundStartTimerTick = 0;
 
             NextComponentProgressbar.Progress = 100;
@@ -509,9 +525,9 @@ namespace CircuitCraft
             MinimumOperatingCurrentTick = 0;
             OperatingCurrentTick = 0;
 
-            warningStartTimerTick = 0;
+            WarningTimerLabel.Visible = false;
 
-            timeLeftToMaintainInSeconds = 60;
+            warningStartTimerTick = 0;
 
             ClearUpNextComponents();
 
@@ -639,11 +655,7 @@ namespace CircuitCraft
                 }
             }
 
-            if (CurrentLevel + 1 >= 11)
-            {
-                GameState = GameState.Survival;
-            }
-            if (CurrentLevel < 11)
+            if (CurrentLevel < 10)
             {
                 if (JouleCurrency > LevelJouleRequirements[CurrentLevel] && GameState == GameState.BranchUnlocking)
                 {
@@ -1124,6 +1136,7 @@ namespace CircuitCraft
             double rangeScale = (100 - 0) / (OperatingCurrent - MinimumOperatingCurrent);
             result = CircuitSimulator.CalculateLoadState(CircuitBlocks, SourceVoltage, LoadResistance);
             if (double.IsNaN(result.LoadCurrent)) {
+                ReverseDiodeCount++;
                 GameOverPrompt("The diode blocked all current!");
                 PauseGame();
                 return;
@@ -1400,6 +1413,7 @@ namespace CircuitCraft
                         CurrentBlockIndex--;
                         if (currentBlockIndex == CurrentBlockIndex)
                         {
+                            CircuitOverflowCount++;
                             GameOverPrompt("You ran out of space!");
                             PauseGame();
                         }
