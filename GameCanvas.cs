@@ -320,7 +320,22 @@ namespace CircuitCraft
             roundStartTimer.Interval = 1000;
             roundStartTimer.Tick += new EventHandler(RoundStartTimer_Tick);
 
-            UpdateImageKeys();
+            DifficultyManager.UpdateImageKeys(new List<Image>()
+            {
+                CircuitElementSourceSprite1,
+                CircuitElementSourceSprite2,
+                CircuitElementSourceSprite3,
+                CircuitElementSourceSprite4,
+                CircuitElementSourceSprite5
+            },
+            new List<Image>()
+            {
+                CircuitElementResistorSprite1,
+                CircuitElementResistorSprite2,
+                CircuitElementResistorSprite3,
+                CircuitElementResistorSprite4,
+                CircuitElementResistorSprite5
+            });
         }
 
         public void StartRound(double startingSourceVoltage, double minimumOperatingCurrent, double maximumOperatingCurrent)
@@ -330,10 +345,34 @@ namespace CircuitCraft
             OperatingCurrent = maximumOperatingCurrent;
 
             roundStartTimer.Start();
+            DifficultyManager.UpdateDifficulty(new List<Image>()
+            {
+                CircuitElementSourceSprite1,
+                CircuitElementSourceSprite2,
+                CircuitElementSourceSprite3,
+                CircuitElementSourceSprite4,
+                CircuitElementSourceSprite5
+            },
+            new List<Image>()
+            {
+                CircuitElementResistorSprite1,
+                CircuitElementResistorSprite2,
+                CircuitElementResistorSprite3,
+                CircuitElementResistorSprite4,
+                CircuitElementResistorSprite5
+            }, ref _currentLevel, 1);
+            UpdateDifficultyValues();
 
             FillUpNextComponents();
             SpawnNextComponent();
         }
+
+        public void UpdateDifficultyValues()
+        {
+            MinimumOperatingCurrent = DifficultyManager.ScaledMinimumOperatingCurrent;
+            OperatingCurrent = DifficultyManager.ScaledMaximumOperatingCurrent;
+        }
+
 
         public void PauseGame()
         {
@@ -504,15 +543,15 @@ namespace CircuitCraft
 
         public Dictionary<int, int> LevelJouleRequirements = new Dictionary<int, int>()
         {
-            { 1, 3 },
-            { 2, 3 },
-            { 3, 3 },
-            { 4, 3 },
-            { 5, 3 },
-            { 6, 3 },
-            { 7, 3 },
-            { 8, 3 },
-            { 9, 3 },
+            { 1, 50 },
+            { 2, 50 },
+            { 3, 50 },
+            { 4, 50 },
+            { 5, 50 },
+            { 6, 50 },
+            { 7, 50 },
+            { 8, 50 },
+            { 9, 50 },
         };
 
         double joulesAccumulation = 0;
@@ -589,29 +628,6 @@ namespace CircuitCraft
             CircuitSources.Add(circuitElement);
         }
 
-        private Dictionary<double, Image> VoltageValues;
-        private Dictionary<double, Image> ResistanceValues;
-
-        void UpdateImageKeys()
-        {
-            VoltageValues = new Dictionary<double, Image>() {
-                { 1.0 * SourceValueMultiplier, CircuitElementSourceSprite1 },
-                { 2.0 * SourceValueMultiplier, CircuitElementSourceSprite2 },
-                { 3.0 * SourceValueMultiplier, CircuitElementSourceSprite3 },
-                { 4.0 * SourceValueMultiplier, CircuitElementSourceSprite4 },
-                { 5.0 * SourceValueMultiplier, CircuitElementSourceSprite5 }
-            };
-
-            ResistanceValues = new Dictionary<double, Image>()
-            {
-                { 1.0 * ResistanceValueMultiplier, CircuitElementResistorSprite1 },
-                { 2.0 * ResistanceValueMultiplier, CircuitElementResistorSprite2 },
-                { 3.0 * ResistanceValueMultiplier, CircuitElementResistorSprite3 },
-                { 4.0 * ResistanceValueMultiplier, CircuitElementResistorSprite4 },
-                { 5.0 * ResistanceValueMultiplier, CircuitElementResistorSprite5 }
-            };
-        }
-
         public bool UnlockCircuitBlock(Cards cards)
         {
             foreach (CircuitBlock circuitBlock in CircuitBlocks)
@@ -656,15 +672,30 @@ namespace CircuitCraft
 
         private Image GetOrientedImageClone(CircuitElementType type, int orientation)
         {
-            UpdateImageKeys();
+            DifficultyManager.UpdateImageKeys(new List<Image>()
+            {
+                CircuitElementSourceSprite1,
+                CircuitElementSourceSprite2,
+                CircuitElementSourceSprite3,
+                CircuitElementSourceSprite4,
+                CircuitElementSourceSprite5
+            },
+            new List<Image>()
+            {
+                CircuitElementResistorSprite1,
+                CircuitElementResistorSprite2,
+                CircuitElementResistorSprite3,
+                CircuitElementResistorSprite4,
+                CircuitElementResistorSprite5
+            });
             Image baseImage = null;
             switch (type)
             {
                 case CircuitElementType.Resistor:
-                    baseImage = ResistanceValues[CurrentCircuitElementDroppedResistance];
+                    baseImage = DifficultyManager.ResistanceValues[CurrentCircuitElementDroppedResistance];
                     break;
                 case CircuitElementType.Source:
-                    baseImage = VoltageValues[CurrentCircuitElementDroppedVoltage];
+                    baseImage = DifficultyManager.VoltageValues[CurrentCircuitElementDroppedVoltage];
                     break;
                 case CircuitElementType.Diode:
                     baseImage = this.CircuitElementDiodeSprite;
@@ -688,7 +719,22 @@ namespace CircuitCraft
 
         public void FillUpNextComponents()
         {
-            UpdateImageKeys();
+            DifficultyManager.UpdateImageKeys(new List<Image>()
+            {
+                CircuitElementSourceSprite1,
+                CircuitElementSourceSprite2,
+                CircuitElementSourceSprite3,
+                CircuitElementSourceSprite4,
+                CircuitElementSourceSprite5
+            },
+            new List<Image>()
+            {
+                CircuitElementResistorSprite1,
+                CircuitElementResistorSprite2,
+                CircuitElementResistorSprite3,
+                CircuitElementResistorSprite4,
+                CircuitElementResistorSprite5
+            });
             List<PictureBox> nextComponentsPboxs = new List<PictureBox>() { NextComponentPictureBox1, NextComponentPictureBox2};
             List<BigLabel> nextComponentsLabels = new List<BigLabel>() { NextComponentLabel1, NextComponentLabel2 };
             for (int i = 0; i < 2; i++)
@@ -702,11 +748,11 @@ namespace CircuitCraft
                         switch (NextCircuitElements[0].CircuitElementType)
                         {
                             case CircuitElementType.Resistor:
-                                nextComponentsPboxs[i].Image = ResistanceValues[NextCircuitElements[i].Resistance];
+                                nextComponentsPboxs[i].Image = DifficultyManager.ResistanceValues[NextCircuitElements[i].Resistance];
                                 nextComponentsLabels[i].Text = NextCircuitElements[i].Resistance.ToString("F3") + " Ω";
                                 break;
                             case CircuitElementType.Source:
-                                nextComponentsPboxs[i].Image = VoltageValues[NextCircuitElements[i].Voltage];
+                                nextComponentsPboxs[i].Image = DifficultyManager.VoltageValues[NextCircuitElements[i].Voltage];
                                 nextComponentsLabels[i].Text = NextCircuitElements[i].Voltage.ToString("F3") + " V";
                                 break;
                             case CircuitElementType.Diode:
@@ -721,11 +767,11 @@ namespace CircuitCraft
                     switch (circuitElement.CircuitElementType)
                     {
                         case CircuitElementType.Resistor:
-                            nextComponentsPboxs[i].Image = ResistanceValues[circuitElement.Resistance];
+                            nextComponentsPboxs[i].Image = DifficultyManager.ResistanceValues[circuitElement.Resistance];
                             nextComponentsLabels[i].Text = circuitElement.Resistance.ToString("F3") + " Ω";
                             break;
                         case CircuitElementType.Source:
-                            nextComponentsPboxs[i].Image = VoltageValues[circuitElement.Voltage];
+                            nextComponentsPboxs[i].Image = DifficultyManager.VoltageValues[circuitElement.Voltage];
                             nextComponentsLabels[i].Text = circuitElement.Voltage.ToString("F3") + " V";
                             break;
                         case CircuitElementType.Diode:
@@ -769,28 +815,28 @@ namespace CircuitCraft
 
             if (randomNumber1 > 0 && randomNumber1 <= 20)
             {
-                randomResistance = 1 * ResistanceValueMultiplier;
-                randomVoltage = 1 * SourceValueMultiplier;
+                randomResistance = 1 * DifficultyManager.ResistanceValueMultiplier;
+                randomVoltage = 1 * DifficultyManager.SourceValueMultiplier;
             }
             else if (randomNumber1 > 20 && randomNumber1 <= 40)
             {
-                randomResistance = 2 * ResistanceValueMultiplier;
-                randomVoltage = 2 * SourceValueMultiplier;
+                randomResistance = 2 * DifficultyManager.ResistanceValueMultiplier;
+                randomVoltage = 2 * DifficultyManager.SourceValueMultiplier;
             }
             else if (randomNumber1 > 40 && randomNumber1 <= 60)
             {
-                randomResistance = 3 * ResistanceValueMultiplier;
-                randomVoltage = 3 * SourceValueMultiplier;
+                randomResistance = 3 * DifficultyManager.ResistanceValueMultiplier;
+                randomVoltage = 3 * DifficultyManager.SourceValueMultiplier;
             }
             else if (randomNumber1 > 60 && randomNumber1 <= 80)
             {
-                randomResistance = 4 * ResistanceValueMultiplier;
-                randomVoltage = 4 * SourceValueMultiplier;
+                randomResistance = 4 * DifficultyManager.ResistanceValueMultiplier;
+                randomVoltage = 4 * DifficultyManager.SourceValueMultiplier;
             }
             else if (randomNumber1 > 80 && randomNumber1 <= 100)
             {
-                randomResistance = 5 * ResistanceValueMultiplier;
-                randomVoltage = 5 * SourceValueMultiplier;
+                randomResistance = 5 * DifficultyManager.ResistanceValueMultiplier;
+                randomVoltage = 5 * DifficultyManager.SourceValueMultiplier;
             }
 
             switch (circuitElementType)
@@ -1020,7 +1066,22 @@ namespace CircuitCraft
 
         public void HoldCircuitElement(CircuitElementType type, double voltage, double resistance)
         {
-            UpdateImageKeys();
+            DifficultyManager.UpdateImageKeys(new List<Image>()
+            {
+                CircuitElementSourceSprite1,
+                CircuitElementSourceSprite2,
+                CircuitElementSourceSprite3,
+                CircuitElementSourceSprite4,
+                CircuitElementSourceSprite5
+            },
+            new List<Image>()
+            {
+                CircuitElementResistorSprite1,
+                CircuitElementResistorSprite2,
+                CircuitElementResistorSprite3,
+                CircuitElementResistorSprite4,
+                CircuitElementResistorSprite5
+            });
             if (CurrentCircuitElementHold == null && !holdOnCooldown)
             {
                 CircuitBlocks[CurrentBlockIndex].Controls.Remove(CurrentCircuitElementDropped);
@@ -1029,11 +1090,11 @@ namespace CircuitCraft
                 switch (type)
                 {
                     case CircuitElementType.Resistor:
-                        HoldComponentPbox.Image = ResistanceValues[resistance];
+                        HoldComponentPbox.Image = DifficultyManager.ResistanceValues[resistance];
                         HoldComponentLabel.Text = resistance +  " Ω";
                         break;
                     case CircuitElementType.Source:
-                        HoldComponentPbox.Image = VoltageValues[voltage];
+                        HoldComponentPbox.Image = DifficultyManager.VoltageValues[voltage];
                         HoldComponentLabel.Text = voltage + " V";
                         break;
                     case CircuitElementType.Diode:
