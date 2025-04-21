@@ -71,7 +71,7 @@ namespace CircuitCraft
             {
                 _operatingCurrent = value;
                 if (OperatingCurrentMaxLabel == null) { return; }
-                OperatingCurrentMaxLabel.Text = _operatingCurrent.ToString() + " J";
+                OperatingCurrentMaxLabel.Text = _operatingCurrent.ToString("F3") + " J";
             }
         }
         private double _minimumOperatingCurrent;
@@ -85,7 +85,7 @@ namespace CircuitCraft
             {
                 _minimumOperatingCurrent = value;
                 if (OperatingCurrentMinLabel == null) { return; }
-                OperatingCurrentMinLabel.Text = _minimumOperatingCurrent.ToString() + " J";
+                OperatingCurrentMinLabel.Text = _minimumOperatingCurrent.ToString("F3") + " J";
             }
         }
         public int OperatingCurrentTick { get; set; } = 0;
@@ -691,15 +691,15 @@ namespace CircuitCraft
                         {
                             case CircuitElementType.Resistor:
                                 nextComponentsPboxs[i].Image = ResistanceValues[NextCircuitElements[i].Resistance];
-                                nextComponentsLabels[i].Text = NextCircuitElements[i].Resistance + " Ω";
+                                nextComponentsLabels[i].Text = NextCircuitElements[i].Resistance.ToString("F3") + " Ω";
                                 break;
                             case CircuitElementType.Source:
                                 nextComponentsPboxs[i].Image = VoltageValues[NextCircuitElements[i].Voltage];
-                                nextComponentsLabels[i].Text = NextCircuitElements[i].Voltage + " V";
+                                nextComponentsLabels[i].Text = NextCircuitElements[i].Voltage.ToString("F3") + " V";
                                 break;
                             case CircuitElementType.Diode:
                                 nextComponentsPboxs[i].Image = CircuitElementDiodeSprite;
-                                nextComponentsLabels[i].Text = NextCircuitElements[i].Voltage + " V";
+                                nextComponentsLabels[i].Text = NextCircuitElements[i].Voltage.ToString("F3") + " V";
                                 break;
                         }
                         continue; 
@@ -710,15 +710,15 @@ namespace CircuitCraft
                     {
                         case CircuitElementType.Resistor:
                             nextComponentsPboxs[i].Image = ResistanceValues[circuitElement.Resistance];
-                            nextComponentsLabels[i].Text = circuitElement.Resistance + " Ω";
+                            nextComponentsLabels[i].Text = circuitElement.Resistance.ToString("F3") + " Ω";
                             break;
                         case CircuitElementType.Source:
                             nextComponentsPboxs[i].Image = VoltageValues[circuitElement.Voltage];
-                            nextComponentsLabels[i].Text = circuitElement.Voltage + " V";
+                            nextComponentsLabels[i].Text = circuitElement.Voltage.ToString("F3") + " V";
                             break;
                         case CircuitElementType.Diode:
                             nextComponentsPboxs[i].Image = CircuitElementDiodeSprite;
-                            nextComponentsLabels[i].Text = circuitElement.Voltage + " V";
+                            nextComponentsLabels[i].Text = circuitElement.Voltage.ToString("F3") + " V";
                             break;
                     }
 
