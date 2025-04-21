@@ -53,13 +53,13 @@ namespace CircuitCraft
                 }
                 gameCanvas.SpawnCircuitBlock(CircuitBlockState.Locked, new Point(2 + (distance * i), 0), 130, 220);
             }
+            gameCanvas.SourceVoltage = 3;
 
             gameCanvas.StartRound();
             gameCanvas.FillUpNextComponents();
             gameCanvas.MainGamePrototype = this;
             gameCanvas.ShowChoicesPrompt = CardsChoicePrompt;
             gameCanvas.GameOverPrompt = GameOverScreenPrompt;
-            gameCanvas.SourceVoltage = 3;
         }
 
         public void EnterFullScreen()
@@ -410,6 +410,12 @@ namespace CircuitCraft
                 isPaused = false;
                 pauseResumeButton.Image = gameCanvas.PauseButtonImage;
             }
+        }
+
+        private void restartButton_Click(object sender, EventArgs e)
+        {
+            gameCanvas.ResetGame();
+            gameCanvas.StartRound();
         }
     }
 }

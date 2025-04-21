@@ -39,6 +39,8 @@ namespace CircuitCraft // Ensure this namespace matches your project
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainGamePrototype));
             pnlTopBar = new System.Windows.Forms.Panel();
+            mainMenuButton = new PictureBox();
+            restartButton = new PictureBox();
             panel1 = new System.Windows.Forms.Panel();
             pictureBox2 = new PictureBox();
             jouleCurrencyLabel = new BigLabel();
@@ -77,9 +79,9 @@ namespace CircuitCraft // Ensure this namespace matches your project
             panelGameCanvasContainer = new System.Windows.Forms.Panel();
             gameMessageLabel = new BigLabel();
             gameCanvas = new GameCanvas();
-            restartButton = new PictureBox();
-            mainMenuButton = new PictureBox();
             pnlTopBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)mainMenuButton).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)restartButton).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pauseResumeButton).BeginInit();
@@ -96,8 +98,6 @@ namespace CircuitCraft // Ensure this namespace matches your project
             pnlBottomStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLedStatus).BeginInit();
             panelGameCanvasContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)restartButton).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)mainMenuButton).BeginInit();
             SuspendLayout();
             // 
             // pnlTopBar
@@ -115,6 +115,33 @@ namespace CircuitCraft // Ensure this namespace matches your project
             pnlTopBar.Name = "pnlTopBar";
             pnlTopBar.Size = new Size(1920, 55);
             pnlTopBar.TabIndex = 1;
+            // 
+            // mainMenuButton
+            // 
+            mainMenuButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            mainMenuButton.BackColor = Color.Transparent;
+            mainMenuButton.Cursor = Cursors.Hand;
+            mainMenuButton.Image = (Image)resources.GetObject("mainMenuButton.Image");
+            mainMenuButton.Location = new Point(1771, 9);
+            mainMenuButton.Name = "mainMenuButton";
+            mainMenuButton.Size = new Size(40, 40);
+            mainMenuButton.SizeMode = PictureBoxSizeMode.Zoom;
+            mainMenuButton.TabIndex = 50;
+            mainMenuButton.TabStop = false;
+            // 
+            // restartButton
+            // 
+            restartButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            restartButton.BackColor = Color.Transparent;
+            restartButton.Cursor = Cursors.Hand;
+            restartButton.Image = (Image)resources.GetObject("restartButton.Image");
+            restartButton.Location = new Point(1817, 9);
+            restartButton.Name = "restartButton";
+            restartButton.Size = new Size(40, 40);
+            restartButton.SizeMode = PictureBoxSizeMode.Zoom;
+            restartButton.TabIndex = 49;
+            restartButton.TabStop = false;
+            restartButton.Click += restartButton_Click;
             // 
             // panel1
             // 
@@ -593,7 +620,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.CircuitElementSourceSprite4 = (Image)resources.GetObject("gameCanvas.CircuitElementSourceSprite4");
             gameCanvas.CircuitElementSourceSprite5 = (Image)resources.GetObject("gameCanvas.CircuitElementSourceSprite5");
             gameCanvas.CircuitSources = null;
-            gameCanvas.CurrentBlockIndex = -1;
+            gameCanvas.CurrentBlockIndex = 0;
             gameCanvas.CurrentCircuitElementDropped = null;
             gameCanvas.CurrentCircuitElementDroppedOrientation = 0;
             gameCanvas.CurrentCircuitElementDroppedResistance = 0D;
@@ -672,32 +699,6 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.WillUseHoldCircuitElement = false;
             gameCanvas.Load += gameCanvas_Load;
             // 
-            // restartButton
-            // 
-            restartButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            restartButton.BackColor = Color.Transparent;
-            restartButton.Cursor = Cursors.Hand;
-            restartButton.Image = (Image)resources.GetObject("restartButton.Image");
-            restartButton.Location = new Point(1817, 9);
-            restartButton.Name = "restartButton";
-            restartButton.Size = new Size(40, 40);
-            restartButton.SizeMode = PictureBoxSizeMode.Zoom;
-            restartButton.TabIndex = 49;
-            restartButton.TabStop = false;
-            // 
-            // mainMenuButton
-            // 
-            mainMenuButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            mainMenuButton.BackColor = Color.Transparent;
-            mainMenuButton.Cursor = Cursors.Hand;
-            mainMenuButton.Image = (Image)resources.GetObject("mainMenuButton.Image");
-            mainMenuButton.Location = new Point(1771, 9);
-            mainMenuButton.Name = "mainMenuButton";
-            mainMenuButton.Size = new Size(40, 40);
-            mainMenuButton.SizeMode = PictureBoxSizeMode.Zoom;
-            mainMenuButton.TabIndex = 50;
-            mainMenuButton.TabStop = false;
-            // 
             // MainGamePrototype
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -718,6 +719,8 @@ namespace CircuitCraft // Ensure this namespace matches your project
             Shown += MainGamePrototype_Shown;
             pnlTopBar.ResumeLayout(false);
             pnlTopBar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)mainMenuButton).EndInit();
+            ((System.ComponentModel.ISupportInitialize)restartButton).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
@@ -739,8 +742,6 @@ namespace CircuitCraft // Ensure this namespace matches your project
             ((System.ComponentModel.ISupportInitialize)picLedStatus).EndInit();
             panelGameCanvasContainer.ResumeLayout(false);
             panelGameCanvasContainer.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)restartButton).EndInit();
-            ((System.ComponentModel.ISupportInitialize)mainMenuButton).EndInit();
             ResumeLayout(false);
         }
 

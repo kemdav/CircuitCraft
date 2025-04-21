@@ -431,6 +431,11 @@ namespace CircuitCraft
             gameTimer.Stop();
             gameLedTimer.Stop();
             warningTimer.Stop();
+            warningStartTimer.Stop();
+            WarningTimerLabel.Visible = false;
+            GameMessageLabel.Visible = false;
+
+            warningStartTimerTick = 0;
 
             holdCooldownTimer.Stop();
             nextComponentTimer.Stop();
@@ -452,6 +457,8 @@ namespace CircuitCraft
             OperatingCurrentProgressBar.Value = 0;
             WarningHighProgressBar.Progress = 0;
             WarningLowProgressBar.Progress = 0;
+
+            roundStartTimerTick = 0;
 
             NextComponentProgressbar.Progress = 100;
 
