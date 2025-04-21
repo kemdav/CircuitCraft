@@ -251,7 +251,7 @@ namespace CircuitCraft
             if (sourceForm != null)
             {
                 gameCanvas.UnlockCircuitBlock(sourceForm.ChoicePromptData.Cards);
-                gameCanvas.ClearCircuitElements();
+                gameCanvas.NextRoundReset();
                 gameCanvas.ResumeGame();
             }
             foreach (ChoicePromptForm form in choicePromptForms)

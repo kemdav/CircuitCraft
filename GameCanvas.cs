@@ -368,6 +368,7 @@ namespace CircuitCraft
             roundStartTimer.Stop();
 
             CurrentBlockIndex = 0;
+            CircuitBlocks[CurrentBlockIndex].Controls.Remove(CurrentCircuitElementDropped);
             CurrentCircuitElementDropped = null;
 
             holdCooldownTick = 0;
@@ -397,6 +398,17 @@ namespace CircuitCraft
             }
         }
 
+        public void NextRoundReset()
+        {
+            ClearCircuitElements();
+
+            MinimumOperatingCurrentTick = 0;
+            OperatingCurrentTick = 0;
+
+            CircuitBlocks[CurrentBlockIndex].Controls.Remove(CurrentCircuitElementDropped);
+            CurrentCircuitElementDropped = null;
+        }
+
         public void ClearCircuitElements()
         {
             for (int i = 0; i < CircuitBlocks.Count; i++)
@@ -404,6 +416,10 @@ namespace CircuitCraft
                 while (CircuitBlocks[i].CircuitElements.Count > 0)
                 {
                     CircuitBlocks[i].RemoveCircuitElement(0);
+                }
+                if (CircuitBlocks[i].CircuitBlockState != CircuitBlockState.Locked && CircuitBlocks[i].CircuitBlockState != CircuitBlockState.Full)
+                {
+                    CircuitBlocks[i].CircuitBlockState = CircuitBlockState.Unlocked;
                 }
                 UpdateCircuitBlock(CircuitBlocks[i]);
             }
