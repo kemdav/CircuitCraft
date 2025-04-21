@@ -360,6 +360,11 @@ namespace CircuitCraft
             });
         }
 
+        public void AddJoules()
+        {
+            JouleCurrency += 30;
+        }
+
         public void StartRound()
         {
             roundStartTimer.Start();
@@ -398,7 +403,7 @@ namespace CircuitCraft
             gameTimer.Stop();
             gameLedTimer.Stop();
             warningTimer.Stop();
-            
+            warningStartTimer.Stop();
 
 
             holdCooldownTimer.Stop();
@@ -426,7 +431,10 @@ namespace CircuitCraft
             roundStartTimer.Stop();
 
             CurrentBlockIndex = 0;
-            CircuitBlocks[CurrentBlockIndex].Controls.Remove(CurrentCircuitElementDropped);
+            foreach (CircuitBlock circuitBlock in CircuitBlocks)
+            {
+                circuitBlock.Controls.Remove(CurrentCircuitElementDropped);
+            }    
             CurrentCircuitElementDropped = null;
             ClearUpNextComponents();
             ClearHoldCircuitElement();
@@ -468,9 +476,14 @@ namespace CircuitCraft
             ClearHoldCircuitElement();
 
             warningTimer.Stop();
+            gameLedTimer.Stop();
 
             MinimumOperatingCurrentTick = 0;
             OperatingCurrentTick = 0;
+
+            warningStartTimerTick = 0;
+
+            timeLeftToMaintainInSeconds = 60;
 
             ClearUpNextComponents();
 
@@ -579,6 +592,7 @@ namespace CircuitCraft
             { 7, 50 },
             { 8, 50 },
             { 9, 50 },
+            { 10, 50 }
         };
 
         double joulesAccumulation = 0;
@@ -600,21 +614,53 @@ namespace CircuitCraft
                 {
                     JouleCurrency += Convert.ToInt32(joulesAccumulation);
                     joulesAccumulation = 0;
+                }
+            }
 
-                    if (JouleCurrency > LevelJouleRequirements[CurrentLevel])
+            if (CurrentLevel + 1 >= 11)
+            {
+                GameState = GameState.Survival;
+            }
+            if (CurrentLevel < 11)
+            {
+                if (JouleCurrency > LevelJouleRequirements[CurrentLevel] && GameState == GameState.BranchUnlocking)
+                {
+                    if (ShowChoicesPrompt != null)
                     {
-                        if (ShowChoicesPrompt != null)
-                        { 
-                            PauseGame();
-                            if (CurrentLevel + 1 >= 10)
-                            {
-                                GameState = GameState.Survival;
-                            }
-                            if (GameState == GameState.BranchUnlocking)
-                            {
-                                JouleCurrency -= LevelJouleRequirements[CurrentLevel];
-                            }
-                            DifficultyManager.UpdateDifficulty(new List<Image>()
+                        PauseGame();
+                        CurrentLevel++;
+                        if (GameState == GameState.BranchUnlocking)
+                        {
+                            JouleCurrency -= LevelJouleRequirements[CurrentLevel];
+                        }
+                        DifficultyManager.UpdateDifficulty(new List<Image>()
+                                {
+                                    CircuitElementSourceSprite1,
+                                    CircuitElementSourceSprite2,
+                                    CircuitElementSourceSprite3,
+                                    CircuitElementSourceSprite4,
+                                    CircuitElementSourceSprite5
+                                },
+                        new List<Image>()
+                        {
+                                    CircuitElementResistorSprite1,
+                                    CircuitElementResistorSprite2,
+                                    CircuitElementResistorSprite3,
+                                    CircuitElementResistorSprite4,
+                                    CircuitElementResistorSprite5
+                        }, ref _currentLevel, CurrentLevel);
+                        UpdateDifficultyValues();
+                        ShowChoicesPrompt();
+                    }
+                }
+
+            }
+            if (timeLeftToMaintainInSeconds <= 0 && GameState == GameState.Survival)
+            {
+                PauseGame();
+                CurrentLevel++;
+                timeLeftToMaintainInSeconds = 0;
+                DifficultyManager.UpdateDifficulty(new List<Image>()
                             {
                                 CircuitElementSourceSprite1,
                                 CircuitElementSourceSprite2,
@@ -629,18 +675,9 @@ namespace CircuitCraft
                                 CircuitElementResistorSprite3,
                                 CircuitElementResistorSprite4,
                                 CircuitElementResistorSprite5
-                            }, ref _currentLevel, CurrentLevel + 1);
-                            UpdateDifficultyValues();
-                            ShowChoicesPrompt();
-                        }
-                    }
-                }
-            }
-
-            if (timeLeftToMaintainInSeconds < 0)
-            {
-                timeLeftToMaintainInSeconds = 0;
-                // Continue Logic
+                            }, ref _currentLevel, CurrentLevel);
+                UpdateDifficultyValues();
+                ShowChoicesPrompt();
             }
             TimeSpan time = TimeSpan.FromSeconds(timeLeftToMaintainInSeconds);
             MaintainTimerLabel.Text = "Time Left: " + time.ToString(@"mm\:ss") + " s";
@@ -722,7 +759,7 @@ namespace CircuitCraft
 
         private Image GetOrientedImageClone(CircuitElementType type, int orientation)
         {
-            DifficultyManager.UpdateImageKeys(new List<Image>()
+            DifficultyManager.UpdateDifficulty(new List<Image>()
             {
                 CircuitElementSourceSprite1,
                 CircuitElementSourceSprite2,
@@ -737,7 +774,7 @@ namespace CircuitCraft
                 CircuitElementResistorSprite3,
                 CircuitElementResistorSprite4,
                 CircuitElementResistorSprite5
-            });
+            }, ref _currentLevel, _currentLevel);
             Image baseImage = null;
             switch (type)
             {

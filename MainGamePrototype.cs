@@ -123,6 +123,12 @@ namespace CircuitCraft
                 case Keys.T:
                     gameCanvas.ResetGame();
                     break;
+                case Keys.L:
+                    gameCanvas.AddJoules();
+                    break;
+                case Keys.K:
+                    gameCanvas.timeLeftToMaintainInSeconds = 1;
+                    break;
             }
         }
 
@@ -318,7 +324,21 @@ namespace CircuitCraft
                 }
                 else
                 {
-                    //
+                    switch (sourceForm.ChoicePromptData.Cards)
+                    {
+                        case Cards.SourceIncreaseChance:
+                            gameCanvas.AdjustProbability(CircuitElementType.Source, 10);
+                            break;
+                        case Cards.DiodeIncreaseChance:
+                            gameCanvas.AdjustProbability(CircuitElementType.Diode, 10);
+                            break;
+                        case Cards.ResistorIncreaseChance:
+                            gameCanvas.AdjustProbability(CircuitElementType.Resistor, 10);
+                            break;
+                        case Cards.InitialVoltageIncrease:
+                            gameCanvas.SourceVoltage += 1;
+                            break;
+                    }
                 }
                 gameCanvas.NextRoundReset();
                 gameCanvas.StartRound();
