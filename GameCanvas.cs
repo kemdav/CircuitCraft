@@ -390,7 +390,7 @@ namespace CircuitCraft
                 {
                     CircuitBlocks[i].CircuitBlockState = CircuitBlockState.Locked;
                 }
-                for (int j = 0; j < CircuitBlocks[i].CircuitElements.Count; j++)
+                while (CircuitBlocks[i].CircuitElements.Count > 0)
                 {
                     CircuitBlocks[i].RemoveCircuitElement(0);
                 }
@@ -825,6 +825,11 @@ namespace CircuitCraft
         {
             double rangeScale = (100 - 0) / (OperatingCurrent - MinimumOperatingCurrent);
             result = CircuitSimulator.CalculateLoadState(CircuitBlocks, SourceVoltage, LoadResistance);
+            if (double.IsNaN(result.LoadCurrent)) {
+                GameOverPrompt();
+                PauseGame();
+                return;
+            }
             double normalized_value = ((result.LoadCurrent - MinimumOperatingCurrent) * rangeScale);
             if (double.IsNaN(normalized_value)) { normalized_value = 0; }
             int clampedValue = Convert.ToInt32(Math.Clamp(normalized_value, 0, 100));
