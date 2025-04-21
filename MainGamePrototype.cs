@@ -394,5 +394,22 @@ namespace CircuitCraft
             //EnterFullScreen();
 
         }
+
+        bool isPaused = false;
+        private void pauseResumeButton_Click(object sender, EventArgs e)
+        {
+            if (!isPaused)
+            {
+                isPaused = true;
+                gameCanvas.PauseGame();
+                pauseResumeButton.Image = gameCanvas.PlayButtonImage;
+            }
+            else
+            {
+                gameCanvas.ResumeGame();
+                isPaused = false;
+                pauseResumeButton.Image = gameCanvas.PauseButtonImage;
+            }
+        }
     }
 }

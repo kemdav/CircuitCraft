@@ -42,7 +42,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             panel1 = new System.Windows.Forms.Panel();
             pictureBox2 = new PictureBox();
             jouleCurrencyLabel = new BigLabel();
-            picPauseButton = new PictureBox();
+            pauseResumeButton = new PictureBox();
             lblTime = new BigLabel();
             lblLevel = new BigLabel();
             lblRating = new BigLabel();
@@ -77,10 +77,12 @@ namespace CircuitCraft // Ensure this namespace matches your project
             panelGameCanvasContainer = new System.Windows.Forms.Panel();
             gameMessageLabel = new BigLabel();
             gameCanvas = new GameCanvas();
+            restartButton = new PictureBox();
+            mainMenuButton = new PictureBox();
             pnlTopBar.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picPauseButton).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pauseResumeButton).BeginInit();
             pnlHoldArea.SuspendLayout();
             panelVoltageArea.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -94,13 +96,17 @@ namespace CircuitCraft // Ensure this namespace matches your project
             pnlBottomStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLedStatus).BeginInit();
             panelGameCanvasContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)restartButton).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)mainMenuButton).BeginInit();
             SuspendLayout();
             // 
             // pnlTopBar
             // 
             pnlTopBar.BackColor = Color.FromArgb(218, 225, 232);
+            pnlTopBar.Controls.Add(mainMenuButton);
+            pnlTopBar.Controls.Add(restartButton);
             pnlTopBar.Controls.Add(panel1);
-            pnlTopBar.Controls.Add(picPauseButton);
+            pnlTopBar.Controls.Add(pauseResumeButton);
             pnlTopBar.Controls.Add(lblTime);
             pnlTopBar.Controls.Add(lblLevel);
             pnlTopBar.Controls.Add(lblRating);
@@ -143,18 +149,19 @@ namespace CircuitCraft // Ensure this namespace matches your project
             jouleCurrencyLabel.Text = "0";
             jouleCurrencyLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // picPauseButton
+            // pauseResumeButton
             // 
-            picPauseButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            picPauseButton.BackColor = Color.Transparent;
-            picPauseButton.Cursor = Cursors.Hand;
-            picPauseButton.Image = (Image)resources.GetObject("picPauseButton.Image");
-            picPauseButton.Location = new Point(1863, 8);
-            picPauseButton.Name = "picPauseButton";
-            picPauseButton.Size = new Size(40, 40);
-            picPauseButton.SizeMode = PictureBoxSizeMode.Zoom;
-            picPauseButton.TabIndex = 46;
-            picPauseButton.TabStop = false;
+            pauseResumeButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pauseResumeButton.BackColor = Color.Transparent;
+            pauseResumeButton.Cursor = Cursors.Hand;
+            pauseResumeButton.Image = (Image)resources.GetObject("pauseResumeButton.Image");
+            pauseResumeButton.Location = new Point(1863, 9);
+            pauseResumeButton.Name = "pauseResumeButton";
+            pauseResumeButton.Size = new Size(40, 40);
+            pauseResumeButton.SizeMode = PictureBoxSizeMode.Zoom;
+            pauseResumeButton.TabIndex = 46;
+            pauseResumeButton.TabStop = false;
+            pauseResumeButton.Click += pauseResumeButton_Click;
             // 
             // lblTime
             // 
@@ -635,6 +642,8 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.ParallelCircuitBlockCardDescription = "Unlock a Parallel Circuit Branch";
             gameCanvas.ParallelCircuitBlockCardImage = (Image)resources.GetObject("gameCanvas.ParallelCircuitBlockCardImage");
             gameCanvas.ParallelCircuitBlockImage = (Image)resources.GetObject("gameCanvas.ParallelCircuitBlockImage");
+            gameCanvas.PauseButtonImage = (Image)resources.GetObject("gameCanvas.PauseButtonImage");
+            gameCanvas.PlayButtonImage = (Image)resources.GetObject("gameCanvas.PlayButtonImage");
             gameCanvas.RatingLabel = lblRating;
             gameCanvas.ResistanceValueMultiplier = 2D;
             gameCanvas.ResistorIncreaseChanceCardCost = 0;
@@ -663,6 +672,32 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.WillUseHoldCircuitElement = false;
             gameCanvas.Load += gameCanvas_Load;
             // 
+            // restartButton
+            // 
+            restartButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            restartButton.BackColor = Color.Transparent;
+            restartButton.Cursor = Cursors.Hand;
+            restartButton.Image = (Image)resources.GetObject("restartButton.Image");
+            restartButton.Location = new Point(1817, 9);
+            restartButton.Name = "restartButton";
+            restartButton.Size = new Size(40, 40);
+            restartButton.SizeMode = PictureBoxSizeMode.Zoom;
+            restartButton.TabIndex = 49;
+            restartButton.TabStop = false;
+            // 
+            // mainMenuButton
+            // 
+            mainMenuButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            mainMenuButton.BackColor = Color.Transparent;
+            mainMenuButton.Cursor = Cursors.Hand;
+            mainMenuButton.Image = (Image)resources.GetObject("mainMenuButton.Image");
+            mainMenuButton.Location = new Point(1771, 9);
+            mainMenuButton.Name = "mainMenuButton";
+            mainMenuButton.Size = new Size(40, 40);
+            mainMenuButton.SizeMode = PictureBoxSizeMode.Zoom;
+            mainMenuButton.TabIndex = 50;
+            mainMenuButton.TabStop = false;
+            // 
             // MainGamePrototype
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -686,7 +721,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picPauseButton).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pauseResumeButton).EndInit();
             pnlHoldArea.ResumeLayout(false);
             pnlHoldArea.PerformLayout();
             panelVoltageArea.ResumeLayout(false);
@@ -704,6 +739,8 @@ namespace CircuitCraft // Ensure this namespace matches your project
             ((System.ComponentModel.ISupportInitialize)picLedStatus).EndInit();
             panelGameCanvasContainer.ResumeLayout(false);
             panelGameCanvasContainer.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)restartButton).EndInit();
+            ((System.ComponentModel.ISupportInitialize)mainMenuButton).EndInit();
             ResumeLayout(false);
         }
 
@@ -712,7 +749,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
         private ReaLTaiizor.Controls.BigLabel lblRating;
         private ReaLTaiizor.Controls.BigLabel lblLevel;
         private ReaLTaiizor.Controls.BigLabel lblTime;
-        private System.Windows.Forms.PictureBox picPauseButton;
+        private System.Windows.Forms.PictureBox pauseResumeButton;
         private System.Windows.Forms.Panel pnlHoldArea;
         private System.Windows.Forms.Panel pnlNextArea;
         private System.Windows.Forms.Panel pnlBottomStatus;
@@ -747,5 +784,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
         private LostProgressBar nextComponentProgressBar;
         private BigLabel gameMessageLabel;
         private BigLabel warningTimerLabel;
+        private PictureBox restartButton;
+        private PictureBox mainMenuButton;
     }
 }

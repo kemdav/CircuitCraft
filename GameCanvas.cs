@@ -266,6 +266,9 @@ namespace CircuitCraft
         private Image _parallelCircuitBlockImage;
         private Image _trashCircuitBlockImage;
 
+        private Image _playButtonImage;
+        private Image _pauseButtonImage;
+
         #region Circuit Block Cards
         private Image _seriesCircuitBlockCardImage;
         private string _seriesCircuitBlockCardText = "Series Circuit Block";
@@ -413,11 +416,14 @@ namespace CircuitCraft
         public void ResumeGame()
         {
             gameTimer.Start();
-            gameLedTimer.Start();
-            warningTimer.Start();
+
+            if (warningStartTimerTick == 0) warningTimer.Start();
+            if (roundStartTimerTick == 0) gameLedTimer.Start();
 
             if (holdCooldownTick != 0) holdCooldownTimer.Start();
             if (nextComponentTimerTick != 0) nextComponentTimer.Start();
+            if (roundStartTimerTick != 0) roundStartTimer.Start();
+            if (warningStartTimerTick != 0) warningStartTimer.Start();
         }
 
         public void ResetGame()
@@ -1950,7 +1956,23 @@ namespace CircuitCraft
             set { _warningTimerLabel = value; }
         }
 
+        [Category("Game Canvas Settings")]
+        [Description("Play Button Image")]
+        [DefaultValue(null)]
+        public Image PlayButtonImage
+        {
+            get { return _playButtonImage; }
+            set { _playButtonImage = value; }
+        }
 
+        [Category("Game Canvas Settings")]
+        [Description("Pause Button Image")]
+        [DefaultValue(null)]
+        public Image PauseButtonImage
+        {
+            get { return _pauseButtonImage; }
+            set { _pauseButtonImage = value; }
+        }
 
         public CircuitBlock CircuitBlock
         {
