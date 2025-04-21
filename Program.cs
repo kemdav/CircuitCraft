@@ -15,9 +15,12 @@ namespace CircuitCraft
     {
         public string Username { get; set; }
         public byte[] ProfileImage { get; set; }
-        public int CircuitsCompleted { get; set; }
-        public int BurnedResistors { get; set; }
+        public int HighestLevelReached { get; set; }
+        public int UnpoweredLed { get; set; }
         public int BurnedLed { get; set; }
+        public int DiodeBlocked { get; set; }
+        public int HighestJoulesObtained { get; set; }
+        public int CircuitOverflowed { get; set; }
         public int Rating { get; set; }
     }
     internal static class Program
@@ -45,7 +48,7 @@ namespace CircuitCraft
 
             ApplicationConfiguration.Initialize();
             DataClass.ConnectionDatabase();
-            Application.Run(new MainGamePrototype());
+            Application.Run(new LoginScreenForm());
         }
 
         public static int CalculateRating(int C, int R, int L)
@@ -96,7 +99,7 @@ namespace CircuitCraft
             {
                 _highestLevelReached = value;
                 Rating = Program.CalculateRating(_highestLevelReached, _unpoweredLeds, _burnedLeds);
-                UpdateUserInformation("CircuitsCompleted", value);
+                UpdateUserInformation("HighestLevelReached", value);
             }
         }
         public static int UnpoweredLeds
@@ -106,7 +109,7 @@ namespace CircuitCraft
             {
                 _unpoweredLeds = value;
                 Rating = Program.CalculateRating(_highestLevelReached, _unpoweredLeds, _burnedLeds);
-                UpdateUserInformation("BurnedResistors", value);
+                UpdateUserInformation("UnpoweredLed", value);
             }
         }
         public static int BurnedLeds
@@ -119,6 +122,38 @@ namespace CircuitCraft
                 UpdateUserInformation("BurnedLed", value);
             }
         }
+
+        public static int HighestJoulesObtained
+        {
+            get { return _highestJoulesObtained; }
+            set
+            {
+                _highestJoulesObtained = value;
+                UpdateUserInformation("HighestJoulesObtained", value);
+            }
+        }
+
+        public static int DiodeBlocked
+        {
+            get { return _diodeBlocked; }
+            set
+            {
+                _diodeBlocked = value;
+                UpdateUserInformation("DiodeBlocked", value);
+            }
+        }
+
+        public static int CircuitOverflowed
+        {
+            get { return _circuitOverflowed; }
+            set
+            {
+                _circuitOverflowed = value;
+                UpdateUserInformation("CircuitOverflowed", value);
+            }
+        }
+
+
         public static int Rating
         {
             get { return _rating; }
@@ -562,10 +597,13 @@ namespace CircuitCraft
                                 TempUserInformation tempUserInformation = new TempUserInformation();
                                 tempUserInformation.Username = reader.GetString(0);
                                 tempUserInformation.ProfileImage = reader["ProfileImage"] as byte[];
-                                tempUserInformation.CircuitsCompleted = reader.IsDBNull(2) ? 0 : reader.GetInt32(2);
-                                tempUserInformation.BurnedResistors = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
-                                tempUserInformation.BurnedLed = reader.IsDBNull(4) ? 0 : reader.GetInt32(4);
-                                tempUserInformation.Rating = reader.IsDBNull(5) ? 0 : reader.GetInt32(5);
+                                tempUserInformation.HighestLevelReached = reader.IsDBNull(2) ? 0 : reader.GetInt32(2);
+                                tempUserInformation.HighestJoulesObtained = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
+                                tempUserInformation.UnpoweredLed = reader.IsDBNull(4) ? 0 : reader.GetInt32(4);
+                                tempUserInformation.BurnedLed = reader.IsDBNull(5) ? 0 : reader.GetInt32(5);
+                                tempUserInformation.DiodeBlocked = reader.IsDBNull(6) ? 0 : reader.GetInt32(6);
+                                tempUserInformation.CircuitOverflowed = reader.IsDBNull(7) ? 0 : reader.GetInt32(7);
+                                tempUserInformation.Rating = reader.IsDBNull(8) ? 0 : reader.GetInt32(8);
 
                                 sortedUsers.Add(tempUserInformation);
                             }

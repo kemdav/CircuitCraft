@@ -72,6 +72,12 @@
     <Folder Include="Resources\UI\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Resources\Audio\buttonClick.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="xcopy &quot;$(ProjectDir)Resources&quot; &quot;$(TargetDir)Images&quot; /Y /I /E /S" />
   </Target>

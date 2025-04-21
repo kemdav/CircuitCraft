@@ -23,7 +23,7 @@
   <Class Name="CircuitCraft.LeaderboardsForm" Collapsed="true">
     <Position X="7.5" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gPtPUADgHSDeIQACACCA8A4CACD8D4B3AABAAQCQAII=</HashCode>
+      <HashCode>gPtPMhDgHSDeIeAdAO6B8A4CAAD8D4B3AAAAAQBAAP8=</HashCode>
       <FileName>LeaderboardsForm.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -54,22 +54,20 @@
   <Class Name="CircuitCraft.MainGame" Collapsed="true">
     <Position X="4" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AEECQAAIAKkQAgxABYSAQBwGAQAQEAoEwEBkAChQCIw=</HashCode>
+      <HashCode>AGECQAAIAKkQAgxABYSAQBwGAQAQEAoGwEBkAChQCIw=</HashCode>
       <FileName>MainGame.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CircuitCraft.SettingsForm" Collapsed="true">
     <Position X="9.25" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgzCEhACgGIAKHAQABCARgQCRQAAIEAkwAEIQBADAcU=</HashCode>
-      <FileName>SettingsForm.cs</FileName>
+      <HashCode>AoDCMhACAGIAKRIACgCAJAgiRQAAAAAAwAAqQBBBAcU=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="CircuitCraft.TutorialForm" Collapsed="true">
     <Position X="5.75" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>TutorialForm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

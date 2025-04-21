@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,6 +17,9 @@ namespace CircuitCraft
     {
         private LibVLC _libvlc;
         private MediaPlayer _mediaPlayer;
+
+        private SoundPlayer sfxPlayer;
+        private string sfxFilePath_ClickButton = @"Assets\Audio\ClickButton.wav";
 
         public MainMenuForm()
         {
