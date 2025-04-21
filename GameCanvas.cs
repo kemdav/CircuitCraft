@@ -344,13 +344,10 @@ namespace CircuitCraft
             });
         }
 
-        public void StartRound(double startingSourceVoltage, double minimumOperatingCurrent, double maximumOperatingCurrent)
+        public void StartRound()
         {
-            SourceVoltage = startingSourceVoltage;
-            MinimumOperatingCurrent = minimumOperatingCurrent;
-            OperatingCurrent = maximumOperatingCurrent;
-
             roundStartTimer.Start();
+            ClearUpNextComponents();
             DifficultyManager.UpdateDifficulty(new List<Image>()
             {
                 CircuitElementSourceSprite1,
@@ -366,7 +363,7 @@ namespace CircuitCraft
                 CircuitElementResistorSprite3,
                 CircuitElementResistorSprite4,
                 CircuitElementResistorSprite5
-            }, ref _currentLevel, 1);
+            }, ref _currentLevel, _currentLevel);
             UpdateDifficultyValues();
 
             FillUpNextComponents();
@@ -454,7 +451,6 @@ namespace CircuitCraft
             ClearCircuitElements();
 
             warningTimer.Stop();
-            warningStartTimer.Start();
 
             MinimumOperatingCurrentTick = 0;
             OperatingCurrentTick = 0;
@@ -473,7 +469,7 @@ namespace CircuitCraft
                 {
                     CircuitBlocks[i].RemoveCircuitElement(0);
                 }
-                if (CircuitBlocks[i].CircuitBlockState != CircuitBlockState.Locked && CircuitBlocks[i].CircuitBlockState != CircuitBlockState.Full)
+                if (CircuitBlocks[i].CircuitBlockState != CircuitBlockState.Locked && CircuitBlocks[i].CircuitBlockState == CircuitBlockState.Full)
                 {
                     CircuitBlocks[i].CircuitBlockState = CircuitBlockState.Unlocked;
                 }
@@ -764,6 +760,8 @@ namespace CircuitCraft
                 nextComponentsPboxs[i].Image = null;
                 nextComponentsLabels[i].Text = "";
             }
+
+            NextCircuitElements.Clear();
         }
 
         public void FillUpNextComponents()

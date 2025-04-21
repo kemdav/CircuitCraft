@@ -51,6 +51,7 @@ namespace CircuitCraft
                 cardDescription.Text = value.CardDescription;
 
                 costLabel.Text = value.Cost.ToString();
+                if (value.Cost == 0) { costLabel.Text = "FREE"; }
             }
         }
 

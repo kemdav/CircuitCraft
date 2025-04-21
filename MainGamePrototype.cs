@@ -54,11 +54,12 @@ namespace CircuitCraft
                 gameCanvas.SpawnCircuitBlock(CircuitBlockState.Locked, new Point(2 + (distance * i), 0), 130, 220);
             }
 
-            gameCanvas.StartRound(3, 0.1, 0.2);
+            gameCanvas.StartRound();
             gameCanvas.FillUpNextComponents();
             gameCanvas.MainGamePrototype = this;
             gameCanvas.ShowChoicesPrompt = CardsChoicePrompt;
             gameCanvas.GameOverPrompt = GameOverScreenPrompt;
+            gameCanvas.SourceVoltage = 3;
         }
 
         public void EnterFullScreen()
@@ -273,7 +274,7 @@ namespace CircuitCraft
             {
                 gameCanvas.UnlockCircuitBlock(sourceForm.ChoicePromptData.Cards);
                 gameCanvas.NextRoundReset();
-                gameCanvas.ResumeGame();
+                gameCanvas.StartRound();
             }
             foreach (ChoicePromptForm form in choicePromptForms)
             {
@@ -287,7 +288,7 @@ namespace CircuitCraft
             if (sourceForm != null)
             {
                 gameCanvas.ResetGame();
-                gameCanvas.StartRound(3, 0.1, 0.2);
+                gameCanvas.StartRound();
             }
             sourceForm.Close();
         }
