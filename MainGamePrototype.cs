@@ -199,7 +199,16 @@ namespace CircuitCraft
             frmPrompt1.SetGameOverText(gameOverMessage);
             frmPrompt1.OnPlayAgainButtonClicked += GameOver_PlayAgainButtonClicked;
             frmPrompt1.OnBackToMainMenuClicked += GameOver_MainMenuButtonClicked;
-            frmPrompt1.FormClosed += (s, args) =>
+
+            frmPrompt1.RecordedHighestLevel = gameCanvas.RecordedHighestLevel;
+            frmPrompt1.RecordedLedBurned = gameCanvas.RecordedLedBurned;
+            frmPrompt1.RecordedLedUnpowered = gameCanvas.RecordedLedUnpowered;
+            frmPrompt1.RecordedHighestJoule  = gameCanvas.RecordedHighestJoule;
+            frmPrompt1.RecordedRating = gameCanvas.RecordedRating;
+            frmPrompt1.RecordedDiodeBlocked = gameCanvas.RecordedDiodeBlocked;
+            frmPrompt1.RecordedCircuitOverflowed  = gameCanvas.RecordedCircuitOverflowed;
+
+        frmPrompt1.FormClosed += (s, args) =>
             {
                 frmPrompt1.OnPlayAgainButtonClicked -= GameOver_PlayAgainButtonClicked;
                 frmPrompt1.OnBackToMainMenuClicked -= GameOver_MainMenuButtonClicked;

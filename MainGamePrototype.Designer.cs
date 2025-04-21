@@ -47,7 +47,6 @@ namespace CircuitCraft // Ensure this namespace matches your project
             pauseResumeButton = new PictureBox();
             lblTime = new BigLabel();
             lblLevel = new BigLabel();
-            lblRating = new BigLabel();
             pnlHoldArea = new System.Windows.Forms.Panel();
             holdCooldownLabel = new BigLabel();
             holdCooldownProgressBar = new LostProgressBar();
@@ -109,7 +108,6 @@ namespace CircuitCraft // Ensure this namespace matches your project
             pnlTopBar.Controls.Add(pauseResumeButton);
             pnlTopBar.Controls.Add(lblTime);
             pnlTopBar.Controls.Add(lblLevel);
-            pnlTopBar.Controls.Add(lblRating);
             pnlTopBar.Dock = DockStyle.Top;
             pnlTopBar.Location = new Point(0, 0);
             pnlTopBar.Name = "pnlTopBar";
@@ -210,23 +208,11 @@ namespace CircuitCraft // Ensure this namespace matches your project
             lblLevel.BackColor = Color.Transparent;
             lblLevel.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold);
             lblLevel.ForeColor = Color.FromArgb(80, 80, 80);
-            lblLevel.Location = new Point(187, 15);
+            lblLevel.Location = new Point(44, 15);
             lblLevel.Name = "lblLevel";
             lblLevel.Size = new Size(74, 25);
             lblLevel.TabIndex = 1;
             lblLevel.Text = "Level: 1";
-            // 
-            // lblRating
-            // 
-            lblRating.AutoSize = true;
-            lblRating.BackColor = Color.Transparent;
-            lblRating.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold);
-            lblRating.ForeColor = Color.FromArgb(80, 80, 80);
-            lblRating.Location = new Point(12, 15);
-            lblRating.Name = "lblRating";
-            lblRating.Size = new Size(89, 25);
-            lblRating.TabIndex = 0;
-            lblRating.Text = "Rating: 0";
             // 
             // pnlHoldArea
             // 
@@ -621,7 +607,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.CircuitElementSourceSprite4 = (Image)resources.GetObject("gameCanvas.CircuitElementSourceSprite4");
             gameCanvas.CircuitElementSourceSprite5 = (Image)resources.GetObject("gameCanvas.CircuitElementSourceSprite5");
             gameCanvas.CircuitSources = null;
-            gameCanvas.CurrentBlockIndex = -1;
+            gameCanvas.CurrentBlockIndex = 0;
             gameCanvas.CurrentCircuitElementDropped = null;
             gameCanvas.CurrentCircuitElementDroppedOrientation = 0;
             gameCanvas.CurrentCircuitElementDroppedResistance = 0D;
@@ -672,7 +658,6 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.ParallelCircuitBlockImage = (Image)resources.GetObject("gameCanvas.ParallelCircuitBlockImage");
             gameCanvas.PauseButtonImage = (Image)resources.GetObject("gameCanvas.PauseButtonImage");
             gameCanvas.PlayButtonImage = (Image)resources.GetObject("gameCanvas.PlayButtonImage");
-            gameCanvas.RatingLabel = lblRating;
             gameCanvas.ResistanceValueMultiplier = 2D;
             gameCanvas.ResistorIncreaseChanceCardCost = 0;
             gameCanvas.ResistorIncreaseChanceCardDescription = "Increase Resistor Spawn Rate by 10%";
@@ -748,7 +733,6 @@ namespace CircuitCraft // Ensure this namespace matches your project
 
         #endregion
         private System.Windows.Forms.Panel pnlTopBar;
-        private ReaLTaiizor.Controls.BigLabel lblRating;
         private ReaLTaiizor.Controls.BigLabel lblLevel;
         private ReaLTaiizor.Controls.BigLabel lblTime;
         private System.Windows.Forms.PictureBox pauseResumeButton;

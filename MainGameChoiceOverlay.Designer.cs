@@ -65,9 +65,9 @@
             // 
             gameoverFormPos.Anchor = AnchorStyles.None;
             gameoverFormPos.BackColor = Color.Transparent;
-            gameoverFormPos.Location = new Point(232, 173);
+            gameoverFormPos.Location = new Point(158, 67);
             gameoverFormPos.Name = "gameoverFormPos";
-            gameoverFormPos.Size = new Size(569, 320);
+            gameoverFormPos.Size = new Size(698, 655);
             gameoverFormPos.TabIndex = 4;
             // 
             // MainGameChoiceOverlay

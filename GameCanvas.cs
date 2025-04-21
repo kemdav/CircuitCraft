@@ -32,6 +32,17 @@ namespace CircuitCraft
         public double SourceValueMultiplier { get; set; } = 0.2;
         public double ResistanceValueMultiplier { get; set; } = 2;
 
+
+        #region Recorded Statistics
+        public int RecordedHighestLevel { get; set; } = 0;
+        public int RecordedLedBurned { get; set; } = 0;
+        public int RecordedLedUnpowered { get; set; } = 0;
+        public int RecordedHighestJoule { get; set; } = 0;
+        public int RecordedRating { get; set; } = 0;
+        public int RecordedDiodeBlocked { get; set; } = 0;
+        public int RecordedCircuitOverflowed { get; set; } = 0;
+        #endregion
+
         private int _currentLevel = 1;
         public int CurrentLevel {
             get
@@ -407,6 +418,7 @@ namespace CircuitCraft
             gameLedTimer.Stop();
             warningTimer.Stop();
             warningStartTimer.Stop();
+            roundStartTimer.Stop();
 
 
             holdCooldownTimer.Stop();
@@ -415,9 +427,9 @@ namespace CircuitCraft
 
         public void ResumeGame()
         {
-            gameTimer.Start();
+            if (roundStartTimerTick == 0) gameLedTimer.Start();
 
-            if (warningStartTimerTick == 0) warningTimer.Start();
+            if (warningStartTimerTick == 0 && roundStartTimerTick == 0) warningTimer.Start();
             if (roundStartTimerTick == 0) gameLedTimer.Start();
 
             if (holdCooldownTick != 0) holdCooldownTimer.Start();
