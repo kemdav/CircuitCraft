@@ -39,7 +39,7 @@
             bigLabel1.BackColor = Color.Transparent;
             bigLabel1.Font = new Font("Segoe UI", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
             bigLabel1.ForeColor = Color.Black;
-            bigLabel1.Location = new Point(71, 37);
+            bigLabel1.Location = new Point(68, 25);
             bigLabel1.Name = "bigLabel1";
             bigLabel1.Size = new Size(442, 85);
             bigLabel1.TabIndex = 0;
@@ -53,7 +53,7 @@
             playAgainButton.Depth = 0;
             playAgainButton.HighEmphasis = true;
             playAgainButton.Icon = null;
-            playAgainButton.Location = new Point(160, 209);
+            playAgainButton.Location = new Point(160, 221);
             playAgainButton.Margin = new Padding(4, 6, 4, 6);
             playAgainButton.MouseState = MaterialSkin.MouseState.HOVER;
             playAgainButton.Name = "playAgainButton";
@@ -75,7 +75,7 @@
             mainMenuButton.Depth = 0;
             mainMenuButton.HighEmphasis = true;
             mainMenuButton.Icon = null;
-            mainMenuButton.Location = new Point(160, 257);
+            mainMenuButton.Location = new Point(160, 269);
             mainMenuButton.Margin = new Padding(4, 6, 4, 6);
             mainMenuButton.MouseState = MaterialSkin.MouseState.HOVER;
             mainMenuButton.Name = "mainMenuButton";
@@ -94,11 +94,11 @@
             gameOverMessage.BackColor = Color.Transparent;
             gameOverMessage.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             gameOverMessage.ForeColor = Color.IndianRed;
-            gameOverMessage.Location = new Point(32, 118);
+            gameOverMessage.Location = new Point(32, 110);
             gameOverMessage.Name = "gameOverMessage";
-            gameOverMessage.Size = new Size(510, 85);
+            gameOverMessage.Size = new Size(510, 93);
             gameOverMessage.TabIndex = 3;
-            gameOverMessage.Text = "Game over message";
+            gameOverMessage.Text = "Um.mmm You did not power the LED";
             gameOverMessage.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // GameOverScreenForm
