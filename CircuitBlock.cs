@@ -13,15 +13,44 @@ namespace CircuitCraft
     public enum CircuitBlockConnectionType
     {
         Series,
-        Parallel
+        Parallel,
+        Trash
+    }
+
+    public enum CircuitBlockState
+    {
+        Unlocked,
+        Locked,
+        Full
     }
 
     [Serializable]
     public partial class CircuitBlock : UserControl
     {
         public CircuitBlockConnectionType CircuitBlockConnectionType { get; set; }
-        public List<CircuitElement> CircuitElements { get; set; } = new List<CircuitElement>();
+        public CircuitBlockState CircuitBlockState { get; set; } = CircuitBlockState.Unlocked;
+
+        public List<CircuitElement> CircuitElements = new List<CircuitElement>();
         public int CurrentElementIndex { get; set; } = 0;
+
+
+        private bool isSelected = false;
+        public bool IsSelected
+        {
+            get { return isSelected; }
+            set
+            {
+                isSelected = value;
+                if (isSelected)
+                {
+                    this.BackColor = Color.LightBlue;
+                }
+                else
+                {
+                    this.BackColor = Color.Transparent;
+                }
+            }
+        }
 
         private int _maximumElements = 4;
         private int _circuitElementWidth = 40;
@@ -32,7 +61,9 @@ namespace CircuitCraft
         public CircuitBlock()
         {
             InitializeComponent();
-        }
+            BackColor = Color.Transparent;
+
+        }       
 
         public void UpdateCircuitBlockSize()
         {
@@ -40,29 +71,30 @@ namespace CircuitCraft
             Width = _circuitElementWidth;
         }
 
-        public void RemoveCircuitElement(ref GameCanvas gameCanvas, int circuitElementIndex)
+        public void RemoveCircuitElement(int circuitElementIndex)
         {
             if (circuitElementIndex < 0 || circuitElementIndex >= CircuitElements.Count)
             {
                 throw new ArgumentOutOfRangeException(nameof(circuitElementIndex), "Invalid circuit element index.");
             }
-            gameCanvas.Controls.Remove(CircuitElements[circuitElementIndex].CircuitELementUI);
+            Controls.Remove(CircuitElements[circuitElementIndex].CircuitELementUI);
             CircuitElements.RemoveAt(circuitElementIndex);
-            RearrangeCircuitElementsUI(ref gameCanvas);
-            gameCanvas.Invalidate();
+            RearrangeCircuitElementsUI();
+            Invalidate();
         }
 
-        public void RearrangeCircuitElementsUI(ref GameCanvas gameCanvas)
+        public void RearrangeCircuitElementsUI()
         {
             for (int i = 0; i < CircuitElements.Count; i++)
             {
-                CircuitElements[i].CircuitELementUI.Location = new Point(Location.X, (Location.Y + Height) - ((i + 1) * _circuitElementHeight));
+                CircuitElements[i].CircuitELementUI.Location = new Point(0, (Location.Y + Height) - ((i + 1) * _circuitElementHeight));
             }
-            gameCanvas.Invalidate();
+            Invalidate();
         }
 
         public void AddCircuitElement(CircuitElementType circuitElementType, double voltage, double resistance, int orientation, PictureBox ciruitElementPbox)
         {
+            
             switch (circuitElementType)
             {
                 case CircuitElementType.Resistor:
@@ -92,6 +124,8 @@ namespace CircuitCraft
                     circuitElement.CircuitELementUI = ciruitElementPbox;
                     CircuitElements.Add(circuitElement);
                     break;
+                default:
+                    return;
             }
         }
 

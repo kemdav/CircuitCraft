@@ -7,8 +7,7 @@
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AgzCEhACgGIAKHAQABCARgQCRQAAIEAkwAEIQBADAcU=</HashCode>
-      <FileName>SettingsForm.cs</FileName>
+      <HashCode>AoDCMhACAGIAKRIACgCAJAgiRQAAAAAAwAAqQBBBAcU=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="CircuitCraft.DataClass">
@@ -18,7 +17,7 @@
       <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>EIAECCAAFABEACgEgACGAIEGgAAAIAEAIAkEAAgEQIA=</HashCode>
+      <HashCode>EIIEKCAAEABEIAgEhACGAAEFggAAIIEAIAkUhAgEQIA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -36,7 +35,7 @@
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>gPtPUADgHSDeIQACACCA8A4CACD8D4B3AABAAQCQAII=</HashCode>
+      <HashCode>gPtPMhDgHSDeIeAdAO6B8A4CAAD8D4B3AAAAAQBAAP8=</HashCode>
       <FileName>LeaderboardsForm.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -59,7 +58,7 @@
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AEECQAAIAKkQAgxABYSAQBwGAQAQEAoEwEBkAChQCIw=</HashCode>
+      <HashCode>AGECQAAIAKkQAgxABYSAQBwGAQAQEAoGwEBkAChQCIw=</HashCode>
       <FileName>MainGame.cs</FileName>
     </TypeIdentifier>
   </Class>

@@ -82,10 +82,13 @@ namespace CircuitCraft
             List<MaterialLabel> rankTxt = new List<MaterialLabel> { Row1Col1Txt, Row2Col1Txt, Row3Col1Txt, Row4Col1Txt, Row5Col1Txt, Row6Col1Txt, Row7Col1Txt };
             List<PictureBox> pictureBox = new List<PictureBox>() { Row1Col2Pbox, Row2Col2Pbox, Row3Col2Pbox, Row4Col2Pbox, Row5Col2Pbox, Row6Col2Pbox, Row7Col2Pbox };
             List<MaterialLabel> usernameTxt = new List<MaterialLabel> { Row1Col3Txt, Row2Col3Txt, Row3Col3Txt, Row4Col3Txt, Row5Col3Txt, Row6Col3Txt, Row7Col3Txt };
-            List<MaterialLabel> completedCircuitsTxt = new List<MaterialLabel> { Row1Col4Txt, Row2Col4Txt, Row3Col4Txt, Row4Col4Txt, Row5Col4Txt, Row6Col4Txt, Row7Col4Txt };
-            List<MaterialLabel> resistorsBurnedTxt = new List<MaterialLabel> { Row1Col5Txt, Row2Col5Txt, Row3Col5Txt, Row4Col5Txt, Row5Col5Txt, Row6Col5Txt, Row7Col5Txt };
-            List<MaterialLabel> ledsBurnedTxt = new List<MaterialLabel> { Row1Col6Txt, Row2Col6Txt, Row3Col6Txt, Row4Col6Txt, Row5Col6Txt, Row6Col6Txt, Row7Col6Txt };
-            List<MaterialLabel> ratingTxt = new List<MaterialLabel> { Row1Col7Txt, Row2Col7Txt, Row3Col7Txt, Row4Col7Txt, Row5Col7Txt, Row6Col7Txt, Row7Col7Txt };
+            List<MaterialLabel> unpoweredLedTxt = new List<MaterialLabel> { Row1Col4Txt, Row2Col4Txt, Row3Col4Txt, Row4Col4Txt, Row5Col4Txt, Row6Col4Txt, Row7Col4Txt };
+            List<MaterialLabel> circuitOverflowTxt = new List<MaterialLabel> { Row1Col5Txt, Row2Col5Txt, Row3Col5Txt, Row4Col5Txt, Row5Col5Txt, Row6Col5Txt, Row7Col5Txt };
+            List<MaterialLabel> diodeBlockedTxt = new List<MaterialLabel> { Row1Col6Txt, Row2Col6Txt, Row3Col6Txt, Row4Col6Txt, Row5Col6Txt, Row6Col6Txt, Row7Col6Txt };
+            List<MaterialLabel> ledBurnedTxt = new List<MaterialLabel> { Row1Col7Txt, Row2Col7Txt, Row3Col7Txt, Row4Col7Txt, Row5Col7Txt, Row6Col7Txt, Row7Col7Txt };
+            List<MaterialLabel> highestJoulesTxt = new List<MaterialLabel> { Row1Col8Txt, Row2Col8Txt, Row3Col8Txt, Row4Col8Txt, Row5Col8Txt, Row6Col8Txt, Row7Col8Txt };
+            List<MaterialLabel> highestLevelTxt = new List<MaterialLabel> { Row1Col9Txt, Row2Col9Txt, Row3Col9Txt, Row4Col9Txt, Row5Col9Txt, Row6Col9Txt, Row7Col9Txt };
+            List<MaterialLabel> ratingTxt = new List<MaterialLabel> { Row1Col10Txt, Row2Col10Txt, Row3Col10Txt, Row4Col10Txt, Row5Col10Txt, Row6Col10Txt, Row7Col10Txt };
 
             List<TempUserInformation> tempUserInformation = DataClass.SortedUsersByRating();
             for (int i = (page - 1) * 7; i < page * 7; i++)
@@ -95,9 +98,12 @@ namespace CircuitCraft
                     rankTxt[i - ((page - 1) * 7)].Text = "";
                     pictureBox[i - ((page - 1) * 7)].Image = null;
                     usernameTxt[i - ((page - 1) * 7)].Text = "";
-                    completedCircuitsTxt[i - ((page - 1) * 7)].Text = "";
-                    resistorsBurnedTxt[i - ((page - 1) * 7)].Text = "";
-                    ledsBurnedTxt[i - ((page - 1) * 7)].Text = "";
+                    unpoweredLedTxt[i - ((page - 1) * 7)].Text = "";
+                    circuitOverflowTxt[i - ((page - 1) * 7)].Text = "";
+                    diodeBlockedTxt[i - ((page - 1) * 7)].Text = "";
+                    ledBurnedTxt[i - ((page - 1) * 7)].Text = "";
+                    highestJoulesTxt[i - ((page - 1) * 7)].Text = "";
+                    highestLevelTxt[i - ((page - 1) * 7)].Text = "";
                     ratingTxt[i - ((page - 1) * 7)].Text = "";
                     continue;
                 }
@@ -115,9 +121,12 @@ namespace CircuitCraft
                     pictureBox[i - ((page - 1) * 7)].Image = null;
                 }
                 usernameTxt[i - ((page - 1) * 7)].Text = tempUserInformation[i].Username;
-                completedCircuitsTxt[i - ((page - 1) * 7)].Text = tempUserInformation[i].CircuitsCompleted.ToString();
-                resistorsBurnedTxt[i - ((page - 1) * 7)].Text = tempUserInformation[i].BurnedResistors.ToString();
-                ledsBurnedTxt[i - ((page - 1) * 7)].Text = tempUserInformation[i].BurnedLed.ToString();
+                unpoweredLedTxt[i - ((page - 1) * 7)].Text = tempUserInformation[i].UnpoweredLed.ToString();
+                circuitOverflowTxt[i - ((page - 1) * 7)].Text = tempUserInformation[i].CircuitOverflowed.ToString();
+                diodeBlockedTxt[i - ((page - 1) * 7)].Text = tempUserInformation[i].DiodeBlocked.ToString();
+                ledBurnedTxt[i - ((page - 1) * 7)].Text = tempUserInformation[i].BurnedLed.ToString();
+                highestJoulesTxt[i - ((page - 1) * 7)].Text = tempUserInformation[i].HighestJoulesObtained.ToString();
+                highestLevelTxt[i - ((page - 1) * 7)].Text = tempUserInformation[i].HighestLevelReached.ToString();
                 ratingTxt[i - ((page - 1) * 7)].Text = tempUserInformation[i].Rating.ToString();
             }
 

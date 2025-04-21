@@ -117,8 +117,8 @@ namespace CircuitCraft
             loadPowerLabel.Text = "Load Power: " + (result.LoadVoltage * result.LoadCurrent).ToString("F2") + " W";
             circuitSourceLabel.Text = "Circuit Source: " + DebugSourceVoltage + " V";
             dropResistorLabel.Text = "Drop Resistor: " + DebugDropResistorResistance.ToString("F2") + " Ω";
-            circuitCompletedLabel.Text = "Circuits Completed: " + DataClass.CircuitsCompleted.ToString();
-            resistorBurnedLabel.Text = "Burned Resistors: " + DataClass.BurnedResistors.ToString();
+            circuitCompletedLabel.Text = "Circuits Completed: " + DataClass.HighestLevelReached.ToString();
+            resistorBurnedLabel.Text = "Burned Resistors: " + DataClass.UnpoweredLeds.ToString();
             ledBurnedLabel.Text = "Burned LEDs: " + DataClass.BurnedLeds.ToString();
             ratingLabel.Text = "Rating: " + DataClass.Rating.ToString("F2");
             dropVoltageLabel.Text = "Drop Voltage: " + DebugDropSourceVoltage + " V";
@@ -144,9 +144,6 @@ namespace CircuitCraft
                 case Keys.O:
                     StartTicking();
                     break;
-                case Keys.C:
-                    gameCanvas.ClearCircuitElements();
-                    break;
                 case Keys.A:
                     gameCanvas.CurrentBlockIndex--;
                     break;
@@ -157,7 +154,7 @@ namespace CircuitCraft
                     gameCanvas.CurrentCircuitElementDroppedOrientation = 0;
                     break;
                 case Keys.L:
-                    gameCanvas.CircuitBlocks[gameCanvas.CurrentBlockIndex].RemoveCircuitElement(ref gameCanvas, 1);
+                    gameCanvas.CircuitBlocks[gameCanvas.CurrentBlockIndex].RemoveCircuitElement(1);
                     break;
             }
 
@@ -199,13 +196,13 @@ namespace CircuitCraft
 
         private void circuitCompletedButton_Click(object sender, EventArgs e)
         {
-            DataClass.CircuitsCompleted++;
+            DataClass.HighestLevelReached++;
             UpdateCircuitElementUI();
         }
 
         private void resistorBurnedButton_Click(object sender, EventArgs e)
         {
-            DataClass.BurnedResistors++;
+            DataClass.UnpoweredLeds++;
             UpdateCircuitElementUI();
         }
 
