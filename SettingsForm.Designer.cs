@@ -42,6 +42,25 @@
             changePasswordConfirmButton = new MaterialSkin.Controls.MaterialButton();
             changePasswordConfirmPasswordTbox = new MaterialSkin.Controls.MaterialMaskedTextBox();
             changePasswordCreatePasswordTbox = new MaterialSkin.Controls.MaterialMaskedTextBox();
+            circuitOverflowedLabel = new ReaLTaiizor.Controls.BigLabel();
+            bigLabel12 = new ReaLTaiizor.Controls.BigLabel();
+            diodeBlockedLabel = new ReaLTaiizor.Controls.BigLabel();
+            bigLabel10 = new ReaLTaiizor.Controls.BigLabel();
+            ledBurnedLabel = new ReaLTaiizor.Controls.BigLabel();
+            bigLabel8 = new ReaLTaiizor.Controls.BigLabel();
+            ledUnpoweredLabel = new ReaLTaiizor.Controls.BigLabel();
+            bigLabel6 = new ReaLTaiizor.Controls.BigLabel();
+            highestJoulesLabel = new ReaLTaiizor.Controls.BigLabel();
+            bigLabel4 = new ReaLTaiizor.Controls.BigLabel();
+            highestLevelLabel = new ReaLTaiizor.Controls.BigLabel();
+            bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
+            pictureBox7 = new PictureBox();
+            pictureBox6 = new PictureBox();
+            pictureBox1 = new PictureBox();
+            pictureBox4 = new PictureBox();
+            pictureBox3 = new PictureBox();
+            pictureBox2 = new PictureBox();
+            pictureBox8 = new PictureBox();
             accountSettingsPanel = new Panel();
             deleteButton = new MaterialSkin.Controls.MaterialButton();
             changePasswordButton = new MaterialSkin.Controls.MaterialButton();
@@ -58,33 +77,10 @@
             materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
             hopeForm1 = new ReaLTaiizor.Forms.HopeForm();
             backgroundVideo = new LibVLCSharp.WinForms.VideoView();
-            pictureBox7 = new PictureBox();
-            pictureBox6 = new PictureBox();
-            pictureBox1 = new PictureBox();
-            pictureBox4 = new PictureBox();
-            pictureBox3 = new PictureBox();
-            pictureBox2 = new PictureBox();
-            pictureBox8 = new PictureBox();
-            bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
-            highestLevelLabel = new ReaLTaiizor.Controls.BigLabel();
-            highestJoulesLabel = new ReaLTaiizor.Controls.BigLabel();
-            bigLabel4 = new ReaLTaiizor.Controls.BigLabel();
-            ledUnpoweredLabel = new ReaLTaiizor.Controls.BigLabel();
-            bigLabel6 = new ReaLTaiizor.Controls.BigLabel();
-            ledBurnedLabel = new ReaLTaiizor.Controls.BigLabel();
-            bigLabel8 = new ReaLTaiizor.Controls.BigLabel();
-            diodeBlockedLabel = new ReaLTaiizor.Controls.BigLabel();
-            bigLabel10 = new ReaLTaiizor.Controls.BigLabel();
-            circuitOverflowedLabel = new ReaLTaiizor.Controls.BigLabel();
-            bigLabel12 = new ReaLTaiizor.Controls.BigLabel();
             materialTabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
             changePasswordPanel.SuspendLayout();
-            accountSettingsPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)profilePbox).BeginInit();
-            confirmBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)backgroundVideo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -92,6 +88,10 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
+            accountSettingsPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)profilePbox).BeginInit();
+            confirmBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)backgroundVideo).BeginInit();
             SuspendLayout();
             // 
             // materialTabControl1
@@ -134,7 +134,7 @@
             materialButton6.Depth = 0;
             materialButton6.HighEmphasis = true;
             materialButton6.Icon = null;
-            materialButton6.Location = new Point(452, 565);
+            materialButton6.Location = new Point(442, 571);
             materialButton6.Margin = new Padding(4, 6, 4, 6);
             materialButton6.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton6.Name = "materialButton6";
@@ -427,6 +427,232 @@
             changePasswordCreatePasswordTbox.ValidatingType = null;
             changePasswordCreatePasswordTbox.Enter += AccountTbox_Click;
             // 
+            // circuitOverflowedLabel
+            // 
+            circuitOverflowedLabel.Anchor = AnchorStyles.None;
+            circuitOverflowedLabel.BackColor = Color.Transparent;
+            circuitOverflowedLabel.Font = new Font("Segoe UI Emoji", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            circuitOverflowedLabel.ForeColor = Color.FromArgb(80, 80, 80);
+            circuitOverflowedLabel.Location = new Point(643, 440);
+            circuitOverflowedLabel.Name = "circuitOverflowedLabel";
+            circuitOverflowedLabel.Size = new Size(92, 36);
+            circuitOverflowedLabel.TabIndex = 44;
+            circuitOverflowedLabel.Text = "10";
+            circuitOverflowedLabel.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // bigLabel12
+            // 
+            bigLabel12.Anchor = AnchorStyles.None;
+            bigLabel12.BackColor = Color.Transparent;
+            bigLabel12.Font = new Font("Segoe UI Emoji", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            bigLabel12.ForeColor = Color.FromArgb(80, 80, 80);
+            bigLabel12.Location = new Point(643, 404);
+            bigLabel12.Name = "bigLabel12";
+            bigLabel12.Size = new Size(345, 36);
+            bigLabel12.TabIndex = 43;
+            bigLabel12.Text = "Circuits Overflowed";
+            bigLabel12.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // diodeBlockedLabel
+            // 
+            diodeBlockedLabel.Anchor = AnchorStyles.None;
+            diodeBlockedLabel.BackColor = Color.Transparent;
+            diodeBlockedLabel.Font = new Font("Segoe UI Emoji", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            diodeBlockedLabel.ForeColor = Color.FromArgb(80, 80, 80);
+            diodeBlockedLabel.Location = new Point(643, 368);
+            diodeBlockedLabel.Name = "diodeBlockedLabel";
+            diodeBlockedLabel.Size = new Size(92, 36);
+            diodeBlockedLabel.TabIndex = 42;
+            diodeBlockedLabel.Text = "10";
+            diodeBlockedLabel.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // bigLabel10
+            // 
+            bigLabel10.Anchor = AnchorStyles.None;
+            bigLabel10.BackColor = Color.Transparent;
+            bigLabel10.Font = new Font("Segoe UI Emoji", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            bigLabel10.ForeColor = Color.FromArgb(80, 80, 80);
+            bigLabel10.Location = new Point(643, 332);
+            bigLabel10.Name = "bigLabel10";
+            bigLabel10.Size = new Size(345, 36);
+            bigLabel10.TabIndex = 41;
+            bigLabel10.Text = "Diode Blocked Circuits";
+            bigLabel10.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // ledBurnedLabel
+            // 
+            ledBurnedLabel.Anchor = AnchorStyles.None;
+            ledBurnedLabel.BackColor = Color.Transparent;
+            ledBurnedLabel.Font = new Font("Segoe UI Emoji", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ledBurnedLabel.ForeColor = Color.FromArgb(80, 80, 80);
+            ledBurnedLabel.Location = new Point(643, 280);
+            ledBurnedLabel.Name = "ledBurnedLabel";
+            ledBurnedLabel.Size = new Size(92, 36);
+            ledBurnedLabel.TabIndex = 40;
+            ledBurnedLabel.Text = "10";
+            ledBurnedLabel.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // bigLabel8
+            // 
+            bigLabel8.Anchor = AnchorStyles.None;
+            bigLabel8.BackColor = Color.Transparent;
+            bigLabel8.Font = new Font("Segoe UI Emoji", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            bigLabel8.ForeColor = Color.FromArgb(80, 80, 80);
+            bigLabel8.Location = new Point(643, 244);
+            bigLabel8.Name = "bigLabel8";
+            bigLabel8.Size = new Size(345, 36);
+            bigLabel8.TabIndex = 39;
+            bigLabel8.Text = "LEDs Burned";
+            bigLabel8.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // ledUnpoweredLabel
+            // 
+            ledUnpoweredLabel.Anchor = AnchorStyles.None;
+            ledUnpoweredLabel.BackColor = Color.Transparent;
+            ledUnpoweredLabel.Font = new Font("Segoe UI Emoji", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ledUnpoweredLabel.ForeColor = Color.FromArgb(80, 80, 80);
+            ledUnpoweredLabel.Location = new Point(104, 440);
+            ledUnpoweredLabel.Name = "ledUnpoweredLabel";
+            ledUnpoweredLabel.Size = new Size(92, 36);
+            ledUnpoweredLabel.TabIndex = 38;
+            ledUnpoweredLabel.Text = "10";
+            ledUnpoweredLabel.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // bigLabel6
+            // 
+            bigLabel6.Anchor = AnchorStyles.None;
+            bigLabel6.BackColor = Color.Transparent;
+            bigLabel6.Font = new Font("Segoe UI Emoji", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            bigLabel6.ForeColor = Color.FromArgb(80, 80, 80);
+            bigLabel6.Location = new Point(104, 404);
+            bigLabel6.Name = "bigLabel6";
+            bigLabel6.Size = new Size(345, 36);
+            bigLabel6.TabIndex = 37;
+            bigLabel6.Text = "LEDs Unpowered";
+            bigLabel6.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // highestJoulesLabel
+            // 
+            highestJoulesLabel.Anchor = AnchorStyles.None;
+            highestJoulesLabel.BackColor = Color.Transparent;
+            highestJoulesLabel.Font = new Font("Segoe UI Emoji", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            highestJoulesLabel.ForeColor = Color.FromArgb(80, 80, 80);
+            highestJoulesLabel.Location = new Point(104, 368);
+            highestJoulesLabel.Name = "highestJoulesLabel";
+            highestJoulesLabel.Size = new Size(92, 36);
+            highestJoulesLabel.TabIndex = 36;
+            highestJoulesLabel.Text = "10";
+            highestJoulesLabel.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // bigLabel4
+            // 
+            bigLabel4.Anchor = AnchorStyles.None;
+            bigLabel4.BackColor = Color.Transparent;
+            bigLabel4.Font = new Font("Segoe UI Emoji", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            bigLabel4.ForeColor = Color.FromArgb(80, 80, 80);
+            bigLabel4.Location = new Point(104, 332);
+            bigLabel4.Name = "bigLabel4";
+            bigLabel4.Size = new Size(345, 36);
+            bigLabel4.TabIndex = 35;
+            bigLabel4.Text = "Highest Joules Obtained";
+            bigLabel4.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // highestLevelLabel
+            // 
+            highestLevelLabel.Anchor = AnchorStyles.None;
+            highestLevelLabel.BackColor = Color.Transparent;
+            highestLevelLabel.Font = new Font("Segoe UI Emoji", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            highestLevelLabel.ForeColor = Color.FromArgb(80, 80, 80);
+            highestLevelLabel.Location = new Point(104, 280);
+            highestLevelLabel.Name = "highestLevelLabel";
+            highestLevelLabel.Size = new Size(92, 36);
+            highestLevelLabel.TabIndex = 34;
+            highestLevelLabel.Text = "10";
+            highestLevelLabel.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // bigLabel1
+            // 
+            bigLabel1.Anchor = AnchorStyles.None;
+            bigLabel1.BackColor = Color.Transparent;
+            bigLabel1.Font = new Font("Segoe UI Emoji", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            bigLabel1.ForeColor = Color.FromArgb(80, 80, 80);
+            bigLabel1.Location = new Point(104, 244);
+            bigLabel1.Name = "bigLabel1";
+            bigLabel1.Size = new Size(345, 36);
+            bigLabel1.TabIndex = 33;
+            bigLabel1.Text = "Highest Level Reached";
+            bigLabel1.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // pictureBox7
+            // 
+            pictureBox7.Image = (Image)resources.GetObject("pictureBox7.Image");
+            pictureBox7.Location = new Point(560, 406);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new Size(68, 60);
+            pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox7.TabIndex = 32;
+            pictureBox7.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
+            pictureBox6.Location = new Point(560, 332);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(68, 60);
+            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox6.TabIndex = 31;
+            pictureBox6.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(30, 334);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(68, 60);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 30;
+            pictureBox1.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
+            pictureBox4.Location = new Point(30, 256);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(68, 60);
+            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox4.TabIndex = 29;
+            pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(30, 410);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(68, 60);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.TabIndex = 28;
+            pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(560, 256);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(68, 60);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 27;
+            pictureBox2.TabStop = false;
+            // 
+            // pictureBox8
+            // 
+            pictureBox8.Image = (Image)resources.GetObject("pictureBox8.Image");
+            pictureBox8.Location = new Point(189, 85);
+            pictureBox8.Name = "pictureBox8";
+            pictureBox8.Size = new Size(68, 60);
+            pictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox8.TabIndex = 26;
+            pictureBox8.TabStop = false;
+            // 
             // accountSettingsPanel
             // 
             accountSettingsPanel.Controls.Add(deleteButton);
@@ -680,232 +906,6 @@
             backgroundVideo.TabIndex = 12;
             backgroundVideo.Text = "videoView1";
             // 
-            // pictureBox7
-            // 
-            pictureBox7.Image = (Image)resources.GetObject("pictureBox7.Image");
-            pictureBox7.Location = new Point(477, 406);
-            pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(68, 60);
-            pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox7.TabIndex = 32;
-            pictureBox7.TabStop = false;
-            // 
-            // pictureBox6
-            // 
-            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
-            pictureBox6.Location = new Point(477, 332);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(68, 60);
-            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox6.TabIndex = 31;
-            pictureBox6.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(30, 334);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(68, 60);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 30;
-            pictureBox1.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(30, 256);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(68, 60);
-            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox4.TabIndex = 29;
-            pictureBox4.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(30, 410);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(68, 60);
-            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox3.TabIndex = 28;
-            pictureBox3.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(477, 256);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(68, 60);
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox2.TabIndex = 27;
-            pictureBox2.TabStop = false;
-            // 
-            // pictureBox8
-            // 
-            pictureBox8.Image = (Image)resources.GetObject("pictureBox8.Image");
-            pictureBox8.Location = new Point(189, 85);
-            pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(68, 60);
-            pictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox8.TabIndex = 26;
-            pictureBox8.TabStop = false;
-            // 
-            // bigLabel1
-            // 
-            bigLabel1.Anchor = AnchorStyles.None;
-            bigLabel1.BackColor = Color.Transparent;
-            bigLabel1.Font = new Font("Segoe UI Emoji", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            bigLabel1.ForeColor = Color.FromArgb(80, 80, 80);
-            bigLabel1.Location = new Point(104, 244);
-            bigLabel1.Name = "bigLabel1";
-            bigLabel1.Size = new Size(345, 36);
-            bigLabel1.TabIndex = 33;
-            bigLabel1.Text = "Highest Level Reached";
-            bigLabel1.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // highestLevelLabel
-            // 
-            highestLevelLabel.Anchor = AnchorStyles.None;
-            highestLevelLabel.BackColor = Color.Transparent;
-            highestLevelLabel.Font = new Font("Segoe UI Emoji", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            highestLevelLabel.ForeColor = Color.FromArgb(80, 80, 80);
-            highestLevelLabel.Location = new Point(104, 280);
-            highestLevelLabel.Name = "highestLevelLabel";
-            highestLevelLabel.Size = new Size(92, 36);
-            highestLevelLabel.TabIndex = 34;
-            highestLevelLabel.Text = "10";
-            highestLevelLabel.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // highestJoulesLabel
-            // 
-            highestJoulesLabel.Anchor = AnchorStyles.None;
-            highestJoulesLabel.BackColor = Color.Transparent;
-            highestJoulesLabel.Font = new Font("Segoe UI Emoji", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            highestJoulesLabel.ForeColor = Color.FromArgb(80, 80, 80);
-            highestJoulesLabel.Location = new Point(104, 368);
-            highestJoulesLabel.Name = "highestJoulesLabel";
-            highestJoulesLabel.Size = new Size(92, 36);
-            highestJoulesLabel.TabIndex = 36;
-            highestJoulesLabel.Text = "10";
-            highestJoulesLabel.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // bigLabel4
-            // 
-            bigLabel4.Anchor = AnchorStyles.None;
-            bigLabel4.BackColor = Color.Transparent;
-            bigLabel4.Font = new Font("Segoe UI Emoji", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            bigLabel4.ForeColor = Color.FromArgb(80, 80, 80);
-            bigLabel4.Location = new Point(104, 332);
-            bigLabel4.Name = "bigLabel4";
-            bigLabel4.Size = new Size(345, 36);
-            bigLabel4.TabIndex = 35;
-            bigLabel4.Text = "Highest Joules Obtained";
-            bigLabel4.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // ledUnpoweredLabel
-            // 
-            ledUnpoweredLabel.Anchor = AnchorStyles.None;
-            ledUnpoweredLabel.BackColor = Color.Transparent;
-            ledUnpoweredLabel.Font = new Font("Segoe UI Emoji", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ledUnpoweredLabel.ForeColor = Color.FromArgb(80, 80, 80);
-            ledUnpoweredLabel.Location = new Point(104, 440);
-            ledUnpoweredLabel.Name = "ledUnpoweredLabel";
-            ledUnpoweredLabel.Size = new Size(92, 36);
-            ledUnpoweredLabel.TabIndex = 38;
-            ledUnpoweredLabel.Text = "10";
-            ledUnpoweredLabel.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // bigLabel6
-            // 
-            bigLabel6.Anchor = AnchorStyles.None;
-            bigLabel6.BackColor = Color.Transparent;
-            bigLabel6.Font = new Font("Segoe UI Emoji", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            bigLabel6.ForeColor = Color.FromArgb(80, 80, 80);
-            bigLabel6.Location = new Point(104, 404);
-            bigLabel6.Name = "bigLabel6";
-            bigLabel6.Size = new Size(345, 36);
-            bigLabel6.TabIndex = 37;
-            bigLabel6.Text = "LEDs Unpowered";
-            bigLabel6.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // ledBurnedLabel
-            // 
-            ledBurnedLabel.Anchor = AnchorStyles.None;
-            ledBurnedLabel.BackColor = Color.Transparent;
-            ledBurnedLabel.Font = new Font("Segoe UI Emoji", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ledBurnedLabel.ForeColor = Color.FromArgb(80, 80, 80);
-            ledBurnedLabel.Location = new Point(560, 280);
-            ledBurnedLabel.Name = "ledBurnedLabel";
-            ledBurnedLabel.Size = new Size(92, 36);
-            ledBurnedLabel.TabIndex = 40;
-            ledBurnedLabel.Text = "10";
-            ledBurnedLabel.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // bigLabel8
-            // 
-            bigLabel8.Anchor = AnchorStyles.None;
-            bigLabel8.BackColor = Color.Transparent;
-            bigLabel8.Font = new Font("Segoe UI Emoji", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            bigLabel8.ForeColor = Color.FromArgb(80, 80, 80);
-            bigLabel8.Location = new Point(560, 244);
-            bigLabel8.Name = "bigLabel8";
-            bigLabel8.Size = new Size(345, 36);
-            bigLabel8.TabIndex = 39;
-            bigLabel8.Text = "LEDs Burned";
-            bigLabel8.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // diodeBlockedLabel
-            // 
-            diodeBlockedLabel.Anchor = AnchorStyles.None;
-            diodeBlockedLabel.BackColor = Color.Transparent;
-            diodeBlockedLabel.Font = new Font("Segoe UI Emoji", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            diodeBlockedLabel.ForeColor = Color.FromArgb(80, 80, 80);
-            diodeBlockedLabel.Location = new Point(560, 368);
-            diodeBlockedLabel.Name = "diodeBlockedLabel";
-            diodeBlockedLabel.Size = new Size(92, 36);
-            diodeBlockedLabel.TabIndex = 42;
-            diodeBlockedLabel.Text = "10";
-            diodeBlockedLabel.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // bigLabel10
-            // 
-            bigLabel10.Anchor = AnchorStyles.None;
-            bigLabel10.BackColor = Color.Transparent;
-            bigLabel10.Font = new Font("Segoe UI Emoji", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            bigLabel10.ForeColor = Color.FromArgb(80, 80, 80);
-            bigLabel10.Location = new Point(560, 332);
-            bigLabel10.Name = "bigLabel10";
-            bigLabel10.Size = new Size(345, 36);
-            bigLabel10.TabIndex = 41;
-            bigLabel10.Text = "Diode Blocked Circuits";
-            bigLabel10.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // circuitOverflowedLabel
-            // 
-            circuitOverflowedLabel.Anchor = AnchorStyles.None;
-            circuitOverflowedLabel.BackColor = Color.Transparent;
-            circuitOverflowedLabel.Font = new Font("Segoe UI Emoji", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            circuitOverflowedLabel.ForeColor = Color.FromArgb(80, 80, 80);
-            circuitOverflowedLabel.Location = new Point(560, 440);
-            circuitOverflowedLabel.Name = "circuitOverflowedLabel";
-            circuitOverflowedLabel.Size = new Size(92, 36);
-            circuitOverflowedLabel.TabIndex = 44;
-            circuitOverflowedLabel.Text = "10";
-            circuitOverflowedLabel.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // bigLabel12
-            // 
-            bigLabel12.Anchor = AnchorStyles.None;
-            bigLabel12.BackColor = Color.Transparent;
-            bigLabel12.Font = new Font("Segoe UI Emoji", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            bigLabel12.ForeColor = Color.FromArgb(80, 80, 80);
-            bigLabel12.Location = new Point(560, 404);
-            bigLabel12.Name = "bigLabel12";
-            bigLabel12.Size = new Size(345, 36);
-            bigLabel12.TabIndex = 43;
-            bigLabel12.Text = "Circuits Overflowed";
-            bigLabel12.TextAlign = ContentAlignment.MiddleLeft;
-            // 
             // SettingsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -929,11 +929,6 @@
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
             changePasswordPanel.ResumeLayout(false);
-            accountSettingsPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)profilePbox).EndInit();
-            confirmBox.ResumeLayout(false);
-            confirmBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)backgroundVideo).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -941,6 +936,11 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
+            accountSettingsPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)profilePbox).EndInit();
+            confirmBox.ResumeLayout(false);
+            confirmBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)backgroundVideo).EndInit();
             ResumeLayout(false);
         }
 

@@ -62,11 +62,11 @@
             bigLabel1.AutoSize = true;
             bigLabel1.BackColor = Color.WhiteSmoke;
             bigLabel1.FlatStyle = FlatStyle.Popup;
-            bigLabel1.Font = new Font("Swis721 Blk BT", 24.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bigLabel1.Font = new Font("Swis721 Blk BT", 48F, FontStyle.Regular, GraphicsUnit.Point, 0);
             bigLabel1.ForeColor = Color.CornflowerBlue;
-            bigLabel1.Location = new Point(474, 119);
+            bigLabel1.Location = new Point(339, 96);
             bigLabel1.Name = "bigLabel1";
-            bigLabel1.Size = new Size(298, 40);
+            bigLabel1.Size = new Size(575, 77);
             bigLabel1.TabIndex = 30;
             bigLabel1.Text = "CIRCUIT CRAFT";
             // 
