@@ -1009,13 +1009,13 @@ namespace CircuitCraft
                     return new CircuitElementTemp()
                     {
                         CircuitElementType = circuitElementType,
-                        Resistance = randomResistance
+                        Resistance = Math.Round(randomResistance, 2)
                     };
                 case CircuitElementType.Source:
                     return new CircuitElementTemp()
                     {
                         CircuitElementType = circuitElementType,
-                        Voltage = randomVoltage,
+                        Voltage = Math.Round(randomVoltage, 2),
                         Resistance = 0.001
                     };
                 case CircuitElementType.Diode:
