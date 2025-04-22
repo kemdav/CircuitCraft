@@ -21,7 +21,7 @@ namespace CircuitCraft
         public MainMenuForm()
         {
             InitializeComponent();
-            
+
             LibVLC _libvlc = new LibVLC();
             MediaPlayer _mediaPlayer = new MediaPlayer(_libvlc);
 
@@ -128,6 +128,15 @@ namespace CircuitCraft
             frm.Location = Location;
             frm.StartPosition = FormStartPosition.Manual;
             frm.FormClosing += delegate { Close(); };
+            frm.Show();
+            Hide();
+        }
+
+        private void tutorialButton_Click_1(object sender, EventArgs e)
+        {
+            var frm = new TutorialForm();
+            frm.FormClosing += delegate { Close(); };
+            frm.StartPosition = FormStartPosition.CenterScreen;
             frm.Show();
             Hide();
         }

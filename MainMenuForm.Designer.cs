@@ -194,6 +194,7 @@
             tutorialButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
             tutorialButton.UseAccentColor = false;
             tutorialButton.UseVisualStyleBackColor = true;
+            tutorialButton.Click += tutorialButton_Click_1;
             // 
             // playButton
             // 
