@@ -32,14 +32,14 @@
       <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AYABAAEAACAAACGAACCAAAACAAAIAAAAIEAgQAAAAAQ=</HashCode>
+      <HashCode>AYABAAEQACAAEQGAACCAAAAiAABIAAAAIEAgQAAAIAQ=</HashCode>
       <FileName>CircuitBlock.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CircuitCraft.CircuitElement" Collapsed="true">
     <Position X="4.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAgACAAAABAAAAAAAAABAAAAAIAAA=</HashCode>
+      <HashCode>AAAAAAAAAQAAAAAAgACAAAAQAAAAAAAAABAAAAAIAAA=</HashCode>
       <FileName>CircuitElement.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -70,8 +70,15 @@
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
+    <NestedTypes>
+      <Struct Name="CircuitCraft.GameCanvas.CircuitElementTemp" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>GameCanvas.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>gASAABAEACEAAIAIAWCABAACAAAiEBIAACAAoiAwEAA=</HashCode>
+      <HashCode>sr3Zg9r8Rj3Ms4ndT+f01hd2+hK3VL7HpuJpamgd898=</HashCode>
       <FileName>GameCanvas.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -81,24 +88,114 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="CircuitCraft.MainGame" Collapsed="true">
-    <Position X="11.75" Y="3.75" Width="1.5" />
+    <Position X="11" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AEECQAAIAKkQAgxABYSAQBwGAQAQEAoEwEBkAChQCIw=</HashCode>
+      <HashCode>AGECQAAIAKkQAgxABYSAQBwGAQAQEAoGwEBkAChQCIw=</HashCode>
       <FileName>MainGame.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="CircuitCraft.DifficultyManager">
+    <Position X="14.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAgBAQAEAAAEAIQAAAACEAAgCAGACgAAAAAAAEAI=</HashCode>
+      <FileName>DifficultyScaling.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CircuitCraft.AudioManager">
+    <Position X="12" Y="5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAABAQABAAAAAAAAAABAAAUAAAAAAAAAAAAgAAIAAAA=</HashCode>
+      <FileName>SoundManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CircuitCraft.LoginScreenForm" Collapsed="true">
+    <Position X="17" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgBAAhAADAFIAJAAACMAAAOwQAAIAMAQAAAhwAAAIg=</HashCode>
+      <FileName>LoginScreenForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CircuitCraft.LoadingForm" Collapsed="true">
+    <Position X="17" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAKAAIAAIAACAAACCAAAAAABAAAAJAAAgAAA=</HashCode>
+      <FileName>LoadingForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CircuitCraft.MainGamePrototype">
+    <Position X="16" Y="2.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>CQQS0FgAoCABCggBAYChBESGCdQgooAAAACJASBCIAM=</HashCode>
+      <FileName>MainGamePrototype.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CircuitCraft.SettingsForm" Collapsed="true">
+    <Position X="17.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AojCMhACAGIAKXIQChCAJgwiRQAAIEAkwAEqQBBDAcU=</HashCode>
+      <FileName>SettingsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CircuitCraft.TutorialForm" Collapsed="true">
+    <Position X="17.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ASAAAAAAAGAAAACAAACAAAACZRAKAAAAAAgBAQACAIQ=</HashCode>
+      <FileName>TutorialForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CircuitCraft.Program">
+    <Position X="21.5" Y="0.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAggAAAgAAAAAAAAAAAAACAAAAAAABAAQAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CircuitCraft.DataClass">
+    <Position X="19.75" Y="0.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>EIIEKCAAEABEIAgEhACGAAEFggAAIIEAIAkUhAgEQIA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="CircuitCraft.TempUserInformation">
+    <Position X="19.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAIAACAQAAAAAJAgAAAAEAAAAAgAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
   <Enum Name="CircuitCraft.CircuitElementType">
     <Position X="4.5" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAgAAAAAAAEAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
       <FileName>CircuitElement.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="CircuitCraft.CircuitBlockConnectionType">
     <Position X="10.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAE=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAACAAAAE=</HashCode>
       <FileName>CircuitBlock.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CircuitCraft.Cards">
+    <Position X="17.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEBAAAIACAAAAAAAAAEAAAAAAAAAABAAAAAAAQAAAAA=</HashCode>
+      <FileName>MainGamePrototype.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />
