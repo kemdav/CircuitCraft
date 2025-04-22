@@ -31,6 +31,7 @@ namespace CircuitCraft
         }
 
 
+
         public MainGame MainGame
         {
             get => default;
@@ -73,6 +74,7 @@ namespace CircuitCraft
 
         private void playButton_Click(object sender, EventArgs e)
         {
+            AudioManager.StopMusic();
             var frm = new MainGamePrototype();
             frm.FormClosing += delegate { Close(); };
             frm.Show();

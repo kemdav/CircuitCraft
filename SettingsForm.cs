@@ -221,6 +221,12 @@ namespace CircuitCraft
         private void musicSlider_Validated(object sender, EventArgs e)
         {
             DataClass.MusicVolume = musicSlider.Value;
+            AudioManager.SetMusicVolume(DataClass.MusicVolume);
+        }
+
+        private void musicSlider_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

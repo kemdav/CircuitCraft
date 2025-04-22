@@ -8,6 +8,7 @@ using System.Data;
 using SpiceSharp.Simulations;
 using System.Text;
 using System.Security.Cryptography;
+using System.Diagnostics;
 
 namespace CircuitCraft
 {
@@ -41,6 +42,7 @@ namespace CircuitCraft
         [STAThread]
         static void Main()
         {
+            Trace.Listeners.Remove("Default");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 

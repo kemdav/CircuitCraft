@@ -161,6 +161,7 @@
             musicSlider.Size = new Size(702, 40);
             musicSlider.TabIndex = 2;
             musicSlider.Text = "Music";
+            musicSlider.Click += musicSlider_Click;
             musicSlider.Validated += musicSlider_Validated;
             // 
             // mainMenuButton

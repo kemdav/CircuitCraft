@@ -380,6 +380,11 @@ namespace CircuitCraft
                             break;
                     }
                 }
+                string startupPath = Application.StartupPath;
+                AudioManager.SetMusicVolume(DataClass.MusicVolume);
+                string relativePath = Path.Combine("Resources", "Audio", "lvl.wav");
+                string musicFilePath = Path.Combine(startupPath, relativePath);
+                AudioManager.PlaySfx(musicFilePath);
                 gameCanvas.NextRoundReset();
                 gameCanvas.StartRound();
             }
@@ -403,6 +408,13 @@ namespace CircuitCraft
         private void GameOver_MainMenuButtonClicked(object sender, EventArgs e)
         {
             GameOverScreenForm sourceForm = sender as GameOverScreenForm;
+            gameCanvas.ResetGame();
+            AudioManager.StopMusic();
+            string startupPath = Application.StartupPath;
+            AudioManager.SetMusicVolume(DataClass.MusicVolume);
+            string relativePath = Path.Combine("Resources", "Audio", "mainmenu.mp3");
+            string musicFilePath = Path.Combine(startupPath, relativePath);
+            AudioManager.PlayMusic(musicFilePath, true);
             if (sourceForm != null)
             {
                 var frm = new MainMenuForm();
@@ -450,6 +462,13 @@ namespace CircuitCraft
 
         private void mainMenuButton_Click(object sender, EventArgs e)
         {
+            gameCanvas.ResetGame();
+            AudioManager.StopMusic();
+            string startupPath = Application.StartupPath;
+            AudioManager.SetMusicVolume(DataClass.MusicVolume);
+            string relativePath = Path.Combine("Resources", "Audio", "mainmenu.mp3");
+            string musicFilePath = Path.Combine(startupPath, relativePath);
+            AudioManager.PlayMusic(musicFilePath, true);
             var frm = new MainMenuForm();
             frm.Location = Location;
             frm.FormClosing += delegate { Close(); };

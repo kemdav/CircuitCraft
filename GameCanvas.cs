@@ -375,6 +375,13 @@ namespace CircuitCraft
                 CircuitElementResistorSprite4,
                 CircuitElementResistorSprite5
             });
+
+            string startupPath = Application.StartupPath;
+            AudioManager.SetMusicVolume(DataClass.MusicVolume);
+
+            string relativePath = Path.Combine("Resources", "Audio", "background.mp3");
+            string musicFilePath = Path.Combine(startupPath, relativePath);
+            AudioManager.PlayMusic(musicFilePath, true);
         }
 
         public void AddJoules()
@@ -590,6 +597,11 @@ namespace CircuitCraft
         public void WarningStartTimer_Tick(object sender, EventArgs e)
         {
             warningStartTimerTick += 1000;
+
+            string startupPath = Application.StartupPath;
+            string relativePath = Path.Combine("Resources", "Audio", "clock.wav");
+            string musicFilePath = Path.Combine(startupPath, relativePath);
+            AudioManager.PlaySfx(musicFilePath);
 
             WarningTimerLabel.Text = "MEASURING STARTING IN " + (warningStartCooldown - warningStartTimerTick) / 1000 + "...";
             WarningTimerLabel.Visible = true;
@@ -1352,6 +1364,10 @@ namespace CircuitCraft
             });
             if (CurrentCircuitElementHold == null && !holdOnCooldown)
             {
+                string startupPath = Application.StartupPath;
+                string relativePath = Path.Combine("Resources", "Audio", "blockdrop.wav");
+                string musicFilePath = Path.Combine(startupPath, relativePath);
+                AudioManager.PlaySfx(musicFilePath);
                 CircuitBlocks[CurrentBlockIndex].Controls.Remove(CurrentCircuitElementDropped);
                 CurrentCircuitElementDropped = null;
                 
@@ -1402,6 +1418,11 @@ namespace CircuitCraft
                     (CircuitBlocks[CurrentBlockIndex].CircuitElements.Count * CircuitBlocks[CurrentBlockIndex].CircuitElementHeight));
                 CircuitBlocks[CurrentBlockIndex].AddCircuitElement(CurrentCircuitElementDroppedType, CurrentCircuitElementDroppedVoltage, CurrentCircuitElementDroppedResistance, CurrentCircuitElementDroppedOrientation, CurrentCircuitElementDropped);
                 CurrentCircuitElementDropped = null;
+
+                string startupPath = Application.StartupPath;
+                string relativePath = Path.Combine("Resources", "Audio", "blockdrop.wav");
+                string musicFilePath = Path.Combine(startupPath, relativePath);
+                AudioManager.PlaySfx(musicFilePath);
 
                 if (CircuitBlocks[CurrentBlockIndex].CircuitElements.Count >= CircuitBlocks[CurrentBlockIndex].MaximumElements)
                 {

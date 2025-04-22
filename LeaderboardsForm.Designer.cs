@@ -31,11 +31,21 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LeaderboardsForm));
             Row1Col2Pbox = new PictureBox();
             panel1 = new Panel();
+            overflowPbox = new PictureBox();
+            diodePbox = new PictureBox();
+            joulePbox = new PictureBox();
+            levelPbox = new PictureBox();
+            unpoweredPbox = new PictureBox();
+            burnedPbox = new PictureBox();
+            ratingPbox = new PictureBox();
             prevButton = new MaterialSkin.Controls.MaterialButton();
             nextButton = new MaterialSkin.Controls.MaterialButton();
             rankPanel7 = new Panel();
+            Row7Col10Txt = new MaterialSkin.Controls.MaterialLabel();
             Row7Col7Txt = new MaterialSkin.Controls.MaterialLabel();
+            Row7Col9Txt = new MaterialSkin.Controls.MaterialLabel();
             Row7Col6Txt = new MaterialSkin.Controls.MaterialLabel();
+            Row7Col8Txt = new MaterialSkin.Controls.MaterialLabel();
             Row7Col5Txt = new MaterialSkin.Controls.MaterialLabel();
             Row7Col4Txt = new MaterialSkin.Controls.MaterialLabel();
             Row7Col1Txt = new MaterialSkin.Controls.MaterialLabel();
@@ -43,38 +53,53 @@
             Row7Col2Pbox = new PictureBox();
             returnMainMenuButton = new MaterialSkin.Controls.MaterialButton();
             rankPanel6 = new Panel();
+            Row6Col10Txt = new MaterialSkin.Controls.MaterialLabel();
             Row6Col7Txt = new MaterialSkin.Controls.MaterialLabel();
+            Row6Col9Txt = new MaterialSkin.Controls.MaterialLabel();
             Row6Col6Txt = new MaterialSkin.Controls.MaterialLabel();
+            Row6Col8Txt = new MaterialSkin.Controls.MaterialLabel();
             Row6Col5Txt = new MaterialSkin.Controls.MaterialLabel();
             Row6Col4Txt = new MaterialSkin.Controls.MaterialLabel();
             Row6Col1Txt = new MaterialSkin.Controls.MaterialLabel();
             Row6Col3Txt = new MaterialSkin.Controls.MaterialLabel();
             Row6Col2Pbox = new PictureBox();
             rankPanel5 = new Panel();
+            Row5Col10Txt = new MaterialSkin.Controls.MaterialLabel();
             Row5Col7Txt = new MaterialSkin.Controls.MaterialLabel();
+            Row5Col9Txt = new MaterialSkin.Controls.MaterialLabel();
             Row5Col6Txt = new MaterialSkin.Controls.MaterialLabel();
+            Row5Col8Txt = new MaterialSkin.Controls.MaterialLabel();
             Row5Col5Txt = new MaterialSkin.Controls.MaterialLabel();
             Row5Col4Txt = new MaterialSkin.Controls.MaterialLabel();
             Row5Col1Txt = new MaterialSkin.Controls.MaterialLabel();
             Row5Col3Txt = new MaterialSkin.Controls.MaterialLabel();
             Row5Col2Pbox = new PictureBox();
             rankPanel4 = new Panel();
+            Row4Col10Txt = new MaterialSkin.Controls.MaterialLabel();
             Row4Col7Txt = new MaterialSkin.Controls.MaterialLabel();
+            Row4Col9Txt = new MaterialSkin.Controls.MaterialLabel();
             Row4Col6Txt = new MaterialSkin.Controls.MaterialLabel();
+            Row4Col8Txt = new MaterialSkin.Controls.MaterialLabel();
             Row4Col5Txt = new MaterialSkin.Controls.MaterialLabel();
             Row4Col4Txt = new MaterialSkin.Controls.MaterialLabel();
             Row4Col1Txt = new MaterialSkin.Controls.MaterialLabel();
             Row4Col3Txt = new MaterialSkin.Controls.MaterialLabel();
             Row4Col2Pbox = new PictureBox();
             rankPanel3 = new Panel();
+            Row3Col10Txt = new MaterialSkin.Controls.MaterialLabel();
             Row3Col7Txt = new MaterialSkin.Controls.MaterialLabel();
+            Row3Col9Txt = new MaterialSkin.Controls.MaterialLabel();
             Row3Col6Txt = new MaterialSkin.Controls.MaterialLabel();
+            Row3Col8Txt = new MaterialSkin.Controls.MaterialLabel();
             Row3Col5Txt = new MaterialSkin.Controls.MaterialLabel();
             Row3Col4Txt = new MaterialSkin.Controls.MaterialLabel();
             Row3Col1Txt = new MaterialSkin.Controls.MaterialLabel();
             Row3Col3Txt = new MaterialSkin.Controls.MaterialLabel();
             Row3Col2Pbox = new PictureBox();
             rankPanel2 = new Panel();
+            Row2Col10Txt = new MaterialSkin.Controls.MaterialLabel();
+            Row2Col9Txt = new MaterialSkin.Controls.MaterialLabel();
+            Row2Col8Txt = new MaterialSkin.Controls.MaterialLabel();
             Row2Col7Txt = new MaterialSkin.Controls.MaterialLabel();
             Row2Col6Txt = new MaterialSkin.Controls.MaterialLabel();
             Row2Col5Txt = new MaterialSkin.Controls.MaterialLabel();
@@ -83,6 +108,9 @@
             Row2Col3Txt = new MaterialSkin.Controls.MaterialLabel();
             Row2Col2Pbox = new PictureBox();
             rankPanel1 = new Panel();
+            Row1Col10Txt = new MaterialSkin.Controls.MaterialLabel();
+            Row1Col9Txt = new MaterialSkin.Controls.MaterialLabel();
+            Row1Col8Txt = new MaterialSkin.Controls.MaterialLabel();
             Row1Col7Txt = new MaterialSkin.Controls.MaterialLabel();
             Row1Col6Txt = new MaterialSkin.Controls.MaterialLabel();
             Row1Col5Txt = new MaterialSkin.Controls.MaterialLabel();
@@ -93,36 +121,15 @@
             bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
             hopeForm1 = new ReaLTaiizor.Forms.HopeForm();
             backgroundVideo = new LibVLCSharp.WinForms.VideoView();
-            pictureBox7 = new PictureBox();
-            pictureBox6 = new PictureBox();
-            pictureBox5 = new PictureBox();
-            pictureBox4 = new PictureBox();
-            pictureBox3 = new PictureBox();
-            pictureBox2 = new PictureBox();
-            pictureBox1 = new PictureBox();
-            Row1Col10Txt = new MaterialSkin.Controls.MaterialLabel();
-            Row1Col9Txt = new MaterialSkin.Controls.MaterialLabel();
-            Row1Col8Txt = new MaterialSkin.Controls.MaterialLabel();
-            Row2Col10Txt = new MaterialSkin.Controls.MaterialLabel();
-            Row2Col9Txt = new MaterialSkin.Controls.MaterialLabel();
-            Row2Col8Txt = new MaterialSkin.Controls.MaterialLabel();
-            Row3Col10Txt = new MaterialSkin.Controls.MaterialLabel();
-            Row3Col9Txt = new MaterialSkin.Controls.MaterialLabel();
-            Row3Col8Txt = new MaterialSkin.Controls.MaterialLabel();
-            Row4Col10Txt = new MaterialSkin.Controls.MaterialLabel();
-            Row4Col9Txt = new MaterialSkin.Controls.MaterialLabel();
-            Row4Col8Txt = new MaterialSkin.Controls.MaterialLabel();
-            Row5Col10Txt = new MaterialSkin.Controls.MaterialLabel();
-            Row5Col9Txt = new MaterialSkin.Controls.MaterialLabel();
-            Row5Col8Txt = new MaterialSkin.Controls.MaterialLabel();
-            Row6Col10Txt = new MaterialSkin.Controls.MaterialLabel();
-            Row6Col9Txt = new MaterialSkin.Controls.MaterialLabel();
-            Row6Col8Txt = new MaterialSkin.Controls.MaterialLabel();
-            Row7Col10Txt = new MaterialSkin.Controls.MaterialLabel();
-            Row7Col9Txt = new MaterialSkin.Controls.MaterialLabel();
-            Row7Col8Txt = new MaterialSkin.Controls.MaterialLabel();
             ((System.ComponentModel.ISupportInitialize)Row1Col2Pbox).BeginInit();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)overflowPbox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)diodePbox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)joulePbox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)levelPbox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)unpoweredPbox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)burnedPbox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ratingPbox).BeginInit();
             rankPanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Row7Col2Pbox).BeginInit();
             rankPanel6.SuspendLayout();
@@ -137,13 +144,6 @@
             ((System.ComponentModel.ISupportInitialize)Row2Col2Pbox).BeginInit();
             rankPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)backgroundVideo).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // Row1Col2Pbox
@@ -158,13 +158,13 @@
             // panel1
             // 
             panel1.Anchor = AnchorStyles.None;
-            panel1.Controls.Add(pictureBox7);
-            panel1.Controls.Add(pictureBox6);
-            panel1.Controls.Add(pictureBox5);
-            panel1.Controls.Add(pictureBox4);
-            panel1.Controls.Add(pictureBox3);
-            panel1.Controls.Add(pictureBox2);
-            panel1.Controls.Add(pictureBox1);
+            panel1.Controls.Add(overflowPbox);
+            panel1.Controls.Add(diodePbox);
+            panel1.Controls.Add(joulePbox);
+            panel1.Controls.Add(levelPbox);
+            panel1.Controls.Add(unpoweredPbox);
+            panel1.Controls.Add(burnedPbox);
+            panel1.Controls.Add(ratingPbox);
             panel1.Controls.Add(prevButton);
             panel1.Controls.Add(nextButton);
             panel1.Controls.Add(rankPanel7);
@@ -182,6 +182,76 @@
             panel1.Size = new Size(1170, 625);
             panel1.TabIndex = 1;
             panel1.Paint += panel1_Paint;
+            // 
+            // overflowPbox
+            // 
+            overflowPbox.Image = (Image)resources.GetObject("overflowPbox.Image");
+            overflowPbox.Location = new Point(496, 32);
+            overflowPbox.Name = "overflowPbox";
+            overflowPbox.Size = new Size(68, 60);
+            overflowPbox.SizeMode = PictureBoxSizeMode.Zoom;
+            overflowPbox.TabIndex = 27;
+            overflowPbox.TabStop = false;
+            // 
+            // diodePbox
+            // 
+            diodePbox.Image = (Image)resources.GetObject("diodePbox.Image");
+            diodePbox.Location = new Point(599, 32);
+            diodePbox.Name = "diodePbox";
+            diodePbox.Size = new Size(68, 60);
+            diodePbox.SizeMode = PictureBoxSizeMode.Zoom;
+            diodePbox.TabIndex = 26;
+            diodePbox.TabStop = false;
+            // 
+            // joulePbox
+            // 
+            joulePbox.Image = (Image)resources.GetObject("joulePbox.Image");
+            joulePbox.Location = new Point(811, 32);
+            joulePbox.Name = "joulePbox";
+            joulePbox.Size = new Size(68, 60);
+            joulePbox.SizeMode = PictureBoxSizeMode.Zoom;
+            joulePbox.TabIndex = 25;
+            joulePbox.TabStop = false;
+            // 
+            // levelPbox
+            // 
+            levelPbox.Image = (Image)resources.GetObject("levelPbox.Image");
+            levelPbox.Location = new Point(922, 32);
+            levelPbox.Name = "levelPbox";
+            levelPbox.Size = new Size(68, 60);
+            levelPbox.SizeMode = PictureBoxSizeMode.Zoom;
+            levelPbox.TabIndex = 24;
+            levelPbox.TabStop = false;
+            // 
+            // unpoweredPbox
+            // 
+            unpoweredPbox.Image = (Image)resources.GetObject("unpoweredPbox.Image");
+            unpoweredPbox.Location = new Point(384, 32);
+            unpoweredPbox.Name = "unpoweredPbox";
+            unpoweredPbox.Size = new Size(68, 60);
+            unpoweredPbox.SizeMode = PictureBoxSizeMode.Zoom;
+            unpoweredPbox.TabIndex = 23;
+            unpoweredPbox.TabStop = false;
+            // 
+            // burnedPbox
+            // 
+            burnedPbox.Image = (Image)resources.GetObject("burnedPbox.Image");
+            burnedPbox.Location = new Point(704, 32);
+            burnedPbox.Name = "burnedPbox";
+            burnedPbox.Size = new Size(68, 60);
+            burnedPbox.SizeMode = PictureBoxSizeMode.Zoom;
+            burnedPbox.TabIndex = 22;
+            burnedPbox.TabStop = false;
+            // 
+            // ratingPbox
+            // 
+            ratingPbox.Image = (Image)resources.GetObject("ratingPbox.Image");
+            ratingPbox.Location = new Point(1024, 32);
+            ratingPbox.Name = "ratingPbox";
+            ratingPbox.Size = new Size(68, 60);
+            ratingPbox.SizeMode = PictureBoxSizeMode.Zoom;
+            ratingPbox.TabIndex = 21;
+            ratingPbox.TabStop = false;
             // 
             // prevButton
             // 
@@ -243,6 +313,18 @@
             rankPanel7.Size = new Size(1083, 59);
             rankPanel7.TabIndex = 18;
             // 
+            // Row7Col10Txt
+            // 
+            Row7Col10Txt.Depth = 0;
+            Row7Col10Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Row7Col10Txt.Location = new Point(981, 24);
+            Row7Col10Txt.MouseState = MaterialSkin.MouseState.HOVER;
+            Row7Col10Txt.Name = "Row7Col10Txt";
+            Row7Col10Txt.Size = new Size(68, 19);
+            Row7Col10Txt.TabIndex = 32;
+            Row7Col10Txt.Text = "9238";
+            Row7Col10Txt.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // Row7Col7Txt
             // 
             Row7Col7Txt.Depth = 0;
@@ -255,6 +337,18 @@
             Row7Col7Txt.Text = "1849";
             Row7Col7Txt.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // Row7Col9Txt
+            // 
+            Row7Col9Txt.Depth = 0;
+            Row7Col9Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Row7Col9Txt.Location = new Point(879, 24);
+            Row7Col9Txt.MouseState = MaterialSkin.MouseState.HOVER;
+            Row7Col9Txt.Name = "Row7Col9Txt";
+            Row7Col9Txt.Size = new Size(68, 19);
+            Row7Col9Txt.TabIndex = 31;
+            Row7Col9Txt.Text = "32";
+            Row7Col9Txt.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // Row7Col6Txt
             // 
             Row7Col6Txt.Depth = 0;
@@ -266,6 +360,18 @@
             Row7Col6Txt.TabIndex = 10;
             Row7Col6Txt.Text = "122";
             Row7Col6Txt.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // Row7Col8Txt
+            // 
+            Row7Col8Txt.Depth = 0;
+            Row7Col8Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Row7Col8Txt.Location = new Point(768, 24);
+            Row7Col8Txt.MouseState = MaterialSkin.MouseState.HOVER;
+            Row7Col8Txt.Name = "Row7Col8Txt";
+            Row7Col8Txt.Size = new Size(68, 19);
+            Row7Col8Txt.TabIndex = 30;
+            Row7Col8Txt.Text = "54";
+            Row7Col8Txt.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Row7Col5Txt
             // 
@@ -364,6 +470,18 @@
             rankPanel6.Size = new Size(1083, 59);
             rankPanel6.TabIndex = 17;
             // 
+            // Row6Col10Txt
+            // 
+            Row6Col10Txt.Depth = 0;
+            Row6Col10Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Row6Col10Txt.Location = new Point(981, 25);
+            Row6Col10Txt.MouseState = MaterialSkin.MouseState.HOVER;
+            Row6Col10Txt.Name = "Row6Col10Txt";
+            Row6Col10Txt.Size = new Size(68, 19);
+            Row6Col10Txt.TabIndex = 29;
+            Row6Col10Txt.Text = "9238";
+            Row6Col10Txt.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // Row6Col7Txt
             // 
             Row6Col7Txt.Depth = 0;
@@ -376,6 +494,18 @@
             Row6Col7Txt.Text = "2934";
             Row6Col7Txt.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // Row6Col9Txt
+            // 
+            Row6Col9Txt.Depth = 0;
+            Row6Col9Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Row6Col9Txt.Location = new Point(879, 25);
+            Row6Col9Txt.MouseState = MaterialSkin.MouseState.HOVER;
+            Row6Col9Txt.Name = "Row6Col9Txt";
+            Row6Col9Txt.Size = new Size(68, 19);
+            Row6Col9Txt.TabIndex = 28;
+            Row6Col9Txt.Text = "32";
+            Row6Col9Txt.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // Row6Col6Txt
             // 
             Row6Col6Txt.Depth = 0;
@@ -387,6 +517,18 @@
             Row6Col6Txt.TabIndex = 10;
             Row6Col6Txt.Text = "65";
             Row6Col6Txt.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // Row6Col8Txt
+            // 
+            Row6Col8Txt.Depth = 0;
+            Row6Col8Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Row6Col8Txt.Location = new Point(768, 25);
+            Row6Col8Txt.MouseState = MaterialSkin.MouseState.HOVER;
+            Row6Col8Txt.Name = "Row6Col8Txt";
+            Row6Col8Txt.Size = new Size(68, 19);
+            Row6Col8Txt.TabIndex = 27;
+            Row6Col8Txt.Text = "54";
+            Row6Col8Txt.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Row6Col5Txt
             // 
@@ -463,6 +605,18 @@
             rankPanel5.Size = new Size(1083, 59);
             rankPanel5.TabIndex = 16;
             // 
+            // Row5Col10Txt
+            // 
+            Row5Col10Txt.Depth = 0;
+            Row5Col10Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Row5Col10Txt.Location = new Point(981, 24);
+            Row5Col10Txt.MouseState = MaterialSkin.MouseState.HOVER;
+            Row5Col10Txt.Name = "Row5Col10Txt";
+            Row5Col10Txt.Size = new Size(68, 19);
+            Row5Col10Txt.TabIndex = 26;
+            Row5Col10Txt.Text = "9238";
+            Row5Col10Txt.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // Row5Col7Txt
             // 
             Row5Col7Txt.Depth = 0;
@@ -475,6 +629,18 @@
             Row5Col7Txt.Text = "3892";
             Row5Col7Txt.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // Row5Col9Txt
+            // 
+            Row5Col9Txt.Depth = 0;
+            Row5Col9Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Row5Col9Txt.Location = new Point(879, 24);
+            Row5Col9Txt.MouseState = MaterialSkin.MouseState.HOVER;
+            Row5Col9Txt.Name = "Row5Col9Txt";
+            Row5Col9Txt.Size = new Size(68, 19);
+            Row5Col9Txt.TabIndex = 25;
+            Row5Col9Txt.Text = "32";
+            Row5Col9Txt.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // Row5Col6Txt
             // 
             Row5Col6Txt.Depth = 0;
@@ -486,6 +652,18 @@
             Row5Col6Txt.TabIndex = 10;
             Row5Col6Txt.Text = "43";
             Row5Col6Txt.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // Row5Col8Txt
+            // 
+            Row5Col8Txt.Depth = 0;
+            Row5Col8Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Row5Col8Txt.Location = new Point(768, 24);
+            Row5Col8Txt.MouseState = MaterialSkin.MouseState.HOVER;
+            Row5Col8Txt.Name = "Row5Col8Txt";
+            Row5Col8Txt.Size = new Size(68, 19);
+            Row5Col8Txt.TabIndex = 24;
+            Row5Col8Txt.Text = "54";
+            Row5Col8Txt.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Row5Col5Txt
             // 
@@ -562,6 +740,18 @@
             rankPanel4.Size = new Size(1083, 59);
             rankPanel4.TabIndex = 15;
             // 
+            // Row4Col10Txt
+            // 
+            Row4Col10Txt.Depth = 0;
+            Row4Col10Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Row4Col10Txt.Location = new Point(981, 25);
+            Row4Col10Txt.MouseState = MaterialSkin.MouseState.HOVER;
+            Row4Col10Txt.Name = "Row4Col10Txt";
+            Row4Col10Txt.Size = new Size(68, 19);
+            Row4Col10Txt.TabIndex = 23;
+            Row4Col10Txt.Text = "9238";
+            Row4Col10Txt.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // Row4Col7Txt
             // 
             Row4Col7Txt.Depth = 0;
@@ -574,6 +764,18 @@
             Row4Col7Txt.Text = "6378";
             Row4Col7Txt.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // Row4Col9Txt
+            // 
+            Row4Col9Txt.Depth = 0;
+            Row4Col9Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Row4Col9Txt.Location = new Point(879, 25);
+            Row4Col9Txt.MouseState = MaterialSkin.MouseState.HOVER;
+            Row4Col9Txt.Name = "Row4Col9Txt";
+            Row4Col9Txt.Size = new Size(68, 19);
+            Row4Col9Txt.TabIndex = 22;
+            Row4Col9Txt.Text = "32";
+            Row4Col9Txt.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // Row4Col6Txt
             // 
             Row4Col6Txt.Depth = 0;
@@ -585,6 +787,18 @@
             Row4Col6Txt.TabIndex = 10;
             Row4Col6Txt.Text = "53";
             Row4Col6Txt.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // Row4Col8Txt
+            // 
+            Row4Col8Txt.Depth = 0;
+            Row4Col8Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Row4Col8Txt.Location = new Point(768, 25);
+            Row4Col8Txt.MouseState = MaterialSkin.MouseState.HOVER;
+            Row4Col8Txt.Name = "Row4Col8Txt";
+            Row4Col8Txt.Size = new Size(68, 19);
+            Row4Col8Txt.TabIndex = 21;
+            Row4Col8Txt.Text = "54";
+            Row4Col8Txt.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Row4Col5Txt
             // 
@@ -661,6 +875,18 @@
             rankPanel3.Size = new Size(1083, 59);
             rankPanel3.TabIndex = 14;
             // 
+            // Row3Col10Txt
+            // 
+            Row3Col10Txt.Depth = 0;
+            Row3Col10Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Row3Col10Txt.Location = new Point(981, 25);
+            Row3Col10Txt.MouseState = MaterialSkin.MouseState.HOVER;
+            Row3Col10Txt.Name = "Row3Col10Txt";
+            Row3Col10Txt.Size = new Size(68, 19);
+            Row3Col10Txt.TabIndex = 20;
+            Row3Col10Txt.Text = "9238";
+            Row3Col10Txt.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // Row3Col7Txt
             // 
             Row3Col7Txt.Depth = 0;
@@ -673,6 +899,18 @@
             Row3Col7Txt.Text = "7483";
             Row3Col7Txt.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // Row3Col9Txt
+            // 
+            Row3Col9Txt.Depth = 0;
+            Row3Col9Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Row3Col9Txt.Location = new Point(879, 25);
+            Row3Col9Txt.MouseState = MaterialSkin.MouseState.HOVER;
+            Row3Col9Txt.Name = "Row3Col9Txt";
+            Row3Col9Txt.Size = new Size(68, 19);
+            Row3Col9Txt.TabIndex = 19;
+            Row3Col9Txt.Text = "32";
+            Row3Col9Txt.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // Row3Col6Txt
             // 
             Row3Col6Txt.Depth = 0;
@@ -684,6 +922,18 @@
             Row3Col6Txt.TabIndex = 10;
             Row3Col6Txt.Text = "34";
             Row3Col6Txt.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // Row3Col8Txt
+            // 
+            Row3Col8Txt.Depth = 0;
+            Row3Col8Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Row3Col8Txt.Location = new Point(768, 25);
+            Row3Col8Txt.MouseState = MaterialSkin.MouseState.HOVER;
+            Row3Col8Txt.Name = "Row3Col8Txt";
+            Row3Col8Txt.Size = new Size(68, 19);
+            Row3Col8Txt.TabIndex = 18;
+            Row3Col8Txt.Text = "54";
+            Row3Col8Txt.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Row3Col5Txt
             // 
@@ -759,6 +1009,42 @@
             rankPanel2.Name = "rankPanel2";
             rankPanel2.Size = new Size(1083, 59);
             rankPanel2.TabIndex = 13;
+            // 
+            // Row2Col10Txt
+            // 
+            Row2Col10Txt.Depth = 0;
+            Row2Col10Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Row2Col10Txt.Location = new Point(981, 25);
+            Row2Col10Txt.MouseState = MaterialSkin.MouseState.HOVER;
+            Row2Col10Txt.Name = "Row2Col10Txt";
+            Row2Col10Txt.Size = new Size(68, 19);
+            Row2Col10Txt.TabIndex = 17;
+            Row2Col10Txt.Text = "9238";
+            Row2Col10Txt.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // Row2Col9Txt
+            // 
+            Row2Col9Txt.Depth = 0;
+            Row2Col9Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Row2Col9Txt.Location = new Point(879, 25);
+            Row2Col9Txt.MouseState = MaterialSkin.MouseState.HOVER;
+            Row2Col9Txt.Name = "Row2Col9Txt";
+            Row2Col9Txt.Size = new Size(68, 19);
+            Row2Col9Txt.TabIndex = 16;
+            Row2Col9Txt.Text = "32";
+            Row2Col9Txt.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // Row2Col8Txt
+            // 
+            Row2Col8Txt.Depth = 0;
+            Row2Col8Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Row2Col8Txt.Location = new Point(768, 25);
+            Row2Col8Txt.MouseState = MaterialSkin.MouseState.HOVER;
+            Row2Col8Txt.Name = "Row2Col8Txt";
+            Row2Col8Txt.Size = new Size(68, 19);
+            Row2Col8Txt.TabIndex = 15;
+            Row2Col8Txt.Text = "54";
+            Row2Col8Txt.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Row2Col7Txt
             // 
@@ -858,6 +1144,42 @@
             rankPanel1.Name = "rankPanel1";
             rankPanel1.Size = new Size(1083, 59);
             rankPanel1.TabIndex = 6;
+            // 
+            // Row1Col10Txt
+            // 
+            Row1Col10Txt.Depth = 0;
+            Row1Col10Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Row1Col10Txt.Location = new Point(981, 23);
+            Row1Col10Txt.MouseState = MaterialSkin.MouseState.HOVER;
+            Row1Col10Txt.Name = "Row1Col10Txt";
+            Row1Col10Txt.Size = new Size(68, 19);
+            Row1Col10Txt.TabIndex = 14;
+            Row1Col10Txt.Text = "9238";
+            Row1Col10Txt.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // Row1Col9Txt
+            // 
+            Row1Col9Txt.Depth = 0;
+            Row1Col9Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Row1Col9Txt.Location = new Point(879, 23);
+            Row1Col9Txt.MouseState = MaterialSkin.MouseState.HOVER;
+            Row1Col9Txt.Name = "Row1Col9Txt";
+            Row1Col9Txt.Size = new Size(68, 19);
+            Row1Col9Txt.TabIndex = 13;
+            Row1Col9Txt.Text = "32";
+            Row1Col9Txt.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // Row1Col8Txt
+            // 
+            Row1Col8Txt.Depth = 0;
+            Row1Col8Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Row1Col8Txt.Location = new Point(768, 23);
+            Row1Col8Txt.MouseState = MaterialSkin.MouseState.HOVER;
+            Row1Col8Txt.Name = "Row1Col8Txt";
+            Row1Col8Txt.Size = new Size(68, 19);
+            Row1Col8Txt.TabIndex = 12;
+            Row1Col8Txt.Text = "54";
+            Row1Col8Txt.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Row1Col7Txt
             // 
@@ -981,328 +1303,6 @@
             backgroundVideo.TabIndex = 13;
             backgroundVideo.Text = "videoView1";
             // 
-            // pictureBox7
-            // 
-            pictureBox7.Image = (Image)resources.GetObject("pictureBox7.Image");
-            pictureBox7.Location = new Point(496, 32);
-            pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(68, 60);
-            pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox7.TabIndex = 27;
-            pictureBox7.TabStop = false;
-            // 
-            // pictureBox6
-            // 
-            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
-            pictureBox6.Location = new Point(599, 32);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(68, 60);
-            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox6.TabIndex = 26;
-            pictureBox6.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
-            pictureBox5.Location = new Point(811, 32);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(68, 60);
-            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox5.TabIndex = 25;
-            pictureBox5.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(922, 32);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(68, 60);
-            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox4.TabIndex = 24;
-            pictureBox4.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(384, 32);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(68, 60);
-            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox3.TabIndex = 23;
-            pictureBox3.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(704, 32);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(68, 60);
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox2.TabIndex = 22;
-            pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(1024, 32);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(68, 60);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 21;
-            pictureBox1.TabStop = false;
-            // 
-            // Row1Col10Txt
-            // 
-            Row1Col10Txt.Depth = 0;
-            Row1Col10Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            Row1Col10Txt.Location = new Point(981, 23);
-            Row1Col10Txt.MouseState = MaterialSkin.MouseState.HOVER;
-            Row1Col10Txt.Name = "Row1Col10Txt";
-            Row1Col10Txt.Size = new Size(68, 19);
-            Row1Col10Txt.TabIndex = 14;
-            Row1Col10Txt.Text = "9238";
-            Row1Col10Txt.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // Row1Col9Txt
-            // 
-            Row1Col9Txt.Depth = 0;
-            Row1Col9Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            Row1Col9Txt.Location = new Point(879, 23);
-            Row1Col9Txt.MouseState = MaterialSkin.MouseState.HOVER;
-            Row1Col9Txt.Name = "Row1Col9Txt";
-            Row1Col9Txt.Size = new Size(68, 19);
-            Row1Col9Txt.TabIndex = 13;
-            Row1Col9Txt.Text = "32";
-            Row1Col9Txt.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // Row1Col8Txt
-            // 
-            Row1Col8Txt.Depth = 0;
-            Row1Col8Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            Row1Col8Txt.Location = new Point(768, 23);
-            Row1Col8Txt.MouseState = MaterialSkin.MouseState.HOVER;
-            Row1Col8Txt.Name = "Row1Col8Txt";
-            Row1Col8Txt.Size = new Size(68, 19);
-            Row1Col8Txt.TabIndex = 12;
-            Row1Col8Txt.Text = "54";
-            Row1Col8Txt.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // Row2Col10Txt
-            // 
-            Row2Col10Txt.Depth = 0;
-            Row2Col10Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            Row2Col10Txt.Location = new Point(981, 25);
-            Row2Col10Txt.MouseState = MaterialSkin.MouseState.HOVER;
-            Row2Col10Txt.Name = "Row2Col10Txt";
-            Row2Col10Txt.Size = new Size(68, 19);
-            Row2Col10Txt.TabIndex = 17;
-            Row2Col10Txt.Text = "9238";
-            Row2Col10Txt.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // Row2Col9Txt
-            // 
-            Row2Col9Txt.Depth = 0;
-            Row2Col9Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            Row2Col9Txt.Location = new Point(879, 25);
-            Row2Col9Txt.MouseState = MaterialSkin.MouseState.HOVER;
-            Row2Col9Txt.Name = "Row2Col9Txt";
-            Row2Col9Txt.Size = new Size(68, 19);
-            Row2Col9Txt.TabIndex = 16;
-            Row2Col9Txt.Text = "32";
-            Row2Col9Txt.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // Row2Col8Txt
-            // 
-            Row2Col8Txt.Depth = 0;
-            Row2Col8Txt.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            Row2Col8Txt.Location = new Point(768, 25);
-            Row2Col8Txt.MouseState = MaterialSkin.MouseState.HOVER;
-            Row2Col8Txt.Name = "Row2Col8Txt";
-            Row2Col8Txt.Size = new Size(68, 19);
-            Row2Col8Txt.TabIndex = 15;
-            Row2Col8Txt.Text = "54";
-            Row2Col8Txt.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // Row3Col10Txt
-            // 
-            Row3Col10Txt.Depth = 0;
-            Row3Col10Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            Row3Col10Txt.Location = new Point(981, 25);
-            Row3Col10Txt.MouseState = MaterialSkin.MouseState.HOVER;
-            Row3Col10Txt.Name = "Row3Col10Txt";
-            Row3Col10Txt.Size = new Size(68, 19);
-            Row3Col10Txt.TabIndex = 20;
-            Row3Col10Txt.Text = "9238";
-            Row3Col10Txt.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // Row3Col9Txt
-            // 
-            Row3Col9Txt.Depth = 0;
-            Row3Col9Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            Row3Col9Txt.Location = new Point(879, 25);
-            Row3Col9Txt.MouseState = MaterialSkin.MouseState.HOVER;
-            Row3Col9Txt.Name = "Row3Col9Txt";
-            Row3Col9Txt.Size = new Size(68, 19);
-            Row3Col9Txt.TabIndex = 19;
-            Row3Col9Txt.Text = "32";
-            Row3Col9Txt.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // Row3Col8Txt
-            // 
-            Row3Col8Txt.Depth = 0;
-            Row3Col8Txt.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            Row3Col8Txt.Location = new Point(768, 25);
-            Row3Col8Txt.MouseState = MaterialSkin.MouseState.HOVER;
-            Row3Col8Txt.Name = "Row3Col8Txt";
-            Row3Col8Txt.Size = new Size(68, 19);
-            Row3Col8Txt.TabIndex = 18;
-            Row3Col8Txt.Text = "54";
-            Row3Col8Txt.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // Row4Col10Txt
-            // 
-            Row4Col10Txt.Depth = 0;
-            Row4Col10Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            Row4Col10Txt.Location = new Point(981, 25);
-            Row4Col10Txt.MouseState = MaterialSkin.MouseState.HOVER;
-            Row4Col10Txt.Name = "Row4Col10Txt";
-            Row4Col10Txt.Size = new Size(68, 19);
-            Row4Col10Txt.TabIndex = 23;
-            Row4Col10Txt.Text = "9238";
-            Row4Col10Txt.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // Row4Col9Txt
-            // 
-            Row4Col9Txt.Depth = 0;
-            Row4Col9Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            Row4Col9Txt.Location = new Point(879, 25);
-            Row4Col9Txt.MouseState = MaterialSkin.MouseState.HOVER;
-            Row4Col9Txt.Name = "Row4Col9Txt";
-            Row4Col9Txt.Size = new Size(68, 19);
-            Row4Col9Txt.TabIndex = 22;
-            Row4Col9Txt.Text = "32";
-            Row4Col9Txt.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // Row4Col8Txt
-            // 
-            Row4Col8Txt.Depth = 0;
-            Row4Col8Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            Row4Col8Txt.Location = new Point(768, 25);
-            Row4Col8Txt.MouseState = MaterialSkin.MouseState.HOVER;
-            Row4Col8Txt.Name = "Row4Col8Txt";
-            Row4Col8Txt.Size = new Size(68, 19);
-            Row4Col8Txt.TabIndex = 21;
-            Row4Col8Txt.Text = "54";
-            Row4Col8Txt.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // Row5Col10Txt
-            // 
-            Row5Col10Txt.Depth = 0;
-            Row5Col10Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            Row5Col10Txt.Location = new Point(981, 24);
-            Row5Col10Txt.MouseState = MaterialSkin.MouseState.HOVER;
-            Row5Col10Txt.Name = "Row5Col10Txt";
-            Row5Col10Txt.Size = new Size(68, 19);
-            Row5Col10Txt.TabIndex = 26;
-            Row5Col10Txt.Text = "9238";
-            Row5Col10Txt.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // Row5Col9Txt
-            // 
-            Row5Col9Txt.Depth = 0;
-            Row5Col9Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            Row5Col9Txt.Location = new Point(879, 24);
-            Row5Col9Txt.MouseState = MaterialSkin.MouseState.HOVER;
-            Row5Col9Txt.Name = "Row5Col9Txt";
-            Row5Col9Txt.Size = new Size(68, 19);
-            Row5Col9Txt.TabIndex = 25;
-            Row5Col9Txt.Text = "32";
-            Row5Col9Txt.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // Row5Col8Txt
-            // 
-            Row5Col8Txt.Depth = 0;
-            Row5Col8Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            Row5Col8Txt.Location = new Point(768, 24);
-            Row5Col8Txt.MouseState = MaterialSkin.MouseState.HOVER;
-            Row5Col8Txt.Name = "Row5Col8Txt";
-            Row5Col8Txt.Size = new Size(68, 19);
-            Row5Col8Txt.TabIndex = 24;
-            Row5Col8Txt.Text = "54";
-            Row5Col8Txt.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // Row6Col10Txt
-            // 
-            Row6Col10Txt.Depth = 0;
-            Row6Col10Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            Row6Col10Txt.Location = new Point(981, 25);
-            Row6Col10Txt.MouseState = MaterialSkin.MouseState.HOVER;
-            Row6Col10Txt.Name = "Row6Col10Txt";
-            Row6Col10Txt.Size = new Size(68, 19);
-            Row6Col10Txt.TabIndex = 29;
-            Row6Col10Txt.Text = "9238";
-            Row6Col10Txt.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // Row6Col9Txt
-            // 
-            Row6Col9Txt.Depth = 0;
-            Row6Col9Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            Row6Col9Txt.Location = new Point(879, 25);
-            Row6Col9Txt.MouseState = MaterialSkin.MouseState.HOVER;
-            Row6Col9Txt.Name = "Row6Col9Txt";
-            Row6Col9Txt.Size = new Size(68, 19);
-            Row6Col9Txt.TabIndex = 28;
-            Row6Col9Txt.Text = "32";
-            Row6Col9Txt.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // Row6Col8Txt
-            // 
-            Row6Col8Txt.Depth = 0;
-            Row6Col8Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            Row6Col8Txt.Location = new Point(768, 25);
-            Row6Col8Txt.MouseState = MaterialSkin.MouseState.HOVER;
-            Row6Col8Txt.Name = "Row6Col8Txt";
-            Row6Col8Txt.Size = new Size(68, 19);
-            Row6Col8Txt.TabIndex = 27;
-            Row6Col8Txt.Text = "54";
-            Row6Col8Txt.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // Row7Col10Txt
-            // 
-            Row7Col10Txt.Depth = 0;
-            Row7Col10Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            Row7Col10Txt.Location = new Point(981, 24);
-            Row7Col10Txt.MouseState = MaterialSkin.MouseState.HOVER;
-            Row7Col10Txt.Name = "Row7Col10Txt";
-            Row7Col10Txt.Size = new Size(68, 19);
-            Row7Col10Txt.TabIndex = 32;
-            Row7Col10Txt.Text = "9238";
-            Row7Col10Txt.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // Row7Col9Txt
-            // 
-            Row7Col9Txt.Depth = 0;
-            Row7Col9Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            Row7Col9Txt.Location = new Point(879, 24);
-            Row7Col9Txt.MouseState = MaterialSkin.MouseState.HOVER;
-            Row7Col9Txt.Name = "Row7Col9Txt";
-            Row7Col9Txt.Size = new Size(68, 19);
-            Row7Col9Txt.TabIndex = 31;
-            Row7Col9Txt.Text = "32";
-            Row7Col9Txt.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // Row7Col8Txt
-            // 
-            Row7Col8Txt.Depth = 0;
-            Row7Col8Txt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            Row7Col8Txt.Location = new Point(768, 24);
-            Row7Col8Txt.MouseState = MaterialSkin.MouseState.HOVER;
-            Row7Col8Txt.Name = "Row7Col8Txt";
-            Row7Col8Txt.Size = new Size(68, 19);
-            Row7Col8Txt.TabIndex = 30;
-            Row7Col8Txt.Text = "54";
-            Row7Col8Txt.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // LeaderboardsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1321,6 +1321,13 @@
             ((System.ComponentModel.ISupportInitialize)Row1Col2Pbox).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)overflowPbox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)diodePbox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)joulePbox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)levelPbox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)unpoweredPbox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)burnedPbox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ratingPbox).EndInit();
             rankPanel7.ResumeLayout(false);
             rankPanel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)Row7Col2Pbox).EndInit();
@@ -1342,13 +1349,6 @@
             rankPanel1.ResumeLayout(false);
             rankPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)backgroundVideo).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -1418,13 +1418,13 @@
         private LibVLCSharp.WinForms.VideoView backgroundVideo;
         private MaterialSkin.Controls.MaterialButton prevButton;
         private MaterialSkin.Controls.MaterialButton nextButton;
-        private PictureBox pictureBox7;
-        private PictureBox pictureBox6;
-        private PictureBox pictureBox5;
-        private PictureBox pictureBox4;
-        private PictureBox pictureBox3;
-        private PictureBox pictureBox2;
-        private PictureBox pictureBox1;
+        private PictureBox overflowPbox;
+        private PictureBox diodePbox;
+        private PictureBox joulePbox;
+        private PictureBox levelPbox;
+        private PictureBox unpoweredPbox;
+        private PictureBox burnedPbox;
+        private PictureBox ratingPbox;
         private MaterialSkin.Controls.MaterialLabel Row7Col10Txt;
         private MaterialSkin.Controls.MaterialLabel Row7Col9Txt;
         private MaterialSkin.Controls.MaterialLabel Row7Col8Txt;

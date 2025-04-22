@@ -465,7 +465,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             // 
             gameMessageLabel.Anchor = AnchorStyles.Top;
             gameMessageLabel.BackColor = Color.Transparent;
-            gameMessageLabel.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            gameMessageLabel.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             gameMessageLabel.ForeColor = Color.White;
             gameMessageLabel.Location = new Point(13, 8);
             gameMessageLabel.Name = "gameMessageLabel";
@@ -609,7 +609,7 @@ namespace CircuitCraft // Ensure this namespace matches your project
             gameCanvas.CircuitElementSourceSprite5 = (Image)resources.GetObject("gameCanvas.CircuitElementSourceSprite5");
             gameCanvas.CircuitOverflowCount = 0;
             gameCanvas.CircuitSources = null;
-            gameCanvas.CurrentBlockIndex = 0;
+            gameCanvas.CurrentBlockIndex = -1;
             gameCanvas.CurrentCircuitElementDropped = null;
             gameCanvas.CurrentCircuitElementDroppedOrientation = 0;
             gameCanvas.CurrentCircuitElementDroppedResistance = 0D;

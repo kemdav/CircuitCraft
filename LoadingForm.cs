@@ -74,6 +74,12 @@ namespace CircuitCraft
                 string exePath = Path.Combine(Application.StartupPath, "Images", "Animated", "mp4.main_menu.background.mp4");
                 Program.mainMenuMedia = new Media(_libvlc, exePath, FromType.FromPath);
                 Program.mainMenuMedia.AddOption(":input-repeat=1000");
+
+                string startupPath = Application.StartupPath;
+                AudioManager.SetMusicVolume(DataClass.MusicVolume);
+                string relativePath = Path.Combine("Resources", "Audio", "mainmenu.mp3");
+                string musicFilePath = Path.Combine(startupPath, relativePath);
+                AudioManager.PlayMusic(musicFilePath, true);
             });
         }
     }

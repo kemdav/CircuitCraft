@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using ToolTip = System.Windows.Forms.ToolTip;
 
 namespace CircuitCraft
 {
@@ -54,6 +56,19 @@ namespace CircuitCraft
             CurrentPage = 1;
             prevButton.Enabled = false;
             LeaderboardRefresh(CurrentPage);
+
+            ToolTip toolTip1 = new ToolTip();
+            toolTip1.InitialDelay = 500;
+            toolTip1.AutoPopDelay = 5000;
+            toolTip1.ReshowDelay = 100;
+            toolTip1.SetToolTip(unpoweredPbox, "Number of Game Over due to LEDs Unpowered");
+            toolTip1.SetToolTip(overflowPbox, "Number of Game Over due to Circuit Overflow");
+            toolTip1.SetToolTip(diodePbox, "Number of Game Over due to Diode Blocked");
+            toolTip1.SetToolTip(burnedPbox, "Number of Game Over due to LEDs Burned");
+            toolTip1.SetToolTip(joulePbox, "Highest Joules Obtained in One Game");
+            toolTip1.SetToolTip(levelPbox, "Highest Level Reached in One Game");
+            toolTip1.SetToolTip(ratingPbox, "Rating");
+
         }
 
         private void LeaderboardsForm_Load(object sender, EventArgs e)
