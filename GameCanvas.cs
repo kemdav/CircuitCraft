@@ -988,7 +988,6 @@ namespace CircuitCraft
                     throw new ArgumentOutOfRangeException(nameof(typeToIncrease), "Invalid component type");
             }
 
-            // 1. Clamp the requested increase: Cannot go above 100%
             increaseAmount = Math.Min(increaseAmount, 100.0 - probToIncrease);
             if (increaseAmount <= 1e-6) // Check if increase is practically zero
             {
@@ -996,52 +995,41 @@ namespace CircuitCraft
                 return;
             }
 
-            // 2. Calculate the pool of probability available for reduction
             double reductionPool = probToReduce1 + probToReduce2;
 
-            // 3. Check if reduction is possible
-            if (reductionPool <= 1e-6) // Use tolerance for floating point comparison
+            if (reductionPool <= 1e-6) 
             {
                 Console.WriteLine("Cannot increase probability; other probabilities are already at or near zero.");
-                // Even though we clamped increaseAmount before, this handles the case
-                // where the target is not 100%, but the *others* are 0%.
+   
                 return;
             }
 
-            // 4. Calculate proportional reduction amounts
             double ratio1 = probToReduce1 / reductionPool;
-            double ratio2 = probToReduce2 / reductionPool; // Or ratio2 = 1.0 - ratio1;
+            double ratio2 = probToReduce2 / reductionPool;
 
             double reduction1 = increaseAmount * ratio1;
             double reduction2 = increaseAmount * ratio2;
 
-            // 5. Apply changes (ensure no probability goes below zero)
             double finalIncreasedProb = probToIncrease + increaseAmount;
             double finalReducedProb1 = Math.Max(0.0, probToReduce1 - reduction1);
             double finalReducedProb2 = Math.Max(0.0, probToReduce2 - reduction2);
 
-            // 6. Optional: Fine-tune due to clamping/floating point to ensure sum is exactly 100
-            // Calculate the actual total reduction achieved
+
             double actualTotalReduction = (probToReduce1 - finalReducedProb1) + (probToReduce2 - finalReducedProb2);
-            // Adjust the increased probability by the reduction actually achieved
+
             finalIncreasedProb = probToIncrease + actualTotalReduction;
 
-            // Final check to prevent exceeding 100 due to float issues and ensure sum is 100
-            finalIncreasedProb = Math.Min(100.0, finalIncreasedProb); // Clamp just in case
+            finalIncreasedProb = Math.Min(100.0, finalIncreasedProb); 
             double currentSum = finalIncreasedProb + finalReducedProb1 + finalReducedProb2;
 
-            // If sum isn't 100 adjust the largest reducer (or the increased one) slightly
+
             if (Math.Abs(currentSum - 100.0) > 1e-6)
             {
                 double diff = 100.0 - currentSum;
-                // Apply correction to the last one calculated or the largest pool contributor
                 finalReducedProb2 += diff;
-                // Re-clamp after correction
                 finalReducedProb2 = Math.Max(0.0, Math.Min(100.0, finalReducedProb2));
             }
 
-
-            // 7. Update the actual member variables using the setters
             setIncreased(finalIncreasedProb);
             setReduced1(finalReducedProb1);
             setReduced2(finalReducedProb2);
